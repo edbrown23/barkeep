@@ -1,0 +1,28 @@
+<main>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>cost</th>
+          <th>purchase location</th>
+          <th>max volume</th>
+          <th>Currently own?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reagents.each do |reagent| %>
+          <tr>
+            <td><%= reagent.id %></td>
+            <td><%= reagent.name %></td>
+            <td><%= reagent.cost %></td>
+            <td><%= reagent.purchase_location %></td>
+            <td><%= reagent.max_volume %></td>
+            <td><%= reagent.current_volume_percentage > 0 %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</main>
