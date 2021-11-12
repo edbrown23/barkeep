@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @reagent.name %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @reagent.cost %>
+</p>
+
+<p>
+  <strong>Purchase Location:</strong>
+  <%= @reagent.purchase_location %>
+</p>
+
+<p>
+  <strong>Max Volume:</strong>
+  <%= @reagent.max_volume %>
+</p>
+
+<p>
+  <strong>Current Volume:</strong>
+  <%= @reagent.current_volume_percentage %>
+</p>
+
+<%= link_to 'Edit', edit_reagent_path(@reagent) %> |
+<%= link_to 'Back', reagents_path %>
