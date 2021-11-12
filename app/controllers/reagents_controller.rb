@@ -49,10 +49,6 @@ class ReagentsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       params
         .require(:reagent)
-        .permit(:name)
-        .permit(:cost)
-        .permit(:purchase_location)
-        .permit(:max_volume)
-        .permit(:current_volume_percentage)
+          .permit(:name, :cost, :purchase_location, :max_volume, :current_volume_percentage)
     end
 end
