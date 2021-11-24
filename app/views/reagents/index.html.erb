@@ -1,30 +1,41 @@
 <main>
+  <%= javascript_pack_tag "reagents", "data-turbolinks-track": true %>
   <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>cost</th>
-          <th>purchase location</th>
-          <th>max volume</th>
-          <th>Currently own?</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @reagents.each do |reagent| %>
-          <tr>
-            <td><%= reagent.id %></td>
-            <td><%= reagent.name %></td>
-            <td><%= reagent.cost %></td>
-            <td><%= reagent.purchase_location %></td>
-            <td><%= reagent.max_volume %></td>
-            <td><%= reagent.current_volume_percentage > 0 %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= link_to 'New Reagent', new_reagent_path, class: 'btn btn-primary' %>
+    <div class="row">
+      <div class="col">
+        Content
+      </div>
+      <div class="col-10">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>cost</th>
+              <th>purchase location</th>
+              <th>max volume</th>
+              <th>Currently own?</th>
+              <th>Refill</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reagents.each do |reagent| %>
+              <tr>
+                <td><%= reagent.id %></td>
+                <td><%= reagent.name %></td>
+                <td><%= reagent.cost %></td>
+                <td><%= reagent.purchase_location %></td>
+                <td><%= reagent.max_volume %></td>
+                <td><%= reagent.current_volume_percentage > 0 %></td>
+                <td><%= link_to "Refill", reagent, remote: true, class: "btn btn-outline-success" %></td>
+                <td><%= link_to "Edit", edit_reagent_path(reagent), class: "btn btn-outline-info" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to 'New Reagent', new_reagent_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
   </div>
 </main>
