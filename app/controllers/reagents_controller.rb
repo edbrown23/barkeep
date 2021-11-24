@@ -5,9 +5,9 @@ class ReagentsController < ApplicationController
     search_term = search_params['search_term']
 
     if search_term.present? && search_term.size > 0
-      @reagents = Reagent.where('name ILIKE ?', "%#{search_term}%")
+      @reagents = Reagent.where('name ILIKE ?', "%#{search_term}%").order(:id)
     else
-      @reagents = Reagent.all
+      @reagents = Reagent.all.order(:id)
     end
   end
 
@@ -19,6 +19,12 @@ class ReagentsController < ApplicationController
   end
 
   def edit
+  end
+
+  def refill
+    # I don't know why this route sends the id as "reagent_id" instead of "id". probably some nested route magic
+    reagent = Reagent.find_by(id: params['reagent_id'])
+    reagent.update!(current_volume_percentage: 100.0) if reagent.present?
   end
 
   def create

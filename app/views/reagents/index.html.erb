@@ -37,7 +37,7 @@
                 <td><%= reagent.purchase_location %></td>
                 <td><%= reagent.max_volume %></td>
                 <td><%= reagent.current_volume_percentage > 0 %></td>
-                <td><%= link_to "Refill", reagent, remote: true, class: "btn btn-outline-success" %></td>
+                <td><%= link_to "Refill", reagent_refill_path(reagent), remote: true, method: "post", class: "btn btn-outline-success" %></td>
                 <td><%= link_to "Edit", edit_reagent_path(reagent), class: "btn btn-outline-info" %></td>
               </tr>
             <% end %>
