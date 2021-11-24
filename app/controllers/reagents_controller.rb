@@ -2,7 +2,13 @@ class ReagentsController < ApplicationController
   before_action :set_reagent, only: [:show, :edit, :update, :destroy]
 
   def index
-    @reagents = Reagent.all
+    search_term = search_params['search_term']
+
+    if search_term.present? && search_term.size > 0
+      @reagents = Reagent.where('name ILIKE ?', "%#{search_term}%")
+    else
+      @reagents = Reagent.all
+    end
   end
 
   def new
@@ -50,5 +56,9 @@ class ReagentsController < ApplicationController
       params
         .require(:reagent)
           .permit(:name, :cost, :purchase_location, :max_volume, :current_volume_percentage)
+    end
+
+    def search_params
+      params.permit(:search_term)
     end
 end

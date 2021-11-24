@@ -3,7 +3,16 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        Content
+        <%= form_with(url: "/reagents", method: "GET") do |form| %>
+          <div class="field mb-1">
+            <%= form.label :search_term, class: "form-label" %>
+            <%= form.text_field :search_term, class: "form-control", value: params['search_term'] %>
+          </div>
+
+          <div class="action mb-1">
+            <%= form.submit "Search", class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
       <div class="col-10">
         <table class="table">
