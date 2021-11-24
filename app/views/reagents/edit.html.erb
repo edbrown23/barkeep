@@ -1,3 +1,7 @@
-<%= render 'form', reagent: @reagent %>
+<main>
+  <div class="container">
+    <%= render 'form', reagent: @reagent %>
 
-<%= link_to 'Back', reagent_path %>
+    <%= link_to 'Back', reagent_path, class: "btn btn-danger" %>
+  </div>
+</main>

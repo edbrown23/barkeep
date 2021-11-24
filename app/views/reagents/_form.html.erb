@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :cost %>
-    <%= form.text_field :cost %>
+  <div class="field mb-3">
+    <%= form.label :cost, class: "form-label" %>
+    <%= form.text_field :cost, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :purchase_location %>
-    <%= form.text_field :purchase_location %>
+  <div class="field mb-3">
+    <%= form.label :purchase_location, class: "form-label" %>
+    <%= form.text_field :purchase_location, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :max_volume %>
-    <%= form.text_field :max_volume %>
+  <div class="field mb-3">
+    <%= form.label :max_volume, class: "form-label" %>
+    <%= form.text_field :max_volume, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :current_volume_percentage %>
-    <%= form.text_field :current_volume_percentage %>
+  <div class="field mb-3">
+    <%= form.label :current_volume_percentage, class: "form-label" %>
+    <%= form.text_field :current_volume_percentage, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mb-3">
+    <%= form.submit nil, class: "btn btn-primary" %>
   </div>
 <% end %>
