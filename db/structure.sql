@@ -101,7 +101,8 @@ CREATE TABLE public.recipes (
     id bigint NOT NULL,
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    category character varying NOT NULL
 );
 
 
@@ -217,6 +218,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20210922142122'),
 ('20210922142348'),
-('20210922142524');
+('20210922142524'),
+('20211126222525');
 
 

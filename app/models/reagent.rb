@@ -12,5 +12,5 @@
 #  updated_at                :datetime         not null
 
 class Reagent < ApplicationRecord
-
+  # TODO: validations that ensure the percentage is between 0 and 1
 end
