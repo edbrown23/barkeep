@@ -7,6 +7,33 @@
       <%= @cocktail.name %>
     </p>
 
+    <p>
+      <strong>Ingredients</strong>
+    </p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>ingredient</th>
+          <th>Required Volume</th>
+          <th>Current Available Volume</th>
+          <th>Go To Ingredient</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cocktail.reagent_amounts.each do |reagent_amount| %>
+          <tr>
+            <td><%= reagent_amount.id %></td>
+            <td><%= reagent_amount.reagent.name %></td>
+            <td><%= reagent_amount.amount %></td>
+            <td><%= reagent_amount.reagent.current_volume_percentage * (reagent_amount.reagent.max_volume || 0.0) %></td>
+            <td><%= link_to "Edit Ingredient", edit_reagent_path(reagent_amount.reagent), class: "btn btn-outline-info" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
     <%= link_to 'Edit', edit_cocktail_path(@cocktail), class: "btn btn-primary" %>
     <%= link_to 'Back', cocktails_path, class: "btn btn-info" %>
   </div>
