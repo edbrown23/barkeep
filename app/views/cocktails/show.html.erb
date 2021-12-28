@@ -1,29 +1,13 @@
-<div class="collapse" id="navbarToggleExternalContent">
-  <div class="bg-dark p-4">
-    <h5 class="text-white h4">Collapsed content</h5>
-    <span class="text-muted">Toggleable via the navbar brand.</span>
-  </div>
-</div>
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-</nav>
-
 <main>
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <% if @cocktails.nil? %>
-          Fuck
-        <%end %>
-        <% @cocktails.each do |cocktail| %>
-          <div><%= cocktail.name %></div>
-        <%end %>
-      </div>
-    </div>
-  </section>
+  <div class="container">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @cocktail.name %>
+    </p>
+
+    <%= link_to 'Edit', edit_cocktail_path(@cocktail), class: "btn btn-primary" %>
+    <%= link_to 'Back', cocktails_path, class: "btn btn-info" %>
+  </div>
 </main>

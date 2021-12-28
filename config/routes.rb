@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     post :refill
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get :cocktails, to: 'cocktails#show'
+  resources :cocktails do
+    post :delete
+  end
 end

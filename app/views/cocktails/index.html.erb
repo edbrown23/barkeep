@@ -1,0 +1,41 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <%= form_with(url: "/cocktails", method: "GET") do |form| %>
+          <div class="field mb-1">
+            <%= form.label :search_term, class: "form-label" %>
+            <%= form.text_field :search_term, class: "form-control", value: params['search_term'] %>
+          </div>
+
+          <div class="action mb-1">
+            <%= form.submit "Search", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-10">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cocktails.each do |cocktail| %>
+              <tr>
+                <td><%= cocktail.id %></td>
+                <td><%= cocktail.name %></td>
+                <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+                <td><%= link_to "Delete", cocktail_delete_path(cocktail), class: "btn btn-outline-danger", method: "post" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</main>

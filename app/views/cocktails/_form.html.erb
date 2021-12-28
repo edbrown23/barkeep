@@ -1,0 +1,43 @@
+<%= javascript_pack_tag "cocktails_form", "data-turbolinks-track": true %>
+<%= form_with(model: cocktail, url: @form_path) do |form| %>
+  <% if cocktail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h2>
+
+      <ul>
+        <% cocktail.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <h4>Ingredients</h4>
+
+  <div id="ingredients">
+    <div class="input-group mb-3 ingredient-group", id="base-reagent-group" hidden>
+      <div class="field mb-3">
+        <select class="form-select" name="recipe[ingredients][reagent_id][]">
+          <% @reagents.each do |reagent| %>
+            <option value=<%= reagent.id %>><%= reagent.name %></option>
+          <% end %>
+        </select>
+        <span class="input-group-text">Reagent Amount</span>
+        <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
+      </div>
+
+      <button class="btn btn-danger mb-3 delete-button" type="button">Delete Reagent</button>
+    </div>
+  </div>
+
+  <button class="btn btn-info mb-3" id="more-ingredients-trigger" type="button">More Ingredients</button>
+
+  <div class="actions mb-3">
+    <%= form.submit nil, class: "btn btn-primary" %>
+  </div>
+<% end %>
