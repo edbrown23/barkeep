@@ -33,9 +33,28 @@
 
       <button class="btn btn-danger mb-3 delete-button" type="button">Delete Reagent</button>
     </div>
+
+    <%# there's probably a better "rails" way to do this. Maybe just use a different form? %>
+    <% if @editing %>
+      <% @cocktail.reagent_amounts.each do |reagent_amount| %>
+        <div class="input-group mb-3 ingredient-group", id="<%= rand(2...100000) %>", data-edit-ingredients="true">
+          <div class="field mb-3">
+            <select class="form-select" name="recipe[ingredients][reagent_id][]">
+              <% @reagents.each do |reagent| %>
+                <option value=<%= reagent.id %> <% if reagent_amount.reagent_id == reagent.id %>selected<% end %>><%= reagent.name %></option>
+              <% end %>
+            </select>
+            <span class="input-group-text">Reagent Amount</span>
+            <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]", value: reagent_amount.amount %>
+          </div>
+
+          <button class="btn btn-danger mb-3 delete-button" type="button">Delete Reagent</button>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
-  <button class="btn btn-info mb-3" id="more-ingredients-trigger" type="button">More Ingredients</button>
+  <button class="btn btn-success mb-3" id="more-ingredients-trigger" type="button">More Ingredients</button>
 
   <div class="actions mb-3">
     <%= form.submit nil, class: "btn btn-primary" %>

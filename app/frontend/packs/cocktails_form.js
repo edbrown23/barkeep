@@ -35,4 +35,10 @@ window.addEventListener("load", () => {
     const ingredientsElement = document.querySelector("#ingredients");
     ingredientsElement.appendChild(duplicated);
   })
-})
+
+  // This is the setup for existing ingredients
+  const existingIngredients = document.querySelectorAll("[data-edit-ingredients='true']");
+  existingIngredients.forEach((element) => {
+    setupDestroyButton(element, element.id);
+  });
+});

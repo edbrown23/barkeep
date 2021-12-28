@@ -2,6 +2,6 @@
   <div class="container">
     <%= render 'form', cocktail: @cocktail %>
 
-    <%= link_to 'Back', cocktail_path, class: "btn btn-danger" %>
+    <%= link_to 'Back', cocktail_path, class: "btn btn-danger", data: { turbolinks: false } %>
   </div>
 </main>

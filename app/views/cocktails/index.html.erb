@@ -34,7 +34,10 @@
             <% end %>
           </tbody>
         </table>
-        <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary' %>
+        <%# This, and a few other links, is preventing turbolinks from operating this link,
+        because I'm using javascript to register onClick handlers via the window.load event,
+        and that doesn't work quite right with turbolinks %>
+        <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary', data: { turbolinks: false } %>
       </div>
     </div>
   </div>

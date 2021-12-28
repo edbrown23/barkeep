@@ -16,6 +16,7 @@ class CocktailsController < ApplicationController
     @cocktail = Recipe.new(category: 'cocktail')
     @reagents = Reagent.all
     @form_path = cocktails_path
+    @editing = false
   end
 
   def show
@@ -23,6 +24,8 @@ class CocktailsController < ApplicationController
 
   def edit
     @form_path = cocktail_path(@cocktail)
+    @reagents = Reagent.all
+    @editing = true
   end
 
   def create
@@ -45,8 +48,14 @@ class CocktailsController < ApplicationController
   end
 
   def update
+    parsed_params = cocktail_params.merge(category: 'cocktail')
+
+    # wasteful to do this every time, but easier...
+    @cocktail.reagent_amounts.destroy_all
+    amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
+
     respond_to do |format|
-      if @cocktail.update(cocktail_params)
+      if @cocktail.update(cocktail_params.slice(:name, :category))
         # TODO: handle the notice
         format.html { redirect_to cocktail_path(@cocktail), notice: "#{@cocktail.name} was successfully updated" }
       else
