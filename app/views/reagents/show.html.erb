@@ -8,6 +8,11 @@
     </p>
 
     <p>
+      <strong>Category:</strong>
+      <%= @reagent.reagent_category&.name || "No Category" %>
+    </p>
+
+    <p>
       <strong>Cost:</strong>
       <%= @reagent.cost %>
     </p>

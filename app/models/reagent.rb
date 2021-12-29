@@ -19,5 +19,5 @@
 
 class Reagent < ApplicationRecord
   # TODO: validations that ensure the percentage is between 0 and 1
-  has_one :reagent_category
+  belongs_to :reagent_category, optional: true
 end
