@@ -17,6 +17,26 @@
   </div>
 
   <div class="field mb-3">
+    <%= form.label :existing_category, class: "form-label" %>
+    <select class="form-select", name="reagent[existing_reagent_category_id]">
+      <% if reagent.reagent_category_id.blank?%>
+        <%# hard coded zero id for the default allows it to be ignored by the controller %>
+        <option value="0" selected>Optionally choose a category for this ingredient</option>
+      <% end %>
+      <% @reagent_categories.each do |reagent_category| %>
+        <option value=<%= reagent_category.id %> <% if reagent.reagent_category_id == reagent_category.id %>selected<% end%>><%= reagent_category.name %></option>
+      <% end %>
+      <option value="-1">Choose me to clear the category</option>
+    </select>
+    <div class="form-text">Existing Category will take precedence over a new category if both are provided</div>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :new_category_name, class: "form-label" %>
+    <%= form.text_field :new_category_name, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
     <%= form.label :cost, class: "form-label" %>
     <%= form.text_field :cost, class: "form-control" %>
   </div>

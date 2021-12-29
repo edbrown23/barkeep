@@ -13,12 +13,14 @@ class ReagentsController < ApplicationController
 
   def new
     @reagent = Reagent.new
+    @reagent_categories = ReagentCategory.all
   end
 
   def show
   end
 
   def edit
+    @reagent_categories = ReagentCategory.all
   end
 
   def refill
@@ -28,7 +30,8 @@ class ReagentsController < ApplicationController
   end
 
   def create
-    @reagent = Reagent.new(reagent_params)
+    parsed_params = parse_and_maybe_create_category(reagent_params)
+    @reagent = Reagent.new(parsed_params)
 
     respond_to do |format|
       if @reagent.save
@@ -41,8 +44,10 @@ class ReagentsController < ApplicationController
   end
 
   def update
+    parsed_params = parse_and_maybe_create_category(reagent_params)
+
     respond_to do |format|
-      if @reagent.update(reagent_params)
+      if @reagent.update(parsed_params)
         # TODO: handle the notice
         format.html { redirect_to @reagent, notice: "#{@reagent.name} was successfully updated" }
       else
@@ -52,6 +57,22 @@ class ReagentsController < ApplicationController
   end
 
   private
+    def parse_and_maybe_create_category(params)
+      # setting an existing category should always win, so if it's present and a valid primary_key then set it
+      # otherwise try to create a new category if one was passed in
+      # lastly, if there's no new category and the user chose "-1", that means they want to clear the category
+      if params[:existing_reagent_category_id].present? && params[:existing_reagent_category_id].to_i > 0
+        params[:reagent_category_id] = params[:existing_reagent_category_id]
+      elsif params[:new_category_name].present?
+        new_category = ReagentCategory.create(name: params.delete(:new_category_name))
+        params[:reagent_category_id] = new_category.id
+      elsif params[:existing_reagent_category_id].present? && params[:existing_reagent_category_id].to_i == -1
+        params[:reagent_category_id] = nil
+      end
+
+      params.except(:existing_reagent_category_id, :new_category_name)
+    end
+
     def set_reagent
       # TODO: handle 404
       @reagent = Reagent.find(params[:id])
@@ -61,7 +82,7 @@ class ReagentsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       params
         .require(:reagent)
-          .permit(:name, :cost, :purchase_location, :max_volume, :current_volume_percentage)
+          .permit(:name, :cost, :purchase_location, :max_volume, :current_volume_percentage, :existing_reagent_category_id, :new_category_name)
     end
 
     def search_params

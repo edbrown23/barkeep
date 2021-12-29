@@ -35,7 +35,8 @@ CREATE TABLE public.reagent_amounts (
     reagent_id bigint,
     amount numeric,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    reagent_category_id bigint
 );
 
 
@@ -59,6 +60,37 @@ ALTER SEQUENCE public.reagent_amounts_id_seq OWNED BY public.reagent_amounts.id;
 
 
 --
+-- Name: reagent_categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reagent_categories (
+    id bigint NOT NULL,
+    name character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: reagent_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reagent_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reagent_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reagent_categories_id_seq OWNED BY public.reagent_categories.id;
+
+
+--
 -- Name: reagents; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -70,7 +102,8 @@ CREATE TABLE public.reagents (
     max_volume numeric,
     current_volume_percentage numeric,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    reagent_category_id bigint
 );
 
 
@@ -142,6 +175,13 @@ ALTER TABLE ONLY public.reagent_amounts ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: reagent_categories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reagent_categories ALTER COLUMN id SET DEFAULT nextval('public.reagent_categories_id_seq'::regclass);
+
+
+--
 -- Name: reagents id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -172,6 +212,14 @@ ALTER TABLE ONLY public.reagent_amounts
 
 
 --
+-- Name: reagent_categories reagent_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reagent_categories
+    ADD CONSTRAINT reagent_categories_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reagents reagents_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -196,6 +244,13 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
+-- Name: index_reagent_amounts_on_reagent_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reagent_amounts_on_reagent_category_id ON public.reagent_amounts USING btree (reagent_category_id);
+
+
+--
 -- Name: index_reagent_amounts_on_reagent_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -210,6 +265,13 @@ CREATE INDEX index_reagent_amounts_on_recipe_id ON public.reagent_amounts USING 
 
 
 --
+-- Name: index_reagents_on_reagent_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reagents_on_reagent_category_id ON public.reagents USING btree (reagent_category_id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -219,6 +281,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210922142122'),
 ('20210922142348'),
 ('20210922142524'),
-('20211126222525');
+('20211014231105'),
+('20211126222525'),
+('20211229165810'),
+('20211229170225');
 
 
