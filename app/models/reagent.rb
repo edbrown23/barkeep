@@ -20,4 +20,8 @@
 class Reagent < ApplicationRecord
   # TODO: validations that ensure the percentage is between 0 and 1
   belongs_to :reagent_category, optional: true
+
+  def ounces_available
+    (current_volume_percentage * max_volume) / 29.574 # I got this conversion constant from google
+  end
 end
