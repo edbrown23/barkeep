@@ -16,6 +16,18 @@ function setupDestroyButton(reagentDoc, docId) {
   });
 }
 
+function nameRadioButtons(reagentDoc, docId) {
+  const saveReagentDoc = reagentDoc.querySelector("[data-save-reagent-radios='true']");
+  saveReagentDoc.querySelectorAll("[data-name-me='true']").forEach((element) => {
+    element.name = `${element.dataset.templateName}[${docId}][]`;
+  });
+
+  const saveCategoryDoc = reagentDoc.querySelector("[data-save-category-radios='true']");
+  saveCategoryDoc.querySelectorAll("[data-name-me='true']").forEach((element) => {
+    element.name = `${element.dataset.templateName}[${docId}][]`;
+  });
+}
+
 window.addEventListener("load", () => {
   const moreIngredientsTrigger = document.querySelector("#more-ingredients-trigger");
 
@@ -30,7 +42,8 @@ window.addEventListener("load", () => {
     duplicated.id = docId;
     duplicated.hidden = false;
 
-    setupDestroyButton(duplicated, docId)
+    setupDestroyButton(duplicated, docId);
+    nameRadioButtons(duplicated, docId);
 
     const ingredientsElement = document.querySelector("#ingredients");
     ingredientsElement.appendChild(duplicated);

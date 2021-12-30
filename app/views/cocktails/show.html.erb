@@ -15,9 +15,8 @@
       <thead>
         <tr>
           <th>id</th>
-          <th>ingredient</th>
+          <th>Ingredient</th>
           <th>Required Volume</th>
-          <th>Current Available Volume</th>
           <th>Go To Ingredient</th>
         </tr>
       </thead>
@@ -25,10 +24,9 @@
         <% @cocktail.reagent_amounts.each do |reagent_amount| %>
           <tr>
             <td><%= reagent_amount.id %></td>
-            <td><%= reagent_amount.reagent.name %></td>
+            <td><%= reagent_amount.reagent&.name || reagent_amount.reagent_category&.name %></td>
             <td><%= reagent_amount.amount %></td>
-            <td><%= reagent_amount.reagent.current_volume_percentage * (reagent_amount.reagent.max_volume || 0.0) %></td>
-            <td><%= link_to "Edit Ingredient", edit_reagent_path(reagent_amount.reagent), class: "btn btn-outline-info" %></td>
+            <td><% if reagent_amount.reagent.present? %><%= link_to "Edit Ingredient", edit_reagent_path(reagent_amount.reagent), class: "btn btn-outline-info" %><% end %></td>
           </tr>
         <% end %>
       </tbody>

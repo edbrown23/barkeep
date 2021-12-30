@@ -20,35 +20,118 @@
   <h4>Ingredients</h4>
 
   <div id="ingredients">
-    <div class="input-group mb-3 ingredient-group", id="base-reagent-group" hidden>
-      <div class="field mb-3">
-        <select class="form-select" name="recipe[ingredients][reagent_id][]">
-          <% @reagents.each do |reagent| %>
-            <option value=<%= reagent.id %>><%= reagent.name %></option>
-          <% end %>
-        </select>
-        <span class="input-group-text">Reagent Amount</span>
-        <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
+    <div class="mb-3 ingredient-group border rounded", id="base-reagent-group" hidden>
+      <div class="row m-3">
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text">Reagents:</span>
+            <select class="form-select" name="recipe[ingredients][reagent_id][]">
+              <% @reagents.each do |reagent| %>
+                <option value=<%= reagent.id %>><%= reagent.name %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+        <div class="col-auto" data-save-reagent-radios="true">
+          <span>Save Reagent?</span>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="true" data-template-name="recipe[ingredients][save_reagent]" data-name-me="true">
+            <label class="form-check-label">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="false" data-template-name="recipe[ingredients][save_reagent]" data-name-me="true" checked>
+            <label class="form-check-label">No</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group">
+            <span class="input-group-text">Categories:</span>
+            <select class="form-select" name="recipe[ingredients][reagent_category_id][]">
+              <% @reagent_categories.each do |reagent_category| %>
+                <option value=<%= reagent_category.id %>><%= reagent_category.name %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+        <div class="col-auto" data-save-category-radios="true">
+          <span>Save Category?</span>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="true" data-template-name="recipe[ingredients][save_category]" data-name-me="true">
+            <label class="form-check-label">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="false" data-template-name="recipe[ingredients][save_category]" data-name-me="true" checked>
+            <label class="form-check-label">No</label>
+          </div>
+        </div>
+      </div>
+      <div class="row m-3">
+        <div class="input-group">
+          <span class="input-group-text">Reagent Amount (oz)</span>
+          <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
+        </div>
       </div>
 
-      <button class="btn btn-danger mb-3 delete-button" type="button">Delete Reagent</button>
+      <button class="btn btn-danger m-3 delete-button" type="button">Delete Reagent</button>
     </div>
 
     <%# there's probably a better "rails" way to do this. Maybe just use a different form? %>
     <% if @editing %>
       <% @cocktail.reagent_amounts.each do |reagent_amount| %>
-        <div class="input-group mb-3 ingredient-group", id="<%= rand(2...100000) %>", data-edit-ingredients="true">
-          <div class="field mb-3">
-            <select class="form-select" name="recipe[ingredients][reagent_id][]">
-              <% @reagents.each do |reagent| %>
-                <option value=<%= reagent.id %> <% if reagent_amount.reagent_id == reagent.id %>selected<% end %>><%= reagent.name %></option>
-              <% end %>
-            </select>
-            <span class="input-group-text">Reagent Amount</span>
-            <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]", value: reagent_amount.amount %>
+        <% random_id = rand(2...100000) %>
+        <div class="mb-3 ingredient-group border rounded", id="<%= random_id %>", data-edit-ingredients="true">
+          <div class="row m-3">
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-text">Reagents:</span>
+                <select class="form-select" name="recipe[ingredients][reagent_id][]">
+                  <% @reagents.each do |reagent| %>
+                    <option value=<%= reagent.id %><% if reagent_amount.reagent_id == reagent.id %> selected<% end %>><%= reagent.name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="col-auto">
+              <span>Save Reagent?</span>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="true" name="recipe[ingredients][save_reagent][<%= random_id %>][]" <% if reagent_amount.reagent.present? %>checked<% end %>>
+                <label class="form-check-label">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="false" name="recipe[ingredients][save_reagent][<%= random_id %>][]" <% if reagent_amount.reagent.blank? %>checked<% end %>>
+                <label class="form-check-label">No</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-text">Categories:</span>
+                <select class="form-select" name="recipe[ingredients][reagent_category_id][]">
+                  <% @reagent_categories.each do |reagent_category| %>
+                    <option value=<%= reagent_category.id %><% if reagent_amount.reagent_category_id == reagent_category.id %> selected<% end %>><%= reagent_category.name %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="col-auto">
+              <span>Save Category?</span>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="true" name="recipe[ingredients][save_category][<%= random_id %>][]" <% if reagent_amount.reagent_category.present? %>checked<% end %>>
+                <label class="form-check-label">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="false" name="recipe[ingredients][save_category][<%= random_id %>][]" <% if reagent_amount.reagent_category.blank? %>checked<% end %>>
+                <label class="form-check-label">No</label>
+              </div>
+            </div>
+          </div>
+          <div class="row m-3">
+            <div class="input-group">
+              <span class="input-group-text">Reagent Amount (oz)</span>
+              <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]", value: reagent_amount.amount %>
+            </div>
           </div>
 
-          <button class="btn btn-danger mb-3 delete-button" type="button">Delete Reagent</button>
+          <button class="btn btn-danger m-3 delete-button" type="button">Delete Reagent</button>
         </div>
       <% end %>
     <% end %>

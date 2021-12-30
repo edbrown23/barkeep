@@ -17,6 +17,7 @@ class CocktailsController < ApplicationController
     @reagents = Reagent.all
     @form_path = cocktails_path
     @editing = false
+    @reagent_categories = ReagentCategory.all
   end
 
   def show
@@ -26,6 +27,7 @@ class CocktailsController < ApplicationController
     @form_path = cocktail_path(@cocktail)
     @reagents = Reagent.all
     @editing = true
+    @reagent_categories = ReagentCategory.all
   end
 
   def create
@@ -66,11 +68,15 @@ class CocktailsController < ApplicationController
 
   def create_reagent_amounts(cocktail, amounts_array)
     amounts_array.map do |raw_amount|
-      ReagentAmount.create(
+      create_params = {
         recipe: cocktail,
-        amount: raw_amount[:reagent_amount],
-        reagent: raw_amount[:reagent_model]
-      )
+        amount: raw_amount[:reagent_amount]
+      }
+
+      create_params[:reagent] = raw_amount[:reagent_model] if raw_amount[:save_reagent]
+      create_params[:reagent_category] = raw_amount[:reagent_category_model] if raw_amount[:save_category]
+
+      ReagentAmount.create(**create_params)
     end
   end
 
@@ -90,18 +96,32 @@ class CocktailsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       permitted = params
         .require(:recipe)
-          .permit(:name, ingredients: {reagent_id: [], reagent_amount: []})
+          .permit(:name, ingredients: {reagent_id: [], reagent_amount: [], reagent_category_id: [], save_reagent: {}, save_category: {}})
 
+      # everything about this is awful, because it's tied so tightly to how the UI is laid out.
+      # I really need to redo the submission side of this has pure javascript, and handle everything
+      # there, so that the controller is pure API
+      # I'm adding a value at the front that will be dropped by the later `compact`
+      parsed_save_reagent_radios = ['true'] + permitted[:ingredients][:save_reagent].values.flatten
+      parsed_save_category_radios = ['true'] + permitted[:ingredients][:save_category].values.flatten
       {}.tap do |final_params|
         final_params[:name] = permitted[:name]
         final_params[:reagent_amounts] = permitted[:ingredients][:reagent_id].map.with_index do |reagent_id, i|
           reagent_model = Reagent.find_by(id: reagent_id)
           reagent_amount = permitted[:ingredients][:reagent_amount][i]
+
+          category_model = ReagentCategory.find_by(id: permitted[:ingredients][:reagent_category_id][i])
+
+          # this largely allows the compact to skip the values from the hidden form. Again, terrible mixing of
+          # view and controller logic
           next if reagent_model.blank? || reagent_amount.blank?
 
           {
             reagent_model: reagent_model,
-            reagent_amount: reagent_amount
+            save_reagent: parsed_save_reagent_radios[i] == 'true',
+            reagent_amount: reagent_amount,
+            reagent_category_model: category_model,
+            save_category: parsed_save_category_radios[i] == 'true'
           }
         end.compact
       end

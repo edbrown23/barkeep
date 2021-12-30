@@ -18,6 +18,6 @@
 #
 class ReagentAmount < ApplicationRecord
   belongs_to :recipe
-  belongs_to :reagent
-  has_one :reagent_category
+  belongs_to :reagent, optional: true
+  belongs_to :reagent_category, optional: true
 end
