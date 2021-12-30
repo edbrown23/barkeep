@@ -57,4 +57,20 @@ namespace :maintenance do
       puts "Created #{cocktail.name}"
     end
   end
+
+  desc 'Import reagents from csv file (replaces existing reagents)'
+  task import_reagents: [:environment] do
+    reagents_csv = ENV.fetch('csv')
+
+    CSV.read(reagents_csv, headers: true).each do |row|
+      category = ReagentCategory.find_or_create_by(name: row['Category']) if row['Category'].present?
+
+      Reagent.create!(
+        name: row['Name'],
+        max_volume: row['Max Volume'],
+        current_volume_percentage: row['Current Volume'].to_i / 100.0,
+        reagent_category: category
+      )
+    end
+  end
 end

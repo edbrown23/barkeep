@@ -26,6 +26,7 @@
     <div class="col-3">
       <% @available_cocktails.each do |cocktail| %>
         <div class="collapse" id="cocktail_<%= cocktail.id %>">
+          <span><%= cocktail.name %></span>
           <div class="card card-body">
             <table class="table">
               <thead>
