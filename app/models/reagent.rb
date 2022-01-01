@@ -11,6 +11,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  reagent_category_id       :bigint
+#  description               :text
 #
 # Indexes
 #

@@ -2,11 +2,12 @@
 #
 # Table name: recipes
 #
-#  id         :bigint           not null, primary key
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  category   :string           not null
+#  id          :bigint           not null, primary key
+#  name        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category    :string           not null
+#  description :text
 #
 require 'rails_helper'
 

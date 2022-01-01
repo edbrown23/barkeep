@@ -17,15 +17,17 @@
           <th>id</th>
           <th>Ingredient</th>
           <th>Required Volume</th>
+          <th>Description</th>
           <th>Go To Ingredient</th>
         </tr>
       </thead>
       <tbody>
         <% @cocktail.reagent_amounts.each do |reagent_amount| %>
-          <tr>
+          <tr <% if reagent_amount.reagent_available? %> class="table-success"<% end %>>
             <td><%= reagent_amount.id %></td>
             <td><%= reagent_amount.reagent&.name || reagent_amount.reagent_category&.name %></td>
             <td><%= reagent_amount.amount %></td>
+            <td><%= reagent_amount.description %></td>
             <td><% if reagent_amount.reagent.present? %><%= link_to "Edit Ingredient", edit_reagent_path(reagent_amount.reagent), class: "btn btn-outline-info" %><% end %></td>
           </tr>
         <% end %>

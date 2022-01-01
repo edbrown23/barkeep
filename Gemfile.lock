@@ -91,6 +91,7 @@ GEM
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    hpricot (0.8.6)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -236,6 +237,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   capybara (>= 3.26)
   dotenv-rails
+  hpricot
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg

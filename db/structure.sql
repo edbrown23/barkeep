@@ -36,7 +36,9 @@ CREATE TABLE public.reagent_amounts (
     amount numeric,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    reagent_category_id bigint
+    reagent_category_id bigint,
+    unit character varying,
+    description text
 );
 
 
@@ -67,7 +69,8 @@ CREATE TABLE public.reagent_categories (
     id bigint NOT NULL,
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    description text
 );
 
 
@@ -103,7 +106,8 @@ CREATE TABLE public.reagents (
     current_volume_percentage numeric,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    reagent_category_id bigint
+    reagent_category_id bigint,
+    description text
 );
 
 
@@ -135,7 +139,8 @@ CREATE TABLE public.recipes (
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    category character varying NOT NULL
+    category character varying NOT NULL,
+    description text
 );
 
 
@@ -283,6 +288,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210922142524'),
 ('20211126222525'),
 ('20211229165810'),
-('20211229170225');
+('20211229170225'),
+('20211230205720'),
+('20211230213757');
 
 

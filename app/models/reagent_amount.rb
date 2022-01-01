@@ -9,6 +9,8 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  reagent_category_id :bigint
+#  unit                :string
+#  description         :text
 #
 # Indexes
 #
@@ -20,4 +22,10 @@ class ReagentAmount < ApplicationRecord
   belongs_to :recipe
   belongs_to :reagent, optional: true
   belongs_to :reagent_category, optional: true
+
+  def reagent_available?
+     return reagent_category.category_available?(amount) if reagent_category.present?
+
+     reagent.ounces_available >= amount
+  end
 end
