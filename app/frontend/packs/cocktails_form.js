@@ -4,16 +4,20 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-function setupDestroyButton(reagentDoc, docId) {
-  const deleteButton = reagentDoc.querySelector(".delete-button");
-  deleteButton.dataset.docId = docId;
+function deleteIngredient(event) {
+  let buttonClicked = event.target;
+  let docId = buttonClicked.dataset.docId;
 
-  deleteButton.addEventListener("click", (event) => {
-    const buttonClicked = event.target;
+  if (!docId) {
+    return;
+  }
 
-    const reagentSection = document.getElementById(buttonClicked.dataset.docId);
-    reagentSection.remove();
-  });
+  let toRemove = document.getElementById(docId);
+  if (!toRemove) {
+    return;
+  }
+
+  toRemove.remove();
 }
 
 function nameRadioButtons(reagentDoc, docId) {
@@ -28,11 +32,26 @@ function nameRadioButtons(reagentDoc, docId) {
   });
 }
 
-window.addEventListener("load", () => {
-  const moreIngredientsTrigger = document.querySelector("#more-ingredients-trigger");
+window.addEventListener("turbolinks:load", () => {
+  // This little block just ensures we don't register the 'click' handlers more than once with
+  // turbolinks. I don't know if this shit is even necessary
+  let reagentTemplate = document.getElementById('base-reagent-group');
+  if (!reagentTemplate) {
+    return;
+  }
 
-  // This is the full setup of listeners
-  moreIngredientsTrigger.addEventListener("click", (event) => {
+  if (reagentTemplate.dataset.duplicateConfigured) {
+    return;
+  }
+  reagentTemplate.dataset.duplicateConfigured = true;
+  
+  document.addEventListener("click", (event) => {
+    let idHit = event.target.id;
+
+    if (idHit != "more-ingredients-trigger") {
+      return;
+    }
+
     event.preventDefault();
 
     const template = document.querySelector("#base-reagent-group");
@@ -42,16 +61,18 @@ window.addEventListener("load", () => {
     duplicated.id = docId;
     duplicated.hidden = false;
 
-    setupDestroyButton(duplicated, docId);
+    duplicated.querySelector(".delete-button").dataset.docId = docId;
     nameRadioButtons(duplicated, docId);
 
     const ingredientsElement = document.querySelector("#ingredients");
     ingredientsElement.appendChild(duplicated);
-  })
+  });
 
   // This is the setup for existing ingredients
   const existingIngredients = document.querySelectorAll("[data-edit-ingredients='true']");
   existingIngredients.forEach((element) => {
-    setupDestroyButton(element, element.id);
+    element.querySelector(".delete-button").dataset.docId = element.id;
   });
+
+  document.addEventListener("click", deleteIngredient);
 });

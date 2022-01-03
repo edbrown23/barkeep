@@ -1,3 +1,6 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "cocktails_index", "data-turbolinks-track": 'reload' %>
+<% end %>
 <main>
   <div class="container">
     <div class="row">
@@ -12,9 +15,10 @@
             <%= form.submit "Search", class: "btn btn-primary" %>
           </div>
         <% end %>
+        <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary' %>
       </div>
       <div class="col-10">
-        <table class="table">
+        <table class="table" id="cocktailsTable">
           <thead>
             <tr>
               <th>id</th>
@@ -25,19 +29,15 @@
           </thead>
           <tbody>
             <% @cocktails.each do |cocktail| %>
-              <tr>
+              <tr id="cocktail_<%= cocktail.id %>">
                 <td><%= cocktail.id %></td>
                 <td><%= cocktail.name %></td>
                 <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
-                <td><%= link_to "Delete", cocktail_delete_path(cocktail), class: "btn btn-outline-danger", method: "post" %></td>
+                <td><%= link_to "Delete", cocktail_delete_path(cocktail), class: "btn btn-outline-danger", method: "post", remote: true, data: { confirm: 'Are you sure you want to delete this cocktail?' } %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
-        <%# This, and a few other links, is preventing turbolinks from operating this link,
-        because I'm using javascript to register onClick handlers via the window.load event,
-        and that doesn't work quite right with turbolinks %>
-        <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary', data: { turbolinks: false } %>
       </div>
     </div>
   </div>

@@ -8,6 +8,10 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <% if content_for? :per_page_js %>
+      <%= yield :per_page_js %>
+    <% end %>
   </head>
 
   <body>

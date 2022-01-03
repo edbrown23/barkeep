@@ -84,6 +84,10 @@ class CocktailsController < ApplicationController
   def delete
     cocktail = Recipe.find_by(id: params['cocktail_id'])
     cocktail.destroy if cocktail.present?
+
+    respond_to do |format|
+      format.json { render json: { deleted_id: cocktail.id } }
+    end
   end
 
   private

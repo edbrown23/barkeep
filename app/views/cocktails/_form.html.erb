@@ -1,4 +1,7 @@
-<%= javascript_pack_tag "cocktails_form", "data-turbolinks-track": true %>
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "cocktails_form", "data-turbolinks-track": 'reload' %>
+<% end %>
+
 <%= form_with(model: cocktail, url: @form_path) do |form| %>
   <% if cocktail.errors.any? %>
     <div id="error_explanation">
