@@ -16,7 +16,7 @@
             <tr>
               <td><%= cocktail.id %></td>
               <td><%= cocktail.name %></td>
-              <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#cocktail_<%= cocktail.id %>">Show Ingredients</button></td>
+              <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>">Show Ingredients</button></td>
             </tr>
           <% end %>
         </tbody>
@@ -25,8 +25,8 @@
 
     <div class="col-3">
       <% @available_cocktails.each do |cocktail| %>
-        <div class="collapse" id="cocktail_<%= cocktail.id %>">
-          <span><%= cocktail.name %></span>
+        <div class="collapse" id="ingredients_<%= cocktail.id %>">
+          <strong><%= cocktail.name %></strong>
           <div class="card card-body">
             <table class="table">
               <thead>

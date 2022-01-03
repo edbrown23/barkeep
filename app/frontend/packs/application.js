@@ -14,4 +14,4 @@ ActiveStorage.start()
 
 import '../js/bootstrap_js_files.js'
 import * as bootstrap from 'bootstrap'
-window.bootstrap = bootstrap;
+window.bootstrap = require("bootstrap");
