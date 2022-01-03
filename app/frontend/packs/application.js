@@ -12,4 +12,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import '../js/bootstrap_js_files.js' 
+import '../js/bootstrap_js_files.js'
+import * as bootstrap from 'bootstrap'
+window.bootstrap = bootstrap;

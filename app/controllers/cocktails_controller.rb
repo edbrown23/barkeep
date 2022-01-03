@@ -86,7 +86,7 @@ class CocktailsController < ApplicationController
     cocktail.destroy if cocktail.present?
 
     respond_to do |format|
-      format.json { render json: { deleted_id: cocktail.id } }
+      format.json { render json: { deleted_id: cocktail.id, deleted_name: cocktail.name } }
     end
   end
 
