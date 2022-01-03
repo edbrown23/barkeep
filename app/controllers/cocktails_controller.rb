@@ -14,10 +14,10 @@ class CocktailsController < ApplicationController
 
   def new
     @cocktail = Recipe.new(category: 'cocktail')
-    @reagents = Reagent.all
+    @reagents = Reagent.all.order(:name)
     @form_path = cocktails_path
     @editing = false
-    @reagent_categories = ReagentCategory.all
+    @reagent_categories = ReagentCategory.all.order(:name)
   end
 
   def show
@@ -25,9 +25,9 @@ class CocktailsController < ApplicationController
 
   def edit
     @form_path = cocktail_path(@cocktail)
-    @reagents = Reagent.all
+    @reagents = Reagent.all.order(:name)
     @editing = true
-    @reagent_categories = ReagentCategory.all
+    @reagent_categories = ReagentCategory.all.order(:name)
   end
 
   def create
