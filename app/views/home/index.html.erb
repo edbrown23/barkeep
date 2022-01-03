@@ -1,3 +1,6 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "home_index", "data-turbolinks-track": 'reload' %>
+<% end %>
 <div class="container">
   <h1>Look at all the drinks you can make!</h1>
 
@@ -16,7 +19,7 @@
             <tr>
               <td><%= cocktail.id %></td>
               <td><%= cocktail.name %></td>
-              <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>">Show Ingredients</button></td>
+              <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
             </tr>
           <% end %>
         </tbody>
