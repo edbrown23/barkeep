@@ -30,6 +30,34 @@ class CocktailsController < ApplicationController
     @reagent_categories = ReagentCategory.all.order(:name)
   end
 
+  def make_drink
+    cocktail = Recipe.find(params[:cocktail_id])
+
+
+    used_reagents = cocktail.reagent_amounts.map do |amount|
+      reagent = amount.reagent
+
+      if amount.reagent_category.present?
+        reagent = amount.reagent_category.reagents.first
+      end
+
+      # this assumes ounces, which is wrong
+      reagent.subtract_ounces(amount.amount)
+
+      {
+        used_model: reagent
+      }
+    end
+
+    formatted_used = used_reagents.map do |used|
+      used[:used_model].name
+    end
+
+    respond_to do |format|
+      format.json { render json: { cocktail_name: cocktail.name, reagents_used: formatted_used } }
+    end
+  end
+
   def create
     parsed_params = cocktail_params.merge(category: 'cocktail')
 

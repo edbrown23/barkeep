@@ -26,7 +26,7 @@
       </table>
     </div>
 
-    <div class="col-3">
+    <div class="col-3" id="cocktails_collapses">
       <% @available_cocktails.each do |cocktail| %>
         <div class="collapse" id="ingredients_<%= cocktail.id %>">
           <strong><%= cocktail.name %></strong>
@@ -49,9 +49,22 @@
                 <% end %>
               </tbody>
             </table>
+            <%= link_to "I made this!", cocktail_make_drink_path(cocktail), remote: true, method: :post, class: "btn btn-primary", data: { quantity: 1, cocktail_id: cocktail.id } %>
           </div>
         </div>
       <% end %>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11">
+  </div>
+
+  <div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong>Cheers!</strong>
+    </div>
+    <div class="toast-body">
+      <span data-toast-body></span>
     </div>
   </div>
 </div>
