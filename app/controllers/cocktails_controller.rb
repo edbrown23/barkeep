@@ -61,7 +61,7 @@ class CocktailsController < ApplicationController
   def create
     parsed_params = cocktail_params.merge(category: 'cocktail')
 
-    @cocktail = Recipe.create(parsed_params.slice(:name, :category))
+    @cocktail = Recipe.create(parsed_params.slice(:name, :category, :favorite))
     # TODO: Figure out how to get errors sent up the chain here
 
     # TODO: there are errors possible here too
@@ -85,7 +85,7 @@ class CocktailsController < ApplicationController
     amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
 
     respond_to do |format|
-      if @cocktail.update(cocktail_params.slice(:name, :category))
+      if @cocktail.update(cocktail_params.slice(:name, :category, :favorite))
         # TODO: handle the notice
         format.html { redirect_to cocktail_path(@cocktail), notice: "#{@cocktail.name} was successfully updated" }
       else
@@ -108,13 +108,24 @@ class CocktailsController < ApplicationController
     end
   end
 
-  # figure out how to refresh the page automatically when you do this
   def delete
     cocktail = Recipe.find_by(id: params['cocktail_id'])
     cocktail.destroy if cocktail.present?
 
     respond_to do |format|
-      format.json { render json: { deleted_id: cocktail.id, deleted_name: cocktail.name } }
+      format.json { render json: { action: :deleted, deleted_id: cocktail.id, deleted_name: cocktail.name } }
+    end
+  end
+
+  # TODO: these json only routes should be more consistent and more DRY
+  def toggle_favorite
+    cocktail = Recipe.find_by(id: params['cocktail_id'])
+    cocktail.favorite = !cocktail.favorite
+
+    cocktail.save
+
+    respond_to do |format|
+      format.json { render json: { action: cocktail.favorite ? :favorited : :unfavorited, favorited_id: cocktail.id } }
     end
   end
 
@@ -128,7 +139,7 @@ class CocktailsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       permitted = params
         .require(:recipe)
-          .permit(:name, ingredients: {reagent_id: [], reagent_amount: [], reagent_category_id: [], save_reagent: {}, save_category: {}})
+          .permit(:name, :favorite, ingredients: {reagent_id: [], reagent_amount: [], reagent_category_id: [], save_reagent: {}, save_category: {}})
 
       # everything about this is awful, because it's tied so tightly to how the UI is laid out.
       # I really need to redo the submission side of this has pure javascript, and handle everything
@@ -138,6 +149,7 @@ class CocktailsController < ApplicationController
       parsed_save_category_radios = ['true'] + permitted[:ingredients][:save_category].values.flatten
       {}.tap do |final_params|
         final_params[:name] = permitted[:name]
+        final_params[:favorite] = permitted[:favorite] == "1"
         final_params[:reagent_amounts] = permitted[:ingredients][:reagent_id].map.with_index do |reagent_id, i|
           reagent_model = Reagent.find_by(id: reagent_id)
           reagent_amount = permitted[:ingredients][:reagent_amount][i]

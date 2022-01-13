@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :cocktails do
     post :delete
     post :make_drink
+    post :toggle_favorite
   end
 end

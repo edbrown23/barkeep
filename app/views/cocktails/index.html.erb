@@ -25,6 +25,8 @@
               <th>name</th>
               <th>Edit</th>
               <th>Delete</th>
+              <th>Toggle Favorite</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -34,6 +36,8 @@
                 <td><%= cocktail.name %></td>
                 <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
                 <td><%= link_to "Delete", cocktail_delete_path(cocktail), class: "btn btn-outline-danger", method: "post", remote: true, data: { confirm: 'Are you sure you want to delete this cocktail?' } %></td>
+                <td><%= link_to "Favorite", cocktail_toggle_favorite_path(cocktail), class: "btn btn-outline-primary", method: "post", remote: true %></td>
+                <td class="favorite-column"><% if cocktail.favorite %>&#x2B50;<% end %></td>
               </tr>
             <% end %>
           </tbody>

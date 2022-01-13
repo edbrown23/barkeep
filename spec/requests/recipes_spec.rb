@@ -8,6 +8,7 @@
 #  updated_at  :datetime         not null
 #  category    :string           not null
 #  description :text
+#  extras      :jsonb
 #
 require 'rails_helper'
 

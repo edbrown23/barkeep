@@ -140,7 +140,8 @@ CREATE TABLE public.recipes (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     category character varying NOT NULL,
-    description text
+    description text,
+    extras jsonb
 );
 
 
@@ -290,6 +291,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211229165810'),
 ('20211229170225'),
 ('20211230205720'),
-('20211230213757');
+('20211230213757'),
+('20220113223657');
 
 
