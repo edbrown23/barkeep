@@ -8,9 +8,9 @@ class Cocktails
       all_cocktails.filter do |cocktail|
         cocktail.reagent_amounts.all? do |amount|
           if amount.reagent_category.present?
-            amount.reagent_category.reagents.any? { |category_reagent| category_reagent.ounces_available > amount.amount }
+            amount.reagent_category.reagents.any? { |category_reagent| category_reagent.ounces_available >= amount.amount }
           else
-            amount.reagent.ounces_available > amount.amount
+            amount.reagent.ounces_available >= amount.amount
           end
         end
       end
