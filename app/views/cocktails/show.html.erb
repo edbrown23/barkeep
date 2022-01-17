@@ -1,3 +1,6 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "cocktail_show", "data-turbolinks-track": 'reload' %>
+<% end %>
 <main>
   <div class="container">
     <p id="notice"><%= notice %></p>
@@ -45,5 +48,21 @@
 
     <%= link_to 'Edit', edit_cocktail_path(@cocktail), class: "btn btn-primary" %>
     <%= link_to 'Back', cocktails_path, class: "btn btn-info" %>
-  </div>
+
+    <p class="mt-3">
+      <%= link_to "I made this!", cocktail_make_drink_path(@cocktail), id: 'make_cocktail_link', remote: true, method: :post, class: "btn btn-success", data: { quantity: 1, cocktail_id: @cocktail.id } %>
+    </p>
+
+      <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11">
+      </div>
+
+      <div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong>Cheers!</strong>
+        </div>
+        <div class="toast-body">
+          <span data-toast-body></span>
+        </div>
+      </div>
+    <div>
 </main>
