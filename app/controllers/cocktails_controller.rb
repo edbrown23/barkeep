@@ -33,7 +33,6 @@ class CocktailsController < ApplicationController
   def make_drink
     cocktail = Recipe.find(params[:cocktail_id])
 
-
     used_reagents = cocktail.reagent_amounts.map do |amount|
       reagent = amount.reagent
 
@@ -45,9 +44,14 @@ class CocktailsController < ApplicationController
       reagent.subtract_ounces(amount.amount)
 
       {
-        used_model: reagent
+        used_model: reagent,
+        used_amount: amount.amount,
+        used_unit: amount.unit,
+        used_detail: amount.description
       }
     end
+
+    create_audit(cocktail, used_reagents)
 
     formatted_used = used_reagents.map do |used|
       used[:used_model].name
@@ -173,5 +177,19 @@ class CocktailsController < ApplicationController
 
     def search_params
       params.permit(:search_term)
+    end
+
+    def create_audit(cocktail, used_reagents)
+      audit_info = used_reagents.map do |used|
+        {
+          reagent_id: used[:used_model].id,
+          reagent_name: used[:used_model].name,
+          amount_used: used[:used_amount],
+          unit_used: used[:used_unit],
+          description: used[:used_detail]
+        }
+      end
+
+      Audit.create!(recipe: cocktail, info: {reagents: audit_info})
     end
 end

@@ -1,0 +1,26 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <table class="table" id="auditsTable">
+          <thead>
+            <tr>
+              <th>Drink Made</th>
+              <th>Time Made</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @audits.each do |audit| %>
+              <tr>
+                <td><%= audit.recipe.name.html_safe %></td>
+                <td><%= audit.created_at.to_formatted_s(:long_ordinal) %>
+                <td><%= link_to "Details", audit_path(audit), class: "btn btn-outline-primary" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

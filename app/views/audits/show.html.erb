@@ -1,0 +1,40 @@
+<main>
+  <div class="container">
+    <h1>Audit Info</h1>
+
+    <p>
+      <strong>Drink Made:</strong>
+      <span><%= @audit.recipe.name.html_safe %></span>
+    </p>
+
+    <p>
+      <strong>Time Made:</strong>
+      <span><%= @audit.created_at.to_formatted_s(:long_ordinal) %></span>
+    </p>
+
+    <h3>Specifics:</h3>
+    <div class="row">
+      <div class="col">
+        <table class="table" id="specificAuditsTable">
+          <thead>
+            <tr>
+              <th>Reagent Used</th>
+              <th>Amount Used</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @audit.reagents.each do |used| %>
+              <tr>
+                <td><%= used.name.html_safe %></td>
+                <td><%= used.amount.html_safe %></td>
+                <td><%= used.description.html_safe %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <%= link_to 'Back', audits_path, class: "btn btn-primary" %>
+  </div>
+</main>

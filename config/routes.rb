@@ -10,4 +10,6 @@ Rails.application.routes.draw do
     post :make_drink
     post :toggle_favorite
   end
+
+  resources :audits, only: [:index, :show]
 end
