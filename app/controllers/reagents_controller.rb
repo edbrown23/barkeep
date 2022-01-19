@@ -17,6 +17,11 @@ class ReagentsController < ApplicationController
   end
 
   def show
+    reagent_amounts = ReagentAmount.where(reagent: @reagent)
+
+    categories_amounts = []
+    categories_amounts = ReagentAmount.where(reagent_category: @reagent.reagent_category) if @reagent.reagent_category.present?
+    @cocktails = Recipe.where(id: reagent_amounts.pluck(:recipe_id) + categories_amounts.pluck(:recipe_id))
   end
 
   def edit
