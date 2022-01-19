@@ -27,7 +27,7 @@
               <th>Current Volume</th>
               <th>Max Volume</th>
               <th>Refill</th>
-              <th>Edit</th>
+              <th>Show</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +39,7 @@
                 <td data-volume-row><%= reagent.current_volume_percentage * (reagent.max_volume || 0.0) %></td>
                 <td><%= reagent.max_volume %></td>
                 <td><%= link_to "Refill", reagent_refill_path(reagent), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id } %></td>
-                <td><%= link_to "Edit", edit_reagent_path(reagent), class: "btn btn-outline-info" %></td>
+                <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
               </tr>
             <% end %>
           </tbody>
