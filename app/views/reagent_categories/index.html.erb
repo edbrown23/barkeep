@@ -1,0 +1,56 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "reagent_categories_index", "data-turbolinks-track": 'reload' %>
+<% end %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-10">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Category Name</th>
+              <th>Show</th>
+              <th>Reagents</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.id %></td>
+                <td><%= category.name %></td>
+                <td><%= link_to "Details", reagent_category_path(category), class: "btn btn-outline-info" %></td>
+                <td>
+                  <% if category.reagents.present? %>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>id</th>
+                          <th>name</th>
+                          <th>Current Volume</th>
+                          <th>Max Volume</th>
+                          <th>Show</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <% category.reagents.each do |reagent| %>
+                        <tr id="reagent_<%= reagent.id %>">
+                          <td><%= reagent.id %></td>
+                          <td><%= reagent.name %></td>
+                          <td data-volume-row><%= reagent.current_volume_percentage * (reagent.max_volume || 0.0) %></td>
+                          <td><%= reagent.max_volume %></td>
+                          <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
+                        </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,43 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "reagent_categories_show", "data-turbolinks-track": 'reload' %>
+<% end %>
+<main>
+  <div class="container">
+
+    <p>
+      <strong>Name:</strong>
+      <span><%= @category.name %>
+    </p>
+
+    <h3>Reagents for this Category</h3>
+    <div class="row">
+      <div class="col">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>Current Volume</th>
+              <th>Max Volume</th>
+              <th>Show</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @category.reagents.each do |reagent| %>
+            <tr id="reagent_<%= reagent.id %>">
+              <td><%= reagent.id %></td>
+              <td><%= reagent.name %></td>
+              <td data-volume-row><%= reagent.current_volume_percentage * (reagent.max_volume || 0.0) %></td>
+              <td><%= reagent.max_volume %></td>
+              <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <%= link_to 'Back', reagent_categories_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</main>

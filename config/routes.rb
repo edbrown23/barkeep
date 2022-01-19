@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :audits, only: [:index, :show]
+
+  resources :reagent_categories, only: [:index, :show]
 end
