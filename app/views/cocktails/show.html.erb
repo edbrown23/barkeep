@@ -52,6 +52,11 @@
       </tbody>
     </table>
 
+    <hr>
+    <strong>Cocktail Stats</strong>
+    <span>You've made this drink <span id="made_count"><%= @stats[:made_count] %></span> times!</span>
+    <hr>
+
     <%= link_to 'Edit', edit_cocktail_path(@cocktail), class: "btn btn-primary" %>
     <%= link_to 'Back', cocktails_path, class: "btn btn-info" %>
 

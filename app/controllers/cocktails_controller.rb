@@ -21,6 +21,9 @@ class CocktailsController < ApplicationController
   end
 
   def show
+    @stats = {
+      made_count: Audit.where(recipe: @cocktail).count
+    }
   end
 
   def edit
@@ -51,6 +54,7 @@ class CocktailsController < ApplicationController
       }
     end
 
+    old_count = Audit.where(recipe: cocktail).count
     create_audit(cocktail, used_reagents)
 
     formatted_used = used_reagents.map do |used|
@@ -58,7 +62,7 @@ class CocktailsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { cocktail_name: cocktail.name, reagents_used: formatted_used } }
+      format.json { render json: { cocktail_name: cocktail.name, reagents_used: formatted_used, made_count: old_count + 1 } }
     end
   end
 

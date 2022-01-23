@@ -9,6 +9,10 @@ function toastHTML(cocktail_name, reagents) {
   `;
 }
 
+function updateCounter(new_count) {
+  document.getElementById("made_count").innerHTML = new_count
+}
+
 window.addEventListener("turbolinks:load", () => {
   let makeCocktail = document.getElementById("make_cocktail_link");
   makeCocktail.addEventListener("ajax:success", (event) => {
@@ -21,6 +25,8 @@ window.addEventListener("turbolinks:load", () => {
     let toast = new bootstrap.Toast(toastDoc);
 
     toast.show();
+
+    updateCounter(event.detail[0]['made_count']);
   });
 
   makeCocktail.addEventListener("ajax:error", () => {
