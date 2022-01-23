@@ -9,7 +9,7 @@
       <span><%= @category.name %>
     </p>
 
-    <h3>Reagents for this Category</h3>
+    <strong>Reagents for this Category</strong>
     <div class="row">
       <div class="col">
 
@@ -36,6 +36,10 @@
           </tbody>
         </table>
       </div>
+
+      <hr>
+      <strong>Cocktails which use this category</strong>
+      <%= render 'shared/cocktails_table', cocktails: @cocktails %>
 
       <%= link_to 'Back', reagent_categories_path, class: "btn btn-primary" %>
     </div>
