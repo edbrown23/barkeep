@@ -18,7 +18,6 @@ window.addEventListener("turbolinks:load", () => {
       return;
     }
 
-    console.log(buttonState)
     if (buttonState === 'false') {
       event.target.classList.remove("btn-outline-info");
       event.target.classList.add("btn-info");
