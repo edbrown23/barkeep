@@ -4,7 +4,7 @@ class Cocktails
     def all_available
       # iterate recipes
       # check if I have enough volume in every reagent in the cocktail to make it
-      all_cocktails = Recipe.where(category: 'cocktail')
+      all_cocktails = Recipe.where(category: 'cocktail').includes(reagent_amounts: [{ reagent_category: :reagents }, :reagent])
       all_cocktails.filter do |cocktail|
         cocktail.reagent_amounts.all? do |amount|
           if amount.reagent_category.present?
