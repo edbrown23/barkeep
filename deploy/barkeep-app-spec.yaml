@@ -1,0 +1,29 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+databases:
+- engine: PG
+  name: db
+  num_nodes: 1
+  size: db-s-dev-database
+  version: "12"
+name: barkeep
+region: nyc
+services:
+- environment_slug: ruby-on-rails
+  envs:
+  - key: DATABASE_URL
+    scope: RUN_TIME
+    value: ${db.DATABASE_URL}
+  github:
+    branch: master
+    repo: edbrown23/barkeep
+  http_port: 8080
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  name: barkeep
+  routes:
+  - path: /
+  build_command: ./bin/production-deploy.sh
+  run_command: rails server -p $PORT -e ${RAILS_ENV:-production}
+  source_dir: /
