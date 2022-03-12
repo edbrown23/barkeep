@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+# #!/usr/bin/env bash
 
-set -e
-set -x
+# set -e
+# set -x
 
-bundle install
+# bundle install
 
-bundle exec rake db:prepare
+# bundle exec rake db:prepare
