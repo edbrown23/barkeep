@@ -21,3 +21,4 @@ test:
 
 production:
   <<: *default
+  database: barkeep_production
