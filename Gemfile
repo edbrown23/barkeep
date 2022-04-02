@@ -33,6 +33,8 @@ gem 'awesome_print'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'devise'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry-byebug'
