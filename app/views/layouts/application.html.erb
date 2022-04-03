@@ -40,6 +40,11 @@
               <a class="nav-link active" href="/audits">Audit Log</a>
             </li>
           </ul>
+          <% if user_signed_in? %>
+          <div class="nav-item d-flex ms-auto">
+            <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "nav-link active" %>
+          <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 class ReagentCategoriesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @categories = ReagentCategory.all
   end
