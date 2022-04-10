@@ -21,4 +21,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  class << self
+    def current_id=(id)
+      Thread.current[:current_user_id] = id
+      @current_user = nil
+    end
+
+    def current_id
+      Thread.current[:current_user_id]
+    end
+
+    def current
+      @current_user ||= find_by(id: current_id)
+    end
+  end
 end

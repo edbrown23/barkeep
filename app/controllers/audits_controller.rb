@@ -2,10 +2,10 @@ class AuditsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @audits = Audit.all.order(created_at: :desc)
+    @audits = Audit.for_user(current_user).all.order(created_at: :desc)
   end
 
   def show
-    @audit = Audit.find(params[:id])
+    @audit = Audit.for_user(current_user).find(params[:id])
   end
 end

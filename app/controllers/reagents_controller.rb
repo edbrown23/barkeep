@@ -7,32 +7,32 @@ class ReagentsController < ApplicationController
     search_term = search_params['search_term']
 
     if search_term.present? && search_term.size > 0
-      @reagents = Reagent.where('name ILIKE ?', "%#{search_term}%").order(:id)
+      @reagents = Reagent.for_user(current_user).where('name ILIKE ?', "%#{search_term}%").order(:id)
     else
-      @reagents = Reagent.all.order(:id)
+      @reagents = Reagent.for_user(current_user).all.order(:id)
     end
   end
 
   def new
-    @reagent = Reagent.new
-    @reagent_categories = ReagentCategory.all
+    @reagent = Reagent.new(user_id: current_user.id)
+    @reagent_categories = ReagentCategory.for_user(current_user).all
   end
 
   def show
-    reagent_amounts = ReagentAmount.where(reagent: @reagent)
+    reagent_amounts = ReagentAmount.for_user(current_user).where(reagent: @reagent)
 
     categories_amounts = []
-    categories_amounts = ReagentAmount.where(reagent_category: @reagent.reagent_category) if @reagent.reagent_category.present?
-    @cocktails = Recipe.where(id: reagent_amounts.pluck(:recipe_id) + categories_amounts.pluck(:recipe_id))
+    categories_amounts = ReagentAmount.for_user(current_user).where(reagent_category: @reagent.reagent_category) if @reagent.reagent_category.present?
+    @cocktails = Recipe.for_user(current_user).where(id: reagent_amounts.pluck(:recipe_id) + categories_amounts.pluck(:recipe_id))
   end
 
   def edit
-    @reagent_categories = ReagentCategory.all
+    @reagent_categories = ReagentCategory.for_user(current_user).all
   end
 
   def refill
     # I don't know why this route sends the id as "reagent_id" instead of "id". probably some nested route magic
-    reagent = Reagent.find_by(id: params['reagent_id'])
+    reagent = Reagent.for_user(current_user).find_by(id: params['reagent_id'])
     reagent.update!(current_volume_percentage: 1.0) if reagent.present?
 
     respond_to do |format|
@@ -48,8 +48,8 @@ class ReagentsController < ApplicationController
 
   def create
     parsed_params = parse_and_maybe_create_category(reagent_params)
-    @reagent = Reagent.new(parsed_params)
-    @reagent_categories = ReagentCategory.all
+    @reagent = Reagent.for_user(current_user).new(parsed_params)
+    @reagent_categories = ReagentCategory.for_user(current_user).all
 
     respond_to do |format|
       if @reagent.save
@@ -82,7 +82,7 @@ class ReagentsController < ApplicationController
       if params[:existing_reagent_category_id].present? && params[:existing_reagent_category_id].to_i > 0
         params[:reagent_category_id] = params[:existing_reagent_category_id]
       elsif params[:new_category_name].present?
-        new_category = ReagentCategory.create(name: params.delete(:new_category_name))
+        new_category = ReagentCategory.create(name: params.delete(:new_category_name), user_id: current_user.id)
         params[:reagent_category_id] = new_category.id
       elsif params[:existing_reagent_category_id].present? && params[:existing_reagent_category_id].to_i == -1
         params[:reagent_category_id] = nil
@@ -93,7 +93,7 @@ class ReagentsController < ApplicationController
 
     def set_reagent
       # TODO: handle 404
-      @reagent = Reagent.find(params[:id])
+      @reagent = Reagent.for_user(current_user).find(params[:id])
     end
 
     def reagent_params

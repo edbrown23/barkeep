@@ -7,8 +7,15 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  description :text
+#  user_id     :bigint
+#
+# Indexes
+#
+#  index_reagent_categories_on_user_id  (user_id)
 #
 class ReagentCategory < ApplicationRecord
+  include UserScopable
+
   has_many :reagents
 
   def category_available?(needed_amount)

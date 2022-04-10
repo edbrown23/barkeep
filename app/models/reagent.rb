@@ -12,13 +12,17 @@
 #  updated_at                :datetime         not null
 #  reagent_category_id       :bigint
 #  description               :text
+#  user_id                   :bigint
 #
 # Indexes
 #
 #  index_reagents_on_reagent_category_id  (reagent_category_id)
+#  index_reagents_on_user_id              (user_id)
 #
 
 class Reagent < ApplicationRecord
+  include UserScopable
+
   # TODO: validations that ensure the percentage is between 0 and 1
   belongs_to :reagent_category, optional: true
 

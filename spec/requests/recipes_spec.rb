@@ -9,6 +9,11 @@
 #  category    :string           not null
 #  description :text
 #  extras      :jsonb
+#  user_id     :bigint
+#
+# Indexes
+#
+#  index_recipes_on_user_id  (user_id)
 #
 require 'rails_helper'
 

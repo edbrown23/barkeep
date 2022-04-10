@@ -9,8 +9,15 @@
 #  category    :string           not null
 #  description :text
 #  extras      :jsonb
+#  user_id     :bigint
+#
+# Indexes
+#
+#  index_recipes_on_user_id  (user_id)
 #
 class Recipe < ApplicationRecord
+  include UserScopable
+
   has_many :reagent_amounts, dependent: :destroy
   has_many :audits, dependent: :destroy
 
@@ -33,7 +40,7 @@ class Recipe < ApplicationRecord
   scope :all_available, -> do
     # iterate recipes
     # check if I have enough volume in every reagent in the cocktail to make it
-    all_cocktails = Recipe.where(category: 'cocktail').includes(reagent_amounts: [{ reagent_category: :reagents }, :reagent])
+    all_cocktails = where(category: 'cocktail').includes(reagent_amounts: [{ reagent_category: :reagents }, :reagent])
     all_cocktails.filter do |cocktail|
       cocktail.reagent_amounts.all? do |amount|
         if amount.reagent_category.present?

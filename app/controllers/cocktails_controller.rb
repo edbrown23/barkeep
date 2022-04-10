@@ -8,35 +8,35 @@ class CocktailsController < ApplicationController
     search_term = search_params['search_term']
 
     if search_term.present? && search_term.size > 0
-      @cocktails = Recipe.where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:id)
+      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:id)
     else
-      @cocktails = Recipe.where(category: 'cocktail').order(:id)
+      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:id)
     end
   end
 
   def new
-    @cocktail = Recipe.new(category: 'cocktail')
-    @reagents = Reagent.all.order(:name)
+    @cocktail = Recipe.new(category: 'cocktail', user_id: current_user.id)
+    @reagents = Reagent.for_user(current_user).all.order(:name)
     @form_path = cocktails_path
     @editing = false
-    @reagent_categories = ReagentCategory.all.order(:name)
+    @reagent_categories = ReagentCategory.for_user(current_user).all.order(:name)
   end
 
   def show
     @stats = {
-      made_count: Audit.where(recipe: @cocktail).count
+      made_count: Audit.for_user(current_user).where(recipe: @cocktail).count
     }
   end
 
   def edit
     @form_path = cocktail_path(@cocktail)
-    @reagents = Reagent.all.order(:name)
+    @reagents = Reagent.for_user(current_user).all.order(:name)
     @editing = true
-    @reagent_categories = ReagentCategory.all.order(:name)
+    @reagent_categories = ReagentCategory.for_user(current_user).all.order(:name)
   end
 
   def make_drink
-    cocktail = Recipe.find(params[:cocktail_id])
+    cocktail = Recipe.for_user(current_user).find(params[:cocktail_id])
 
     used_reagents = cocktail.reagent_amounts.map do |amount|
       reagent = amount.reagent
@@ -56,7 +56,7 @@ class CocktailsController < ApplicationController
       }
     end
 
-    old_count = Audit.where(recipe: cocktail).count
+    old_count = Audit.for_user(current_user).where(recipe: cocktail).count
     create_audit(cocktail, used_reagents)
 
     formatted_used = used_reagents.map do |used|
@@ -69,9 +69,9 @@ class CocktailsController < ApplicationController
   end
 
   def create
-    parsed_params = cocktail_params.merge(category: 'cocktail')
+    parsed_params = cocktail_params.merge(category: 'cocktail', user_id: current_user.id)
 
-    @cocktail = Recipe.create(parsed_params.slice(:name, :category, :favorite))
+    @cocktail = Recipe.create(parsed_params.slice(:name, :category, :favorite, :user_id))
     # TODO: Figure out how to get errors sent up the chain here
 
     # TODO: there are errors possible here too
@@ -88,7 +88,7 @@ class CocktailsController < ApplicationController
   end
 
   def update
-    parsed_params = cocktail_params.merge(category: 'cocktail')
+    parsed_params = cocktail_params.merge(category: 'cocktail', user_id: current_user)
 
     # wasteful to do this every time, but easier...
     @cocktail.reagent_amounts.destroy_all
@@ -108,7 +108,8 @@ class CocktailsController < ApplicationController
     amounts_array.map do |raw_amount|
       create_params = {
         recipe: cocktail,
-        amount: raw_amount[:reagent_amount]
+        amount: raw_amount[:reagent_amount],
+        user_id: current_user.id
       }
 
       create_params[:reagent] = raw_amount[:reagent_model] if raw_amount[:save_reagent]
@@ -119,7 +120,7 @@ class CocktailsController < ApplicationController
   end
 
   def delete
-    cocktail = Recipe.find_by(id: params['cocktail_id'])
+    cocktail = Recipe.for_user(current_user).find_by(id: params['cocktail_id'])
     cocktail.destroy if cocktail.present?
 
     respond_to do |format|
@@ -129,7 +130,7 @@ class CocktailsController < ApplicationController
 
   # TODO: these json only routes should be more consistent and more DRY
   def toggle_favorite
-    cocktail = Recipe.find_by(id: params['cocktail_id'])
+    cocktail = Recipe.for_user(current_user).find_by(id: params['cocktail_id'])
     cocktail.favorite = !cocktail.favorite
 
     cocktail.save
@@ -142,7 +143,7 @@ class CocktailsController < ApplicationController
   private
     def set_cocktail
       # TODO: handle 404
-      @cocktail = Recipe.find(params[:id])
+      @cocktail = Recipe.for_user(current_user).find(params[:id])
     end
 
     def cocktail_params
@@ -161,10 +162,10 @@ class CocktailsController < ApplicationController
         final_params[:name] = permitted[:name]
         final_params[:favorite] = permitted[:favorite] == "1"
         final_params[:reagent_amounts] = permitted[:ingredients][:reagent_id].map.with_index do |reagent_id, i|
-          reagent_model = Reagent.find_by(id: reagent_id)
+          reagent_model = Reagent.for_user(current_user).find_by(id: reagent_id)
           reagent_amount = permitted[:ingredients][:reagent_amount][i]
 
-          category_model = ReagentCategory.find_by(id: permitted[:ingredients][:reagent_category_id][i])
+          category_model = ReagentCategory.for_user(current_user).find_by(id: permitted[:ingredients][:reagent_category_id][i])
 
           # this largely allows the compact to skip the values from the hidden form. Again, terrible mixing of
           # view and controller logic
@@ -196,6 +197,6 @@ class CocktailsController < ApplicationController
         }
       end
 
-      Audit.create!(recipe: cocktail, info: {reagents: audit_info})
+      Audit.create!(user_id: current_user.id, recipe: cocktail, info: {reagents: audit_info})
     end
 end

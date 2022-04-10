@@ -34,7 +34,8 @@ CREATE TABLE public.audits (
     recipe_id bigint NOT NULL,
     info jsonb NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    user_id bigint
 );
 
 
@@ -70,7 +71,8 @@ CREATE TABLE public.reagent_amounts (
     updated_at timestamp(6) without time zone NOT NULL,
     reagent_category_id bigint,
     unit character varying,
-    description text
+    description text,
+    user_id bigint
 );
 
 
@@ -102,7 +104,8 @@ CREATE TABLE public.reagent_categories (
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    description text
+    description text,
+    user_id bigint
 );
 
 
@@ -139,7 +142,8 @@ CREATE TABLE public.reagents (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     reagent_category_id bigint,
-    description text
+    description text,
+    user_id bigint
 );
 
 
@@ -173,7 +177,8 @@ CREATE TABLE public.recipes (
     updated_at timestamp(6) without time zone NOT NULL,
     category character varying NOT NULL,
     description text,
-    extras jsonb
+    extras jsonb,
+    user_id bigint
 );
 
 
@@ -354,6 +359,13 @@ CREATE INDEX index_audits_on_recipe_id ON public.audits USING btree (recipe_id);
 
 
 --
+-- Name: index_audits_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_user_id ON public.audits USING btree (user_id);
+
+
+--
 -- Name: index_reagent_amounts_on_reagent_category_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -375,10 +387,38 @@ CREATE INDEX index_reagent_amounts_on_recipe_id ON public.reagent_amounts USING 
 
 
 --
+-- Name: index_reagent_amounts_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reagent_amounts_on_user_id ON public.reagent_amounts USING btree (user_id);
+
+
+--
+-- Name: index_reagent_categories_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reagent_categories_on_user_id ON public.reagent_categories USING btree (user_id);
+
+
+--
 -- Name: index_reagents_on_reagent_category_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_reagents_on_reagent_category_id ON public.reagents USING btree (reagent_category_id);
+
+
+--
+-- Name: index_reagents_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reagents_on_user_id ON public.reagents USING btree (user_id);
+
+
+--
+-- Name: index_recipes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_recipes_on_user_id ON public.recipes USING btree (user_id);
 
 
 --
@@ -412,6 +452,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211230213757'),
 ('20220113223657'),
 ('20220117195926'),
-('20220403180505');
+('20220403180505'),
+('20220409192502');
 
 

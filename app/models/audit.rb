@@ -7,12 +7,16 @@
 #  info       :jsonb            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :bigint
 #
 # Indexes
 #
 #  index_audits_on_recipe_id  (recipe_id)
+#  index_audits_on_user_id    (user_id)
 #
 class Audit < ApplicationRecord
+  include UserScopable
+
   belongs_to :recipe  
 
   ReagentUsed = Struct.new(:name, :amount, :unit, :description, keyword_init: true)

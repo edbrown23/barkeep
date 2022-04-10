@@ -11,14 +11,18 @@
 #  reagent_category_id :bigint
 #  unit                :string
 #  description         :text
+#  user_id             :bigint
 #
 # Indexes
 #
 #  index_reagent_amounts_on_reagent_category_id  (reagent_category_id)
 #  index_reagent_amounts_on_reagent_id           (reagent_id)
 #  index_reagent_amounts_on_recipe_id            (recipe_id)
+#  index_reagent_amounts_on_user_id              (user_id)
 #
 class ReagentAmount < ApplicationRecord
+  include UserScopable
+
   belongs_to :recipe
   belongs_to :reagent, optional: true
   belongs_to :reagent_category, optional: true
