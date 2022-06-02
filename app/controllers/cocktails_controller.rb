@@ -32,18 +32,16 @@ class CocktailsController < ApplicationController
     @form_path = cocktail_path(@cocktail)
     @reagents = Reagent.for_user(current_user).all.order(:name)
     @editing = true
-    @reagent_categories = ReagentCategory.for_user(current_user).all.order(:name)
+    @reagent_categories = ReagentCategory.all.order(:name)
   end
 
   def make_drink
+    # TODO: it shouldn't be possible to click this button if you don't have the ingredients
     cocktail = Recipe.for_user(current_user).find(params[:cocktail_id])
 
     used_reagents = cocktail.reagent_amounts.map do |amount|
-      reagent = amount.reagent
-
-      if amount.reagent_category.present?
-        reagent = amount.reagent_category.reagents.first
-      end
+      # TODO: the user needs to be able to select from all their options here
+      reagent = amount.reagent_category.reagents.first
 
       # this assumes ounces, which is wrong
       reagent.subtract_ounces(amount.amount)
@@ -112,8 +110,7 @@ class CocktailsController < ApplicationController
         user_id: current_user.id
       }
 
-      create_params[:reagent] = raw_amount[:reagent_model] if raw_amount[:save_reagent]
-      create_params[:reagent_category] = raw_amount[:reagent_category_model] if raw_amount[:save_category]
+      create_params[:reagent_category] = raw_amount[:reagent_category_model]
 
       ReagentAmount.create(**create_params)
     end
@@ -150,33 +147,26 @@ class CocktailsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       permitted = params
         .require(:recipe)
-          .permit(:name, :favorite, ingredients: {reagent_id: [], reagent_amount: [], reagent_category_id: [], save_reagent: {}, save_category: {}})
+          .permit(:name, :favorite, ingredients: {reagent_amount: [], reagent_category_id: []})
 
       # everything about this is awful, because it's tied so tightly to how the UI is laid out.
       # I really need to redo the submission side of this has pure javascript, and handle everything
       # there, so that the controller is pure API
       # I'm adding a value at the front that will be dropped by the later `compact`
-      parsed_save_reagent_radios = ['true'] + permitted[:ingredients][:save_reagent].values.flatten
-      parsed_save_category_radios = ['true'] + permitted[:ingredients][:save_category].values.flatten
       {}.tap do |final_params|
         final_params[:name] = permitted[:name]
         final_params[:favorite] = permitted[:favorite] == "1"
-        final_params[:reagent_amounts] = permitted[:ingredients][:reagent_id].map.with_index do |reagent_id, i|
-          reagent_model = Reagent.for_user(current_user).find_by(id: reagent_id)
+        final_params[:reagent_amounts] = permitted[:ingredients][:reagent_category_id].map.with_index do |reagent_category_id, i|
+          category_model = ReagentCategory.find_by(id: reagent_category_id)
           reagent_amount = permitted[:ingredients][:reagent_amount][i]
-
-          category_model = ReagentCategory.for_user(current_user).find_by(id: permitted[:ingredients][:reagent_category_id][i])
 
           # this largely allows the compact to skip the values from the hidden form. Again, terrible mixing of
           # view and controller logic
-          next if reagent_model.blank? || reagent_amount.blank?
+          next if reagent_amount.blank?
 
           {
-            reagent_model: reagent_model,
-            save_reagent: parsed_save_reagent_radios[i] == 'true',
             reagent_amount: reagent_amount,
-            reagent_category_model: category_model,
-            save_category: parsed_save_category_radios[i] == 'true'
+            reagent_category_model: category_model
           }
         end.compact
       end

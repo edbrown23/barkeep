@@ -10,7 +10,7 @@
 #  current_volume_percentage :decimal(, )
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  reagent_category_id       :bigint
+#  reagent_category_id       :bigint           not null
 #  description               :text
 #  user_id                   :bigint
 #
@@ -24,7 +24,7 @@ class Reagent < ApplicationRecord
   include UserScopable
 
   # TODO: validations that ensure the percentage is between 0 and 1
-  belongs_to :reagent_category, optional: true
+  belongs_to :reagent_category
 
   OUNCES_TO_ML_CONSTANT = 29.574 # I got this conversion constant from google
 

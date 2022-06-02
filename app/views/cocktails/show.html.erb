@@ -37,16 +37,10 @@
         <% @cocktail.reagent_amounts.each do |reagent_amount| %>
           <tr <% if reagent_amount.reagent_available? %> class="table-success"<% end %>>
             <td><%= reagent_amount.id %></td>
-            <td><%= reagent_amount.reagent&.name || reagent_amount.reagent_category&.name %></td>
+            <td><%= reagent_amount.reagent_category&.name %></td>
             <td><%= reagent_amount.amount %></td>
             <td><%= reagent_amount.description %></td>
-            <% if reagent_amount.reagent_category.present? %>
-              <td><%= link_to "Category Details", reagent_category_path(reagent_amount.reagent_category), class: "btn btn-outline-info" %></td>
-            <% elsif reagent_amount.reagent.present? %>
-              <td><%= link_to "Ingredient Details", reagent_path(reagent_amount.reagent), class: "btn btn-outline-info" %></td>
-            <% else %>
-            <td></td>
-            <% end %>
+            <td><%= link_to "Category Details", reagent_category_path(reagent_amount.reagent_category), class: "btn btn-outline-info" %></td>
           </tr>
         <% end %>
       </tbody>

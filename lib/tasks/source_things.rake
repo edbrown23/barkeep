@@ -118,32 +118,28 @@ namespace :source_things do
 
         recipe = Recipe.create!(
           name: cocktail_link[:name],
-          category: 'cocktail'
+          category: 'cocktail',
+          user_id: 1
         )
 
         ingredients.each do |ingredient|
           # look for matching categories first
-          maybe_category = ReagentCategory.find_by(name: ingredient[:name].titleize)
-
-          reagent = nil
-          if maybe_category.nil?
-            reagent = Reagent.find_or_create_by(name: ingredient[:name].titleize) do |reagent_record|
-              if ingredient[:amount_string].downcase.include?('garnish')
-                reagent_record.current_volume_percentage = 1.0
-              else
-                reagent_record.current_volume_percentage = 0.0
-              end
-              reagent_record.max_volume = 750
-            end
+          category_record = ReagentCategory.find_or_create_by(name: ingredient[:name].titleize) do |category_record|
+            # if ingredient[:amount_string].downcase.include?('garnish')
+            #   reagent_record.current_volume_percentage = 1.0
+            # else
+            #   reagent_record.current_volume_percentage = 0.0
+            # end
+            # reagent_record.max_volume = 750
           end
 
           ReagentAmount.create!(
             recipe: recipe,
             amount: ingredient[:amount],
             unit: ingredient[:unit],
-            reagent: reagent,
-            reagent_category: maybe_category,
-            description: ingredient[:amount_string]
+            reagent_category: category_record,
+            description: ingredient[:amount_string],
+            user_id: 1
           )
         end
 

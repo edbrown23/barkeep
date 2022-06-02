@@ -65,11 +65,10 @@ ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 CREATE TABLE public.reagent_amounts (
     id bigint NOT NULL,
     recipe_id bigint,
-    reagent_id bigint,
     amount numeric,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    reagent_category_id bigint,
+    reagent_category_id bigint NOT NULL,
     unit character varying,
     description text,
     user_id bigint
@@ -104,8 +103,7 @@ CREATE TABLE public.reagent_categories (
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    description text,
-    user_id bigint
+    description text
 );
 
 
@@ -141,7 +139,7 @@ CREATE TABLE public.reagents (
     current_volume_percentage numeric,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    reagent_category_id bigint,
+    reagent_category_id bigint NOT NULL,
     description text,
     user_id bigint
 );
@@ -373,13 +371,6 @@ CREATE INDEX index_reagent_amounts_on_reagent_category_id ON public.reagent_amou
 
 
 --
--- Name: index_reagent_amounts_on_reagent_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reagent_amounts_on_reagent_id ON public.reagent_amounts USING btree (reagent_id);
-
-
---
 -- Name: index_reagent_amounts_on_recipe_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -391,13 +382,6 @@ CREATE INDEX index_reagent_amounts_on_recipe_id ON public.reagent_amounts USING 
 --
 
 CREATE INDEX index_reagent_amounts_on_user_id ON public.reagent_amounts USING btree (user_id);
-
-
---
--- Name: index_reagent_categories_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reagent_categories_on_user_id ON public.reagent_categories USING btree (user_id);
 
 
 --
@@ -453,6 +437,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220113223657'),
 ('20220117195926'),
 ('20220403180505'),
-('20220409192502');
+('20220409192502'),
+('20220515010109');
 
 

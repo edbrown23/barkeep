@@ -20,18 +20,6 @@ function deleteIngredient(event) {
   toRemove.remove();
 }
 
-function nameRadioButtons(reagentDoc, docId) {
-  const saveReagentDoc = reagentDoc.querySelector("[data-save-reagent-radios='true']");
-  saveReagentDoc.querySelectorAll("[data-name-me='true']").forEach((element) => {
-    element.name = `${element.dataset.templateName}[${docId}][]`;
-  });
-
-  const saveCategoryDoc = reagentDoc.querySelector("[data-save-category-radios='true']");
-  saveCategoryDoc.querySelectorAll("[data-name-me='true']").forEach((element) => {
-    element.name = `${element.dataset.templateName}[${docId}][]`;
-  });
-}
-
 window.addEventListener("turbolinks:load", () => {
   // This little block just ensures we don't register the 'click' handlers more than once with
   // turbolinks. I don't know if this shit is even necessary
@@ -62,7 +50,6 @@ window.addEventListener("turbolinks:load", () => {
     duplicated.hidden = false;
 
     duplicated.querySelector(".delete-button").dataset.docId = docId;
-    nameRadioButtons(duplicated, docId);
 
     const ingredientsElement = document.querySelector("#ingredients");
     ingredientsElement.appendChild(duplicated);

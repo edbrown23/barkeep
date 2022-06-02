@@ -32,44 +32,12 @@
       <div class="row m-3">
         <div class="col">
           <div class="input-group">
-            <span class="input-group-text">Reagents:</span>
-            <select class="form-select" name="recipe[ingredients][reagent_id][]">
-              <% @reagents.each do |reagent| %>
-                <option value=<%= reagent.id %>><%= reagent.name %></option>
-              <% end %>
-            </select>
-          </div>
-        </div>
-        <div class="col-auto" data-save-reagent-radios="true">
-          <span>Save Reagent?</span>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" value="true" data-template-name="recipe[ingredients][save_reagent]" data-name-me="true">
-            <label class="form-check-label">Yes</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" value="false" data-template-name="recipe[ingredients][save_reagent]" data-name-me="true" checked>
-            <label class="form-check-label">No</label>
-          </div>
-        </div>
-        <div class="col">
-          <div class="input-group">
             <span class="input-group-text">Categories:</span>
             <select class="form-select" name="recipe[ingredients][reagent_category_id][]">
               <% @reagent_categories.each do |reagent_category| %>
                 <option value=<%= reagent_category.id %>><%= reagent_category.name %></option>
               <% end %>
             </select>
-          </div>
-        </div>
-        <div class="col-auto" data-save-category-radios="true">
-          <span>Save Category?</span>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" value="true" data-template-name="recipe[ingredients][save_category]" data-name-me="true">
-            <label class="form-check-label">Yes</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" value="false" data-template-name="recipe[ingredients][save_category]" data-name-me="true" checked>
-            <label class="form-check-label">No</label>
           </div>
         </div>
       </div>
@@ -91,44 +59,12 @@
           <div class="row m-3">
             <div class="col">
               <div class="input-group">
-                <span class="input-group-text">Reagents:</span>
-                <select class="form-select" name="recipe[ingredients][reagent_id][]">
-                  <% @reagents.each do |reagent| %>
-                    <option value=<%= reagent.id %><% if reagent_amount.reagent_id == reagent.id %> selected<% end %>><%= reagent.name %></option>
-                  <% end %>
-                </select>
-              </div>
-            </div>
-            <div class="col-auto">
-              <span>Save Reagent?</span>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" value="true" name="recipe[ingredients][save_reagent][<%= random_id %>][]" <% if reagent_amount.reagent.present? %>checked<% end %>>
-                <label class="form-check-label">Yes</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" value="false" name="recipe[ingredients][save_reagent][<%= random_id %>][]" <% if reagent_amount.reagent.blank? %>checked<% end %>>
-                <label class="form-check-label">No</label>
-              </div>
-            </div>
-            <div class="col">
-              <div class="input-group">
                 <span class="input-group-text">Categories:</span>
                 <select class="form-select" name="recipe[ingredients][reagent_category_id][]">
                   <% @reagent_categories.each do |reagent_category| %>
                     <option value=<%= reagent_category.id %><% if reagent_amount.reagent_category_id == reagent_category.id %> selected<% end %>><%= reagent_category.name %></option>
                   <% end %>
                 </select>
-              </div>
-            </div>
-            <div class="col-auto">
-              <span>Save Category?</span>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" value="true" name="recipe[ingredients][save_category][<%= random_id %>][]" <% if reagent_amount.reagent_category.present? %>checked<% end %>>
-                <label class="form-check-label">Yes</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" value="false" name="recipe[ingredients][save_category][<%= random_id %>][]" <% if reagent_amount.reagent_category.blank? %>checked<% end %>>
-                <label class="form-check-label">No</label>
               </div>
             </div>
           </div>
