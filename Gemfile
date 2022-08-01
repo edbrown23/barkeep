@@ -34,6 +34,8 @@ gem 'awesome_print'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise'
+# Using my own fork until my PR is accepted on the main repo
+gem 'measured-rails', git: 'https://github.com/edbrown23/measured-rails.git', branch: 'validations_with_custom_value_columns'
 
 group :development, :test do
   gem 'rspec-rails'

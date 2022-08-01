@@ -47,6 +47,8 @@ class IndexPage < Page
 end
 
 class CocktailPage < Page
+  NON_VOLUME_UNITS = ['lb']
+
   attr_reader :page_url
 
   def initialize(name, cocktail_url)
@@ -81,7 +83,15 @@ class CocktailPage < Page
           specific_amount += 0.25
         end
 
-        binding.pry if specific_amount_string == 0.0
+        if specific_amount == 0.0
+          puts "#{ingredient.inner_text} unparseable volume. Assuming 1 #{unit_string}"
+          specific_amount = 1.0
+        end
+
+        if unit_string.blank? || NON_VOLUME_UNITS.include?(unit_string)
+          puts "#{ingredient.inner_text} unparseable unit. Assuming #{specific_amount} unknowns"
+          unit_string = 'unknown'
+        end
 
         ingredient_blob = ingredient.at('.ingredient')
 
@@ -133,14 +143,19 @@ namespace :source_things do
             # reagent_record.max_volume = 750
           end
 
-          ReagentAmount.create!(
-            recipe: recipe,
-            amount: ingredient[:amount],
-            unit: ingredient[:unit],
-            reagent_category: category_record,
-            description: ingredient[:amount_string],
-            user_id: 1
-          )
+          begin
+            ReagentAmount.create!(
+              recipe: recipe,
+              amount: ingredient[:amount],
+              unit: ingredient[:unit],
+              reagent_category: category_record,
+              description: ingredient[:amount_string],
+              user_id: 1
+            )
+          rescue => e
+            binding.pry
+            raise e
+          end
         end
 
         count += 1

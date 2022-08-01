@@ -4,11 +4,11 @@
 #
 #  id                  :bigint           not null, primary key
 #  recipe_id           :bigint
-#  amount              :decimal(, )
+#  amount              :decimal(10, 2)   not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  reagent_category_id :bigint           not null
-#  unit                :string
+#  unit                :string           not null
 #  description         :text
 #  user_id             :bigint
 #
@@ -24,7 +24,15 @@ class ReagentAmount < ApplicationRecord
   belongs_to :recipe
   belongs_to :reagent_category, optional: true
 
-  def reagent_available?
-     reagent_category.category_available?(amount)
+  measured Measured::Volume, :required_volume, value_field_name: :amount, unit_field_name: :unit
+
+  validates :required_volume, measured: true
+
+  def reagent_available?(current_user)
+     reagent_category.user_has_reagent?(current_user, self)
+  end
+
+  def unitless?
+    unit == 'unknown'
   end
 end

@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/edbrown23/measured-rails.git
+  revision: 8b2b86317d57a5587228649367aa3f053fcbb47e
+  branch: validations_with_custom_value_columns
+  specs:
+    measured-rails (2.8.2)
+      activemodel (>= 5.2)
+      activerecord (>= 5.2)
+      measured (= 2.8.2)
+      railties (>= 5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -113,6 +124,8 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    measured (2.8.2)
+      activesupport (>= 5.2)
     method_source (1.0.0)
     mini_mime (1.1.1)
     minitest (5.14.4)
@@ -259,6 +272,7 @@ DEPENDENCIES
   hpricot
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  measured-rails!
   pg
   pry
   pry-byebug

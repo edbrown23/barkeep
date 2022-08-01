@@ -37,7 +37,7 @@
                         <tr id="reagent_<%= reagent.id %>">
                           <td><%= reagent.id %></td>
                           <td><%= reagent.name %></td>
-                          <td data-volume-row><%= reagent.current_volume_percentage * (reagent.max_volume || 0.0) %></td>
+                          <td data-volume-row><%= reagent.current_volume %></td>
                           <td><%= reagent.max_volume %></td>
                           <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
                         </tr>

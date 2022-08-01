@@ -48,12 +48,17 @@
 
   <div class="field mb-3">
     <%= form.label :max_volume, class: "form-label" %>
-    <%= form.text_field :max_volume, class: "form-control" %>
+    <%= form.text_field :max_volume_value, class: "form-control" %>
   </div>
 
   <div class="field mb-3">
-    <%= form.label :current_volume_percentage, class: "form-label" %>
-    <%= form.text_field :current_volume_percentage, class: "form-control" %>
+    <%= form.label :current_volume, class: "form-label" %>
+    <%= form.text_field :current_volume_value, class: "form-control" %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.label :volume_unit, class: "form-label" %>
+    <%= form.text_field :volume_unit, class: "form-control", value: reagent.max_volume_unit %>
   </div>
 
   <div class="actions mb-3">

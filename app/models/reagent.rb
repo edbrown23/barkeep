@@ -2,17 +2,19 @@
 #
 # Table name: reagents
 #
-#  id                        :bigint           not null, primary key
-#  name                      :string
-#  cost                      :decimal(, )
-#  purchase_location         :string
-#  max_volume                :decimal(, )
-#  current_volume_percentage :decimal(, )
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  reagent_category_id       :bigint           not null
-#  description               :text
-#  user_id                   :bigint
+#  id                   :bigint           not null, primary key
+#  name                 :string
+#  cost                 :decimal(, )
+#  purchase_location    :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  reagent_category_id  :bigint           not null
+#  description          :text
+#  user_id              :bigint
+#  max_volume_unit      :string           not null
+#  max_volume_value     :decimal(10, 2)   not null
+#  current_volume_value :decimal(10, 2)   not null
+#  current_volume_unit  :string           not null
 #
 # Indexes
 #
@@ -28,6 +30,12 @@ class Reagent < ApplicationRecord
 
   OUNCES_TO_ML_CONSTANT = 29.574 # I got this conversion constant from google
 
+  measured Measured::Volume, :max_volume
+  measured Measured::Volume, :current_volume
+
+  validates :max_volume, measured: true
+  validates :current_volume, measured: true
+
   def ounces_available
     (current_volume_percentage * max_volume) / OUNCES_TO_ML_CONSTANT
   end
@@ -39,5 +47,9 @@ class Reagent < ApplicationRecord
 
     new_percentage = (new_ounces_available * OUNCES_TO_ML_CONSTANT) / max_volume
     update!(current_volume_percentage: new_percentage)
+  end
+
+  def unitless?
+    max_volume_unit == 'unknown'
   end
 end

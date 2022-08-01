@@ -62,15 +62,20 @@ namespace :maintenance do
   task import_reagents: [:environment] do
     reagents_csv = ENV.fetch('csv')
 
-    CSV.read(reagents_csv, headers: true).each do |row|
-      category = ReagentCategory.find_or_create_by(name: row['Category']) if row['Category'].present?
+    Reagent.transaction do
+      CSV.read(reagents_csv, headers: true).each do |row|
+        maybe_category = ReagentCategory.find_or_create_by(name: row['Category']) if row['Category'].present?
+        category = maybe_category || ReagentCategory.find_or_create_by(name: row['Name'])
 
-      Reagent.create!(
-        name: row['Name'],
-        max_volume: row['Max Volume'],
-        current_volume_percentage: row['Current Volume'].to_i / 100.0,
-        reagent_category: category
-      )
+        Reagent.create!(
+          name: row['Name'],
+          max_volume_value: row['Max Volume'],
+          max_volume_unit: 'ml',
+          current_volume_value: (row['Current Volume'].to_i / 100.0) * row['Max Volume'].to_i,
+          current_volume_unit: 'ml',
+          reagent_category: category
+        )
+      end
     end
   end
 end

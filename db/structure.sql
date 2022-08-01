@@ -65,11 +65,11 @@ ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 CREATE TABLE public.reagent_amounts (
     id bigint NOT NULL,
     recipe_id bigint,
-    amount numeric,
+    amount numeric(10,2) NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     reagent_category_id bigint NOT NULL,
-    unit character varying,
+    unit character varying NOT NULL,
     description text,
     user_id bigint
 );
@@ -135,13 +135,15 @@ CREATE TABLE public.reagents (
     name character varying,
     cost numeric,
     purchase_location character varying,
-    max_volume numeric,
-    current_volume_percentage numeric,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     reagent_category_id bigint NOT NULL,
     description text,
-    user_id bigint
+    user_id bigint,
+    max_volume_unit character varying NOT NULL,
+    max_volume_value numeric(10,2) NOT NULL,
+    current_volume_value numeric(10,2) NOT NULL,
+    current_volume_unit character varying NOT NULL
 );
 
 
@@ -438,6 +440,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220117195926'),
 ('20220403180505'),
 ('20220409192502'),
-('20220515010109');
+('20220515010109'),
+('20220603151212'),
+('20220603193713');
 
 

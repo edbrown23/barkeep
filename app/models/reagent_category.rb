@@ -10,9 +10,18 @@
 #
 class ReagentCategory < ApplicationRecord
   has_many :reagents
+  has_many :reagent_amounts
 
-  # TODO: this is going to need to pass along the user scope if it exists
-  def category_available?(needed_amount)
-    reagents.any? { |reagent| reagent.ounces_available >= needed_amount }
+  def user_has_reagent?(current_user, amount)
+    reagents.for_user(current_user).any? do |reagent|
+      if amount.unitless? && reagent.unitless?
+        reagent.current_volume >= amount.required_volume
+      elsif !amount.unitless? && !reagent.unitless? # TODO wat is this
+        reagent.current_volume >= amount.required_volume
+      else
+        Rails.logger.warn("Mismatched amount classes")
+        false
+      end
+    end
   end
 end

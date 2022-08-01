@@ -102,6 +102,7 @@ class CocktailsController < ApplicationController
     end
   end
 
+  # TODO I need to set units here
   def create_reagent_amounts(cocktail, amounts_array)
     amounts_array.map do |raw_amount|
       create_params = {

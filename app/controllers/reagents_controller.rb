@@ -23,23 +23,22 @@ class ReagentsController < ApplicationController
 
     categories_amounts = []
     categories_amounts = ReagentAmount.for_user(current_user).where(reagent_category: @reagent.reagent_category) if @reagent.reagent_category.present?
-    @cocktails = Recipe.for_user(current_user).where(id: reagent_amounts.pluck(:recipe_id) + categories_amounts.pluck(:recipe_id))
+    @cocktails = Recipe.for_user(current_user).where(id: categories_amounts.pluck(:recipe_id))
   end
 
   def edit
-    @reagent_categories = ReagentCategory.for_user(current_user).all
   end
 
   def refill
     # I don't know why this route sends the id as "reagent_id" instead of "id". probably some nested route magic
     reagent = Reagent.for_user(current_user).find_by(id: params['reagent_id'])
-    reagent.update!(current_volume_percentage: 1.0) if reagent.present?
+    reagent.update!(current_volume: reagent.max_volume) if reagent.present?
 
     respond_to do |format|
       format.json do
         render json: {
           reagent_id: reagent.id,
-          new_volume: reagent.current_volume_percentage * (reagent.max_volume || 0.0),
+          new_volume: reagent.current_volume,
           reagent_name: reagent.name
         }
       end
@@ -84,9 +83,11 @@ class ReagentsController < ApplicationController
       elsif params[:new_category_name].present?
         new_category = ReagentCategory.create(name: params.delete(:new_category_name), user_id: current_user.id)
         params[:reagent_category_id] = new_category.id
-      elsif params[:existing_reagent_category_id].present? && params[:existing_reagent_category_id].to_i == -1
-        params[:reagent_category_id] = nil
       end
+
+      params[:max_volume_unit] = params[:volume_unit]
+      params[:current_volume_unit] = params[:volume_unit]
+      params.delete(:volume_unit)
 
       params.except(:existing_reagent_category_id, :new_category_name)
     end
@@ -94,13 +95,14 @@ class ReagentsController < ApplicationController
     def set_reagent
       # TODO: handle 404
       @reagent = Reagent.for_user(current_user).find(params[:id])
+      @reagent_categories = ReagentCategory.all.order(:name)
     end
 
     def reagent_params
       # I bet we could pull this from the model, that would be cool
       params
         .require(:reagent)
-          .permit(:name, :cost, :purchase_location, :max_volume, :current_volume_percentage, :existing_reagent_category_id, :new_category_name)
+          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :existing_reagent_category_id, :new_category_name)
     end
 
     def search_params
