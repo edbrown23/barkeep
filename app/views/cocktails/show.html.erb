@@ -35,7 +35,7 @@
       </thead>
       <tbody>
         <% @cocktail.reagent_amounts.each do |reagent_amount| %>
-          <tr <% if reagent_amount.reagent_available? %> class="table-success"<% end %>>
+          <tr <% if reagent_amount.reagent_available?(current_user) %> class="table-success"<% end %>>
             <td><%= reagent_amount.id %></td>
             <td><%= reagent_amount.reagent_category&.name %></td>
             <td><%= reagent_amount.amount %></td>

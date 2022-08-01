@@ -37,13 +37,13 @@ class Recipe < ApplicationRecord
 
   extra_column :favorite, false
 
-  scope :all_available, -> do
+  scope :all_available, ->(current_user) do
     # iterate recipes
     # check if I have enough volume in every reagent in the cocktail to make it
     all_cocktails = where(category: 'cocktail').includes(reagent_amounts: [{ reagent_category: :reagents }])
     all_cocktails.filter do |cocktail|
       cocktail.reagent_amounts.all? do |amount|
-        amount.reagent_category.reagents.any? { |category_reagent| category_reagent.ounces_available >= amount.amount }
+        amount.reagent_category.user_has_reagent?(current_user, amount)
       end
     end
   end

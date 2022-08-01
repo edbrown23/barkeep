@@ -19,7 +19,7 @@ class CocktailsController < ApplicationController
     @reagents = Reagent.for_user(current_user).all.order(:name)
     @form_path = cocktails_path
     @editing = false
-    @reagent_categories = ReagentCategory.for_user(current_user).all.order(:name)
+    @reagent_categories = ReagentCategory.all.order(:name)
   end
 
   def show

@@ -15,7 +15,7 @@ class ReagentsController < ApplicationController
 
   def new
     @reagent = Reagent.new(user_id: current_user.id)
-    @reagent_categories = ReagentCategory.for_user(current_user).all
+    @reagent_categories = ReagentCategory.all.order(:name)
   end
 
   def show
@@ -48,7 +48,6 @@ class ReagentsController < ApplicationController
   def create
     parsed_params = parse_and_maybe_create_category(reagent_params)
     @reagent = Reagent.for_user(current_user).new(parsed_params)
-    @reagent_categories = ReagentCategory.for_user(current_user).all
 
     respond_to do |format|
       if @reagent.save
@@ -68,7 +67,7 @@ class ReagentsController < ApplicationController
         # TODO: handle the notice
         format.html { redirect_to @reagent, notice: "#{@reagent.name} was successfully updated" }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
