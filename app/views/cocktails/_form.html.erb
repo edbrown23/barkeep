@@ -43,8 +43,15 @@
       </div>
       <div class="row m-3">
         <div class="input-group">
-          <span class="input-group-text">Reagent Amount (oz)</span>
+          <span class="input-group-text">Reagent Amount</span>
           <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
+
+          <span class="input-group-text">Reagent Unit</span>
+          <select class="form-select" name="recipe[ingredients][reagent_unit][]">
+            <% @possible_units.each do |unit_value| %>
+              <option value=<%= unit_value %>><%= unit_value %></option>
+            <% end %>
+          </select>
         </div>
       </div>
 
@@ -70,8 +77,15 @@
           </div>
           <div class="row m-3">
             <div class="input-group">
-              <span class="input-group-text">Reagent Amount (oz)</span>
+              <span class="input-group-text">Reagent Amount</span>
               <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]", value: reagent_amount.amount %>
+
+              <span class="input-group-text">Reagent Unit</span>
+              <select class="form-select" name="recipe[ingredients][reagent_unit][]">
+                <% @possible_units.each do |unit_value| %>
+                  <option value=<%= unit_value %><% if reagent_amount.unit == unit_value %> selected<% end %>><%= unit_value %></option>
+                <% end %>
+              </select>
             </div>
           </div>
 

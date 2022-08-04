@@ -1,7 +1,8 @@
 class CocktailsController < ApplicationController
   before_action :authenticate_user!
-
   before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
+
+  POSSIBLE_UNITS = ['oz', 'tsp', 'tbsp', 'dash', 'cup', 'unknown']
 
   # TODO: there's a lot of opportunity to share code here
   def index
@@ -20,6 +21,7 @@ class CocktailsController < ApplicationController
     @form_path = cocktails_path
     @editing = false
     @reagent_categories = ReagentCategory.all.order(:name)
+    @possible_units = POSSIBLE_UNITS
   end
 
   def show
@@ -33,6 +35,7 @@ class CocktailsController < ApplicationController
     @reagents = Reagent.for_user(current_user).all.order(:name)
     @editing = true
     @reagent_categories = ReagentCategory.all.order(:name)
+    @possible_units = POSSIBLE_UNITS
   end
 
   def make_drink
@@ -108,6 +111,7 @@ class CocktailsController < ApplicationController
       create_params = {
         recipe: cocktail,
         amount: raw_amount[:reagent_amount],
+        unit: raw_amount[:reagent_unit],
         user_id: current_user.id
       }
 
@@ -148,7 +152,7 @@ class CocktailsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       permitted = params
         .require(:recipe)
-          .permit(:name, :favorite, ingredients: {reagent_amount: [], reagent_category_id: []})
+          .permit(:name, :favorite, ingredients: {reagent_amount: [], reagent_unit: [], reagent_category_id: []})
 
       # everything about this is awful, because it's tied so tightly to how the UI is laid out.
       # I really need to redo the submission side of this has pure javascript, and handle everything
@@ -160,6 +164,7 @@ class CocktailsController < ApplicationController
         final_params[:reagent_amounts] = permitted[:ingredients][:reagent_category_id].map.with_index do |reagent_category_id, i|
           category_model = ReagentCategory.find_by(id: reagent_category_id)
           reagent_amount = permitted[:ingredients][:reagent_amount][i]
+          reagent_unit = permitted[:ingredients][:reagent_unit][i]
 
           # this largely allows the compact to skip the values from the hidden form. Again, terrible mixing of
           # view and controller logic
@@ -167,6 +172,7 @@ class CocktailsController < ApplicationController
 
           {
             reagent_amount: reagent_amount,
+            reagent_unit: reagent_unit,
             reagent_category_model: category_model
           }
         end.compact
