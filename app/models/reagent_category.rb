@@ -8,6 +8,10 @@
 #  updated_at  :datetime         not null
 #  description :text
 #
+# Indexes
+#
+#  index_reagent_categories_on_name  (name) UNIQUE
+#
 class ReagentCategory < ApplicationRecord
   has_many :reagents
   has_many :reagent_amounts

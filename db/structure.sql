@@ -137,13 +137,13 @@ CREATE TABLE public.reagents (
     purchase_location character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    reagent_category_id bigint NOT NULL,
     description text,
     user_id bigint,
     max_volume_unit character varying NOT NULL,
     max_volume_value numeric(10,2) NOT NULL,
     current_volume_value numeric(10,2) NOT NULL,
-    current_volume_unit character varying NOT NULL
+    current_volume_unit character varying NOT NULL,
+    reagent_category_id bigint
 );
 
 
@@ -387,10 +387,17 @@ CREATE INDEX index_reagent_amounts_on_user_id ON public.reagent_amounts USING bt
 
 
 --
--- Name: index_reagents_on_reagent_category_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_reagent_categories_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reagents_on_reagent_category_id ON public.reagents USING btree (reagent_category_id);
+CREATE UNIQUE INDEX index_reagent_categories_on_name ON public.reagent_categories USING btree (name);
+
+
+--
+-- Name: index_reagents_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_reagents_on_name ON public.reagents USING btree (name);
 
 
 --
@@ -442,6 +449,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220409192502'),
 ('20220515010109'),
 ('20220603151212'),
-('20220603193713');
+('20220603193713'),
+('20220920000410');
 
 

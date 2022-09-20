@@ -8,18 +8,18 @@
 #  purchase_location    :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  reagent_category_id  :bigint           not null
 #  description          :text
 #  user_id              :bigint
 #  max_volume_unit      :string           not null
 #  max_volume_value     :decimal(10, 2)   not null
 #  current_volume_value :decimal(10, 2)   not null
 #  current_volume_unit  :string           not null
+#  reagent_category_id  :bigint
 #
 # Indexes
 #
-#  index_reagents_on_reagent_category_id  (reagent_category_id)
-#  index_reagents_on_user_id              (user_id)
+#  index_reagents_on_name     (name) UNIQUE
+#  index_reagents_on_user_id  (user_id)
 #
 
 class Reagent < ApplicationRecord
