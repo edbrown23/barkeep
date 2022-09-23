@@ -45,9 +45,12 @@
           </ul>
           <% if user_signed_in? %>
           <div class="nav-item d-flex ms-auto">
-            <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "nav-link active" %>
-          <% end %>
+            <div>Hi <%= current_user.email %></div>
           </div>
+          <div class="nav-item d-flex ms-auto">
+            <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "nav-link active" %>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
