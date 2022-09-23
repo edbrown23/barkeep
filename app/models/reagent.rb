@@ -15,11 +15,13 @@
 #  current_volume_value :decimal(10, 2)   not null
 #  current_volume_unit  :string           not null
 #  reagent_category_id  :bigint
+#  external_id          :string           not null
 #
 # Indexes
 #
-#  index_reagents_on_name     (name) UNIQUE
-#  index_reagents_on_user_id  (user_id)
+#  index_reagents_on_external_id  (external_id) UNIQUE
+#  index_reagents_on_name         (name) UNIQUE
+#  index_reagents_on_user_id      (user_id)
 #
 
 class Reagent < ApplicationRecord

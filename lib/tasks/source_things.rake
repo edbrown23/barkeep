@@ -134,7 +134,7 @@ namespace :source_things do
 
         ingredients.each do |ingredient|
           # look for matching categories first
-          category_record = ReagentCategory.find_or_create_by(name: ingredient[:name].strip.titleize) do |category_record|
+          category_record = ReagentCategory.find_or_create_by(name: ingredient[:name].strip.titleize, external_id: Lib.to_external_id(ingredient[:name])) do |category_record|
             # if ingredient[:amount_string].downcase.include?('garnish')
             #   reagent_record.current_volume_percentage = 1.0
             # else
