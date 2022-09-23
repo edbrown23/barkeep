@@ -64,8 +64,8 @@ namespace :maintenance do
 
     Reagent.transaction do
       CSV.read(reagents_csv, headers: true).each do |row|
-        maybe_category = ReagentCategory.find_or_create_by(name: row['Category']) if row['Category'].present?
-        category = maybe_category || ReagentCategory.find_or_create_by(name: row['Name'])
+        category = ReagentCategory.find_or_create_by(name: row['Category']) if row['Category'].present?
+        category = ReagentCategory.find_or_create_by(name: row['Name']) unless category.present?
 
         Reagent.create!(
           name: row['Name'],
