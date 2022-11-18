@@ -68,10 +68,10 @@ CREATE TABLE public.reagent_amounts (
     amount numeric(10,2) NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    reagent_category_id bigint NOT NULL,
     unit character varying NOT NULL,
     description text,
-    user_id bigint
+    user_id bigint,
+    tags character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -144,8 +144,8 @@ CREATE TABLE public.reagents (
     max_volume_value numeric(10,2) NOT NULL,
     current_volume_value numeric(10,2) NOT NULL,
     current_volume_unit character varying NOT NULL,
-    reagent_category_id bigint,
-    external_id character varying NOT NULL
+    external_id character varying NOT NULL,
+    tags character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -368,13 +368,6 @@ CREATE INDEX index_audits_on_user_id ON public.audits USING btree (user_id);
 
 
 --
--- Name: index_reagent_amounts_on_reagent_category_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_reagent_amounts_on_reagent_category_id ON public.reagent_amounts USING btree (reagent_category_id);
-
-
---
 -- Name: index_reagent_amounts_on_recipe_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -468,6 +461,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220603193713'),
 ('20220920000410'),
 ('20220922224814'),
-('20220922230909');
+('20220922230909'),
+('20220923222955');
 
 

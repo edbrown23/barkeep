@@ -14,8 +14,8 @@
 #  max_volume_value     :decimal(10, 2)   not null
 #  current_volume_value :decimal(10, 2)   not null
 #  current_volume_unit  :string           not null
-#  reagent_category_id  :bigint
 #  external_id          :string           not null
+#  tags                 :string           default([]), is an Array
 #
 # Indexes
 #
@@ -26,15 +26,14 @@
 
 class Reagent < ApplicationRecord
   include UserScopable
-
-  # TODO: validations that ensure the percentage is between 0 and 1
-  belongs_to :reagent_category
+  include Taggable
 
   OUNCES_TO_ML_CONSTANT = 29.574 # I got this conversion constant from google
 
   measured Measured::Volume, :max_volume
   measured Measured::Volume, :current_volume
 
+  # TODO: validations that ensure the percentage is between 0 and 1
   validates :max_volume, measured: true
   validates :current_volume, measured: true
 

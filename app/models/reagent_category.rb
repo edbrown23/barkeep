@@ -15,19 +15,11 @@
 #  index_reagent_categories_on_name         (name) UNIQUE
 #
 class ReagentCategory < ApplicationRecord
-  has_many :reagents
-  has_many :reagent_amounts
+  def reagents(current_user)
+    Reagent.for_user(current_user).with_tags(external_id)
+  end
 
-  def user_has_reagent?(current_user, amount)
-    reagents.for_user(current_user).any? do |reagent|
-      if amount.unitless? && reagent.unitless?
-        reagent.current_volume >= amount.required_volume
-      elsif !amount.unitless? && !reagent.unitless? # TODO wat is this
-        reagent.current_volume >= amount.required_volume
-      else
-        Rails.logger.warn("Mismatched amount classes")
-        false
-      end
-    end
+  def reagent_amounts(current_user)
+    ReagentAmount.for_user(current_user).with_tags(external_id)
   end
 end

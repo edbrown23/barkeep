@@ -37,13 +37,22 @@ class Recipe < ApplicationRecord
 
   extra_column :favorite, false
 
+  def matching_reagents(current_user = nil)
+    tags_array = reagent_amounts.pluck(:tags).flatten
+    reagents = Reagent.for_user(current_user).with_tags(tags_array)
+    reagent_amounts.reduce({}) do |memo, required_amount|
+      memo[required_amount] ||= reagents.select { |r| (r.tags & required_amount.tags).present? }
+      memo
+    end
+  end
+
   scope :all_available, ->(current_user) do
     # iterate recipes
     # check if I have enough volume in every reagent in the cocktail to make it
-    all_cocktails = where(category: 'cocktail').includes(reagent_amounts: [{ reagent_category: :reagents }])
+    all_cocktails = where(category: 'cocktail')
     all_cocktails.filter do |cocktail|
-      cocktail.reagent_amounts.all? do |amount|
-        amount.reagent_category.user_has_reagent?(current_user, amount)
+      cocktail.matching_reagents(current_user).all? do |required, available|
+        available.present? && available.any? { |bottle| bottle.current_volume > required.required_volume }
       end
     end
   end
