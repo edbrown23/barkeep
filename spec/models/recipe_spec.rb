@@ -4,13 +4,7 @@ describe 'Recipe' do
   include_context "basic users"
 
   # all recipe setup
-  let!(:singapore_sling) do
-    Recipe.create!(
-      user: test_user,
-      name: 'Singapore Sling',
-      category: 'cocktail'
-    )
-  end
+  let!(:singapore_sling) { create(:recipe, user: test_user) }
   let!(:gin) do
     ReagentAmount.create!(
       user: test_user,

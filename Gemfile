@@ -38,6 +38,7 @@ gem 'devise'
 gem 'measured-rails', git: 'https://github.com/edbrown23/measured-rails.git', branch: 'validations_with_custom_value_columns'
 
 group :development, :test do
+  gem 'factory_bot_rails'
   gem 'rspec-rails'
   gem 'pry-byebug'
 end
