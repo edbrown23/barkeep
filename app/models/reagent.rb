@@ -28,8 +28,6 @@ class Reagent < ApplicationRecord
   include UserScopable
   include Taggable
 
-  OUNCES_TO_ML_CONSTANT = 29.574 # I got this conversion constant from google
-
   measured Measured::Volume, :max_volume
   measured Measured::Volume, :current_volume
 
@@ -37,17 +35,14 @@ class Reagent < ApplicationRecord
   validates :max_volume, measured: true
   validates :current_volume, measured: true
 
-  def ounces_available
-    (current_volume_percentage * max_volume) / OUNCES_TO_ML_CONSTANT
-  end
+  def subtract_usage(amount)
+    new_current = current_volume - amount
 
-  def subtract_ounces(ounces)
-    new_ounces_available = ounces_available - ounces
-
-    new_ounces_available = 0.0 if new_ounces_available < 0.0
-
-    new_percentage = (new_ounces_available * OUNCES_TO_ML_CONSTANT) / max_volume
-    update!(current_volume_percentage: new_percentage)
+    if new_current.value <= 0.0
+      update!(current_volume_value: 0)
+    else
+      update!(current_volume_value: new_current.value)
+    end
   end
 
   def unitless?

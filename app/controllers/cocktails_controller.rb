@@ -44,10 +44,10 @@ class CocktailsController < ApplicationController
 
     used_reagents = cocktail.reagent_amounts.map do |amount|
       # TODO: the user needs to be able to select from all their options here
-      reagent = amount.reagent_category.reagents.first
+      reagent = Reagent.for_user(current_user).with_tags(amount.tags).first
 
       # this assumes ounces, which is wrong
-      reagent.subtract_ounces(amount.amount)
+      reagent.subtract_usage(amount.required_volume)
 
       {
         used_model: reagent,
