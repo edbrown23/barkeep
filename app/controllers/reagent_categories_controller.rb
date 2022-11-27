@@ -6,9 +6,17 @@ class ReagentCategoriesController < ApplicationController
   end
 
   def show
-    @category = ReagentCategory.find(params[:id])
+    @category = find_by_external_id_or_pk(params[:id])
 
-    amounts = ReagentAmount.for_user(current_user).where(reagent_category: @category)
+    amounts = ReagentAmount.for_user(current_user).with_tags([@category.external_id])
     @cocktails = Recipe.for_user(current_user).where(id: amounts.pluck(:recipe_id))
+  end
+
+  def find_by_external_id_or_pk(id)
+    begin
+      ReagentCategory.find(Integer(id))
+    rescue ArgumentError
+      ReagentCategory.find_by(external_id: params[:id])
+    end
   end
 end

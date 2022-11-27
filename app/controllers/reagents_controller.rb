@@ -21,9 +21,9 @@ class ReagentsController < ApplicationController
   def show
     reagent_amounts = ReagentAmount.for_user(current_user).where(reagent: @reagent)
 
-    categories_amounts = []
-    categories_amounts = ReagentAmount.for_user(current_user).where(reagent_category: @reagent.reagent_category) if @reagent.reagent_category.present?
-    @cocktails = Recipe.for_user(current_user).where(id: categories_amounts.pluck(:recipe_id))
+    amounts = []
+    amounts = ReagentAmount.for_user(current_user).with_tags(@reagent.tags)
+    @cocktails = Recipe.for_user(current_user).where(id: amounts.pluck(:recipe_id))
   end
 
   def edit
@@ -74,21 +74,19 @@ class ReagentsController < ApplicationController
 
   private
     def parse_and_maybe_create_category(params)
-      # setting an existing category should always win, so if it's present and a valid primary_key then set it
-      # otherwise try to create a new category if one was passed in
-      # lastly, if there's no new category and the user chose "-1", that means they want to clear the category
-      if params[:existing_reagent_category_id].present? && params[:existing_reagent_category_id].to_i > 0
-        params[:reagent_category_id] = params[:existing_reagent_category_id]
-      elsif params[:new_category_name].present?
-        new_category = ReagentCategory.create(name: params.delete(:new_category_name), user_id: current_user.id)
-        params[:reagent_category_id] = new_category.id
+      params[:tags] = params[:tags].split(',').map(&:strip).map { |tag| Lib.to_external_id(tag) }
+
+      params[:tags].each do |tag|
+        ReagentCategory.find_or_create_by(external_id: tag) { |created_model| created_model.name = tag.titleize }
       end
+      
+      params[:external_id] = Lib.to_external_id(params[:name])
 
       params[:max_volume_unit] = params[:volume_unit]
       params[:current_volume_unit] = params[:volume_unit]
       params.delete(:volume_unit)
 
-      params.except(:existing_reagent_category_id, :new_category_name)
+      params
     end
 
     def set_reagent
@@ -101,7 +99,7 @@ class ReagentsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       params
         .require(:reagent)
-          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :existing_reagent_category_id, :new_category_name)
+          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :tags)
     end
 
     def search_params

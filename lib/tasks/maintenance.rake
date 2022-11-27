@@ -64,16 +64,21 @@ namespace :maintenance do
 
     Reagent.transaction do
       CSV.read(reagents_csv, headers: true).each do |row|
-        category = ReagentCategory.find_or_create_by(name: row['Category']) if row['Category'].present?
-        category = ReagentCategory.find_or_create_by(name: row['Name']) unless category.present?
+        potential_category_name = row['Category'] || row['Name']
+        category_id = Lib.to_external_id(potential_category_name)
+        category_model = ReagentCategory.find_or_create_by(external_id: category_id) do |created_model|
+          created_model.name = potential_category_name
+        end
 
         Reagent.create!(
+          user: User.find_by(email: 'eric.d.brown23@gmail.com'),
           name: row['Name'],
           max_volume_value: row['Max Volume'],
           max_volume_unit: 'ml',
           current_volume_value: (row['Current Volume'].to_i / 100.0) * row['Max Volume'].to_i,
           current_volume_unit: 'ml',
-          reagent_category: category
+          external_id: Lib.to_external_id(row['Name']),
+          tags: [category_id]
         )
       end
     end

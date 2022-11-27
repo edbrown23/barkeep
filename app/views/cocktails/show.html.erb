@@ -3,6 +3,24 @@
 <% end %>
 <main>
   <div class="container">
+    <div class="modal fade" id="boughtThisModal" tabindex="-1" aria-labelledby="boughtThisModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">What did you buy?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <p id="notice"><%= notice %></p>
 
     <p>
@@ -27,20 +45,22 @@
       <thead>
         <tr>
           <th>id</th>
-          <th>Ingredient</th>
+          <th>Tags</th>
           <th>Required Volume</th>
           <th>Description</th>
           <th>Go To Ingredient</th>
+          <th>Bought this?</th>
         </tr>
       </thead>
       <tbody>
         <% @cocktail.reagent_amounts.each do |reagent_amount| %>
           <tr <% if reagent_amount.reagent_available?(current_user) %> class="table-success"<% end %>>
             <td><%= reagent_amount.id %></td>
-            <td><%= reagent_amount.reagent_category&.name %></td>
+            <td><%= reagent_amount.tags %></td>
             <td><%= reagent_amount.amount %></td>
             <td><%= reagent_amount.description %></td>
-            <td><%= link_to "Category Details", reagent_category_path(reagent_amount.reagent_category), class: "btn btn-outline-info" %></td>
+            <td><%= link_to "Category Details", reagent_category_path(reagent_amount.tags.first), class: 'btn btn-outline-info' %></td>
+            <td><%= link_to "Bought it", "", class: "btn btn-outline-primary" %></td>
           </tr>
         <% end %>
       </tbody>

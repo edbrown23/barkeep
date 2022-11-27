@@ -24,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-          <% @category.reagents.each do |reagent| %>
+          <% @category.reagents(current_user).each do |reagent| %>
             <tr id="reagent_<%= reagent.id %>">
               <td><%= reagent.id %></td>
               <td><%= reagent.name %></td>

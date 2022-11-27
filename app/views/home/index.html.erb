@@ -45,7 +45,7 @@
                 <% cocktail.reagent_amounts.each do |reagent_amount| %>
                   <tr>
                     <td><%= reagent_amount.id %></td>
-                    <td><%= reagent_amount.reagent_category.name %></td>
+                    <td><%= reagent_amount.tags %></td>
                     <td><%= reagent_amount.amount %></td>
                   </tr>
                 <% end %>

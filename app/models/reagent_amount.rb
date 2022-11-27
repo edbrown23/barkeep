@@ -31,13 +31,13 @@ class ReagentAmount < ApplicationRecord
     ReagentCategory.where(external_id: tags)
   end
 
-  def matching_reagents
-    Reagent.with_tags(tags)
+  def matching_reagents(current_user)
+    Reagent.for_user(current_user).with_tags(tags)
   end
 
   def reagent_available?(current_user)
-    matching_reagents(current_user).all? do |required, available|
-      available.present? && available.any? { |bottle| bottle.current_volume > required.required_volume }
+    matching_reagents(current_user).any? do |reagent|
+      reagent.current_volume >= required_volume
     end
   end
 

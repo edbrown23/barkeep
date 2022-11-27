@@ -35,7 +35,7 @@
               <tr id="reagent_<%= reagent.id %>">
                 <td><%= reagent.id %></td>
                 <td><%= reagent.name %></td>
-                <td><%= reagent.reagent_category&.name %></td>
+                <td><%= reagent.tags %></td>
                 <td data-volume-row><%= reagent.current_volume %></td>
                 <td><%= reagent.max_volume %></td>
                 <td><%= link_to "Refill", reagent_refill_path(reagent), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id } %></td>

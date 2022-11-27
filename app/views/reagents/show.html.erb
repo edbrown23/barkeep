@@ -11,10 +11,10 @@
     </p>
 
     <p>
-      <strong>Category:</strong>
-      <%= @reagent.reagent_category&.name || "No Category" %>
-      <% if @reagent.reagent_category.present? %>
-      <%= link_to "Category Details", reagent_category_path(@reagent.reagent_category), class: 'btn btn-outline-info' %>
+      <strong>Tags:</strong>
+      <%= @reagent.tags %>
+      <% if @reagent.tags.present? %>
+      <%= link_to "Category Details", reagent_category_path(@reagent.tags.first), class: 'btn btn-outline-info' %>
       <% end %>
     </p>
 

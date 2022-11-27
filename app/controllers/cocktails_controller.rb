@@ -2,7 +2,7 @@ class CocktailsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
 
-  POSSIBLE_UNITS = ['oz', 'tsp', 'tbsp', 'dash', 'cup', 'unknown']
+  POSSIBLE_UNITS = ['oz', 'ml', 'tsp', 'tbsp', 'dash', 'cup', 'unknown']
 
   # TODO: there's a lot of opportunity to share code here
   def index
@@ -105,7 +105,6 @@ class CocktailsController < ApplicationController
     end
   end
 
-  # TODO I need to set units here
   def create_reagent_amounts(cocktail, amounts_array)
     amounts_array.map do |raw_amount|
       create_params = {
@@ -115,7 +114,15 @@ class CocktailsController < ApplicationController
         user_id: current_user.id
       }
 
-      create_params[:reagent_category] = raw_amount[:reagent_category_model]
+      if raw_amount[:new_category_external_id].present?
+        new_tag = raw_amount[:new_category_external_id]
+        category_model = ReagentCategory.find_or_create_by(external_id: new_tag) do |cat_mod|
+          cat_mod.name = new_tag.titleize
+        end
+      else
+        category_model = raw_amount[:reagent_category_model]
+      end
+      create_params[:tags] = [category_model.external_id]
 
       ReagentAmount.create(**create_params)
     end
@@ -152,7 +159,7 @@ class CocktailsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       permitted = params
         .require(:recipe)
-          .permit(:name, :favorite, ingredients: {reagent_amount: [], reagent_unit: [], reagent_category_id: []})
+          .permit(:name, :favorite, ingredients: {reagent_amount: [], reagent_unit: [], reagent_category_id: [], new_category: []})
 
       # everything about this is awful, because it's tied so tightly to how the UI is laid out.
       # I really need to redo the submission side of this has pure javascript, and handle everything
@@ -163,6 +170,7 @@ class CocktailsController < ApplicationController
         final_params[:favorite] = permitted[:favorite] == "1"
         final_params[:reagent_amounts] = permitted[:ingredients][:reagent_category_id].map.with_index do |reagent_category_id, i|
           category_model = ReagentCategory.find_by(id: reagent_category_id)
+          new_category_external_id = Lib.to_external_id(permitted[:ingredients][:new_category][i])
           reagent_amount = permitted[:ingredients][:reagent_amount][i]
           reagent_unit = permitted[:ingredients][:reagent_unit][i]
 
@@ -173,7 +181,8 @@ class CocktailsController < ApplicationController
           {
             reagent_amount: reagent_amount,
             reagent_unit: reagent_unit,
-            reagent_category_model: category_model
+            reagent_category_model: category_model,
+            new_category_external_id: new_category_external_id
           }
         end.compact
       end

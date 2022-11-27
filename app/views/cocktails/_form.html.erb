@@ -38,7 +38,10 @@
                 <option value=<%= reagent_category.id %>><%= reagent_category.name %></option>
               <% end %>
             </select>
+            <span class="input-group-text">New Category:</span>
+            <%= form.text_field :new_category, class: "form-control", multiple: true, name: "recipe[ingredients][new_category][]" %>
           </div>
+          <div class="form-text">New category value will overwrite selection if present</div>
         </div>
       </div>
       <div class="row m-3">
@@ -69,11 +72,14 @@
                 <span class="input-group-text">Categories:</span>
                 <select class="form-select" name="recipe[ingredients][reagent_category_id][]">
                   <% @reagent_categories.each do |reagent_category| %>
-                    <option value=<%= reagent_category.id %><% if reagent_amount.reagent_category_id == reagent_category.id %> selected<% end %>><%= reagent_category.name %></option>
+                    <option value=<%= reagent_category.id %><% if reagent_amount.tags.first == reagent_category.external_id %> selected<% end %>><%= reagent_category.name %></option>
                   <% end %>
                 </select>
+              <span class="input-group-text">New Category:</span>
+              <%= form.text_field :new_category, class: "form-control", multiple: true, name: "recipe[ingredients][new_category][]" %>
               </div>
             </div>
+            <div class="form-text">New category value will overwrite selection if present</div>
           </div>
           <div class="row m-3">
             <div class="input-group">
