@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     post :toggle_favorite
   end
 
+  resources :shared_cocktails, only: [:index, :show] do
+    post :add_to_account
+  end
+
   resources :audits, only: [:index, :show]
 
   resources :reagent_categories, only: [:index, :show]

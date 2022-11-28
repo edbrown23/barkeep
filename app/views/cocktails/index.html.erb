@@ -18,7 +18,7 @@
         <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary' %>
       </div>
       <div class="col-10">
-      <%= render 'shared/cocktails_table', cocktails: @cocktails %>
+      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false %>
       </div>
     </div>
 

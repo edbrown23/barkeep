@@ -1,0 +1,65 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "shared_cocktail_show", "data-turbolinks-track": 'reload' %>
+<% end %>
+<main>
+  <div class="container">
+
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @cocktail.name %>
+    </p>
+
+    <p>
+      <strong>Ingredients</strong>
+    </p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Tags</th>
+          <th>Required Volume</th>
+          <th>Description</th>
+          <th>Go To Ingredient</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cocktail.reagent_amounts.each do |reagent_amount| %>
+          <tr <% if reagent_amount.reagent_available?(current_user) %> class="table-success"<% end %>>
+            <td><%= reagent_amount.id %></td>
+            <td><%= reagent_amount.tags %></td>
+            <td><%= reagent_amount.amount %></td>
+            <td><%= reagent_amount.description %></td>
+            <td><%= link_to "Category Details", reagent_category_path(reagent_amount.tags.first), class: 'btn btn-outline-info' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <hr>
+    <strong>Cocktail Stats</strong>
+    <span>You've made this drink <span id="made_count"><%= @stats[:made_count] %></span> times!</span>
+    <hr>
+
+    <%= link_to 'Promote to your list', shared_cocktail_add_to_account_path(@cocktail), class: "btn btn-primary", id: 'promote_link', method: :post, remote: true %>
+    <%= link_to 'Back', cocktails_path, class: "btn btn-info" %>
+
+    <p class="mt-3">
+      <%= link_to "I made this!", cocktail_make_drink_path(@cocktail), id: 'make_cocktail_link', remote: true, method: :post, class: "btn btn-success", data: { quantity: 1, cocktail_id: @cocktail.id } %>
+    </p>
+
+      <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11">
+      </div>
+
+      <div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong>Cheers!</strong>
+        </div>
+        <div class="toast-body">
+          <span data-toast-body></span>
+        </div>
+      </div>
+    <div>
+</main>

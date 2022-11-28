@@ -1,0 +1,24 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "shared_cocktails_index", "data-turbolinks-track": 'reload' %>
+<% end %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <%= form_with(url: "/shared_cocktails", method: "GET") do |form| %>
+          <div class="field mb-1">
+            <%= form.label :search_term, class: "form-label" %>
+            <%= form.text_field :search_term, class: "form-control", value: params['search_term'] %>
+          </div>
+
+          <div class="action mb-1">
+            <%= form.submit "Search", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-10">
+      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: true %>
+      </div>
+    </div>
+  </div>
+</main>

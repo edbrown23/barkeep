@@ -39,7 +39,7 @@
 
       <hr>
       <strong>Cocktails which use this category</strong>
-      <%= render 'shared/cocktails_table', cocktails: @cocktails %>
+      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false %>
 
       <%= link_to 'Back', reagent_categories_path, class: "btn btn-primary" %>
     </div>
