@@ -4,6 +4,7 @@
 <div class="container">
   <h1>Look at all the drinks you can make!</h1>
 
+  <h3>Your recipes:</h3>
   <div class="row">
     <div class="col-7">
       <table class="table">
@@ -16,7 +17,32 @@
           </tr>
         </thead>
         <tbody>
-          <% @available_cocktails.each do |cocktail| %>
+          <% @users_available.each do |cocktail| %>
+            <tr>
+              <td><%= cocktail.id %></td>
+              <td><%= cocktail.name.html_safe %></td>
+              <td><%= link_to 'Edit', cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
+              <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  <h3>Shared recipes:</h3>
+  <div class="row">
+    <div class="col-7">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>Edit</th>
+            <th>Show Ingredients</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shared_available.each do |cocktail| %>
             <tr>
               <td><%= cocktail.id %></td>
               <td><%= cocktail.name.html_safe %></td>
