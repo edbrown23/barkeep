@@ -24,6 +24,7 @@ gem 'pg'
 
 # used for parsing html
 gem 'hpricot'
+gem 'retriable'
 
 gem 'awesome_print'
 

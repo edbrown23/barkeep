@@ -104,9 +104,84 @@ class CocktailPage < Page
       end
     end
   end
+
+  def as_json
+    {
+      name: @name,
+      source_url: @page_url,
+      ingredients: ingredients
+    }
+  end
 end
 
 namespace :source_things do
+  desc 'Scrape cocktails from tuxedono2.com to json'
+  task tuxedono2_to_json: [:environment] do
+    root_dir = ENV.fetch('root_dir', 'cocktail_files')
+
+    index = IndexPage.new
+
+    index.cocktails.each do |cocktail_link|
+      begin
+        Retriable.retriable do
+          page = CocktailPage.new(cocktail_link[:name], cocktail_link[:detail_url])
+          json_to_dump = page.as_json
+
+          external_name = Lib.to_external_id(json_to_dump[:name])
+
+          File.open("#{root_dir}/#{external_name}.json", 'wb') do |file|
+            file << JSON.pretty_generate(json_to_dump)
+          end
+          puts "Dumped #{external_name}.json, sleeping..."
+          sleep(3)
+        end
+      rescue => e
+        puts "Failed to parse #{cocktail_link[:name]} at #{cocktail_link[:detail_url]}"
+      end
+    end
+  end
+
+  desc 'Source from JSON'
+  task import_from_json: [:environment] do
+    root_dir = ENV.fetch('root_dir', 'cocktail_files')
+    user_id = ENV.fetch('user_id', nil)
+
+    potential_categories = Set.new
+
+    Dir.foreach(root_dir) do |filename|
+      next if filename == '.' or filename == '..'
+      next unless filename.end_with?('.json')
+
+      parsed = JSON.parse(File.read("#{root_dir}/#{filename}"))
+      recipe = Recipe.find_or_create_by(name: parsed['name'], user_id: user_id) do |recipe|
+        recipe.category = 'cocktail'
+      end
+      recipe.reagent_amounts.destroy_all
+
+      parsed['ingredients'].each do |ingredient|
+        ReagentAmount.create!(
+          recipe: recipe,
+          amount: ingredient['amount'].to_s,
+          unit: ingredient['unit'],
+          description: ingredient['amount_string'],
+          tags: [Lib.to_external_id(ingredient['name'])],
+          user_id: user_id
+        )
+
+        potential_categories << {
+          name: ingredient['name'],
+          external_id: Lib.to_external_id(ingredient['name'])
+        }
+      end
+    end
+
+    potential_categories.each do |category|
+      ReagentCategory.find_or_create_by(external_id: category[:external_id]) do |category_model|
+        category_model.name = category[:name]
+      end
+    end
+  end
+
   desc 'Pull cocktails from tuxedono2.com'
   task tuxedono2: [:environment] do
     index = IndexPage.new
