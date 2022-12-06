@@ -1,0 +1,42 @@
+{
+  "name": "Marmalade",
+  "source_url": "/marmalade-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "new american gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz new american gin\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "marmalade",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz marmalade syrup\n"
+    },
+    {
+      "name": "orange wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange wheel, garnish (optional)\n"
+    },
+    {
+      "name": "marmalade",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz orange marmalade\n"
+    },
+    {
+      "name": "hot water",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz hot water\n"
+    }
+  ]
+}

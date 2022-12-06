@@ -1,0 +1,36 @@
+{
+  "name": "Long Hello",
+  "source_url": "/the-long-hello-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "champagne",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "champagne to top\n"
+    },
+    {
+      "name": "apple brandy",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz apple brandy\n"
+    },
+    {
+      "name": "elderflower liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz elderflower liqueur\n"
+    },
+    {
+      "name": "whiskey barrel aged bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash whiskey barrel aged bitters\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg for garnish\n"
+    }
+  ]
+}

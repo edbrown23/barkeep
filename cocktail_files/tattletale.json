@@ -1,0 +1,30 @@
+{
+  "name": "Tattletale",
+  "source_url": "/tattletale-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz reposado tequila\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "marshmallow cream",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz marshmallow cream\n"
+    },
+    {
+      "name": "apple butter",
+      "amount": 2.0,
+      "unit": "tsp",
+      "amount_string": "2tsp apple butter\n"
+    }
+  ]
+}

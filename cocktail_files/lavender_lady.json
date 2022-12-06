@@ -1,0 +1,42 @@
+{
+  "name": "Lavender Lady",
+  "source_url": "/lavender-lady-cocktail-recipe-dfcbfbc3-c46b-46a8-bc77-b373213d1804",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.25,
+      "unit": "oz",
+      "amount_string": "1¼oz london dry gin\n"
+    },
+    {
+      "name": "creme de violette",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz creme de violette\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 0.25,
+      "unit": "unknown",
+      "amount_string": "¼ maraschino liqueur\n"
+    },
+    {
+      "name": "lavender bitters",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 dashes lavender bitters\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz champagne\n"
+    },
+    {
+      "name": "lavender",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 pinch lavender buds\n"
+    }
+  ]
+}

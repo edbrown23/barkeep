@@ -1,0 +1,36 @@
+{
+  "name": "Martinez",
+  "source_url": "/martinez-cocktail-recipe-b56d0569-9a7d-42e4-8ca2-bc57fbda719e",
+  "ingredients": [
+    {
+      "name": "old tom gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz old tom gin\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz sweet vermouth\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash maraschino liqueur\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash orange bitters\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

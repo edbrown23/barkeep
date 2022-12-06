@@ -1,0 +1,54 @@
+{
+  "name": "Nicholas Sage",
+  "source_url": "/nicholas-sage-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "blanco tequila",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz blanco tequila\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "sage syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sage syrup\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz benedictine\n"
+    },
+    {
+      "name": "sage",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 sage leaf for garnish\n"
+    },
+    {
+      "name": "sage leaves",
+      "amount": 12.0,
+      "unit": "unknown",
+      "amount_string": "12 sage leaves\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup sugar\n"
+    },
+    {
+      "name": "water",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup water\n"
+    }
+  ]
+}

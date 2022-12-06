@@ -1,0 +1,30 @@
+{
+  "name": "Cynar Flip",
+  "source_url": "/cynar-flip-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "cynar",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz cynar\n"
+    },
+    {
+      "name": "egg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 2.0,
+      "unit": "tsp",
+      "amount_string": "2tsp 2:1 simple syrup\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "angostura bitters for garnish\n"
+    }
+  ]
+}

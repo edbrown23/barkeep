@@ -1,0 +1,36 @@
+{
+  "name": "Black Manhattan",
+  "source_url": "/black-manhattan-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye or bourbon\n"
+    },
+    {
+      "name": "amaro averna",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz amaro averna\n"
+    },
+    {
+      "name": "aromatic bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash aromatic bitters\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash orange bitters\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish\n"
+    }
+  ]
+}

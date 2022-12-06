@@ -1,0 +1,36 @@
+{
+  "name": "Yuzu Choco",
+  "source_url": "/yuzu-choco-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "shochu",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz shochu (preferably barley)\n"
+    },
+    {
+      "name": "yuzu",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz yuzu sake\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz creme de cacao\n"
+    },
+    {
+      "name": "suze",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp suze\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

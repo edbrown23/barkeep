@@ -1,0 +1,54 @@
+{
+  "name": "Fionia",
+  "source_url": "/fionia-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.25,
+      "unit": "oz",
+      "amount_string": "1¼oz london dry gin\n"
+    },
+    {
+      "name": "blanc vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz blanc vermouth\n"
+    },
+    {
+      "name": "sherry",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sherry\n"
+    },
+    {
+      "name": "barspoon pickled chamomile liquid",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 barspoon pickled chamomile liquid\n"
+    },
+    {
+      "name": "pickled chamomile buds for garnish",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pickled chamomile buds for garnish\n"
+    },
+    {
+      "name": "white vinegar",
+      "amount": 32.0,
+      "unit": "oz",
+      "amount_string": "32oz white vinegar\n"
+    },
+    {
+      "name": "superfine sugar",
+      "amount": 32.0,
+      "unit": "oz",
+      "amount_string": "32oz superfine sugar\n"
+    },
+    {
+      "name": "dried chamomile buds",
+      "amount": 16.0,
+      "unit": "oz",
+      "amount_string": "16oz dried chamomile buds\n"
+    }
+  ]
+}

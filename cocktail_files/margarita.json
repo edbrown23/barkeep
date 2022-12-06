@@ -1,0 +1,30 @@
+{
+  "name": "Margarita",
+  "source_url": "/margarita-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "blanco tequila",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz blanco tequila or reposado tequila\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orange liqueur\n"
+    },
+    {
+      "name": "lime wedge",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wedge\n"
+    }
+  ]
+}

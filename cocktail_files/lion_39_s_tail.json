@@ -1,0 +1,36 @@
+{
+  "name": "Lion&#39;s Tail",
+  "source_url": "/lion-s-tail-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz bourbon\n"
+    },
+    {
+      "name": "allspice dram",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz allspice dram\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 barspoon simple syrup\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    }
+  ]
+}

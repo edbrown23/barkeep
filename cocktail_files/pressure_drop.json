@@ -1,0 +1,36 @@
+{
+  "name": "Pressure Drop",
+  "source_url": "/pressure-drop-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "old tom gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz old tom gin\n"
+    },
+    {
+      "name": "amaro nonino",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz amaro nonino or similar\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz dry vermouth\n"
+    },
+    {
+      "name": "pear brandy",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp pear brandy\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    }
+  ]
+}

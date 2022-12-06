@@ -1,0 +1,54 @@
+{
+  "name": "Fog Cutter",
+  "source_url": "/fog-cutter-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "light rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz light rum\n"
+    },
+    {
+      "name": "london dry gin",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz london dry gin\n"
+    },
+    {
+      "name": "brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz brandy\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orgeat\n"
+    },
+    {
+      "name": "orange juice",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz orange juice\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lemon juice\n"
+    },
+    {
+      "name": "sherry",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sherry\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "mint or cherry for garnish\n"
+    }
+  ]
+}

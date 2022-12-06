@@ -1,0 +1,42 @@
+{
+  "name": "Corpse Reviver 2",
+  "source_url": "/corpse-reviver-2-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz london dry gin\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orange liqueur\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "lillet",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lillet or cocchi americano\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash absinthe\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

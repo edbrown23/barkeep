@@ -1,0 +1,48 @@
+{
+  "name": "Queens Park Swizzle",
+  "source_url": "/queens-park-swizzle-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz dark rum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "mint",
+      "amount": 4.0,
+      "unit": "unknown",
+      "amount_string": "4-6 mint leaves\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash angostura bitters\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash peychaud's bitters\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "mint sprig for garnish\n"
+    }
+  ]
+}

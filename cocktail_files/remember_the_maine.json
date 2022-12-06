@@ -1,0 +1,36 @@
+{
+  "name": "Remember the Maine",
+  "source_url": "/remember-the-maine-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sweet vermouth\n"
+    },
+    {
+      "name": "cherry heering",
+      "amount": 2.0,
+      "unit": "tsp",
+      "amount_string": "2tsp cherry heering\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 0.5,
+      "unit": "tsp",
+      "amount_string": "½tsp absinthe\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Naked &amp; Famous",
+  "source_url": "/naked-famous-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz mezcal\n"
+    },
+    {
+      "name": "yellow chartreuse",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz yellow chartreuse\n"
+    },
+    {
+      "name": "aperol",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz aperol\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    }
+  ]
+}

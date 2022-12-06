@@ -1,0 +1,36 @@
+{
+  "name": "Whiskey Sour",
+  "source_url": "/whiskey-sour-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz bourbon\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "egg white",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg white\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry or orange wedge for garnish\n"
+    }
+  ]
+}

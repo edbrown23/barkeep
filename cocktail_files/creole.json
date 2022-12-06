@@ -1,0 +1,36 @@
+{
+  "name": "Creole",
+  "source_url": "/creole-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz rye\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz sweet vermouth\n"
+    },
+    {
+      "name": "amer picon",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash amer picon\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash benedictine\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel garnish\n"
+    }
+  ]
+}

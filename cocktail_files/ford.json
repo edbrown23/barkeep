@@ -1,0 +1,36 @@
+{
+  "name": "Ford",
+  "source_url": "/ford-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "old tom gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz old tom gin\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz dry vermouth\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz benedictine\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash orange bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

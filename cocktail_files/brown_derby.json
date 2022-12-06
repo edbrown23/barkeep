@@ -1,0 +1,36 @@
+{
+  "name": "Brown Derby",
+  "source_url": "/brown-derby-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz bourbon\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz grapefruit juice\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp lemon juice\n"
+    },
+    {
+      "name": "honey syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz honey syrup\n"
+    },
+    {
+      "name": "grapefruit twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit twist for garnish\n"
+    }
+  ]
+}

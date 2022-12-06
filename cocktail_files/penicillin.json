@@ -1,0 +1,36 @@
+{
+  "name": "Penicillin",
+  "source_url": "/penicillin-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz blended scotch\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "honey syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz honey syrup\n"
+    },
+    {
+      "name": "ginger",
+      "amount": 3.0,
+      "unit": "unknown",
+      "amount_string": "3 slices fresh ginger\n"
+    },
+    {
+      "name": "scotch",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz islay single malt scotch\n"
+    }
+  ]
+}

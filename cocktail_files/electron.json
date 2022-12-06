@@ -1,0 +1,42 @@
+{
+  "name": "Electron",
+  "source_url": "/electron-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 1.75,
+      "unit": "oz",
+      "amount_string": "1¾oz mezcal\n"
+    },
+    {
+      "name": "carrot",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz carrot juice\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "cinnamon syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz cinnamon syrup\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash orange bitters\n"
+    },
+    {
+      "name": "pink peppercorn",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pink peppercorn and salt for garnish\n"
+    }
+  ]
+}

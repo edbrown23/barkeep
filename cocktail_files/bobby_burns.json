@@ -1,0 +1,36 @@
+{
+  "name": "Bobby Burns",
+  "source_url": "/bobby-burns-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz blended scotch\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz sweet vermouth\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz benedictine\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash absinthe\n"
+    },
+    {
+      "name": "lemon twist (optional)",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist (optional)\n"
+    }
+  ]
+}

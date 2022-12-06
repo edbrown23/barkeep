@@ -1,0 +1,54 @@
+{
+  "name": "Paloma",
+  "source_url": "/paloma-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "blanco tequila",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz blanco tequila\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz grapefruit juice\n"
+    },
+    {
+      "name": "pamplemousse liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz pamplemousse liqueur\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp simple syrup\n"
+    },
+    {
+      "name": "soda",
+      "amount": 2.5,
+      "unit": "oz",
+      "amount_string": "2½oz soda (or to top)\n"
+    },
+    {
+      "name": "grapefruit",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit peel for garnish\n"
+    },
+    {
+      "name": "salt",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "salt for rim (optional)\n"
+    }
+  ]
+}

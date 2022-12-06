@@ -1,0 +1,54 @@
+{
+  "name": "Gentleman’s Exchange",
+  "source_url": "/gentleman-s-exchange-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz rye\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sweet vermouth\n"
+    },
+    {
+      "name": "suze",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz suze\n"
+    },
+    {
+      "name": "amaro averna",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz amaro averna\n"
+    },
+    {
+      "name": "coffee liqueur",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp coffee liqueur\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 4.0,
+      "unit": "dash",
+      "amount_string": "4dash absinthe\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "grapefruit peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit peel for garnish\n"
+    }
+  ]
+}

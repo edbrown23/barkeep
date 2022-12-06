@@ -1,0 +1,42 @@
+{
+  "name": "Champagne Julep",
+  "source_url": "/champagne-julep-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mint",
+      "amount": 4.0,
+      "unit": "unknown",
+      "amount_string": "4 mint leaves\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 2.0,
+      "unit": "tsp",
+      "amount_string": "2tsp simple syrup\n"
+    },
+    {
+      "name": "brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz brandy\n"
+    },
+    {
+      "name": "crushed ice",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "crushed ice\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "champagne to fill\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "sprig of mint for garnish\n"
+    }
+  ]
+}

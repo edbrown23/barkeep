@@ -1,0 +1,18 @@
+{
+  "name": "Kir Royale",
+  "source_url": "/kir-royale-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "creme de cassis",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz creme de cassis\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz champagne\n"
+    }
+  ]
+}

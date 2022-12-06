@@ -1,0 +1,54 @@
+{
+  "name": "Fish House Punch",
+  "source_url": "/fish-house-punch-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "cognac",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz cognac\n"
+    },
+    {
+      "name": "dark rum",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz dark rum\n"
+    },
+    {
+      "name": "peach liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz peach liqueur\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz simple syrup\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz soda water\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg (optional) for garnish\n"
+    }
+  ]
+}

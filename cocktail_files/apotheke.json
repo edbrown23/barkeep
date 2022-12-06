@@ -1,0 +1,30 @@
+{
+  "name": "Apotheke",
+  "source_url": "/apotheke-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "fernet",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz fernet\n"
+    },
+    {
+      "name": "creme de menthe",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz creme de menthe\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz sweet vermouth\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish\n"
+    }
+  ]
+}

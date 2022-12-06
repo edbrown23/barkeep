@@ -1,0 +1,48 @@
+{
+  "name": "Martini",
+  "source_url": "/martini-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz london dry gin\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz dry vermouth\n"
+    },
+    {
+      "name": "lemon twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist for garnish\n"
+    },
+    {
+      "name": "old tom gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz old tom gin\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dry vermouth\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash orange bitters\n"
+    },
+    {
+      "name": "lemon twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist for garnish\n"
+    }
+  ]
+}

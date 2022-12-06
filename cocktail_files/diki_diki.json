@@ -1,0 +1,24 @@
+{
+  "name": "Diki-Diki",
+  "source_url": "/diki-diki-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "apple brandy",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz apple brandy\n"
+    },
+    {
+      "name": "swedish punsch",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz swedish punsch\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz grapefruit juice\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Chrysanthemum",
+  "source_url": "/chrysanthemum-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dry vermouth",
+      "amount": 2.5,
+      "unit": "oz",
+      "amount_string": "2½oz dry vermouth\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz benedictine\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp absinthe\n"
+    },
+    {
+      "name": "orange twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 orange twist, for garnish\n"
+    }
+  ]
+}

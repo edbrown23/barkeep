@@ -1,0 +1,36 @@
+{
+  "name": "Monte Carlo",
+  "source_url": "/monte-carlo-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.25,
+      "unit": "oz",
+      "amount_string": "2¼oz rye\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz benedictine\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 dash angostura bitters\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 dash peychaud's bitters\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry or lemon peel for garnish\n"
+    }
+  ]
+}

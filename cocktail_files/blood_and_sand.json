@@ -1,0 +1,36 @@
+{
+  "name": "Blood and Sand",
+  "source_url": "/blood-and-sand-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz blended scotch\n"
+    },
+    {
+      "name": "cherry heering",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz cherry heering\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sweet vermouth\n"
+    },
+    {
+      "name": "orange juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orange juice\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 orange peel\n"
+    }
+  ]
+}

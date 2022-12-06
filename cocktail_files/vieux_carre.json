@@ -1,0 +1,48 @@
+{
+  "name": "Vieux Carré",
+  "source_url": "/vieux-carre-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz rye\n"
+    },
+    {
+      "name": "cognac",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz cognac\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sweet vermouth\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 barspoon benedictine\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash peychaud's bitters\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

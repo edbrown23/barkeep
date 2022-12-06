@@ -1,0 +1,36 @@
+{
+  "name": "Tour Le Carbet",
+  "source_url": "/tour-le-carbet-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rhum agricole",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rhum agricole\n"
+    },
+    {
+      "name": "suze",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz suze\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz falernum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "lime wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wheel for ganish\n"
+    }
+  ]
+}

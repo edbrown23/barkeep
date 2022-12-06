@@ -1,0 +1,36 @@
+{
+  "name": "Hemingway Daiquiri",
+  "source_url": "/hemingway-daiquiri-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "light rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz light rum\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz grapefruit juice\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz maraschino liqueur\n"
+    },
+    {
+      "name": "lime wedge",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wedge for garnish\n"
+    }
+  ]
+}

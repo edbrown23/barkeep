@@ -1,0 +1,54 @@
+{
+  "name": "Halekulani",
+  "source_url": "/halekulani-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz bourbon\n"
+    },
+    {
+      "name": "demerara syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz demerara syrup\n"
+    },
+    {
+      "name": "grenadine",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp grenadine\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz pineapple juice\n"
+    },
+    {
+      "name": "orange juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orange juice\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pineapple wedge, citrus wheel, or pineapple fronds, for garnish\n"
+    }
+  ]
+}

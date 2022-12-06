@@ -1,0 +1,42 @@
+{
+  "name": "Cock N&#39; Bull",
+  "source_url": "/cock-n-bull-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz bourbon\n"
+    },
+    {
+      "name": "cognac",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz cognac\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz benedictine\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz curacao\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

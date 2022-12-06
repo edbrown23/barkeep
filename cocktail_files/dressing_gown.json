@@ -1,0 +1,54 @@
+{
+  "name": "Dressing Gown",
+  "source_url": "/dressing-gown-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "blanco tequila",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz blanco tequila\n"
+    },
+    {
+      "name": "mezcal",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz mezcal\n"
+    },
+    {
+      "name": "pastis",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz pastis\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orgeat\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "egg white",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg white\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "soda water to fill\n"
+    },
+    {
+      "name": "lime peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime peel for garnish\n"
+    }
+  ]
+}

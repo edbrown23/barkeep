@@ -1,0 +1,42 @@
+{
+  "name": "And To All A Goodnight",
+  "source_url": "/and-to-all-a-goodnight-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz bourbon\n"
+    },
+    {
+      "name": "reposado tequila",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz reposado tequila\n"
+    },
+    {
+      "name": "cherry heering",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz cherry heering\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash orange bitters\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Oaxaca Old Fashioned",
+  "source_url": "/oaxacan-old-fashioned-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz reposado tequila\n"
+    },
+    {
+      "name": "mezcal",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz mezcal\n"
+    },
+    {
+      "name": "agave syrup",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp agave syrup\n"
+    },
+    {
+      "name": "mole bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash mole bitters or chocolate bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

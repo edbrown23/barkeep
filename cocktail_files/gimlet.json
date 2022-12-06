@@ -1,0 +1,48 @@
+{
+  "name": "Gimlet",
+  "source_url": "/gimlet-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz london dry gin\n"
+    },
+    {
+      "name": "lime cordial",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime cordial\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz fresh lime juice\n"
+    },
+    {
+      "name": "lime peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime peel for garnish\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup sugar\n"
+    },
+    {
+      "name": "water",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup water\n"
+    },
+    {
+      "name": "limes",
+      "amount": 4.0,
+      "unit": "unknown",
+      "amount_string": "4 limes\n"
+    }
+  ]
+}

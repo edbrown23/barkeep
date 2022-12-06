@@ -1,0 +1,36 @@
+{
+  "name": "French 75",
+  "source_url": "/french-75-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz champagne\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

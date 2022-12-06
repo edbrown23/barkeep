@@ -1,0 +1,24 @@
+{
+  "name": "Hurricane",
+  "source_url": "/hurricane-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "black blended rum",
+      "amount": 4.0,
+      "unit": "oz",
+      "amount_string": "4oz black blended rum\n"
+    },
+    {
+      "name": "passionfruit syrup",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz passionfruit syrup\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz lemon juice\n"
+    }
+  ]
+}

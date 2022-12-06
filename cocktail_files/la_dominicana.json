@@ -1,0 +1,24 @@
+{
+  "name": "La Dominicana",
+  "source_url": "/la-dominicana-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dark rum\n"
+    },
+    {
+      "name": "coffee liqueur",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz coffee liqueur\n"
+    },
+    {
+      "name": "cream",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "hand-whipped cream\n"
+    }
+  ]
+}

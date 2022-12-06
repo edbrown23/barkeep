@@ -1,0 +1,24 @@
+{
+  "name": "Gold Rush",
+  "source_url": "/gold-rush-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz bourbon\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "honey syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz honey syrup\n"
+    }
+  ]
+}

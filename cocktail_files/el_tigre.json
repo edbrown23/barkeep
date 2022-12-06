@@ -1,0 +1,48 @@
+{
+  "name": "El Tigre",
+  "source_url": "/el-tigre-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz reposado tequila\n"
+    },
+    {
+      "name": "aquavit",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz aquavit\n"
+    },
+    {
+      "name": "egg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 whole egg\n"
+    },
+    {
+      "name": "cinnamon syrup",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz cinnamon syrup\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "mole bitters",
+      "amount": 4.0,
+      "unit": "dash",
+      "amount_string": "4dash mole bitters\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz soda water\n"
+    }
+  ]
+}

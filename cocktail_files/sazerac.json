@@ -1,0 +1,36 @@
+{
+  "name": "Sazerac",
+  "source_url": "/sazerac-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash peychaud's bitters\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp simple syrup or one sugar cube\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "splash of absinthe or herbsaint\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

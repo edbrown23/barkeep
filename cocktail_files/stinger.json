@@ -1,0 +1,24 @@
+{
+  "name": "Stinger",
+  "source_url": "/stinger-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "cognac",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz cognac\n"
+    },
+    {
+      "name": "creme de menthe",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz creme de menthe\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 dashes absinthe or pastis\n"
+    }
+  ]
+}

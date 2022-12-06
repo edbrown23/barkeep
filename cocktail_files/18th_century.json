@@ -1,0 +1,30 @@
+{
+  "name": "18th Century",
+  "source_url": "/18th-century-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "batavia arrack",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz batavia arrack\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz creme de cacao\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sweet vermouth\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    }
+  ]
+}

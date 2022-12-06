@@ -1,0 +1,42 @@
+{
+  "name": "Erin",
+  "source_url": "/erin-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "amer picon",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz amer picon or china china amer\n"
+    },
+    {
+      "name": "suze",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz suze\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sweet vermouth\n"
+    },
+    {
+      "name": "allspice dram",
+      "amount": 5.0,
+      "unit": "dash",
+      "amount_string": "5dash allspice dram\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel and orange peel for garnish\n"
+    }
+  ]
+}

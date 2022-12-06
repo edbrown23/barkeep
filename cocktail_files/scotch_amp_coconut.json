@@ -1,0 +1,42 @@
+{
+  "name": "Scotch &amp; Coconut",
+  "source_url": "/scotch-coconut-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz scotch\n"
+    },
+    {
+      "name": "aged rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz aged rum\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz curacao\n"
+    },
+    {
+      "name": "demerara syrup",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp demerara syrup\n"
+    },
+    {
+      "name": "mole bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash mole bitters\n"
+    },
+    {
+      "name": "coconut water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 coconut water ice cube\n"
+    }
+  ]
+}

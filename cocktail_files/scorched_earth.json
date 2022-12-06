@@ -1,0 +1,36 @@
+{
+  "name": "Scorched Earth",
+  "source_url": "/scorched-earth-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz mezcal\n"
+    },
+    {
+      "name": "zucca",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz zucca or cynar\n"
+    },
+    {
+      "name": "campari",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz campari\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash orange bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

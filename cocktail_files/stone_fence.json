@@ -1,0 +1,30 @@
+{
+  "name": "Stone Fence",
+  "source_url": "/stone-fence-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "apple cider",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz hard apple cider\n"
+    },
+    {
+      "name": "bourbon",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz bourbon\n"
+    },
+    {
+      "name": "maple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz maple syrup\n"
+    },
+    {
+      "name": "apple",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "apple slices for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Presbyterian",
+  "source_url": "/presbyterian-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "soda water",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz cold soda water\n"
+    },
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye or scotch\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "ginger syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz ginger syrup\n"
+    },
+    {
+      "name": "lime wedge",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wedge, for garnish\n"
+    },
+    {
+      "name": "ginger",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz ginger juice\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz sugar\n"
+    }
+  ]
+}

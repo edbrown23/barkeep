@@ -1,0 +1,30 @@
+{
+  "name": "Pale End of the Day",
+  "source_url": "/pale-end-of-the-day-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "blanc vermouth",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz blanc vermouth\n"
+    },
+    {
+      "name": "london dry gin",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz london dry gin\n"
+    },
+    {
+      "name": "pear liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pear liqueur\n"
+    },
+    {
+      "name": "pear",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pear slice for garnish\n"
+    }
+  ]
+}

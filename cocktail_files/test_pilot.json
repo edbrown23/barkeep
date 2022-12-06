@@ -1,0 +1,48 @@
+{
+  "name": "Test Pilot",
+  "source_url": "/test-pilot-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dark rum\n"
+    },
+    {
+      "name": "light rum",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz light rum\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz falernum\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orange liqueur\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash absinthe\n"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Lawn Dart",
+  "source_url": "/lawn-dart-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "blanco tequila",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz blanco tequila\n"
+    },
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin or new american gin\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz green chartreuse\n"
+    },
+    {
+      "name": "bell pepper",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 five-inch slice of bell pepper\n"
+    },
+    {
+      "name": "lime peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime peel for garnish\n"
+    }
+  ]
+}

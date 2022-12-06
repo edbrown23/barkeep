@@ -1,0 +1,42 @@
+{
+  "name": "El Presidente",
+  "source_url": "/el-presidente-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz aged dark rum or light rum\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dry vermouth\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "⅛oz curacao\n"
+    },
+    {
+      "name": "grenadine",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "⅛oz grenadine\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish (optional)\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Nut Bunny",
+  "source_url": "/nut-bunny-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 1.25,
+      "unit": "oz",
+      "amount_string": "1¼oz bourbon\n"
+    },
+    {
+      "name": "nocino",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz nocino\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "walnut bitters",
+      "amount": 3.0,
+      "unit": "unknown",
+      "amount_string": "3 dashes walnut bitters\n"
+    },
+    {
+      "name": "rosemary",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "rosemary or lemon peel for garnish\n"
+    }
+  ]
+}

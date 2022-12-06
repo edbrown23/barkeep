@@ -1,0 +1,30 @@
+{
+  "name": "Better &amp; Better",
+  "source_url": "/better-better-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz mezcal\n"
+    },
+    {
+      "name": "jamaican rum",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz jamaican rum\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz falernum\n"
+    },
+    {
+      "name": "lemon twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Coffee Cocktail",
+  "source_url": "/coffee-cocktail-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "cognac",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz cognac\n"
+    },
+    {
+      "name": "tawny port",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz tawny port\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "egg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 whole egg\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg for garnish\n"
+    }
+  ]
+}

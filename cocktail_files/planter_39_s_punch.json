@@ -1,0 +1,42 @@
+{
+  "name": "Planter&#39;s Punch",
+  "source_url": "/planter-s-punch-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz dark rum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "allspice dram",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz allspice dram\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "mint for garnish\n"
+    }
+  ]
+}

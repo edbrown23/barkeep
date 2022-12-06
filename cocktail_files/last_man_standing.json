@@ -1,0 +1,36 @@
+{
+  "name": "Last Man Standing",
+  "source_url": "/last-man-standing-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz london dry gin\n"
+    },
+    {
+      "name": "rye",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz rye\n"
+    },
+    {
+      "name": "fernet",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz fernet\n"
+    },
+    {
+      "name": "campari",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz campari\n"
+    },
+    {
+      "name": "orange twist",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 orange twist for garnish\n"
+    }
+  ]
+}

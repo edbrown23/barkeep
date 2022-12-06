@@ -1,0 +1,42 @@
+{
+  "name": "Paris is Burning",
+  "source_url": "/paris-is-burning-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz mezcal\n"
+    },
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz pineapple juice\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "elderflower liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz elderflower liqueur\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz simple syrup\n"
+    }
+  ]
+}

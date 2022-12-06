@@ -1,0 +1,54 @@
+{
+  "name": "Hot Buttered Rum",
+  "source_url": "/hot-buttered-rum-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dark rum\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "allspice dram",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz allspice dram\n"
+    },
+    {
+      "name": "butter",
+      "amount": 1.0,
+      "unit": "Tbsp",
+      "amount_string": "1Tbsp butter\n"
+    },
+    {
+      "name": "mole bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash mole bitters\n"
+    },
+    {
+      "name": "aromatic bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash aromatic bitters\n"
+    },
+    {
+      "name": "hot water",
+      "amount": 2.5,
+      "unit": "oz",
+      "amount_string": "2½oz hot water\n"
+    },
+    {
+      "name": "cinnamon",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cinnamon stick and/or whole star anise, for garnish\n"
+    }
+  ]
+}

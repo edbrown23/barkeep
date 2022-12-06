@@ -1,0 +1,36 @@
+{
+  "name": "Singapore Sling",
+  "source_url": "/singapore-sling-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz benedictine\n"
+    },
+    {
+      "name": "cherry heering",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz cherry heering\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lime juice\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "fill soda water\n"
+    }
+  ]
+}

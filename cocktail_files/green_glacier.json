@@ -1,0 +1,36 @@
+{
+  "name": "Green Glacier",
+  "source_url": "/green-glacier-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "cognac",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz cognac\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz green chartreuse\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz creme de cacao\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash angostura bitters\n"
+    },
+    {
+      "name": "orange peel, for garnish",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel, for garnish\n"
+    }
+  ]
+}

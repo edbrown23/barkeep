@@ -1,0 +1,30 @@
+{
+  "name": "Champagne Cocktail",
+  "source_url": "/champagne-cocktail-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "champagne",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "champagne\n"
+    },
+    {
+      "name": "sugar cube",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 sugar cube\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash angostura bitters\n"
+    },
+    {
+      "name": "brandy",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "splash of brandy , optional\n"
+    }
+  ]
+}

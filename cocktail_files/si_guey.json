@@ -1,0 +1,30 @@
+{
+  "name": "Si-Güey",
+  "source_url": "/si-guey-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz reposado tequila\n"
+    },
+    {
+      "name": "scotch",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz scotch\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz curacao\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash orange bitters\n"
+    }
+  ]
+}

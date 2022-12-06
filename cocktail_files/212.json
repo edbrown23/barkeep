@@ -1,0 +1,36 @@
+{
+  "name": "212",
+  "source_url": "/212-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz reposado tequila\n"
+    },
+    {
+      "name": "aperol",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz aperol\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz grapefruit juice\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "soda water to fill (optional)\n"
+    },
+    {
+      "name": "grapefruit peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit peel or orange peel for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Sidecar",
+  "source_url": "/sidecar-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "brandy",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz brandy\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orange liqueur\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "sugar for rim\n"
+    }
+  ]
+}

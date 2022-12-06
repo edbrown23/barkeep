@@ -1,0 +1,36 @@
+{
+  "name": "Suburban",
+  "source_url": "/suburban-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz rye\n"
+    },
+    {
+      "name": "dark rum",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz dark rum\n"
+    },
+    {
+      "name": "port",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz port\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash orange bitters\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    }
+  ]
+}

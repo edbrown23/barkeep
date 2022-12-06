@@ -1,0 +1,84 @@
+{
+  "name": "Zombie",
+  "source_url": "/zombie-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gold rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz gold rum\n"
+    },
+    {
+      "name": "dark rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dark rum\n"
+    },
+    {
+      "name": "demerara rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz demerara rum\n"
+    },
+    {
+      "name": "herbsaint",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash herbsaint or absinthe\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz falernum\n"
+    },
+    {
+      "name": "donn&#39;s mix",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz donn's mix\n"
+    },
+    {
+      "name": "grenadine",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp grenadine\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "sprig of mint for garnish\n"
+    },
+    {
+      "name": "cinnamon",
+      "amount": 3.0,
+      "unit": "unknown",
+      "amount_string": "3 cinnamon sticks, crushed\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup sugar\n"
+    },
+    {
+      "name": "water",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup water\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit juice\n"
+    }
+  ]
+}

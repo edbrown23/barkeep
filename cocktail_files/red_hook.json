@@ -1,0 +1,24 @@
+{
+  "name": "Red Hook",
+  "source_url": "/red-hook-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz maraschino liqueur\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sweet vermouth\n"
+    }
+  ]
+}

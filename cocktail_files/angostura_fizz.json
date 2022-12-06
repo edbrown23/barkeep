@@ -1,0 +1,48 @@
+{
+  "name": "Angostura Fizz",
+  "source_url": "/angostura-fizz-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz angostura bitters\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lemon juice or lime juice\n"
+    },
+    {
+      "name": "egg white",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg white\n"
+    },
+    {
+      "name": "grenadine",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp grenadine\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 1.0,
+      "unit": "Tbsp",
+      "amount_string": "1Tbsp heavy cream\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "fill soda water\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 pineapple stick for garnish\n"
+    }
+  ]
+}

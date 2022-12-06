@@ -1,0 +1,42 @@
+{
+  "name": "El Burro",
+  "source_url": "/el-burro-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz reposado tequila or blanco tequila\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz absinthe or pastis\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pineapple juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "ginger beer",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz ginger beer\n"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "name": "Ghost Coast",
+  "source_url": "/ghost-coast-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz reposado tequila\n"
+    },
+    {
+      "name": "blanco tequila",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz blanco tequila\n"
+    },
+    {
+      "name": "creme de banane",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz creme de banane\n"
+    },
+    {
+      "name": "eucalyptus",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz eucalyptus tincture\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "honey syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz honey syrup\n"
+    },
+    {
+      "name": "maple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz maple syrup\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 dashes angostura bitters\n"
+    },
+    {
+      "name": "eucalyptus",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "eucalyptus leaf and/or banana chip for garnish\n"
+    },
+    {
+      "name": "eucalyptus",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz eucalyptus leaves, washed\n"
+    },
+    {
+      "name": "Everclear",
+      "amount": 4.5,
+      "unit": "oz",
+      "amount_string": "4.5oz Everclear or other high proof spirit\n"
+    },
+    {
+      "name": "water",
+      "amount": 4.5,
+      "unit": "oz",
+      "amount_string": "4.5oz water\n"
+    }
+  ]
+}

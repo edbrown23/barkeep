@@ -1,0 +1,30 @@
+{
+  "name": "Debbie, Don&#39;t",
+  "source_url": "/debbie-don-t-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz reposado tequila\n"
+    },
+    {
+      "name": "amaro averna",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz amaro averna\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "maple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz maple syrup\n"
+    }
+  ]
+}

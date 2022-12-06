@@ -1,0 +1,48 @@
+{
+  "name": "Spanish Coffee",
+  "source_url": "/spanish-coffee-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gold rum",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz navy-strength gold rum\n"
+    },
+    {
+      "name": "coffee liqueur",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz coffee liqueur\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orange liqueur\n"
+    },
+    {
+      "name": "coffee",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz hot freshly brewed coffee\n"
+    },
+    {
+      "name": "lime wedge",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 lime wedge\n"
+    },
+    {
+      "name": "Sugar for rimming the glass",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "Sugar for rimming the glass\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg and lightly whipped cream for garnish\n"
+    }
+  ]
+}

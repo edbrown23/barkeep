@@ -1,0 +1,48 @@
+{
+  "name": "Frisco",
+  "source_url": "/frisco-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz benedictine\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "lemon wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 lemon wheel\n"
+    },
+    {
+      "name": "lime wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 lime wheel\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 cherry\n"
+    }
+  ]
+}

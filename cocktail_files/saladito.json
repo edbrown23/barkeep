@@ -1,0 +1,36 @@
+{
+  "name": "Saladito",
+  "source_url": "/saladito-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz mezcal\n"
+    },
+    {
+      "name": "honey syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz honey syrup\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "cayenne",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pinch cayenne\n"
+    },
+    {
+      "name": "salt",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pinch fine sea salt\n"
+    }
+  ]
+}

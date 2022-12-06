@@ -1,0 +1,30 @@
+{
+  "name": "Grasshopper",
+  "source_url": "/grasshopper-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "creme de cacao",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz creme de cacao\n"
+    },
+    {
+      "name": "creme de menthe",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz creme de menthe\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz heavy cream\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "mint for garnish\n"
+    }
+  ]
+}

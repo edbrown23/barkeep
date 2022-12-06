@@ -1,0 +1,36 @@
+{
+  "name": "Puerto Rican Racer",
+  "source_url": "/puerto-rican-racer-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "aged rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz aged rum\n"
+    },
+    {
+      "name": "apple brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz apple brandy\n"
+    },
+    {
+      "name": "yellow chartreuse",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz yellow chartreuse (scant)\n"
+    },
+    {
+      "name": "grenadine",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp grenadine\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash peychaud's bitters\n"
+    }
+  ]
+}

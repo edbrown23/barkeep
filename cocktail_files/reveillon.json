@@ -1,0 +1,42 @@
+{
+  "name": "Réveillon",
+  "source_url": "/reveillon-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "apple brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz apple brandy\n"
+    },
+    {
+      "name": "pear brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz pear brandy\n"
+    },
+    {
+      "name": "allspice dram",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz allspice dram\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sweet vermouth\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    },
+    {
+      "name": "cinnamon",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 cinnamon stick for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Honeymoon",
+  "source_url": "/honeymoon-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "apple brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz apple brandy\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz curacao\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz benedictine\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    }
+  ]
+}

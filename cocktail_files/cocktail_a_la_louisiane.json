@@ -1,0 +1,42 @@
+{
+  "name": "Cocktail à la Louisiane",
+  "source_url": "/cocktail-a-la-louisianne-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz rye\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz benedictine\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sweet vermouth\n"
+    },
+    {
+      "name": "herbsaint",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash herbsaint or absinthe\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash peychaud's bitters\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 cherry for garnish\n"
+    }
+  ]
+}

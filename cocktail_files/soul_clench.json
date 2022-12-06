@@ -1,0 +1,42 @@
+{
+  "name": "Soul Clench",
+  "source_url": "/soul-clench-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "pisco",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz pisco\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz dry vermouth\n"
+    },
+    {
+      "name": "pamplemousse liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz pamplemousse liqueur\n"
+    },
+    {
+      "name": "elderflower liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz elderflower liqueur\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz falernum\n"
+    },
+    {
+      "name": "grapefruit wedge",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit wedge, for garnish\n"
+    }
+  ]
+}

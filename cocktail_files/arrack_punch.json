@@ -1,0 +1,42 @@
+{
+  "name": "Arrack Punch",
+  "source_url": "/arrack-punch-cocktail-recipe-5281edf5-b797-4f76-985b-7468ab8a8fd5",
+  "ingredients": [
+    {
+      "name": "batavia arrack",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz batavia arrack\n"
+    },
+    {
+      "name": "gold rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz gold rum\n"
+    },
+    {
+      "name": "pineapple chunk",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 pineapple chunk\n"
+    },
+    {
+      "name": "lemon",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "seasonal berries, for garnish",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "seasonal berries, for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Bijou",
+  "source_url": "/bijou-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz london dry gin or new american gin\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz green chartreuse\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz sweet vermouth\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash orange bitters\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry or lemon peel for garnish\n"
+    }
+  ]
+}

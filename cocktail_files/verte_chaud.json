@@ -1,0 +1,42 @@
+{
+  "name": "Verte Chaud",
+  "source_url": "/verte-chaud-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "green chartreuse",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz green chartreuse\n"
+    },
+    {
+      "name": "chocolate",
+      "amount": 6.0,
+      "unit": "oz",
+      "amount_string": "6oz shaved chocolate\n"
+    },
+    {
+      "name": "hot water",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz hot water\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "wet heavy cream to top\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 8.0,
+      "unit": "oz",
+      "amount_string": "8oz heavy cream\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.0,
+      "unit": "tbsp",
+      "amount_string": "1tbsp powdered sugar\n"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Flannel Shirt",
+  "source_url": "/flannel-shirt-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 1.75,
+      "unit": "oz",
+      "amount_string": "1¾oz scotch\n"
+    },
+    {
+      "name": "apple cider",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz apple cider\n"
+    },
+    {
+      "name": "amaro averna",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz amaro averna\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz lemon juice\n"
+    },
+    {
+      "name": "demerara syrup",
+      "amount": 2.0,
+      "unit": "tsp",
+      "amount_string": "2tsp demerara syrup\n"
+    },
+    {
+      "name": "allspice dram",
+      "amount": 0.5,
+      "unit": "tsp",
+      "amount_string": "½tsp allspice dram\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

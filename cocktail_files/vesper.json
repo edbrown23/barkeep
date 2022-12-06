@@ -1,0 +1,30 @@
+{
+  "name": "Vesper",
+  "source_url": "/vesper-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gin",
+      "amount": 2.25,
+      "unit": "oz",
+      "amount_string": "2¼oz gin\n"
+    },
+    {
+      "name": "kina",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz kina\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash orange bitters\n"
+    },
+    {
+      "name": "lemon twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist for garnish\n"
+    }
+  ]
+}

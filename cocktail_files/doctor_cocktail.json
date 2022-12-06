@@ -1,0 +1,30 @@
+{
+  "name": "Doctor Cocktail",
+  "source_url": "/doctor-cocktail-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gold rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz gold rum\n"
+    },
+    {
+      "name": "swedish punsch",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz swedish punsch\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lime juice\n"
+    },
+    {
+      "name": "lime peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime peel for garnish\n"
+    }
+  ]
+}

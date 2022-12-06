@@ -1,0 +1,42 @@
+{
+  "name": "Painkiller",
+  "source_url": "/painkiller-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz dark rum\n"
+    },
+    {
+      "name": "gold rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz gold rum\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 4.0,
+      "unit": "oz",
+      "amount_string": "4oz pineapple juice\n"
+    },
+    {
+      "name": "orange juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz orange juice\n"
+    },
+    {
+      "name": "coconut cream",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz coconut cream\n"
+    },
+    {
+      "name": "orange wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange wheel or nutmeg for garnish\n"
+    }
+  ]
+}

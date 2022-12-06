@@ -1,0 +1,36 @@
+{
+  "name": "Old Hickory",
+  "source_url": "/old-hickory-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dry vermouth",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dry vermouth\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz sweet vermouth\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash peychaud's bitters\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash orange bitters\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel or orange peel for garnish\n"
+    }
+  ]
+}

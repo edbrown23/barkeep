@@ -1,0 +1,30 @@
+{
+  "name": "Revolver",
+  "source_url": "/revolver-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz bourbon\n"
+    },
+    {
+      "name": "coffee liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz coffee liqueur\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash orange bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Arrack Strap",
+  "source_url": "/arrack-strap-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz dark rum\n"
+    },
+    {
+      "name": "batavia arrack",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz batavia arrack\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz sweet vermouth\n"
+    },
+    {
+      "name": "campari",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp campari\n"
+    },
+    {
+      "name": "demerara syrup",
+      "amount": 0.5,
+      "unit": "tsp",
+      "amount_string": "½tsp demerara syrup\n"
+    },
+    {
+      "name": "mole bitters",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 dashes mole bitters\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 dashes orange bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Black Flip",
+  "source_url": "/black-flip-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "stout",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz black chocolate stout\n"
+    },
+    {
+      "name": "dark rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dark rum (ideally black strap)\n"
+    },
+    {
+      "name": "demerara syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz demerara syrup\n"
+    },
+    {
+      "name": "egg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 whole egg\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grated nutmeg for garnish\n"
+    }
+  ]
+}

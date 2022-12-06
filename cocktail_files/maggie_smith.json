@@ -1,0 +1,48 @@
+{
+  "name": "Maggie Smith",
+  "source_url": "/maggie-smith-cocktail-recipe-7a29f408-f27c-4c6d-a363-848ef66719f5",
+  "ingredients": [
+    {
+      "name": "pisco",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz pisco\n"
+    },
+    {
+      "name": "light rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz light rum\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orange liqueur\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz orgeat\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp simple syrup\n"
+    },
+    {
+      "name": "lime wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wheel for garnish\n"
+    }
+  ]
+}

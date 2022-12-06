@@ -1,0 +1,42 @@
+{
+  "name": "Sawyer",
+  "source_url": "/sawyer-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz london dry gin\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz angostura bitters\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz peychaud's bitters\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz orange bitters\n"
+    }
+  ]
+}

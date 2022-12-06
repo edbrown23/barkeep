@@ -1,0 +1,30 @@
+{
+  "name": "Claridge",
+  "source_url": "/claridge-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dry vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz dry vermouth\n"
+    },
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin\n"
+    },
+    {
+      "name": "apricot brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz apricot brandy\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orange liqueur\n"
+    }
+  ]
+}

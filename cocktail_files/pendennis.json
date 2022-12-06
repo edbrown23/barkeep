@@ -1,0 +1,30 @@
+{
+  "name": "Pendennis",
+  "source_url": "/pendennis-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin\n"
+    },
+    {
+      "name": "apricot brandy",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz apricot brandy\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash peychaud's bitters\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    }
+  ]
+}

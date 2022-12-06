@@ -1,0 +1,48 @@
+{
+  "name": "Good Enough Gatsby ",
+  "source_url": "/good-enough-gatsby-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz rye\n"
+    },
+    {
+      "name": "pear brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz pear brandy\n"
+    },
+    {
+      "name": "cinnamon syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz cinnamon syrup\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pineapple juice\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "fernet",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp fernet\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pineapple fronds and/or grated cinnamon, for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Apium",
+  "source_url": "/opium-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz mezcal\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "celery bitters",
+      "amount": 4.0,
+      "unit": "dash",
+      "amount_string": "4dash celery bitters\n"
+    },
+    {
+      "name": "salt",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "salt for garnish\n"
+    },
+    {
+      "name": "lime wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wheel for garnish (optional)\n"
+    }
+  ]
+}

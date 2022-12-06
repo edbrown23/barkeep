@@ -1,0 +1,36 @@
+{
+  "name": "Brandy Crusta",
+  "source_url": "/brandy-crusta-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz brandy\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz curacao\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 2.0,
+      "unit": "tsp",
+      "amount_string": "2tsp maraschino liqueur\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp lemon juice\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

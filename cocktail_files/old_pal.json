@@ -1,0 +1,30 @@
+{
+  "name": "Old Pal",
+  "source_url": "/old-pal-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz rye or bourbon\n"
+    },
+    {
+      "name": "campari",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz campari\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz dry vermouth\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

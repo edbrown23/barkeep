@@ -1,0 +1,36 @@
+{
+  "name": "Abbey",
+  "source_url": "/the-abbey-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz london dry gin\n"
+    },
+    {
+      "name": "lillet",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lillet or cocchi americano\n"
+    },
+    {
+      "name": "orange juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orange juice\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash orange bitters or angostura bitters\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish\n"
+    }
+  ]
+}

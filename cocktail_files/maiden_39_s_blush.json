@@ -1,0 +1,54 @@
+{
+  "name": "Maiden&#39;s Blush",
+  "source_url": "/maiden-s-blush-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "old tom gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz old tom gin\n"
+    },
+    {
+      "name": "raspberry cordial",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz raspberry cordial\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz absinthe\n"
+    },
+    {
+      "name": "raspberry",
+      "amount": 3.0,
+      "unit": "oz",
+      "amount_string": "3oz fresh raspberry\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 16.0,
+      "unit": "oz",
+      "amount_string": "16oz simple syrup\n"
+    },
+    {
+      "name": "rose water",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz rose water\n"
+    },
+    {
+      "name": "high proof clear spirit",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz high proof clear spirit\n"
+    }
+  ]
+}

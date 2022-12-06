@@ -1,0 +1,30 @@
+{
+  "name": "Rob Roy",
+  "source_url": "/rob-roy-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz scotch\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz sweet vermouth\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish\n"
+    }
+  ]
+}

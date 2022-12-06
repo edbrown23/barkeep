@@ -1,0 +1,36 @@
+{
+  "name": "Southside",
+  "source_url": "/southside-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz london dry gin\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "mint",
+      "amount": 12.0,
+      "unit": "unknown",
+      "amount_string": "12 mint leaves\n"
+    },
+    {
+      "name": "extra mint leaf for garnish",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "extra mint leaf for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "Suissesse",
+  "source_url": "/suissesse-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "absinthe",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz absinthe\n"
+    },
+    {
+      "name": "aquavit",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz aquavit\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz creme de cacao\n"
+    },
+    {
+      "name": "egg white",
+      "amount": 0.5,
+      "unit": "unknown",
+      "amount_string": "½ large egg white\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash peychaud's bitters\n"
+    },
+    {
+      "name": "water",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz chilled water\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grated nutmeg and lemon peel for garnish\n"
+    }
+  ]
+}

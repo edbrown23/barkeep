@@ -1,0 +1,36 @@
+{
+  "name": "Crop Top",
+  "source_url": "/crop-top-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gin",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz gin\n"
+    },
+    {
+      "name": "amaro montenegro",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz amaro montenegro\n"
+    },
+    {
+      "name": "pamplemousse liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pamplemousse liqueur\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "grapefruit peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit peel for garnish\n"
+    }
+  ]
+}

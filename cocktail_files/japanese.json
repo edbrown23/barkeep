@@ -1,0 +1,30 @@
+{
+  "name": "Japanese",
+  "source_url": "/japanese-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz brandy\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orgeat\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel for garnish\n"
+    }
+  ]
+}

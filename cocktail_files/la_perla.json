@@ -1,0 +1,30 @@
+{
+  "name": "La Perla",
+  "source_url": "/la-perla-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz reposado tequila\n"
+    },
+    {
+      "name": "sherry",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz sherry\n"
+    },
+    {
+      "name": "pear liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pear liqueur\n"
+    },
+    {
+      "name": "lemon twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist for garnish\n"
+    }
+  ]
+}

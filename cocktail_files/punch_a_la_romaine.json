@@ -1,0 +1,42 @@
+{
+  "name": "Punch a la Romaine",
+  "source_url": "/punch-a-la-romaine-cocktail-recipe-a74124b2-051a-4c51-87a9-c68fd3773d86",
+  "ingredients": [
+    {
+      "name": "light rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz light rum\n"
+    },
+    {
+      "name": "egg white",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg white\n"
+    },
+    {
+      "name": "orange",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz orange juice\n"
+    },
+    {
+      "name": "lemon",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz champagne\n"
+    }
+  ]
+}

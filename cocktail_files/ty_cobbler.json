@@ -1,0 +1,42 @@
+{
+  "name": "Ty Cobbler",
+  "source_url": "/ty-cobbler-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz reposado tequila\n"
+    },
+    {
+      "name": "cynar",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz cynar\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz simple syrup\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 3.0,
+      "unit": "unknown",
+      "amount_string": "3 cherries (cherry)\n"
+    },
+    {
+      "name": "mole bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash mole bitters\n"
+    },
+    {
+      "name": "orange wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange wheel for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Champs Elysees",
+  "source_url": "/champs-elysees-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "brandy",
+      "amount": 1.25,
+      "unit": "oz",
+      "amount_string": "1¼oz brandy\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz green chartreuse\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    }
+  ]
+}

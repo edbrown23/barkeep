@@ -1,0 +1,42 @@
+{
+  "name": "Jungle Bird",
+  "source_url": "/jungle-bird-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "pineapple",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz pineapple juice\n"
+    },
+    {
+      "name": "dark rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dark rum\n"
+    },
+    {
+      "name": "campari",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz campari\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pineapple fronds for garnish\n"
+    }
+  ]
+}

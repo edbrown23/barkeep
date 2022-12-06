@@ -1,0 +1,30 @@
+{
+  "name": "Last Word",
+  "source_url": "/the-last-word-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz london dry gin\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz green chartreuse\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz maraschino liqueur\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    }
+  ]
+}

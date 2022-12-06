@@ -1,0 +1,36 @@
+{
+  "name": "Seelbach",
+  "source_url": "/seelbach-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "champagne",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "champagne to fill\n"
+    },
+    {
+      "name": "peychaud&#39;s bitters",
+      "amount": 7.0,
+      "unit": "dash",
+      "amount_string": "7dash peychaud's bitters\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 7.0,
+      "unit": "dash",
+      "amount_string": "7dash angostura bitters\n"
+    },
+    {
+      "name": "bourbon",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz bourbon\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orange liqueur\n"
+    }
+  ]
+}

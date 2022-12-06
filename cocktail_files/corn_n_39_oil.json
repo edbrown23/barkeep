@@ -1,0 +1,36 @@
+{
+  "name": "Corn N&#39; Oil",
+  "source_url": "/corn-n-oil-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz dark rum\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz falernum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "⅓oz lime juice\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 3.0,
+      "unit": "dash",
+      "amount_string": "3dash angostura bitters\n"
+    },
+    {
+      "name": "lime wedge",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 lime wedge for garnish\n"
+    }
+  ]
+}

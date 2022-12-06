@@ -1,0 +1,36 @@
+{
+  "name": "Pisco Sour",
+  "source_url": "/pisco-sour-cocktail-recipe-d4f1fd8d-abfc-4571-822e-bd72b5f3d380",
+  "ingredients": [
+    {
+      "name": "pisco",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz pisco\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "egg white",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg white\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "angostura bitters\n"
+    }
+  ]
+}

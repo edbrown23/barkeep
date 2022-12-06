@@ -1,0 +1,42 @@
+{
+  "name": "Gilchrist",
+  "source_url": "/gilchrist-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 1.25,
+      "unit": "oz",
+      "amount_string": "1¼oz blended scotch\n"
+    },
+    {
+      "name": "pear brandy",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pear brandy\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz grapefruit juice\n"
+    },
+    {
+      "name": "amaro averna",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz amaro averna or similar sweet amaro\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash orange bitters\n"
+    },
+    {
+      "name": "grapefruit peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit peel for garnish\n"
+    }
+  ]
+}

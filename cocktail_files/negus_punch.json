@@ -1,0 +1,66 @@
+{
+  "name": "Negus Punch",
+  "source_url": "/negus-punch-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "Negus Mix",
+      "amount": 6.0,
+      "unit": "oz",
+      "amount_string": "6oz Negus Mix\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg, lemon peel, and orange peel for garnish\n"
+    },
+    {
+      "name": "sherry",
+      "amount": 7.0,
+      "unit": "oz",
+      "amount_string": "7oz oloroso sherry\n"
+    },
+    {
+      "name": "cognac",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz cognac\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz lemon juice\n"
+    },
+    {
+      "name": "vanilla",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz vanilla syrup\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz superfine sugar\n"
+    },
+    {
+      "name": "lemon",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "zest of 2 lemon\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp grated nutmeg\n"
+    },
+    {
+      "name": "water",
+      "amount": 4.0,
+      "unit": "oz",
+      "amount_string": "4oz water\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Negroni",
+  "source_url": "/negroni-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin\n"
+    },
+    {
+      "name": "campari",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz campari\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz sweet vermouth\n"
+    },
+    {
+      "name": "grapefruit peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit peel or orange peel for garnish\n"
+    }
+  ]
+}

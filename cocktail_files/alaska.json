@@ -1,0 +1,24 @@
+{
+  "name": "Alaska",
+  "source_url": "/alaska-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz london dry gin or new american gin\n"
+    },
+    {
+      "name": "yellow chartreuse",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz yellow chartreuse\n"
+    },
+    {
+      "name": "orange bitters",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 dash orange bitters\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Trinidad Sour",
+  "source_url": "/trinidad-sour-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz angostura bitters\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orgeat\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "rye",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz rye\n"
+    }
+  ]
+}

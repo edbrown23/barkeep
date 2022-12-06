@@ -1,0 +1,60 @@
+{
+  "name": "East India",
+  "source_url": "/east-india-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz brandy\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp curacao\n"
+    },
+    {
+      "name": "pineapple syrup",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp pineapple syrup\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash maraschino liqueur\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "lemon peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon peel and cherry for garnish\n"
+    },
+    {
+      "name": "cane sugar",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup cane sugar\n"
+    },
+    {
+      "name": "water",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup water\n"
+    },
+    {
+      "name": "cubed pineapple",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup cubed pineapple\n"
+    }
+  ]
+}

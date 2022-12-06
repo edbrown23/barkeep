@@ -1,0 +1,42 @@
+{
+  "name": "After All Imperial",
+  "source_url": "/after-all-imperial-cocktail-recipe-3dc66829-73c3-4dab-b867-9bfefccaee15",
+  "ingredients": [
+    {
+      "name": "apple brandy",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz apple brandy\n"
+    },
+    {
+      "name": "peach liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz peach liqueur\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "aromatic bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash aromatic bitters\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz champagne\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 sprig mint or rosemary for garnish\n"
+    }
+  ]
+}

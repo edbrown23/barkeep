@@ -1,0 +1,30 @@
+{
+  "name": "Sherry Cobbler",
+  "source_url": "/sherry-cobbler-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "sherry",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz sherry\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orange liqueur\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "seasonal berries, mint, lemon slice, or orange wedge for garnish\n"
+    }
+  ]
+}

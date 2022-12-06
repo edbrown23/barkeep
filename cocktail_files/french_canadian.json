@@ -1,0 +1,36 @@
+{
+  "name": "French Canadian",
+  "source_url": "/french-canadian-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "cognac",
+      "amount": 2.25,
+      "unit": "oz",
+      "amount_string": "2¼oz cognac\n"
+    },
+    {
+      "name": "champagne vinegar",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz champagne vinegar\n"
+    },
+    {
+      "name": "maple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz maple syrup\n"
+    },
+    {
+      "name": "vanilla",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz pure vanilla extract\n"
+    },
+    {
+      "name": "lemon twist, for garnish",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist, for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Coco no Coco",
+  "source_url": "/coco-no-coco-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "demerara rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz aged demerara rum\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz heavy cream\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pineapple juice\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orgeat\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grated nutmeg and grated cinnamon, for garnish\n"
+    }
+  ]
+}

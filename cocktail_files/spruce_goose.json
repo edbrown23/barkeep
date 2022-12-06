@@ -1,0 +1,36 @@
+{
+  "name": "Spruce Goose",
+  "source_url": "/spruce-goose-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "new american gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz new american gin\n"
+    },
+    {
+      "name": "honey syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz honey syrup\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz angostura bitters\n"
+    },
+    {
+      "name": "salt",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "sprinkle of salt\n"
+    }
+  ]
+}

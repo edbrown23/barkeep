@@ -1,0 +1,54 @@
+{
+  "name": "Baltimore Eggnog",
+  "source_url": "/baltimore-eggnog-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "egg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 whole egg or egg white\n"
+    },
+    {
+      "name": "milk",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz whole milk\n"
+    },
+    {
+      "name": "half and half",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz half and half\n"
+    },
+    {
+      "name": "madeira",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz madeira or sherry\n"
+    },
+    {
+      "name": "brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz brandy\n"
+    },
+    {
+      "name": "dark rum",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz dark rum\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "⅓oz simple syrup\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg for garnish\n"
+    }
+  ]
+}

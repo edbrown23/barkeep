@@ -1,0 +1,42 @@
+{
+  "name": "Blinker",
+  "source_url": "/the-blinker-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz grapefruit juice\n"
+    },
+    {
+      "name": "raspberry syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz raspberry syrup\n"
+    },
+    {
+      "name": "raspberries",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup raspberries\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup sugar\n"
+    },
+    {
+      "name": "water",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup water\n"
+    }
+  ]
+}

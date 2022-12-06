@@ -1,0 +1,36 @@
+{
+  "name": "Toronto",
+  "source_url": "/toronto-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "fernet",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz fernet\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz simple syrup\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Milk Punch",
+  "source_url": "/milk-punch-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz bourbon\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "vanilla",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp vanilla extract\n"
+    },
+    {
+      "name": "milk",
+      "amount": 2.25,
+      "unit": "oz",
+      "amount_string": "2¼oz milk\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz heavy cream\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg\n"
+    }
+  ]
+}

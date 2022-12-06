@@ -1,0 +1,30 @@
+{
+  "name": "Airmail",
+  "source_url": "/airmail-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "light rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz light rum\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz champagne\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    }
+  ]
+}

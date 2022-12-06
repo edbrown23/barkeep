@@ -1,0 +1,30 @@
+{
+  "name": "Paper Plane",
+  "source_url": "/paper-plane-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz bourbon\n"
+    },
+    {
+      "name": "aperol",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz aperol\n"
+    },
+    {
+      "name": "amaro nonino",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz amaro nonino\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    }
+  ]
+}

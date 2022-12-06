@@ -1,0 +1,42 @@
+{
+  "name": "Apres-Ski Swizzle",
+  "source_url": "/apres-ski-swizzle-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "aged rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz aged rum\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz pineapple juice\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz green chartreuse\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orgeat\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pineapple wedge or fronds for garnish\n"
+    }
+  ]
+}

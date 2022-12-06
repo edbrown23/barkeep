@@ -1,0 +1,30 @@
+{
+  "name": "El Diablo",
+  "source_url": "/el-diablo-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz reposado tequila\n"
+    },
+    {
+      "name": "creme de cassis",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz creme de cassis\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "ginger beer",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz ginger beer\n"
+    }
+  ]
+}

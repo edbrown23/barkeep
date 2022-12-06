@@ -1,0 +1,42 @@
+{
+  "name": "Groceries for the Queen",
+  "source_url": "/groceries-for-the-queen-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz gin\n"
+    },
+    {
+      "name": "cherry heering",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz cherry heering\n"
+    },
+    {
+      "name": "amaro montenegro",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz amaro montenegro\n"
+    },
+    {
+      "name": "orange juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz orange juice\n"
+    },
+    {
+      "name": "chocolate bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash chocolate bitters\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry or orange peel for garnish\n"
+    }
+  ]
+}

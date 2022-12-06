@@ -1,0 +1,36 @@
+{
+  "name": "High Divide",
+  "source_url": "/high-divide-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "new american gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz new american gin\n"
+    },
+    {
+      "name": "génépi",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz génépi\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz dry vermouth\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz simple syrup\n"
+    },
+    {
+      "name": "rosemary",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "sprig of rosemary for garnish\n"
+    }
+  ]
+}

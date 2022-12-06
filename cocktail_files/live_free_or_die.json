@@ -1,0 +1,42 @@
+{
+  "name": "Live Free or Die",
+  "source_url": "/live-free-or-die-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz bourbon\n"
+    },
+    {
+      "name": "cherry heering",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz cherry heering\n"
+    },
+    {
+      "name": "port",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz ruby port\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash absinthe\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "dry champagne to fill\n"
+    },
+    {
+      "name": "orange twist for ganish",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange twist for ganish\n"
+    }
+  ]
+}

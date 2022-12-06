@@ -1,0 +1,36 @@
+{
+  "name": "Hotel Nacional Special",
+  "source_url": "/hotel-nacional-special-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gold rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz gold rum\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 4.0,
+      "unit": "unknown",
+      "amount_string": "4 pineapple chunks\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "apricot brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz apricot brandy\n"
+    }
+  ]
+}

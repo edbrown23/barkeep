@@ -1,0 +1,24 @@
+{
+  "name": "Jack Rose",
+  "source_url": "/jack-rose-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "apple brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz apple brandy\n"
+    },
+    {
+      "name": "grenadine",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz grenadine\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    }
+  ]
+}

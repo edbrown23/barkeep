@@ -1,0 +1,36 @@
+{
+  "name": "Jimmie Roosevelt",
+  "source_url": "/jimmy-roosevelt-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "champagne",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz champagne\n"
+    },
+    {
+      "name": "cognac",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz cognac\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz green chartreuse\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz simple syrup\n"
+    },
+    {
+      "name": "angostura",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura\n"
+    }
+  ]
+}

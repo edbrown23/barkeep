@@ -1,0 +1,36 @@
+{
+  "name": "Pago Pago Cocktail",
+  "source_url": "/pago-pago-cocktail-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gold rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz gold rum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz green chartreuse\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz creme de cacao\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 0.5,
+      "unit": "cup",
+      "amount_string": "½cup fresh cubed pineapple\n"
+    }
+  ]
+}

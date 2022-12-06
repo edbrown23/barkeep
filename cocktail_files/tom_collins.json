@@ -1,0 +1,36 @@
+{
+  "name": "Tom Collins",
+  "source_url": "/tom-collins-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "old tom gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz old tom gin\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz simple syrup\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "soda water\n"
+    },
+    {
+      "name": "lemon wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon wheel for garnish\n"
+    }
+  ]
+}

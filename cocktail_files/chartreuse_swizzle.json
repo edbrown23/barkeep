@@ -1,0 +1,48 @@
+{
+  "name": "Chartreuse Swizzle",
+  "source_url": "/chartreuse-swizzle-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "green chartreuse",
+      "amount": 1.25,
+      "unit": "oz",
+      "amount_string": "1¼oz green chartreuse\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz pineapple juice\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz falernum\n"
+    },
+    {
+      "name": "gold rum",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz gold rum\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "lime wedge",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wedge for garnish\n"
+    }
+  ]
+}

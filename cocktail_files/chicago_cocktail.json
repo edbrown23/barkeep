@@ -1,0 +1,30 @@
+{
+  "name": "Chicago Cocktail",
+  "source_url": "/chicago-cocktail-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "brandy",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz brandy\n"
+    },
+    {
+      "name": "orange liqueur",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz orange liqueur\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash angostura bitters\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz champagne\n"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Daiquiri",
+  "source_url": "/daiquiri-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "light rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz light rum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "Brandy Alexander",
+  "source_url": "/brandy-alexander-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "brandy",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz brandy\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz creme de cacao\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz heavy cream\n"
+    },
+    {
+      "name": "nutmeg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "nutmeg for garnish\n"
+    }
+  ]
+}

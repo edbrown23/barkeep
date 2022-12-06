@@ -1,0 +1,36 @@
+{
+  "name": "Royal Bermuda Yacht Club",
+  "source_url": "/royal-bermuda-yacht-club-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rum\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz curacao\n"
+    },
+    {
+      "name": "falernum",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz falernum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "lime wheel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lime wheel, for garnish\n"
+    }
+  ]
+}

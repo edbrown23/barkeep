@@ -1,0 +1,36 @@
+{
+  "name": "Burl Ives",
+  "source_url": "/burl-ives-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "scotch",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz blended scotch\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sweet vermouth\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz creme de cacao\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 4.0,
+      "unit": "dash",
+      "amount_string": "4dash angostura bitters\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel\n"
+    }
+  ]
+}

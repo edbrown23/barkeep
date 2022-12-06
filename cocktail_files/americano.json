@@ -1,0 +1,30 @@
+{
+  "name": "Americano",
+  "source_url": "/americano-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "campari",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz campari\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz sweet vermouth\n"
+    },
+    {
+      "name": "grapefruit peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 long grapefruit peel\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "fill with soda water\n"
+    }
+  ]
+}

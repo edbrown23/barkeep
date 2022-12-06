@@ -1,0 +1,30 @@
+{
+  "name": "Diamondback",
+  "source_url": "/diamondback-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rye",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rye\n"
+    },
+    {
+      "name": "yellow chartreuse",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz yellow chartreuse\n"
+    },
+    {
+      "name": "apple brandy",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz apple brandy\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish (optional)\n"
+    }
+  ]
+}

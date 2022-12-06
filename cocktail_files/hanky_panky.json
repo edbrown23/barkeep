@@ -1,0 +1,30 @@
+{
+  "name": "Hanky Panky",
+  "source_url": "/hanky-panky-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz london dry gin\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz sweet vermouth\n"
+    },
+    {
+      "name": "fernet",
+      "amount": 2.0,
+      "unit": "unknown",
+      "amount_string": "2 dashes fernet\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

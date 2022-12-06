@@ -1,0 +1,36 @@
+{
+  "name": "Black Betty",
+  "source_url": "/black-betty-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz dark rum\n"
+    },
+    {
+      "name": "fernet",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz fernet\n"
+    },
+    {
+      "name": "amaro montenegro",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz amaro montenegro\n"
+    },
+    {
+      "name": "sherry",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sherry\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel for garnish\n"
+    }
+  ]
+}

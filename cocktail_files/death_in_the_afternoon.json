@@ -1,0 +1,18 @@
+{
+  "name": "Death In the Afternoon",
+  "source_url": "/death-in-the-afternoon-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz absinthe\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 4.0,
+      "unit": "oz",
+      "amount_string": "4oz very cold champagne\n"
+    }
+  ]
+}

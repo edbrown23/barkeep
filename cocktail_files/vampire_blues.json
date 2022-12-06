@@ -1,0 +1,42 @@
+{
+  "name": "Vampire Blues",
+  "source_url": "/vampire-blues-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz bourbon\n"
+    },
+    {
+      "name": "sherry",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz sherry (medium or dry)\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "pumpkin butter",
+      "amount": 1.5,
+      "unit": "tsp",
+      "amount_string": "1½tsp pumpkin butter\n"
+    },
+    {
+      "name": "angostura bitters",
+      "amount": 2.0,
+      "unit": "dash",
+      "amount_string": "2dash angostura bitters\n"
+    },
+    {
+      "name": "cinnamon",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 cinnamon stick for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Conifer",
+  "source_url": "/conifer-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "pear brandy",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz pear brandy\n"
+    },
+    {
+      "name": "green chartreuse",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz green chartreuse\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz maraschino liqueur\n"
+    },
+    {
+      "name": "dry vermouth",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz dry vermouth\n"
+    },
+    {
+      "name": "spruce essence",
+      "amount": 6.0,
+      "unit": "unknown",
+      "amount_string": "6 droplets spruce essence\n"
+    },
+    {
+      "name": "cherry",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "cherry for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "White Russian",
+  "source_url": "/white-russian-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "vodka",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz vodka\n"
+    },
+    {
+      "name": "coffee liqueur",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz coffee liqueur\n"
+    },
+    {
+      "name": "half and half",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz half and half\n"
+    }
+  ]
+}

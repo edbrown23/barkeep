@@ -1,0 +1,54 @@
+{
+  "name": "Ramos Gin Fizz",
+  "source_url": "/ramos-gin-fizz-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz london dry gin or new american gin\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz simple syrup\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz heavy cream\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "egg white",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg white\n"
+    },
+    {
+      "name": "orange flower water",
+      "amount": 3.0,
+      "unit": "unknown",
+      "amount_string": "3 dashes orange flower water\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "soda water to fill\n"
+    }
+  ]
+}

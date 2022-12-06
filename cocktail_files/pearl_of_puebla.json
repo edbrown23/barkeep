@@ -1,0 +1,42 @@
+{
+  "name": "Pearl of Puebla",
+  "source_url": "/pearl-of-puebla-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "mezcal",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz mezcal\n"
+    },
+    {
+      "name": "yellow chartreuse",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz yellow chartreuse\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lime juice\n"
+    },
+    {
+      "name": "pastis",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "⅛oz pastis or absinthe\n"
+    },
+    {
+      "name": "agave syrup",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "⅛oz agave syrup\n"
+    },
+    {
+      "name": "oregano",
+      "amount": 4.0,
+      "unit": "unknown",
+      "amount_string": "4 sprigs of fresh oregano\n"
+    }
+  ]
+}

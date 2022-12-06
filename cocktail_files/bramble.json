@@ -1,0 +1,30 @@
+{
+  "name": "Bramble",
+  "source_url": "/bramble-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz london dry gin\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz simple syrup\n"
+    },
+    {
+      "name": "blackberry",
+      "amount": 4.0,
+      "unit": "unknown",
+      "amount_string": "4 blackberry\n"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "name": "Sleepy Resurrection",
+  "source_url": "/sleepy-resurrection-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "london dry gin",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz london dry gin\n"
+    },
+    {
+      "name": "rhubarb puree",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz rhubarb puree (see below)\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lemon juice\n"
+    },
+    {
+      "name": "benedictine",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz benedictine\n"
+    },
+    {
+      "name": "lillet",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lillet\n"
+    },
+    {
+      "name": "soda water",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "soda water to fill\n"
+    },
+    {
+      "name": "rosemary",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "rosemary sprig for garnish\n"
+    },
+    {
+      "name": "rhubarb (about 4 stalks)",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1lb rhubarb (about 4 stalks)\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 0.5,
+      "unit": "cup",
+      "amount_string": "½cup sugar\n"
+    },
+    {
+      "name": "water",
+      "amount": 0.25,
+      "unit": "cup",
+      "amount_string": "¼cup water\n"
+    },
+    {
+      "name": "gin",
+      "amount": 0.25,
+      "unit": "cup",
+      "amount_string": "¼cup gin\n"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Mucho Picchu",
+  "source_url": "/mucho-picchu-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "pisco",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz pisco\n"
+    },
+    {
+      "name": "maraschino liqueur",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz maraschino liqueur\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz grapefruit juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz simple syrup\n"
+    },
+    {
+      "name": "champagne",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "dry champagne\n"
+    },
+    {
+      "name": "grapefruit peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "grapefruit peel for garnish\n"
+    }
+  ]
+}

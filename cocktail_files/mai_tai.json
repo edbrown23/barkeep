@@ -1,0 +1,48 @@
+{
+  "name": "Mai Tai",
+  "source_url": "/mai-tai-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "gold rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz gold rum\n"
+    },
+    {
+      "name": "dark rum",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz dark rum\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz lime juice\n"
+    },
+    {
+      "name": "curacao",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz curacao or orange liqueur\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz orgeat\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 0.25,
+      "unit": "oz",
+      "amount_string": "¼oz simple syrup\n"
+    },
+    {
+      "name": "mint",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "mint\n"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Ti&#39; Punch",
+  "source_url": "/ti-punch-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "rhum agricole",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rhum agricole\n"
+    },
+    {
+      "name": "lime peel",
+      "amount": 1.5,
+      "unit": "unknown",
+      "amount_string": "1½ inch thick disk of lime peel with some flesh attached\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "tsp",
+      "amount_string": "1tsp cane syrup or simple syrup\n"
+    }
+  ]
+}

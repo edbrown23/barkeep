@@ -1,0 +1,30 @@
+{
+  "name": "Boulevardier",
+  "source_url": "/boulevardier-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "bourbon",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz bourbon\n"
+    },
+    {
+      "name": "campari",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz campari\n"
+    },
+    {
+      "name": "sweet vermouth",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz sweet vermouth\n"
+    },
+    {
+      "name": "orange peel",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "orange peel, lemon peel, or cherry, for garnish\n"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "Pære Dansk",
+  "source_url": "/paere-dansk-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "champagne",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz dry champagne\n"
+    },
+    {
+      "name": "vodka",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz vodka\n"
+    },
+    {
+      "name": "lemon juice",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz lemon juice\n"
+    },
+    {
+      "name": "pear liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz spiced pear liqueur\n"
+    },
+    {
+      "name": "orgeat",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz orgeat\n"
+    },
+    {
+      "name": "pear",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "dried or fresh pear slices for garnish\n"
+    }
+  ]
+}

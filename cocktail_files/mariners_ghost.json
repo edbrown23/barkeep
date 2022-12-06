@@ -1,0 +1,54 @@
+{
+  "name": "Mariners Ghost",
+  "source_url": "/mariners-ghost-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "dark rum",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz dark rum\n"
+    },
+    {
+      "name": "light rum",
+      "amount": 0.75,
+      "unit": "oz",
+      "amount_string": "¾oz light rum\n"
+    },
+    {
+      "name": "mango",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz mango puree\n"
+    },
+    {
+      "name": "grapefruit juice",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz grapefruit juice\n"
+    },
+    {
+      "name": "allspice dram",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz allspice dram\n"
+    },
+    {
+      "name": "lime juice",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz lime juice\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 1.0,
+      "unit": "dash",
+      "amount_string": "1dash simple syrup\n"
+    },
+    {
+      "name": "pineapple",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 pineapple leaf or mango slice for garnish\n"
+    }
+  ]
+}

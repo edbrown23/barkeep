@@ -1,0 +1,60 @@
+{
+  "name": "Stardust",
+  "source_url": "/stardust-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "reposado tequila",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz reposado tequila\n"
+    },
+    {
+      "name": "creme de cacao",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz creme de cacao\n"
+    },
+    {
+      "name": "heavy cream",
+      "amount": 1.0,
+      "unit": "oz",
+      "amount_string": "1oz heavy cream\n"
+    },
+    {
+      "name": "cinnamon syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz cinnamon syrup\n"
+    },
+    {
+      "name": "absinthe",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "splash of absinthe\n"
+    },
+    {
+      "name": "star anise",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "whole star anise for garnish\n"
+    },
+    {
+      "name": "sugar",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup sugar\n"
+    },
+    {
+      "name": "water",
+      "amount": 1.0,
+      "unit": "cup",
+      "amount_string": "1cup water\n"
+    },
+    {
+      "name": "cinnamon",
+      "amount": 4.0,
+      "unit": "unknown",
+      "amount_string": "4 cinnamon sticks\n"
+    }
+  ]
+}
