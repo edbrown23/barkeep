@@ -46,6 +46,7 @@ class Recipe < ApplicationRecord
     end
   end
 
+  # I bet using scopes for this is just wrong
   scope :all_available, ->(current_user) do
     # iterate recipes
     # check if I have enough volume in every reagent in the cocktail to make it

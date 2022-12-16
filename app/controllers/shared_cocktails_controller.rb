@@ -15,6 +15,24 @@ class SharedCocktailsController < ApplicationController
     end
   end
 
+  # I want this exact function in my cocktails_controller too
+  def available_counts
+    search_term = search_params['search_term']
+
+    # force lookup for non-user mapped cocktails
+    if search_term.present? && search_term.size > 0
+      cocktails = Recipe.for_user(nil).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:id)
+    else
+      cocktails = Recipe.for_user(nil).where(category: 'cocktail').order(:id)
+    end
+
+    cocktail_service = CocktailAvailabilityService.new(cocktails, current_user)
+
+    respond_to do |format|
+      format.json { render json: { available_counts: cocktail_service.available_counts } }
+    end
+  end
+
   def show
     @stats = {
       made_count: Audit.for_user(current_user).where(recipe: @cocktail).count

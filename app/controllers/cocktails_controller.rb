@@ -15,6 +15,24 @@ class CocktailsController < ApplicationController
     end
   end
 
+  # SO GROSS that I'm repeating this, but it's late at night
+  def available_counts
+    search_term = search_params['search_term']
+
+    # force lookup for non-user mapped cocktails
+    if search_term.present? && search_term.size > 0
+      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:id)
+    else
+      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:id)
+    end
+
+    cocktail_service = CocktailAvailabilityService.new(cocktails, current_user)
+
+    respond_to do |format|
+      format.json { render json: { available_counts: cocktail_service.available_counts } }
+    end
+  end
+
   def new
     @cocktail = Recipe.new(category: 'cocktail', user_id: current_user.id)
     @reagents = Reagent.for_user(current_user).all.order(:name)

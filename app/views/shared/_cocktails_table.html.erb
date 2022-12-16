@@ -1,9 +1,9 @@
 <table class="table" id="cocktailsTable">
   <thead>
     <tr>
-      <th>id</th>
       <th>name</th>
       <th>Edit</th>
+      <th>Count of reagents available</th>
       <% unless read_only %>
       <th>Delete</th>
       <th>Toggle Favorite</th>
@@ -14,13 +14,13 @@
   <tbody>
     <% cocktails.each do |cocktail| %>
       <tr id="cocktail_<%= cocktail.id %>">
-        <td><%= cocktail.id %></td>
         <td><%= cocktail.name.html_safe %></td>
         <% if cocktail.user_id.present? %>
         <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
         <% else %>
         <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
         <% end %>
+        <td id="cocktail_<%= cocktail.id %>_count_row">calculating...</td>
         <% unless read_only %>
         <td><%= link_to "Delete", cocktail_delete_path(cocktail), class: "btn btn-outline-danger", method: "post", remote: true, data: { confirm: 'Are you sure you want to delete this cocktail?' } %></td>
         <td><%= link_to "Favorite", cocktail_toggle_favorite_path(cocktail), class: "btn btn-outline-primary", method: "post", remote: true %></td>

@@ -12,8 +12,16 @@ Rails.application.routes.draw do
     post :toggle_favorite
   end
 
+  scope :cocktails_async do
+    get :available_counts, to: 'cocktails#available_counts'
+  end
+
   resources :shared_cocktails, only: [:index, :show] do
     post :add_to_account
+  end
+
+  scope :shared_cocktails_async do
+    get :available_counts, to: 'shared_cocktails#available_counts'
   end
 
   resources :audits, only: [:index, :show]
