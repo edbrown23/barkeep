@@ -46,7 +46,7 @@
             <tr>
               <td><%= cocktail.id %></td>
               <td><%= cocktail.name.html_safe %></td>
-              <td><%= link_to 'Edit', cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
+              <td><%= link_to 'Edit', shared_cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
               <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
             </tr>
           <% end %>

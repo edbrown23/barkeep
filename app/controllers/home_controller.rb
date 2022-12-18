@@ -2,8 +2,10 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users_available = Recipe.for_user(current_user).all_available(current_user)
-    @shared_available = Recipe.for_user(nil).all_available(current_user)
+    cocktails = CocktailAvailabilityService.new(Recipe.where(category: 'cocktail'), current_user)
+    models = Recipe.where(id: cocktails.makeable_ids)
+    @users_available = models.for_user(current_user)
+    @shared_available = models.for_user(nil)
 
     @available_cocktails = @users_available + @shared_available
   end

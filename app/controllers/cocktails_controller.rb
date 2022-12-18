@@ -58,7 +58,7 @@ class CocktailsController < ApplicationController
 
   def make_drink
     # TODO: it shouldn't be possible to click this button if you don't have the ingredients
-    cocktail = Recipe.for_user(current_user).find(params[:cocktail_id])
+    cocktail = Recipe.find(params[:cocktail_id])
 
     used_reagents = cocktail.reagent_amounts.map do |amount|
       # TODO: the user needs to be able to select from all their options here

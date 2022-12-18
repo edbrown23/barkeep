@@ -8,6 +8,10 @@ class CocktailAvailabilityService
     @availability_map = setup_availability
   end
 
+  def makeable_ids
+    available_counts.select { |cocktail_id, availability| availability[:available] >= availability[:required] }.keys
+  end
+
   def cocktail_availability(cocktail)
     availability = @availability_map[cocktail.id]
     {
