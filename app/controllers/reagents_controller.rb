@@ -21,8 +21,8 @@ class ReagentsController < ApplicationController
   def show
     reagent_amounts = ReagentAmount.for_user(current_user).where(reagent: @reagent)
 
-    amounts = ReagentAmount.for_user(current_user).with_tags(@reagent.tags)
-    @cocktails = Recipe.for_user(current_user).where(id: amounts.pluck(:recipe_id))
+    amounts = ReagentAmount.with_tags(@reagent.tags)
+    @cocktails = Recipe.where(id: amounts.pluck(:recipe_id))
   end
 
   def edit

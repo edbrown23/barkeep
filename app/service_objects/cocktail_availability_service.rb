@@ -15,7 +15,7 @@ class CocktailAvailabilityService
   def cocktail_availability(cocktail)
     availability = @availability_map[cocktail.id]
     {
-      available: availability.sum { |required, reagents| reagents.any? { |bottle| binding.pry if bottle.nil?; bottle.current_volume >= required.required_volume } ? 1 : 0 },
+      available: availability.sum { |required, reagents| reagents.any? { |bottle| bottle.current_volume >= required.required_volume } ? 1 : 0 },
       required: availability.keys.count
     }
   end
