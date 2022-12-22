@@ -1,0 +1,11 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "shopping_index", "data-turbolinks-track": 'reload' %>
+<% end %>
+<main>
+  <div class="container">
+    <p>
+      <strong>You're one bottle off of these drinks:</strong>
+      <%= render 'shared/cocktails_table', cocktails: @one_off_cocktails, read_only: true %>
+    </p>
+  </div>
+</main>

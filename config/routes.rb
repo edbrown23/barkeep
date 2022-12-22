@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     get :available_counts, to: 'shared_cocktails#available_counts'
   end
 
+  resources :shopping, only: [:index]
+
   resources :audits, only: [:index, :show]
 
   resources :reagent_categories, only: [:index, :show]
