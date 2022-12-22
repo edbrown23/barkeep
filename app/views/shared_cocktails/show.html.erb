@@ -38,28 +38,34 @@
       </tbody>
     </table>
 
+    <% if user_signed_in? %>
     <hr>
     <strong>Cocktail Stats</strong>
     <span>You've made this drink <span id="made_count"><%= @stats[:made_count] %></span> times!</span>
     <hr>
+    <% end %>
 
-    <%= link_to 'Promote to your list', shared_cocktail_add_to_account_path(@cocktail), class: "btn btn-primary", id: 'promote_link', method: :post, remote: true %>
-    <%= link_to 'Back', cocktails_path, class: "btn btn-info" %>
+    <% if user_signed_in? %>
+      <%= link_to 'Promote to your list', shared_cocktail_add_to_account_path(@cocktail), class: "btn btn-primary", id: 'promote_link', method: :post, remote: true %>
+    <% else %>
+      <strong>Create an account and sign in to see if you can make this cocktail!</strong>
+    <% end %>
+    <%= link_to 'Back', shared_cocktails_path, class: "btn btn-info" %>
 
-    <p class="mt-3">
-      <%= link_to "I made this!", cocktail_make_drink_path(@cocktail), id: 'make_cocktail_link', remote: true, method: :post, class: "btn btn-success", data: { quantity: 1, cocktail_id: @cocktail.id } %>
-    </p>
+    <% if user_signed_in? %>
+      <p class="mt-3">
+        <%= link_to "I made this!", cocktail_make_drink_path(@cocktail), id: 'make_cocktail_link', remote: true, method: :post, class: "btn btn-success", data: { quantity: 1, cocktail_id: @cocktail.id } %>
+      </p>
+    <% end %>
 
-      <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11"></div>
+
+    <div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong>Cheers!</strong>
       </div>
-
-      <div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong>Cheers!</strong>
-        </div>
-        <div class="toast-body">
-          <span data-toast-body></span>
-        </div>
+      <div class="toast-body">
+        <span data-toast-body></span>
       </div>
-    <div>
+    </div>
 </main>

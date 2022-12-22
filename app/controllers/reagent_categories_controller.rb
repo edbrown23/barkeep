@@ -1,6 +1,4 @@
 class ReagentCategoriesController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @categories = ReagentCategory.all
   end
@@ -9,7 +7,11 @@ class ReagentCategoriesController < ApplicationController
     @category = find_by_external_id_or_pk(params[:id])
 
     amounts = ReagentAmount.with_tags([@category.external_id])
-    @cocktails = Recipe.where(id: amounts.pluck(:recipe_id))
+    if user_signed_in?
+      @cocktails = Recipe.where(id: amounts.pluck(:recipe_id))
+    else
+      @cocktails = Recipe.for_user(nil).where(id: amounts.pluck(:recipe_id))
+    end
   end
 
   def find_by_external_id_or_pk(id)

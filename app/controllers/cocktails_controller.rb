@@ -21,9 +21,9 @@ class CocktailsController < ApplicationController
 
     # force lookup for non-user mapped cocktails
     if search_term.present? && search_term.size > 0
-      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:id)
+      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:name)
     else
-      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:id)
+      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:name)
     end
 
     cocktail_service = CocktailAvailabilityService.new(cocktails, current_user)
