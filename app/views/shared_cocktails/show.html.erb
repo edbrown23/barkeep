@@ -8,7 +8,7 @@
 
     <p>
       <strong>Name:</strong>
-      <%= @cocktail.name %>
+      <%= @cocktail.name.html_safe %>
     </p>
 
     <p>
@@ -18,7 +18,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th>id</th>
           <th>Tags</th>
           <th>Required Volume</th>
           <th>Description</th>
@@ -28,8 +27,13 @@
       <tbody>
         <% @cocktail.reagent_amounts.each do |reagent_amount| %>
           <tr <% if reagent_amount.reagent_available?(current_user) %> class="table-success"<% end %>>
-            <td><%= reagent_amount.id %></td>
-            <td><%= reagent_amount.tags %></td>
+            <td>
+              <samp>
+                <% reagent_amount.tags.each_with_index do |tag, i| %>
+                  <%= link_to tag, reagent_category_path(tag) %><% if i != reagent_amount.tags.size - 1 %><span>, </span><% end %>
+                <% end %>
+              </samp>
+            </td>
             <td><%= reagent_amount.amount %></td>
             <td><%= reagent_amount.description %></td>
             <td><%= link_to "Category Details", reagent_category_path(reagent_amount.tags.first), class: 'btn btn-outline-info' %></td>
