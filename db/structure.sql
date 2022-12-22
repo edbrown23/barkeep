@@ -396,10 +396,10 @@ CREATE UNIQUE INDEX index_reagent_categories_on_name ON public.reagent_categorie
 
 
 --
--- Name: index_reagents_on_external_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_reagents_on_external_id_and_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_reagents_on_external_id ON public.reagents USING btree (external_id);
+CREATE UNIQUE INDEX index_reagents_on_external_id_and_user_id ON public.reagents USING btree (external_id, user_id);
 
 
 --
@@ -462,6 +462,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220920000410'),
 ('20220922224814'),
 ('20220922230909'),
-('20220923222955');
+('20220923222955'),
+('20221221233756');
 
 

@@ -1,0 +1,69 @@
+<main>
+  <div class="container">
+    <h3>Use this page to import all of your reagents in bulk via CSV</h3>
+
+    <p>The table below describes via example the required format of the CSV you import</p>
+    <strong>Most importantly: </strong>
+    <span>You must delimit each reagent's applicable tags via semicolon ";". You can always edit tags after importing as well</span>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Tags</td>
+          <td>Max Volume</td>
+          <td>Max Volume unit</td>
+          <td>Current Volume</td>
+          <td>Current Volume unit</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Don Sergio Tequila</td>
+          <td>Reposado Tequila; Tequila</td>
+          <td>750</td>
+          <td>ml</td>
+          <td>600</td>
+          <td>ml</td>
+        </tr>
+        <tr>
+          <td>Knob Creek</td>
+          <td>Bourbon</td>
+          <td>750</td>
+          <td class="fw-lighter">(an omitted unit is assumed to be ml)</td>
+          <td>600</td>
+          <td class="fw-lighter">(an omitted unit is assumed to be ml)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="border">
+      <%= form_with(class: "m-3") do |form| %>
+        <div class="field mb-3">
+          <%= form.label :reagents_file, class: "form-label" %>
+          <%= form.file_field :user_reagents, class: "form-control", required: true, accept: 'text/csv' %>
+        </div>
+
+        <div class="input-group">
+          <%= form.label :upload_mode, class: "input-group-text" %>
+          <%= form.select :mode, ['Insert', 'Upsert'], {}, class: "form-select" %>
+
+          <%= form.submit "Upload", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <% if notice %>
+      <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
+        <%= notice %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
+        <%= alert %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+
+  </div>
+</main>

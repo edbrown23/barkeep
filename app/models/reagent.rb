@@ -19,9 +19,9 @@
 #
 # Indexes
 #
-#  index_reagents_on_external_id  (external_id) UNIQUE
-#  index_reagents_on_name         (name) UNIQUE
-#  index_reagents_on_user_id      (user_id)
+#  index_reagents_on_external_id_and_user_id  (external_id,user_id) UNIQUE
+#  index_reagents_on_name                     (name) UNIQUE
+#  index_reagents_on_user_id                  (user_id)
 #
 
 class Reagent < ApplicationRecord
@@ -30,6 +30,9 @@ class Reagent < ApplicationRecord
 
   measured Measured::Volume, :max_volume
   measured Measured::Volume, :current_volume
+
+  validates :name, uniqueness: { scope: :user_id }
+  validates :external_id, uniqueness: { scope: :user_id }
 
   # TODO: validations that ensure the percentage is between 0 and 1
   validates :max_volume, measured: true

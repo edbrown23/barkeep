@@ -63,7 +63,7 @@ namespace :maintenance do
     reagents_csv = ENV.fetch('csv')
 
     Reagent.transaction do
-      CSV.read(reagents_csv, headers: true).each do |row|
+      CSV.read(reagents_csv, headers: true, return_headers: true).each do |row|
         potential_category_name = row['Category'] || row['Name']
         category_id = Lib.to_external_id(potential_category_name)
         category_model = ReagentCategory.find_or_create_by(external_id: category_id) do |created_model|
