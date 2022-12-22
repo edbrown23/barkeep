@@ -3,8 +3,9 @@
 <% end %>
 <main>
   <div class="container">
+    <%= render 'shared/notice' %>
     <div class="row">
-      <div class="col">
+      <div class="col-sm-2">
         <%= form_with(url: "/reagents", method: "GET") do |form| %>
           <div class="field mb-1">
             <%= form.label :search_term, class: "form-label" %>
@@ -17,33 +18,39 @@
         <% end %>
         <%= link_to 'New Reagent', new_reagent_path, class: 'btn btn-primary' %>
       </div>
-      <div class="col-10">
-        <table class="table" id="reagentsTable">
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>Category</th>
-              <th>Current Volume</th>
-              <th>Max Volume</th>
-              <th>Refill</th>
-              <th>Show</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @reagents.each do |reagent| %>
-              <tr id="reagent_<%= reagent.id %>">
-                <td><%= reagent.id %></td>
-                <td><%= reagent.name %></td>
-                <td><%= reagent.tags %></td>
-                <td data-volume-row><%= reagent.current_volume %></td>
-                <td><%= reagent.max_volume %></td>
-                <td><%= link_to "Refill", reagent_refill_path(reagent), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id } %></td>
-                <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
+      <div class="col-sm-10">
+        <div class="table-responsive">
+          <table class="table" id="reagentsTable">
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>Tags</th>
+                <th>Current Volume</th>
+                <th>Max Volume</th>
+                <th>Refill</th>
+                <th>Show</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @reagents.each do |reagent| %>
+                <tr id="reagent_<%= reagent.id %>">
+                  <td><%= reagent.name %></td>
+                  <td>
+                    <samp>
+                      <% reagent.tags.each_with_index do |tag, i| %>
+                        <%= link_to tag, reagent_category_path(tag) %><% if i != reagent.tags.size - 1 %><span>, </span><% end %>
+                      <% end %>
+                    </samp>
+                  </td>
+                  <td data-volume-row><%= reagent.current_volume %></td>
+                  <td><%= reagent.max_volume %></td>
+                  <td><%= link_to "Refill", reagent_refill_path(reagent), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id } %></td>
+                  <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
         <a href="/bulk_reagents" class="btn btn-info">Bulk import reagents</a>
       </div>
     </div>

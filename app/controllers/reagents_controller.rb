@@ -71,6 +71,14 @@ class ReagentsController < ApplicationController
     end
   end
 
+  def destroy
+    @reagent.destroy if @reagent.present?
+
+    respond_to do |format|
+      format.html { redirect_to '/reagents', alert: "#{@reagent.name} deleted!" }
+    end
+  end
+
   private
     def parse_and_maybe_create_category(params)
       params[:tags] = params[:tags].split(',').map(&:strip).map { |tag| Lib.to_external_id(tag) }

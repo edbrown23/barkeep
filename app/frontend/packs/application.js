@@ -15,3 +15,7 @@ ActiveStorage.start()
 import '../js/bootstrap_js_files.js'
 import * as bootstrap from 'bootstrap'
 window.bootstrap = require("bootstrap");
+
+// My shared js library functions
+import * as lib from '../js/lib/shared.js'
+window.lib = lib

@@ -29,7 +29,7 @@ window.addEventListener("turbolinks:load", () => {
     }
   });
 
-  let cocktailsSection = document.getElementById("cocktails_collapses");
+  let cocktailsSection = document.getElementById("auditResponses");
   cocktailsSection.addEventListener("ajax:success", (event) => {
     let toastTemplateDoc = document.querySelector("div[data-toast-template]");
     let toastDoc = toastTemplateDoc.cloneNode(true);

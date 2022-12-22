@@ -2,7 +2,7 @@ require 'csv'
 
 class BulkReagentService
   REQUIRED_HEADERS = ['Name', 'Tags', 'Max Volume', 'Max Volume Unit', 'Current Volume', 'Current Volume Unit'].freeze
-  REQUIRED_VALUES = ['Name', 'Tags', 'Max Volume', 'Current Volume'].freeze
+  REQUIRED_VALUES = ['Name', 'Max Volume', 'Current Volume'].freeze
 
   def initialize(current_user)
     @current_user = current_user

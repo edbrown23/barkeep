@@ -6,7 +6,12 @@
 
     <p>
       <strong>Name:</strong>
-      <span><%= @category.name %>
+      <span><%= @category.name %></span>
+    </p>
+
+    <p>
+      <strong>External Id:</strong>
+      <span><samp><%= @category.external_id %></samp></span>
     </p>
 
     <strong>Reagents for this Category</strong>
@@ -16,7 +21,6 @@
         <table class="table">
           <thead>
             <tr>
-              <th>id</th>
               <th>name</th>
               <th>Current Volume</th>
               <th>Max Volume</th>
@@ -26,7 +30,6 @@
           <tbody>
           <% @category.reagents(current_user).each do |reagent| %>
             <tr id="reagent_<%= reagent.id %>">
-              <td><%= reagent.id %></td>
               <td><%= reagent.name %></td>
               <td data-volume-row><%= reagent.current_volume %></td>
               <td><%= reagent.max_volume %></td>
