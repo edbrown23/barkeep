@@ -39,12 +39,14 @@
           </tbody>
         </table>
       </div>
-
-      <hr>
-      <strong>Cocktails which use this category</strong>
-      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false %>
-
-      <%= link_to 'Back', reagent_categories_path, class: "btn btn-primary" %>
     </div>
+    <% if current_user.admin? %>
+    <%= link_to 'Edit', edit_reagent_category_path(@category), class: "btn btn-primary" %>
+    <% end %>
+    <%= link_to 'Back', reagent_categories_path, class: "btn btn-info" %>
+
+    <hr>
+    <strong>Cocktails which use this category</strong>
+    <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false %>
   </div>
 </main>
