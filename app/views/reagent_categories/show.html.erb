@@ -40,7 +40,7 @@
         </table>
       </div>
     </div>
-    <% if current_user.admin? %>
+    <% if current_user.present? && current_user.admin? %>
     <%= link_to 'Edit', edit_reagent_category_path(@category), class: "btn btn-primary" %>
     <% end %>
     <%= link_to 'Back', reagent_categories_path, class: "btn btn-info" %>
