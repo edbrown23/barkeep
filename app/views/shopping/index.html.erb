@@ -4,8 +4,67 @@
 <main>
   <div class="container">
     <p>
-      <strong>You're one bottle off of these drinks:</strong>
-      <%= render 'shared/cocktails_table', cocktails: @one_off_cocktails, read_only: true %>
+      <h3>Buy one of these and you'll be able to make:</h3>
+      <div class="table-responsive">
+        <table class="table" id="cocktailsTable">
+          <thead>
+            <tr>
+              <th>Bottle</th>
+              <th>Drinks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @inverted_availability.each do |missing, cocktails| %>
+              <tr>
+                <td><samp><%= link_to missing.first, reagent_category_path(missing) %></samp></td>
+                <% cocktails.each_with_index do |cocktail, i| %>
+                  <% if cocktail.user_id.present? %>
+                  <td><%= link_to cocktail.name, cocktail_path(cocktail) %></td>
+                  <% else %>
+                  <td><%= link_to cocktail.name, shared_cocktail_path(cocktail) %></td>
+                  <% end %>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <h3>You're one bottle off of these drinks:</h3>
+      <div class="table-responsive">
+        <table class="table" id="cocktailsTable">
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>Edit</th>
+              <th>Count of reagents available</th>
+              <th>Missing Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @one_off_cocktails.values.each do |cocktail| %>
+              <tr id="cocktail_<%= cocktail.id %>">
+                <td><%= cocktail.name.html_safe %></td>
+                <% if cocktail.user_id.present? %>
+                <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+                <% else %>
+                <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+                <% end %>
+                <td id="cocktail_<%= cocktail.id %>_count_row">calculating...</td>
+                <td>
+                  <samp>
+                    <% @availability[cocktail.id][:missing_tags].each_with_index do |tag, i| %>
+                      <%= link_to tag, reagent_category_path(tag) %><% if i != @availability[cocktail.id][:missing_tags].size - 1 %><span>, </span><% end %>
+                    <% end %>
+                  </samp>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </p>
   </div>
 </main>
