@@ -10,6 +10,7 @@
 #  remember_created_at    :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  roles                  :string           default([]), is an Array
 #
 # Indexes
 #
@@ -21,6 +22,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  ADMIN_ROLE = 'admin'.freeze
+
+  def admin?
+    roles.any? { |s| s == ADMIN_ROLE }
+  end
 
   class << self
     def current_id=(id)

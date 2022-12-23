@@ -224,7 +224,8 @@ CREATE TABLE public.users (
     reset_password_sent_at timestamp without time zone,
     remember_created_at timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    roles character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -463,6 +464,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220922224814'),
 ('20220922230909'),
 ('20220923222955'),
-('20221221233756');
+('20221221233756'),
+('20221223230832');
 
 
