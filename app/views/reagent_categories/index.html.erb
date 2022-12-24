@@ -49,6 +49,9 @@
           </table>
         </div>
       </div>
+      <% if current_user.present? && current_user.admin? %>
+      <%= link_to 'New', new_reagent_category_path, class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </main>

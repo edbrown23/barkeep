@@ -1,6 +1,6 @@
 class ReagentCategoriesController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update]
-  before_action :validate_admin!, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
+  before_action :validate_admin!, only: [:edit, :update, :new, :create]
 
   def index
     @categories = ReagentCategory.all
@@ -19,6 +19,22 @@ class ReagentCategoriesController < ApplicationController
 
   def edit
     @category = find_by_external_id_or_pk(params[:id])
+  end
+
+  def new
+    @category = ReagentCategory.new
+  end
+
+  def create
+    @category = ReagentCategory.new(update_params)
+
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to @category, notice: "#{@category.external_id} was successfully created" }
+      else
+        format.html { render :new, status: :unprocessable_entity, alert: "#{@category.external_id} could not be created" }
+      end
+    end
   end
 
   def update
@@ -42,7 +58,9 @@ class ReagentCategoriesController < ApplicationController
       @category.update!(params)
     end
 
-    redirect_to @category
+    respond_to do |format|
+      format.html { redirect_to @category, notice: "#{@category.external_id} updated!"}
+    end
   end
 
   def find_by_external_id_or_pk(id)
@@ -60,6 +78,8 @@ class ReagentCategoriesController < ApplicationController
   end
 
   def update_params
-    params.require(:reagent_category).permit(:name, :description, :external_id)
+    params.require(:reagent_category).permit(:name, :description, :external_id).tap do |p|
+      p[:external_id] = Lib.to_external_id(p[:external_id])
+    end
   end
 end
