@@ -3,7 +3,13 @@ class ReagentCategoriesController < ApplicationController
   before_action :validate_admin!, only: [:edit, :update, :new, :create]
 
   def index
-    @categories = ReagentCategory.all
+    search_term = search_params['search_term']
+
+    if search_term.present? && search_term.size > 0
+      @categories = ReagentCategory.where('name ILIKE ?', search_term).order(:name)
+    else
+      @categories = ReagentCategory.all.order(:name)
+    end
   end
 
   def show
@@ -81,5 +87,9 @@ class ReagentCategoriesController < ApplicationController
     params.require(:reagent_category).permit(:name, :description, :external_id).tap do |p|
       p[:external_id] = Lib.to_external_id(p[:external_id])
     end
+  end
+
+  def search_params
+    params.permit(:search_term)
   end
 end

@@ -4,6 +4,18 @@
 <main>
   <div class="container">
     <div class="row">
+      <div class="col-sm-2">
+        <%= form_with(url: "/reagent_categories", method: "GET") do |form| %>
+          <div class="field mb-1">
+            <%= form.label :search_term, class: "form-label" %>
+            <%= form.text_field :search_term, class: "form-control", value: params['search_term'] %>
+          </div>
+
+          <div class="action mb-1">
+            <%= form.submit "Search", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
       <div class="col-sm-10">
         <div class="table-responsive">
           <table class="table">

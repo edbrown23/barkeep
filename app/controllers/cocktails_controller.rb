@@ -9,9 +9,9 @@ class CocktailsController < ApplicationController
     search_term = search_params['search_term']
 
     if search_term.present? && search_term.size > 0
-      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:id)
+      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:name)
     else
-      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:id)
+      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:name)
     end
   end
 
