@@ -22,7 +22,6 @@
             <th>Tags</th>
             <th>Required Volume</th>
             <th>Description</th>
-            <th>Go To Ingredient</th>
           </tr>
         </thead>
         <tbody>
@@ -35,9 +34,8 @@
                   <% end %>
                 </samp>
               </td>
-              <td><%= reagent_amount.amount %></td>
+              <td><%= "#{reagent_amount.amount} #{reagent_amount.unit}" %></td>
               <td><%= reagent_amount.description %></td>
-              <td><%= link_to "Category Details", reagent_category_path(reagent_amount.tags.first), class: 'btn btn-outline-info' %></td>
             </tr>
           <% end %>
         </tbody>

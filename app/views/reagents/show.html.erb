@@ -50,6 +50,6 @@
       <strong>Cocktails which use this reagent</strong>
     </p>
 
-    <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: true %>
+    <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: true, render_counts: user_signed_in? %>
   </div>
 </main>

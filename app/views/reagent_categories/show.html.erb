@@ -47,6 +47,6 @@
 
     <hr>
     <strong>Cocktails which use this category</strong>
-    <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false %>
+    <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in? %>
   </div>
 </main>
