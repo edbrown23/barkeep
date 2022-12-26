@@ -2,119 +2,162 @@
   <%= javascript_pack_tag "home_index", "data-turbolinks-track": 'reload' %>
 <% end %>
 <div class="container" id="auditResponses">
-  <h1>Look at all the drinks you can make!</h1>
 
-  <h3>Your recipes:</h3>
-  <div class="row">
-    <div class="col-sm-10 table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>Edit</th>
-            <th>Show Ingredients</th>
-            <th>Ingredients</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users_available.each do |cocktail| %>
+  <% unless user_signed_in? %>
+    <div class="px-4 py-5 my-5 text-center">
+      <img class="d-block mx-auto mb-4" src=<%= asset_path('favicon.png') %> alt="" width="72" height="57">
+      <h1 class="display-5 fw-bold">Welcome to Barkeep!</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Easily track your home bar and see what cocktails you can make with what you already have!</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary btn-lg px-4 gap-3" %>
+          <span class="mt-2 text-muted"> - or - </span>
+          <%= link_to 'Email for an Account', "mailto:eric.d.brown23+barkeep@gmail.com", class: "btn btn-outline-secondary btn-lg px-4" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <i class="bi-cup-straw"></i>
+        </div>
+        <h2>See what drinks you can make</h2>
+        <p>Always wondering if you have enough ingredients for your favorite mojito? Barkeep tracks the bottles in your bar and tells you each and every drink you can make from our extensive database of cocktail recipes.</p>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <i class="bi-fan"></i>
+        </div>
+        <h2>Expand your bar's capabilities</h2>
+        <p>Most people have enough in their home bars for plenty of variety, they're just missing one or two simple bottles. Barkeep will recomend new bottles just for you, based on what you already have</p>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <i class="bi-heart-fill"></i>
+        </div>
+        <h2>Customize Cocktails to your liking</h2>
+        <p>Prefer a Perfect Manhattan with a little extra whiskey after a long day? Barkeep lets you customize any cocktail from our shared database of recipes, so you can always remember your perfect ratios</p>
+      </div>
+    </div>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <h1>Look at all the drinks you can make!</h1>
+
+    <h3>Your recipes:</h3>
+    <div class="row">
+      <div class="col-sm-10 table-responsive">
+        <table class="table">
+          <thead>
             <tr>
-              <td><%= cocktail.name.html_safe %></td>
-              <td><%= link_to 'Edit', cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
-              <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
-              <td>
-                <div class="collapse" id="ingredients_<%= cocktail.id %>">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Ingredient</th>
-                        <th>Required Volume</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% cocktail.reagent_amounts.each do |reagent_amount| %>
-                        <tr>
-                          <td>
-                            <samp>
-                              <% reagent_amount.tags.each_with_index do |tag, i| %>
-                                <%= link_to tag, reagent_category_path(tag) %><% if i != reagent_amount.tags.size - 1 %><span>, </span><% end %>
-                              <% end %>
-                            </samp>
-                          </td>
-                          <td><%= reagent_amount.amount %></td>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                  <%= link_to "I made this!", cocktail_make_drink_path(cocktail), remote: true, method: :post, class: "btn btn-primary", data: { quantity: 1, cocktail_id: cocktail.id } %>
-                </div>
-              </td>
+              <th>name</th>
+              <th>Edit</th>
+              <th>Show Ingredients</th>
+              <th>Ingredients</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            <% @users_available.each do |cocktail| %>
+              <tr>
+                <td><%= cocktail.name.html_safe %></td>
+                <td><%= link_to 'Edit', cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
+                <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
+                <td>
+                  <div class="collapse" id="ingredients_<%= cocktail.id %>">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Ingredient</th>
+                          <th>Required Volume</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% cocktail.reagent_amounts.each do |reagent_amount| %>
+                          <tr>
+                            <td>
+                              <samp>
+                                <% reagent_amount.tags.each_with_index do |tag, i| %>
+                                  <%= link_to tag, reagent_category_path(tag) %><% if i != reagent_amount.tags.size - 1 %><span>, </span><% end %>
+                                <% end %>
+                              </samp>
+                            </td>
+                            <td><%= reagent_amount.amount %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    <%= link_to "I made this!", cocktail_make_drink_path(cocktail), remote: true, method: :post, class: "btn btn-primary", data: { quantity: 1, cocktail_id: cocktail.id } %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-  <h3>Shared recipes:</h3>
-  <div class="row">
-    <div class="col-sm-10 table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>Edit</th>
-            <th>Show Ingredients</th>
-            <th>Ingredients</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @shared_available.each do |cocktail| %>
+    <h3>Shared recipes:</h3>
+    <div class="row">
+      <div class="col-sm-10 table-responsive">
+        <table class="table">
+          <thead>
             <tr>
-              <td><%= cocktail.name.html_safe %></td>
-              <td><%= link_to 'Edit', shared_cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
-              <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
-              <td>
-                <div class="collapse" id="ingredients_<%= cocktail.id %>">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Ingredient</th>
-                        <th>Required Volume</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% cocktail.reagent_amounts.each do |reagent_amount| %>
-                        <tr>
-                          <td>
-                            <samp>
-                              <% reagent_amount.tags.each_with_index do |tag, i| %>
-                                <%= link_to tag, reagent_category_path(tag) %><% if i != reagent_amount.tags.size - 1 %><span>, </span><% end %>
-                              <% end %>
-                            </samp>
-                          </td>
-                          <td><%= reagent_amount.amount %></td>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                  <%= link_to "I made this!", cocktail_make_drink_path(cocktail), remote: true, method: :post, class: "btn btn-primary", data: { quantity: 1, cocktail_id: cocktail.id } %>
-                </div>
-              </td>
+              <th>name</th>
+              <th>Edit</th>
+              <th>Show Ingredients</th>
+              <th>Ingredients</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @shared_available.each do |cocktail| %>
+              <tr>
+                <td><%= cocktail.name.html_safe %></td>
+                <td><%= link_to 'Edit', shared_cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
+                <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
+                <td>
+                  <div class="collapse" id="ingredients_<%= cocktail.id %>">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Ingredient</th>
+                          <th>Required Volume</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% cocktail.reagent_amounts.each do |reagent_amount| %>
+                          <tr>
+                            <td>
+                              <samp>
+                                <% reagent_amount.tags.each_with_index do |tag, i| %>
+                                  <%= link_to tag, reagent_category_path(tag) %><% if i != reagent_amount.tags.size - 1 %><span>, </span><% end %>
+                                <% end %>
+                              </samp>
+                            </td>
+                            <td><%= reagent_amount.amount %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    <%= link_to "I made this!", cocktail_make_drink_path(cocktail), remote: true, method: :post, class: "btn btn-primary", data: { quantity: 1, cocktail_id: cocktail.id } %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11">
     </div>
 
-  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11">
-  </div>
+    <div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong>Cheers!</strong>
+      </div>
+      <div class="toast-body">
+        <span data-toast-body></span>
+      </div>
+    </div>
 
-  <div data-toast-template class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <strong>Cheers!</strong>
-    </div>
-    <div class="toast-body">
-      <span data-toast-body></span>
-    </div>
-  </div>
+  <% end %>
 </div>
