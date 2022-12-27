@@ -204,6 +204,41 @@ ALTER SEQUENCE public.recipes_id_seq OWNED BY public.recipes.id;
 
 
 --
+-- Name: reference_bottles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reference_bottles (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    cost_reference numeric,
+    description character varying,
+    main_image_url character varying,
+    reagent_category_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: reference_bottles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reference_bottles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reference_bottles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reference_bottles_id_seq OWNED BY public.reference_bottles.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -284,6 +319,13 @@ ALTER TABLE ONLY public.recipes ALTER COLUMN id SET DEFAULT nextval('public.reci
 
 
 --
+-- Name: reference_bottles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reference_bottles ALTER COLUMN id SET DEFAULT nextval('public.reference_bottles_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -336,6 +378,14 @@ ALTER TABLE ONLY public.reagents
 
 ALTER TABLE ONLY public.recipes
     ADD CONSTRAINT recipes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reference_bottles reference_bottles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reference_bottles
+    ADD CONSTRAINT reference_bottles_pkey PRIMARY KEY (id);
 
 
 --
@@ -425,6 +475,13 @@ CREATE INDEX index_recipes_on_user_id ON public.recipes USING btree (user_id);
 
 
 --
+-- Name: index_reference_bottles_on_reagent_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reference_bottles_on_reagent_category_id ON public.reference_bottles USING btree (reagent_category_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -465,6 +522,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220922230909'),
 ('20220923222955'),
 ('20221221233756'),
-('20221223230832');
+('20221223230832'),
+('20221227230345');
 
 

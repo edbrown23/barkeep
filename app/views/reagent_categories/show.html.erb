@@ -14,10 +14,9 @@
       <span><samp><%= @category.external_id %></samp></span>
     </p>
 
-    <strong>Reagents for this Category</strong>
+    <strong>Your bottles in this Category</strong>
     <div class="row">
-      <div class="col">
-
+      <div class="col table-responsive">
         <table class="table">
           <thead>
             <tr>
@@ -48,5 +47,29 @@
     <hr>
     <strong>Cocktails which use this category</strong>
     <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in? %>
+
+    <hr>
+    <strong>Reference Bottles in this category</strong>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reference_bottles.each do |bottle| %>
+            <tr>
+              <td><%= bottle.name %></td>
+              <td><img src=<%= bottle.main_image_url %> ></td>
+              <td><%= bottle.description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </main>

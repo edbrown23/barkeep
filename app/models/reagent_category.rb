@@ -15,6 +15,8 @@
 #  index_reagent_categories_on_name         (name) UNIQUE
 #
 class ReagentCategory < ApplicationRecord
+  has_many :reference_bottles
+
   def reagents(current_user)
     Reagent.for_user(current_user).with_tags(external_id)
   end

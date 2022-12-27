@@ -14,6 +14,7 @@ class ReagentCategoriesController < ApplicationController
 
   def show
     @category = find_by_external_id_or_pk(params[:id])
+    @reference_bottles = @category.reference_bottles
 
     amounts = ReagentAmount.with_tags([@category.external_id])
     if user_signed_in?
