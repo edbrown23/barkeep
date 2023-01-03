@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   resources :audits, only: [:index, :show]
 
   resources :reagent_categories, only: [:index, :show, :edit, :update, :new, :create]
+
+  resources :reference_bottles, only: [:new, :create, :edit, :update, :destroy]
 end

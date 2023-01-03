@@ -80,10 +80,6 @@ class ReagentCategoriesController < ApplicationController
 
   private
 
-  def validate_admin!
-    redirect_to '/reagent_categories' unless current_user.admin?
-  end
-
   def update_params
     params.require(:reagent_category).permit(:name, :description, :external_id).tap do |p|
       p[:external_id] = Lib.to_external_id(p[:external_id])

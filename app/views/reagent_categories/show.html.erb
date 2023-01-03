@@ -3,6 +3,7 @@
 <% end %>
 <main>
   <div class="container">
+    <%= render 'shared/notice' %>
 
     <p>
       <strong>Name:</strong>
@@ -57,19 +58,24 @@
             <th>Name</th>
             <th>Image</th>
             <th>Description</th>
+            <th>
           </tr>
         </thead>
         <tbody>
           <% @reference_bottles.each do |bottle| %>
             <tr>
               <td><%= bottle.name %></td>
-              <td><img src=<%= bottle.main_image_url %> ></td>
+              <td><img src=<%= bottle.main_image_url %> class="img-fluid img-thumbail" style="max-width: 10rem" ></td>
               <td><%= bottle.description %></td>
+              <td><%= link_to "Edit", edit_reference_bottle_path(bottle), class: "btn btn-info" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
+    <% if current_user.present? && current_user.admin? %>
+    <%= link_to 'Add Reference Bottle', new_reference_bottle_path(reagent_category: @category), class: "btn btn-primary" %>
+    <% end %>
 
   </div>
 </main>
