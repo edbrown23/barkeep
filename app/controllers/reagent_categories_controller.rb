@@ -2,6 +2,8 @@ class ReagentCategoriesController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   before_action :validate_admin!, only: [:edit, :update, :new, :create]
 
+  before_action :redirect_non_existant_categories, only: [:show]
+
   def index
     search_term = search_params['search_term']
 
@@ -88,5 +90,9 @@ class ReagentCategoriesController < ApplicationController
 
   def search_params
     params.permit(:search_term)
+  end
+
+  def redirect_non_existant_categories
+    redirect_to new_reagent_category_path, notice: "#{params[:id]} doesn't exist. You'll need to create it to move forward" unless find_by_external_id_or_pk(params[:id]).present?
   end
 end

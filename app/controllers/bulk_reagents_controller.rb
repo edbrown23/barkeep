@@ -25,42 +25,6 @@ class BulkReagentsController < ApplicationController
     end
   end
 
-  # something would tell me this logic should go in a service or somewhere else more testable
-  def import_reagents(reagents_file)
-    errors = []
-
-    Reagent.transaction do
-      CSV.parse(reagents_file.read, headers: true) do |row|
-        if row.headers != REQUIRED_HEADERS
-          errors << "Required Headers are incorrect. Must have #{REQUIRED_HEADERS} in that order"
-          break
-        end
-
-        parsed_tags = (row['Tags'] || '').split(';').map { |t| Lib.to_external_id(t) }
-
-        model_attributes = {
-          user: current_user,
-          name: row['Name'],
-          external_id: Lib.to_external_id(row['Name']),
-          max_volume_value: row['Max Volume'],
-          max_volume_unit: row['Max Volume Unit'] || 'ml',
-          current_volume_value: row['Current Volume'],
-          current_volume_unit: row['Current Volume Unit'] || 'ml',
-          tags: parsed_tags
-        }
-
-        begin
-          reagent = Reagent.new(model_attributes)
-          errors.concat(reagent.errors.full_messages) unless reagent.save
-        rescue ActiveRecord::RecordNotUnique => e
-          errors << e.message
-        end
-      end
-    end
-
-    errors
-  end
-
   def upload_params
     params.permit(:user_reagents, :authenticity_token, :commit, :mode)
   end
