@@ -17,13 +17,15 @@
             <% @inverted_availability.each do |missing, cocktails| %>
               <tr>
                 <td><samp><%= link_to missing.first, reagent_category_path(missing) %></samp></td>
+                <td>
                 <% cocktails.each_with_index do |cocktail, i| %>
                   <% if cocktail.user_id.present? %>
-                  <td><%= link_to cocktail.name, cocktail_path(cocktail) %></td>
+                  <%= link_to cocktail.name, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
                   <% else %>
-                  <td><%= link_to cocktail.name, shared_cocktail_path(cocktail) %></td>
+                  <%= link_to cocktail.name, shared_cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
                   <% end %>
                 <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
