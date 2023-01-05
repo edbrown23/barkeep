@@ -7,9 +7,9 @@ class ReagentsController < ApplicationController
     search_term = search_params['search_term']
 
     if search_term.present? && search_term.size > 0
-      @reagents = Reagent.for_user(current_user).where('name ILIKE ?', "%#{search_term}%").order(:id)
+      @reagents = Reagent.for_user(current_user).where('name ILIKE ?', "%#{search_term}%").order(:name)
     else
-      @reagents = Reagent.for_user(current_user).all.order(:id)
+      @reagents = Reagent.for_user(current_user).all.order(:name)
     end
   end
 
