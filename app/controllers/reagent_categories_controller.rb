@@ -12,6 +12,9 @@ class ReagentCategoriesController < ApplicationController
     else
       @categories = ReagentCategory.all.order(:name)
     end
+
+    @reagents_resolver = ReagentResolver.new(current_user)
+    @reagents_resolver.register_tags(@categories.pluck(:external_id))
   end
 
   def show

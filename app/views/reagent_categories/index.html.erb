@@ -32,7 +32,7 @@
                   <td><%= category.name %></td>
                   <td><%= link_to "Details", reagent_category_path(category), class: "btn btn-outline-info" %></td>
                   <td>
-                    <% if category.reagents(current_user).present? %>
+                    <% if @reagents_resolver.reagents(category.external_id).present? %>
                       <table class="table">
                         <thead>
                           <tr>
@@ -43,7 +43,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <% category.reagents(current_user).each do |reagent| %>
+                        <% @reagents_resolver.reagents(category.external_id).each do |reagent| %>
                           <tr id="reagent_<%= reagent.id %>">
                             <td><%= reagent.name.titleize %></td>
                             <td data-volume-row><%= reagent.current_volume %></td>
