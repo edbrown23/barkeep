@@ -8,7 +8,7 @@ class ReagentCategoriesController < ApplicationController
     search_term = search_params['search_term']
 
     if search_term.present? && search_term.size > 0
-      @categories = ReagentCategory.where('name ILIKE ?', search_term).order(:name)
+      @categories = ReagentCategory.where('name ILIKE ?', "%#{search_term}%").order(:name)
     else
       @categories = ReagentCategory.all.order(:name)
     end
