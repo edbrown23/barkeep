@@ -12,9 +12,15 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import jquery from "jquery"
+global.$ = global.jQuery = jquery;
+window.$ = window.jQuery = jquery;
+
 import '../js/bootstrap_js_files.js'
 import * as bootstrap from 'bootstrap'
 window.bootstrap = require("bootstrap");
+
+import '../js/select2_files.js'
 
 // My shared js library functions
 import * as lib from '../js/lib/shared.js'

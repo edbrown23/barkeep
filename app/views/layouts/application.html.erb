@@ -10,6 +10,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag asset_path('favicon.png') %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
 
     <%# This isn't quite right, cause all my js is loaded when you navigate away from a page too %>
     <% if content_for? :per_page_js %>

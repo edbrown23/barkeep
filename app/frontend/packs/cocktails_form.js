@@ -20,6 +20,86 @@ function deleteIngredient(event) {
   toRemove.remove();
 }
 
+function parseForm() {
+  const allGroups = Array.from(document.querySelectorAll(".ingredient-group"));
+  const parsedGroups = allGroups.reduce((accumulator, currentGroup) => {
+    if (currentGroup.hidden) {
+      return accumulator;
+    }
+
+    const selectedOptions = Array.from(currentGroup.querySelector('.ingredient-select').selectedOptions);
+    const tags = selectedOptions.map((value) => {
+      const tagObject = {
+        tag: value.value
+      }
+      if (value.getAttribute('new-tag')) {
+        tagObject['new'] = true;
+      }
+      return tagObject;
+    });
+    const amount = currentGroup.querySelector('.amount-input').value;
+    const unit = currentGroup.querySelector('.unit-input').value;
+    accumulator.push({
+      tags: tags,
+      amount: amount,
+      unit: unit
+    });
+    return accumulator;
+  }, []);
+
+  const cocktailName = document.querySelector('#recipe_name').value;
+  const favorite = document.querySelector('#recipe_favorite').value === '1';
+
+  return {
+    name: cocktailName,
+    favorite: favorite,
+    amounts: parsedGroups
+  };
+}
+
+function determineMethod() {
+  const maybeMethod = document.getElementsByName('_method')[0];
+  if (maybeMethod === undefined) {
+    return 'post';
+  }
+
+  return maybeMethod.value;
+}
+
+function handleFormSubmission(event) {
+  // Stop it from submitting to rails the normal way
+  event.preventDefault();
+
+  const csrfToken = document.getElementsByName('csrf-token')[0].content;
+  const url = document.querySelector('form').action;
+  const method = determineMethod();
+
+  const toSubmit = parseForm();
+  console.log(toSubmit);
+
+  fetch(url, {
+    method: method.toUpperCase(),
+    headers: {
+      'X-CSRF-Token': csrfToken,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(toSubmit)
+  })
+  .then((response) => response.json())
+  .then((json) => window.location = json['redirect_url']);
+}
+
+function newTagHandler(event) {
+  if (event.params.data['newTag'] === undefined) {
+    return;
+  }
+
+  const selected = event.target.selectedOptions;
+  const newOption = Array.from(selected).find(value => value.innerHTML === event.params.data['id']);
+  newOption.setAttribute('new-tag', true);
+}
+
 window.addEventListener("turbolinks:load", () => {
   // This little block just ensures we don't register the 'click' handlers more than once with
   // turbolinks. I don't know if this shit is even necessary
@@ -32,6 +112,25 @@ window.addEventListener("turbolinks:load", () => {
     return;
   }
   reagentTemplate.dataset.duplicateConfigured = true;
+
+  const select2Config = {
+    theme: 'bootstrap-5',
+    tags: true,
+    createTag: (params) => {
+      // probably don't need jquery here
+      var term = $.trim(params.term);
+  
+      if (term === '') {
+        return null;
+      }
+  
+      return {
+        id: term,
+        text: term,
+        newTag: true
+      }
+    }
+  };
   
   document.addEventListener("click", (event) => {
     let idHit = event.target.id;
@@ -51,8 +150,13 @@ window.addEventListener("turbolinks:load", () => {
 
     duplicated.querySelector(".delete-button").dataset.docId = docId;
 
+    duplicated.querySelector(".ingredient-select").id = `select-${docId}`;
+
     const ingredientsElement = document.querySelector("#ingredients");
     ingredientsElement.appendChild(duplicated);
+
+    $(`#select-${docId}`).select2(select2Config);
+    $(`#select-${docId}`).on('select2:select', newTagHandler);
   });
 
   // This is the setup for existing ingredients
@@ -61,5 +165,12 @@ window.addEventListener("turbolinks:load", () => {
     element.querySelector(".delete-button").dataset.docId = element.id;
   });
 
+  $('.ingredient-select[data-existing-select="true"]').select2(select2Config);
+
+  $('.ingredient-select[data-existing-select="true"]').on('select2:select', newTagHandler);
+
   document.addEventListener("click", deleteIngredient);
+
+  // The following sets up the form submission logic
+  document.querySelector("#cocktailForm").addEventListener("submit", handleFormSubmission);
 });

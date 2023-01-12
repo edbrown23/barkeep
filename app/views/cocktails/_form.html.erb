@@ -2,7 +2,7 @@
   <%= javascript_pack_tag "cocktails_form", "data-turbolinks-track": 'reload' %>
 <% end %>
 
-<%= form_with(model: cocktail, url: @form_path) do |form| %>
+<%= form_with(model: cocktail, url: @form_path, id: "cocktailForm") do |form| %>
   <% if cocktail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h2>
@@ -17,7 +17,7 @@
 
   <div class="field mb-3">
     <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.text_field :name, class: "form-control", value: cocktail.name&.html_safe %>
   </div>
 
   <div class="field mb-3">
@@ -28,80 +28,20 @@
   <h4>Ingredients</h4>
 
   <div id="ingredients">
-    <div class="mb-3 ingredient-group border rounded", id="base-reagent-group" hidden>
-      <div class="row m-3">
-        <div class="col">
-          <div class="input-group">
-            <span class="input-group-text">Categories:</span>
-            <select class="form-select" name="recipe[ingredients][reagent_category_id][]">
-              <% @reagent_categories.each do |reagent_category| %>
-                <option value=<%= reagent_category.id %>><%= reagent_category.name %></option>
-              <% end %>
-            </select>
-            <span class="input-group-text">New Category:</span>
-            <%= form.text_field :new_category, class: "form-control", multiple: true, name: "recipe[ingredients][new_category][]" %>
-          </div>
-          <div class="form-text">New category value will overwrite selection if present</div>
-        </div>
-      </div>
-      <div class="row m-3">
-        <div class="input-group">
-          <span class="input-group-text">Reagent Amount</span>
-          <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
-
-          <span class="input-group-text">Reagent Unit</span>
-          <select class="form-select" name="recipe[ingredients][reagent_unit][]">
-            <% @possible_units.each do |unit_value| %>
-              <option value=<%= unit_value %>><%= unit_value %></option>
-            <% end %>
-          </select>
-        </div>
-      </div>
-
-      <button class="btn btn-danger m-3 delete-button" type="button">Delete Reagent</button>
-    </div>
+    <%# this is the hidden base input that is copied via javascript %>
+    <%= render "ingredients_input", form: form, editing: false, existing_id: nil %>
 
     <%# there's probably a better "rails" way to do this. Maybe just use a different form? %>
     <% if @editing %>
       <% @cocktail.reagent_amounts.each do |reagent_amount| %>
-        <% random_id = rand(2...100000) %>
-        <div class="mb-3 ingredient-group border rounded", id="<%= random_id %>", data-edit-ingredients="true">
-          <div class="row m-3">
-            <div class="col">
-              <div class="input-group">
-                <span class="input-group-text">Categories:</span>
-                <select class="form-select" name="recipe[ingredients][reagent_category_id][]">
-                  <% @reagent_categories.each do |reagent_category| %>
-                    <option value=<%= reagent_category.id %><% if reagent_amount.tags.first == reagent_category.external_id %> selected<% end %>><%= reagent_category.name %></option>
-                  <% end %>
-                </select>
-              <span class="input-group-text">New Category:</span>
-              <%= form.text_field :new_category, class: "form-control", multiple: true, name: "recipe[ingredients][new_category][]" %>
-              </div>
-            </div>
-            <div class="form-text">New category value will overwrite selection if present</div>
-          </div>
-          <div class="row m-3">
-            <div class="input-group">
-              <span class="input-group-text">Reagent Amount</span>
-              <%= form.text_field :reagent_amount, class: "form-control", multiple: true, name: "recipe[ingredients][reagent_amount][]", value: reagent_amount.amount %>
-
-              <span class="input-group-text">Reagent Unit</span>
-              <select class="form-select" name="recipe[ingredients][reagent_unit][]">
-                <% @possible_units.each do |unit_value| %>
-                  <option value=<%= unit_value %><% if reagent_amount.unit == unit_value %> selected<% end %>><%= unit_value %></option>
-                <% end %>
-              </select>
-            </div>
-          </div>
-
-          <button class="btn btn-danger m-3 delete-button" type="button">Delete Reagent</button>
-        </div>
+        <%= render "ingredients_input", form: form, editing: @editing, existing_id: rand(2...100000), reagent_amount: reagent_amount %>
       <% end %>
     <% end %>
   </div>
 
   <button class="btn btn-success mb-3" id="more-ingredients-trigger" type="button">More Ingredients</button>
+
+  <hr>
 
   <div class="actions mb-3">
     <%= form.submit nil, class: "btn btn-primary" %>

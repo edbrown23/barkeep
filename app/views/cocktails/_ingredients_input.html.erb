@@ -1,0 +1,44 @@
+<div class="mb-3 ingredient-group border rounded", <% if editing %>id="<%= existing_id %>", data-edit-ingredients="true"<% else %>id="base-reagent-group" hidden<% end %>>
+  <div class="row m-3">
+    <div class="col-sm">
+      <div class="input-group">
+        <span class="input-group-text">Tags:</span>
+        <select class="form-select ingredient-select" name="recipe[ingredients][reagent_category_id][]" <% if editing %>id=<%= "select-#{existing_id}" %> data-existing-select="true"<% end %> multiple="multiple" required=true>
+          <% @reagent_categories.each do |reagent_category| %>
+            <option value=<%= reagent_category.external_id %><% if editing && reagent_amount.tags.include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="form-text">You can add new tags if they don't appear in the dropdown</div>
+    </div>
+  </div>
+  <div class="row m-3">
+    <div class="col-sm">
+      <div class="input-group">
+        <span class="input-group-text">Reagent Amount</span>
+        <% if editing %>
+        <%= form.text_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true, value: reagent_amount.amount %>
+        <% else %>
+        <%= form.text_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="input-group">
+        <span class="input-group-text">Reagent Unit</span>
+        <select class="form-select unit-input" name="recipe[ingredients][reagent_unit][]">
+          <% @possible_units.each do |unit_value| %>
+            <% if editing %>
+            <option value=<%= unit_value %><% if reagent_amount.unit == unit_value %> selected<% end %>><%= unit_value %></option>
+            <% else %>
+            <option value=<%= unit_value %>><%= unit_value %></option>
+            <% end %>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-danger m-3 delete-button" type="button">Delete Reagent</button>
+</div>
