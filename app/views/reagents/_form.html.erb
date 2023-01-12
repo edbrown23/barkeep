@@ -1,3 +1,7 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "reagents_form", "data-turbolinks-track": 'reload' %>
+<% end %>
+
 <%= form_with(model: reagent) do |form| %>
   <% if reagent.errors.any? %>
     <div id="error_explanation">
@@ -18,8 +22,11 @@
 
   <div class="field mb-3">
     <%= form.label :tags, class: "form-label" %>
-    <%= form.text_field :tags, class: 'form-control', value: reagent.tags.join(',') %>
-    <div class="form-text">Tags must be comma delimited if there are multiple</div>
+    <select class="form-select ingredient-select" name="reagent[tags][]" multiple="multiple">
+      <% @reagent_categories.each do |reagent_category| %>
+        <option value=<%= reagent_category.external_id %><% if reagent.tags.include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
+      <% end %>
+    </select>
   </div>
 
   <div class="field mb-3">

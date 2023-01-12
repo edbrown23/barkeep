@@ -81,7 +81,7 @@ class ReagentsController < ApplicationController
 
   private
     def parse_and_maybe_create_category(params)
-      params[:tags] = params[:tags].split(',').map(&:strip).map { |tag| Lib.to_external_id(tag) }
+      params[:tags] = params[:tags].map(&:strip).map { |tag| Lib.to_external_id(tag) }
 
       params[:tags].each do |tag|
         ReagentCategory.find_or_create_by(external_id: tag) { |created_model| created_model.name = tag.titleize }
@@ -106,7 +106,7 @@ class ReagentsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       params
         .require(:reagent)
-          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :tags)
+          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, tags: [])
     end
 
     def search_params
