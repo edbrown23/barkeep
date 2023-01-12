@@ -48,7 +48,7 @@ function parseForm() {
   }, []);
 
   const cocktailName = document.querySelector('#recipe_name').value;
-  const favorite = document.querySelector('#recipe_favorite').value === '1';
+  const favorite = document.querySelector('#recipe_favorite').checked;
 
   return {
     name: cocktailName,
