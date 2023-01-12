@@ -15,17 +15,19 @@ class CocktailAvailabilityService
   def cocktail_availability(cocktail)
     availability = @availability_map[cocktail.id]
     available_tags = []
+    under_volume_tags = []
     available_bottles = availability.sum do |required, reagents|
       reagents.any? do |bottle|
-        bottle.current_volume >= required.required_volume.tap do |available|
-          available_tags.concat(required.tags) if available
+        (bottle.current_volume >= required.required_volume).tap do |available|
+          available ? available_tags.concat(required.tags) : under_volume_tags.concat(required.tags)
         end
       end ? 1 : 0
     end
     {
       available: available_bottles,
       required: availability.keys.count,
-      missing_tags: availability.keys.flat_map(&:tags).uniq - available_tags.uniq
+      missing_tags: availability.keys.flat_map(&:tags).uniq - available_tags.uniq,
+      under_volume_tags: under_volume_tags
     }
   end
 
