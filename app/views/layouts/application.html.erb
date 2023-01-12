@@ -54,7 +54,7 @@
                 <a class="nav-link active" href="/shared_cocktails">Shared Cocktail List</a>
               </li>
               <% if user_signed_in? %>
-              <div class="navbar-text me-2">Hi <%= current_user.email %></div>
+              <div class="navbar-text me-2">Hi <%= current_user.email %> (<%= link_to 'edit account', edit_user_registration_path %>)</div>
               <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "btn btn-outline-primary" %>
               <% else %>
               <%= link_to 'Sign In', new_user_session_path, method: 'get', class: "btn btn-outline-primary" %>
