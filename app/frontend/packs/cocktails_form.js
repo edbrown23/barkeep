@@ -152,6 +152,10 @@ window.addEventListener("turbolinks:load", () => {
 
     duplicated.querySelector(".ingredient-select").id = `select-${docId}`;
 
+    // setup required values, which can't be set on the hidden form
+    duplicated.querySelector(".ingredient-select").setAttribute('required', true);
+    duplicated.querySelector(".amount-input").setAttribute('required', true);
+
     const ingredientsElement = document.querySelector("#ingredients");
     ingredientsElement.appendChild(duplicated);
 

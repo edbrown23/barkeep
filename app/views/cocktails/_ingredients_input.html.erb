@@ -3,7 +3,7 @@
     <div class="col-sm">
       <div class="input-group">
         <span class="input-group-text">Tags:</span>
-        <select class="form-select ingredient-select" name="recipe[ingredients][reagent_category_id][]" <% if editing %>id=<%= "select-#{existing_id}" %> data-existing-select="true"<% end %> multiple="multiple" required=true>
+        <select class="form-select ingredient-select" name="recipe[ingredients][reagent_category_id][]" <% if editing %>id=<%= "select-#{existing_id}" %> data-existing-select="true"<% end %> multiple="multiple">
           <% @reagent_categories.each do |reagent_category| %>
             <option value=<%= reagent_category.external_id %><% if editing && reagent_amount.tags.include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
           <% end %>
@@ -19,7 +19,7 @@
         <% if editing %>
         <%= form.text_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true, value: reagent_amount.amount %>
         <% else %>
-        <%= form.text_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true %>
+        <%= form.text_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
         <% end %>
       </div>
     </div>
