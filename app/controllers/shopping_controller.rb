@@ -15,5 +15,9 @@ class ShoppingController < ApplicationController
       memo[avail[:missing_tags]] << @one_off_cocktails[cid]
       memo
     end
+
+    @low_bottles = Reagent.for_user(current_user).select do |bottle|
+      (bottle.current_volume_value / bottle.max_volume_value) <= 0.1
+    end
   end
 end

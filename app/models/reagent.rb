@@ -34,7 +34,6 @@ class Reagent < ApplicationRecord
   validates :name, uniqueness: { scope: :user_id }
   validates :external_id, uniqueness: { scope: :user_id }
 
-  # TODO: validations that ensure the percentage is between 0 and 1
   validates :max_volume, measured: true
   validates :current_volume, measured: true
 

@@ -34,6 +34,7 @@ class ReagentsController < ApplicationController
     reagent.update!(current_volume: reagent.max_volume) if reagent.present?
 
     respond_to do |format|
+      format.html { redirect_to reagent, notice: "#{reagent.name} refilled" }
       format.json do
         render json: {
           reagent_id: reagent.id,
