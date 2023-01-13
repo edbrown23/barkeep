@@ -57,27 +57,58 @@ class CocktailsController < ApplicationController
     @possible_units = POSSIBLE_UNITS
   end
 
+  def pre_make_drink
+    cocktail = Recipe.where(id: params[:cocktail_id])
+
+    service = CocktailAvailabilityService.new(cocktail, current_user)
+    reagent_options = service.availability_map[params[:cocktail_id].to_i]
+
+    formatted_reagent_options = reagent_options.map do |(amount, bottles)|
+      {
+        tags: amount.tags.join(', '),
+        required: amount.required_volume.to_s,
+        bottle_choices: bottles.map do |b|
+          {
+            id: b.id,
+            name: b.name,
+            volume_available: b.current_volume.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false)
+          }
+        end
+      }
+    end
+
+    drink_options = {
+      name: cocktail.first.name,
+      reagent_options: formatted_reagent_options
+    }
+
+    respond_to do |format|
+      format.json { render json: drink_options }
+    end
+  end
+
   def make_drink
     # TODO: it shouldn't be possible to click this button if you don't have the ingredients
-    cocktail = Recipe.find(params[:cocktail_id])
+    cocktail = Recipe.where(id: params[:cocktail_id])
 
-    used_reagents = cocktail.reagent_amounts.map do |amount|
-      # TODO: the user needs to be able to select from all their options here
-      reagent = Reagent.for_user(current_user).with_tags(amount.tags).first
+    service = CocktailAvailabilityService.new(cocktail, current_user)
+    reagent_options = service.availability_map[params[:cocktail_id].to_i]
 
-      # this assumes ounces, which is wrong
-      reagent.subtract_usage(amount.required_volume)
+    used_reagents = reagent_options.map do |(amount, bottles)|
+      chosen_bottle = bottles.find { |b| params[:bottles][:chosen_id].include?(b.id.to_s) }
+      
+      chosen_bottle.subtract_usage(amount.required_volume)
 
       {
-        used_model: reagent,
+        used_model: chosen_bottle,
         used_amount: amount.amount,
         used_unit: amount.unit,
         used_detail: amount.description
       }
     end
 
-    old_count = Audit.for_user(current_user).where(recipe: cocktail).count
-    create_audit(cocktail, used_reagents)
+    old_count = Audit.for_user(current_user).where(recipe: cocktail.first).count
+    create_audit(cocktail.first, used_reagents)
 
     formatted_used = used_reagents.map do |used|
       used[:used_model].name
