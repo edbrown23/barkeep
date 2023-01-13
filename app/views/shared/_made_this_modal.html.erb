@@ -1,0 +1,28 @@
+<div class="modal fade" id="madeThisModal" tabindex="-1" aria-labelledby="madeThisModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalTitle">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Choose which bottles you want to use for each required amount
+        <hr>
+        <form id="makeDrinkForm" method="post" data-remote="true">
+          <div id="reagentChoice">
+            <div class="choice-block input-group">
+              <span class="input-group-text">Drambuie <small>(1.5 oz required)</small></span>
+              <select class="form-select">
+                <option value=1234 selected>Drambuie (30 oz available)</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" form="makeDrinkForm" value="Make this drink!" />
+      </div>
+    </div>
+  </div>
+</div>

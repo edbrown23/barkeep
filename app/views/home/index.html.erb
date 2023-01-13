@@ -43,6 +43,8 @@
   <% end %>
 
   <% if user_signed_in? %>
+    <%= render 'shared/made_this_modal' %>
+
     <h1>Look at all the drinks you can make!</h1>
 
     <h3>Your recipes:</h3>
@@ -87,7 +89,7 @@
                         <% end %>
                       </tbody>
                     </table>
-                    <%= link_to "I made this!", cocktail_make_drink_path(cocktail), remote: true, method: :post, class: "btn btn-primary", data: { quantity: 1, cocktail_id: cocktail.id } %>
+                    <button data-cocktail-id=<%= cocktail.id %> data-pre-route="/cocktails" class="btn btn-primary made-this-button">Make Drink</button>
                   </div>
                 </td>
               </tr>
@@ -138,7 +140,7 @@
                         <% end %>
                       </tbody>
                     </table>
-                    <%= link_to "I made this!", cocktail_make_drink_path(cocktail), remote: true, method: :post, class: "btn btn-primary", data: { quantity: 1, cocktail_id: cocktail.id } %>
+                    <button data-cocktail-id=<%= cocktail.id %> data-shared-cocktail='true' data-pre-route="/cocktails" class="btn btn-primary made-this-button">Make Drink</button>
                   </div>
                 </td>
               </tr>

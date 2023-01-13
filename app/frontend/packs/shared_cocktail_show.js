@@ -21,8 +21,10 @@ function updateCounter(new_count) {
 }
 
 window.addEventListener("turbolinks:load", () => {
-  let makeCocktail = document.getElementById("make_cocktail_link");
-  makeCocktail.addEventListener("ajax:success", (event) => {
+  document.addEventListener("ajax:success", (event) => {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
+    myModal.toggle();
+
     let toastTemplateDoc = document.querySelector("div[data-toast-template]");
     let toastDoc = toastTemplateDoc.cloneNode(true);
     toastDoc.querySelector("span[data-toast-body]").innerHTML = makeDrinkToastHTML(event.detail[0]['cocktail_name'], event.detail[0]['reagents_used']);
@@ -49,7 +51,13 @@ window.addEventListener("turbolinks:load", () => {
     toast.show();
   });
 
-  makeCocktail.addEventListener("ajax:error", () => {
+  document.addEventListener("ajax:error", () => {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
+    myModal.toggle();
+
     makeCocktail.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
   });
+
+  const modalButton = document.querySelector('.made-this-button');
+  modalButton.addEventListener("click", lib.made_this_modal_loader.bind(this, '/cocktails'));
 });

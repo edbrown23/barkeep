@@ -57,6 +57,7 @@ class CocktailsController < ApplicationController
     @possible_units = POSSIBLE_UNITS
   end
 
+  # I'm using these routes for shared cocktails and user cocktails, which seems wrong
   def pre_make_drink
     cocktail = Recipe.where(id: params[:cocktail_id])
 
@@ -82,13 +83,14 @@ class CocktailsController < ApplicationController
       reagent_options: formatted_reagent_options
     }
 
+    # TODO: do something about modals that users don't have ingredients for
     respond_to do |format|
       format.json { render json: drink_options }
     end
   end
 
   def make_drink
-    # TODO: it shouldn't be possible to click this button if you don't have the ingredients
+    # TODO: need to update the availability of reagents in cocktail tables when this is called
     cocktail = Recipe.where(id: params[:cocktail_id])
 
     service = CocktailAvailabilityService.new(cocktail, current_user)

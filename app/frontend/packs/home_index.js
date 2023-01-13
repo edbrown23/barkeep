@@ -31,6 +31,9 @@ window.addEventListener("turbolinks:load", () => {
 
   let cocktailsSection = document.getElementById("auditResponses");
   cocktailsSection.addEventListener("ajax:success", (event) => {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
+    myModal.toggle();
+
     let toastTemplateDoc = document.querySelector("div[data-toast-template]");
     let toastDoc = toastTemplateDoc.cloneNode(true);
     toastDoc.querySelector("span[data-toast-body]").innerHTML = toastHTML(event.detail[0]['cocktail_name'], event.detail[0]['reagents_used']);
@@ -43,6 +46,14 @@ window.addEventListener("turbolinks:load", () => {
   });
 
   cocktailsSection.addEventListener("ajax:error", () => {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
+    myModal.toggle();
     cocktailsSection.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
   });
+
+  const modalButtons = document.querySelectorAll('.made-this-button');
+  modalButtons.forEach((button) => button.addEventListener("click", (event) => {
+    const baseRoute = event.target.dataset.preRoute;
+    lib.made_this_modal_loader(baseRoute, event)
+  }));
 });
