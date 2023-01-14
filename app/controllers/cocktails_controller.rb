@@ -94,7 +94,8 @@ class CocktailsController < ApplicationController
 
     drink_options = {
       name: cocktail.first.name,
-      reagent_options: formatted_reagent_options
+      reagent_options: formatted_reagent_options,
+      action: 'pre_make_drink'
     }
 
     # TODO: do something about modals that users don't have ingredients for
@@ -131,7 +132,19 @@ class CocktailsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { cocktail_name: cocktail.name, reagents_used: formatted_used, made_count: old_count + 1 } }
+      format.json { render json: { action: 'make_drink', cocktail_name: cocktail.name, reagents_used: formatted_used, made_count: old_count + 1 } }
+    end
+  end
+
+  def propose_to_share
+    cocktail = Recipe.find(params[:cocktail_id])
+
+    cocktail.proposed_to_be_shared = true
+    cocktail.proposer_user_id = current_user.id
+    cocktail.save!
+
+    respond_to do |format|
+      format.json { render json: { action: 'propose_to_share' } }
     end
   end
 

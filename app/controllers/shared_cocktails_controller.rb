@@ -2,7 +2,7 @@
 class SharedCocktailsController < ApplicationController
   before_action :authenticate_user!, only: [:add_to_account]
 
-  before_action :set_cocktail, only: [:show]
+  before_action :set_cocktail, only: [:show, :destroy]
 
   def index
     search_term = search_params['search_term']
@@ -22,6 +22,10 @@ class SharedCocktailsController < ApplicationController
 
     @reagent_categories = ReagentCategory.all.order(:name)
     @cocktails = initial_scope.order(:name)
+
+    if user_signed_in? && current_user.admin?
+      @proposal_cocktails = Recipe.where(category: 'cocktail').where('extras @> ?', { proposed_to_be_shared: true }.to_json)
+    end
   end
 
   # I want this exact function in my cocktails_controller too
@@ -53,6 +57,14 @@ class SharedCocktailsController < ApplicationController
     }
   end
 
+  def destroy
+    @cocktail.destroy if @cocktail.present?
+
+    respond_to do |format|
+      format.html { redirect_to '/shared_cocktails', alert: "#{@cocktail.name} deleted!" }
+    end
+  end
+
   def add_to_account
     # TODO it'd be cool if copied recipes stayed associated with their parent
     shared_cocktail = Recipe.find(params[:shared_cocktail_id])
@@ -73,6 +85,33 @@ class SharedCocktailsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: { cocktail_name: shared_cocktail.name } }
+    end
+  end
+
+  def promote_to_shared
+    cocktail = Recipe.find(params[:shared_cocktail_id])
+
+    Recipe.transaction do
+      cocktail.proposed_to_be_shared = false
+      cocktail.proposer_user_id = nil
+      cocktail.save!
+
+      copied_cocktail = cocktail.dup
+      copied_cocktail.user_id = nil
+      copied_cocktail.proposed_to_be_shared = false
+      copied_cocktail.save!
+
+      cocktail.reagent_amounts.each do |shared_amount|
+        copied_amount = shared_amount.dup
+        copied_amount.recipe_id = copied_cocktail.id
+        copied_amount.user_id = nil
+        
+        copied_amount.save!
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to action: 'index' }
     end
   end
 

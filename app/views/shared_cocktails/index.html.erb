@@ -30,5 +30,57 @@
       <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: true, render_counts: current_user.present? %>
       </div>
     </div>
+
+    <% if user_signed_in? && current_user.admin? %>
+      <hr>
+      <p>Review these cocktails for addition to the shared list</p>
+      <div class="col-sm">
+        <div class="table-responsive">
+          <table class="table" id="cocktailsTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Ingredients</th>
+                <th>Accept into shared?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @proposal_cocktails.each do |cocktail| %>
+                <tr>
+                  <td><%= cocktail.name.html_safe %></td>
+                  <td>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Ingredient</th>
+                          <th>Amounts</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% cocktail.reagent_amounts.each do |amount| %>
+                          <tr>
+                            <td>
+                              <samp>
+                                <% amount.tags.each_with_index do |tag, i| %>
+                                  <%= tag %><% if i != amount.tags.size - 1 %><span>, </span><% end %>
+                                <% end %>
+                              </samp>
+                            </td>
+                            <td>
+                              <%= amount.required_volume %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td><%= link_to "Accept", shared_cocktail_promote_to_shared_path(cocktail), method: "post", class: "btn btn-outline-success", data: { cocktail_id: cocktail.id } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
   </div>
 </main>

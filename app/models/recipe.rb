@@ -36,6 +36,8 @@ class Recipe < ApplicationRecord
   end
 
   extra_column :favorite, false
+  extra_column :proposed_to_be_shared, false
+  extra_column :proposer_user_id, nil
 
   def matching_reagents(current_user = nil)
     tags_array = reagent_amounts.pluck(:tags).flatten
