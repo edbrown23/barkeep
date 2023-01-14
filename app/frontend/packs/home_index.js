@@ -29,7 +29,7 @@ window.addEventListener("turbolinks:load", () => {
     }
   });
 
-  let cocktailsSection = document.getElementById("auditResponses");
+  let cocktailsSection = document.getElementById("homeContainer");
   cocktailsSection.addEventListener("ajax:success", (event) => {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
     myModal.toggle();
