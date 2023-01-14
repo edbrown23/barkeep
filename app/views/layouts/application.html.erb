@@ -16,6 +16,7 @@
     <% if content_for? :per_page_js %>
       <%= yield :per_page_js %>
     <% end %>
+    <%= javascript_pack_tag 'navbar', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -28,30 +29,30 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="/">Home</a>
+              <a class="nav-link" href="/">Home</a>
             </li>
             <% if user_signed_in? %>
             <li class="nav-item">
-              <a class="nav-link active" href="/cocktails">Your Cocktail List</a>
+              <a class="nav-link" href="/cocktails">Your Cocktail List</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/reagents">Your Bottles</a>
+              <a class="nav-link" href="/reagents">Your Bottles</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/shopping">Shopping Help</a>
+              <a class="nav-link" href="/shopping">Shopping Help</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/audits">Audit Log</a>
+              <a class="nav-link" href="/audits">Audit Log</a>
             </li>
             <% end %>
           </ul>
           <div class="d-flex ms-auto">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" href="/reagent_categories">Categories</a>
+                <a class="nav-link" href="/reagent_categories">Categories</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/shared_cocktails">Shared Cocktail List</a>
+                <a class="nav-link" href="/shared_cocktails">Shared Cocktail List</a>
               </li>
               <% if user_signed_in? %>
               <div class="navbar-text me-2">Hi <%= current_user.email %> (<%= link_to 'edit account', edit_user_registration_path %>)</div>
