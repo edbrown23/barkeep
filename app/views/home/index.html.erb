@@ -53,8 +53,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>name</th>
-              <th>Edit</th>
+              <th>Name</th>
               <th>Show Ingredients</th>
               <th>Ingredients</th>
             </tr>
@@ -62,8 +61,7 @@
           <tbody>
             <% @users_available.each do |cocktail| %>
               <tr>
-                <td><%= cocktail.name.html_safe %></td>
-                <td><%= link_to 'Edit', cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
+                <td><%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %></td>
                 <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
                 <td>
                   <div class="collapse" id="ingredients_<%= cocktail.id %>">
@@ -104,8 +102,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>name</th>
-              <th>Edit</th>
+              <th>Name</th>
               <th>Show Ingredients</th>
               <th>Ingredients</th>
             </tr>
@@ -113,8 +110,7 @@
           <tbody>
             <% @shared_available.each do |cocktail| %>
               <tr>
-                <td><%= cocktail.name.html_safe %></td>
-                <td><%= link_to 'Edit', shared_cocktail_path(cocktail), class: 'btn btn-outline-primary' %></td>
+                <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
                 <td><button class="btn btn-outline-info" type="button" data-bs-toggle="collapse" data-bs-target="#ingredients_<%= cocktail.id %>" data-toggled="false">Show Ingredients</button></td>
                 <td>
                   <div class="collapse" id="ingredients_<%= cocktail.id %>">
