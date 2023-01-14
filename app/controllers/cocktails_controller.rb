@@ -4,29 +4,43 @@ class CocktailsController < ApplicationController
 
   POSSIBLE_UNITS = ['oz', 'ml', 'tsp', 'tbsp', 'dash', 'cup', 'unknown']
 
-  # TODO: there's a lot of opportunity to share code here
+  # TODO: this code is entirely copied between the shared controller and this one :(
   def index
     search_term = search_params['search_term']
+    tags_search = search_params['search_tags']
+
+    initial_scope = Recipe.for_user(current_user).where(category: 'cocktail')
 
     if search_term.present? && search_term.size > 0
-      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:name)
-    else
-      @cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:name)
+      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
     end
+
+    if tags_search.present? && tags_search.size > 0
+      amounts = ReagentAmount.for_user(current_user).with_tags(Array.wrap(tags_search))
+      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
+    end
+
+    @reagent_categories = ReagentCategory.all.order(:name)
+    @cocktails = initial_scope.order(:name)
   end
 
   # SO GROSS that I'm repeating this, but it's late at night
   def available_counts
     search_term = search_params['search_term']
+    tags_search = search_params['search_tags']
 
-    # force lookup for non-user mapped cocktails
+    initial_scope = Recipe.for_user(current_user).where(category: 'cocktail')
+
     if search_term.present? && search_term.size > 0
-      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:name)
-    else
-      cocktails = Recipe.for_user(current_user).where(category: 'cocktail').order(:name)
+      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
     end
 
-    cocktail_service = CocktailAvailabilityService.new(cocktails, current_user)
+    if tags_search.present? && tags_search.size > 0
+      amounts = ReagentAmount.for_user(current_user).with_tags(Array.wrap(tags_search))
+      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
+    end
+
+    cocktail_service = CocktailAvailabilityService.new(initial_scope, current_user)
 
     respond_to do |format|
       format.json { render json: { available_counts: cocktail_service.available_counts } }
@@ -202,44 +216,45 @@ class CocktailsController < ApplicationController
   end
 
   private
-    def set_cocktail
-      # TODO: handle 404
-      @cocktail = Recipe.for_user(current_user).find(params[:id])
-    end
 
-    def cocktail_params
-      permitted = params
-        .require(:cocktail)
-          .permit(:name, :favorite, amounts: [[tags: [:tag, :new]], :amount, :unit])
+  def set_cocktail
+    # TODO: handle 404
+    @cocktail = Recipe.for_user(current_user).find(params[:id])
+  end
 
-      {}.tap do |final_params|
-        final_params[:name] = permitted[:name]
-        final_params[:favorite] = permitted[:favorite]
-        final_params[:reagent_amounts] = permitted[:amounts].map do |amount|
-          {
-            reagent_amount: amount[:amount],
-            reagent_unit: amount[:unit],
-            tags: amount[:tags]
-          }
-        end
-      end
-    end
+  def cocktail_params
+    permitted = params
+      .require(:cocktail)
+        .permit(:name, :favorite, amounts: [[tags: [:tag, :new]], :amount, :unit])
 
-    def search_params
-      params.permit(:search_term)
-    end
-
-    def create_audit(cocktail, used_reagents)
-      audit_info = used_reagents.map do |used|
+    {}.tap do |final_params|
+      final_params[:name] = permitted[:name]
+      final_params[:favorite] = permitted[:favorite]
+      final_params[:reagent_amounts] = permitted[:amounts].map do |amount|
         {
-          reagent_id: used[:used_model].id,
-          reagent_name: used[:used_model].name,
-          amount_used: used[:used_amount],
-          unit_used: used[:used_unit],
-          description: used[:used_detail]
+          reagent_amount: amount[:amount],
+          reagent_unit: amount[:unit],
+          tags: amount[:tags]
         }
       end
-
-      Audit.create!(user_id: current_user.id, recipe: cocktail, info: {reagents: audit_info})
     end
+  end
+
+  def search_params
+    params.permit(:search_term, search_tags: [])
+  end
+
+  def create_audit(cocktail, used_reagents)
+    audit_info = used_reagents.map do |used|
+      {
+        reagent_id: used[:used_model].id,
+        reagent_name: used[:used_model].name,
+        amount_used: used[:used_amount],
+        unit_used: used[:used_unit],
+        description: used[:used_detail]
+      }
+    end
+
+    Audit.create!(user_id: current_user.id, recipe: cocktail, info: {reagents: audit_info})
+  end
 end

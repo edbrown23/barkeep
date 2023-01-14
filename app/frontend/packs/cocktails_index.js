@@ -71,4 +71,10 @@ window.addEventListener("turbolinks:load", () => {
   cocktailTable.addEventListener("ajax:error", () => {
     cocktailTable.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
   });
+
+  const select2Config = {
+    theme: 'bootstrap-5'
+  };
+
+  $('.ingredient-select').select2(select2Config);
 });

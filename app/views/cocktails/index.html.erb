@@ -4,20 +4,33 @@
 <main>
   <div class="container">
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <%= form_with(url: "/cocktails", method: "GET") do |form| %>
           <div class="field mb-1">
             <%= form.label :search_term, class: "form-label" %>
             <%= form.text_field :search_term, class: "form-control", value: params['search_term'] %>
           </div>
 
+          <div class="field mb-2">
+            <%= form.label :ingredient_search, class: "form-label" %>
+            <select class="form-select ingredient-select" name="search_tags[]" multiple="multiple">
+              <% @reagent_categories.each do |reagent_category| %>
+                <option value=<%= reagent_category.external_id %><% if params['search_tags'].present? && params['search_tags'].include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
+              <% end %>
+            </select>
+            <div class="form-text">This is an OR query</div>
+          </div>
+
           <div class="action mb-1">
             <%= form.submit "Search", class: "btn btn-primary" %>
           </div>
+
         <% end %>
+        <hr>
         <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary' %>
       </div>
-      <div class="col-sm-10">
+
+      <div class="col-sm-9">
       <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in? %>
       </div>
     </div>

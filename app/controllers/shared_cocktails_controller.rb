@@ -6,27 +6,41 @@ class SharedCocktailsController < ApplicationController
 
   def index
     search_term = search_params['search_term']
+    tags_search = search_params['search_tags']
+
+    initial_scope = Recipe.for_user(nil).where(category: 'cocktail')
 
     # force lookup for non-user mapped cocktails
     if search_term.present? && search_term.size > 0
-      @cocktails = Recipe.for_user(nil).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:name)
-    else
-      @cocktails = Recipe.for_user(nil).where(category: 'cocktail').order(:name)
+      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
     end
+
+    if tags_search.present? && tags_search.size > 0
+      amounts = ReagentAmount.for_user(nil).with_tags(Array.wrap(tags_search))
+      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
+    end
+
+    @reagent_categories = ReagentCategory.all.order(:name)
+    @cocktails = initial_scope.order(:name)
   end
 
   # I want this exact function in my cocktails_controller too
   def available_counts
     search_term = search_params['search_term']
+    tags_search = search_params['search_tags']
 
-    # force lookup for non-user mapped cocktails
+    initial_scope = Recipe.for_user(nil).where(category: 'cocktail')
+
     if search_term.present? && search_term.size > 0
-      cocktails = Recipe.for_user(nil).where(category: 'cocktail').where('name ILIKE ?', "%#{search_term}%").order(:name)
-    else
-      cocktails = Recipe.for_user(nil).where(category: 'cocktail').order(:name)
+      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
     end
 
-    cocktail_service = CocktailAvailabilityService.new(cocktails, current_user)
+    if tags_search.present? && tags_search.size > 0
+      amounts = ReagentAmount.for_user(nil).with_tags(Array.wrap(tags_search))
+      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
+    end
+
+    cocktail_service = CocktailAvailabilityService.new(initial_scope, current_user)
 
     respond_to do |format|
       format.json { render json: { available_counts: cocktail_service.available_counts } }
@@ -69,6 +83,6 @@ class SharedCocktailsController < ApplicationController
   end
 
   def search_params
-    params.permit(:search_term)
+    params.permit(:search_term, search_tags: [])
   end
 end
