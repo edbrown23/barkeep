@@ -81,7 +81,7 @@
                                 <% end %>
                               </samp>
                             </td>
-                            <td><%= reagent_amount.amount %></td>
+                            <td><%= "#{reagent_amount.amount} #{reagent_amount.unit}" %></td>
                           </tr>
                         <% end %>
                       </tbody>
@@ -130,7 +130,7 @@
                                   <% end %>
                                 </samp>
                               </td>
-                              <td><%= reagent_amount.amount %></td>
+                              <td><%= "#{reagent_amount.amount} #{reagent_amount.unit}" %></td>
                             </tr>
                           <% end %>
                         </tbody>
