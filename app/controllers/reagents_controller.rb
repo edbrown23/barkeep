@@ -16,6 +16,7 @@ class ReagentsController < ApplicationController
   def new
     @reagent = Reagent.new(user_id: current_user.id)
     @reagent_categories = ReagentCategory.all.order(:name)
+    @possible_units = POSSIBLE_UNITS
   end
 
   def show
@@ -26,6 +27,7 @@ class ReagentsController < ApplicationController
   end
 
   def edit
+    @possible_units = POSSIBLE_UNITS
   end
 
   def refill
@@ -107,7 +109,7 @@ class ReagentsController < ApplicationController
       # I bet we could pull this from the model, that would be cool
       params
         .require(:reagent)
-          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, tags: [])
+          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :description, tags: [])
     end
 
     def search_params

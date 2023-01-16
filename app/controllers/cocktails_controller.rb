@@ -2,8 +2,6 @@ class CocktailsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
 
-  POSSIBLE_UNITS = ['oz', 'ml', 'tsp', 'tbsp', 'dash', 'cup', 'unknown']
-
   # TODO: this code is entirely copied between the shared controller and this one :(
   def index
     search_term = search_params['search_term']
