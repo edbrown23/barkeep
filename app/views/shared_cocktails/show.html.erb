@@ -3,13 +3,25 @@
 <% end %>
 <main>
   <div class="container">
+    <%= render 'shared/notice' %>
 
-    <p id="notice"><%= notice %></p>
+    <div class="row mt-3">
+      <div class="col-sm-3">
+        <p>
+          <strong>Name:</strong>
+          <%= @cocktail.name.html_safe %>
+        </p>
+      </div>
+      <div class="col">
+        <strong>Cocktail Stats:</strong>
+        <% if user_signed_in? %>
+        <p>You've made this drink <span id="made_count"><%= @stats[:made_count] %></span> times!</p>
+        <% end %>
+        <p>All Barkeep users have made this drink <span id="made_globally_count"><%= @stats[:made_globally_count] %></span> times!</p>
+      </div>
+    </div>
 
-    <p>
-      <strong>Name:</strong>
-      <%= @cocktail.name.html_safe %>
-    </p>
+    <hr>
 
     <p>
       <strong>Ingredients:</strong>
@@ -42,13 +54,6 @@
         </tbody>
       </table>
     </div>
-
-    <% if user_signed_in? %>
-    <hr>
-    <strong>Cocktail Stats</strong>
-    <span>You've made this drink <span id="made_count"><%= @stats[:made_count] %></span> times!</span>
-    <hr>
-    <% end %>
 
     <% if user_signed_in? %>
       <%= link_to 'Promote to your list', shared_cocktail_add_to_account_path(@cocktail), class: "btn btn-primary", id: 'promote_link', method: :post, remote: true %>

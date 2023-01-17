@@ -16,8 +16,9 @@ function promoteToastHTML(cocktail_name) {
   `;
 }
 
-function updateCounter(new_count) {
+function updateCounters(new_count, new_global_count) {
   document.getElementById("made_count").innerHTML = new_count
+  document.getElementById("made_globally_count").innerHTML = new_count
 }
 
 window.addEventListener("turbolinks:load", () => {
@@ -35,7 +36,7 @@ window.addEventListener("turbolinks:load", () => {
 
     toast.show();
 
-    updateCounter(event.detail[0]['made_count']);
+    updateCounters(event.detail[0]['made_count'], event.detail[0]['made_globally_count']);
   });
 
   let promoteCocktail = document.getElementById("promote_link");

@@ -53,7 +53,8 @@ class SharedCocktailsController < ApplicationController
 
   def show
     @stats = {
-      made_count: Audit.for_user(current_user).where(recipe: @cocktail).count
+      made_count: Audit.for_user(current_user).where(recipe: @cocktail).count,
+      made_globally_count: Audit.where(recipe: @cocktail).count
     }
   end
 

@@ -56,7 +56,8 @@ class CocktailsController < ApplicationController
 
   def show
     @stats = {
-      made_count: Audit.for_user(current_user).where(recipe: @cocktail).count
+      made_count: Audit.for_user(current_user).where(recipe: @cocktail).count,
+      made_globally_count: Audit.where(recipe: @cocktail).count
     }
     flash.notice = params[:notice] if params[:notice].present?
   end
@@ -125,6 +126,7 @@ class CocktailsController < ApplicationController
     end
 
     old_count = Audit.for_user(current_user).where(recipe: cocktail.first).count
+    old_global_count = Audit.where(recipe: cocktail.first).count
     create_audit(cocktail.first, used_reagents)
 
     formatted_used = used_reagents.map do |used|
@@ -132,7 +134,7 @@ class CocktailsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { action: 'make_drink', cocktail_name: cocktail.name, reagents_used: formatted_used, made_count: old_count + 1 } }
+      format.json { render json: { action: 'make_drink', cocktail_name: cocktail.name, reagents_used: formatted_used, made_count: old_count + 1, made_globally_count: old_global_count + 1 } }
     end
   end
 
