@@ -48,15 +48,8 @@ class Recipe < ApplicationRecord
     end
   end
 
-  # I bet using scopes for this is just wrong
-  scope :all_available, ->(current_user) do
-    # iterate recipes
-    # check if I have enough volume in every reagent in the cocktail to make it
-    all_cocktails = where(category: 'cocktail')
-    all_cocktails.filter do |cocktail|
-      cocktail.matching_reagents(current_user).all? do |required, available|
-        available.present? && available.any? { |bottle| bottle.current_volume > required.required_volume }
-      end
-    end
+  def user_can_make?(current_user)
+    service = CocktailAvailabilityService.new(Recipe.where(id: self.id), current_user)
+    service.cocktail_availability(self)[:missing_tags].blank?
   end
 end
