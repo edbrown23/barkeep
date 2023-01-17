@@ -35,9 +35,13 @@ class ReagentAmount < ApplicationRecord
     Reagent.for_user(current_user).with_tags(tags)
   end
 
-  def reagent_available?(current_user)
-    matching_reagents(current_user).any? do |reagent|
-      reagent.current_volume >= required_volume
+  def reagent_availability(current_user)
+    matching_reagents(current_user).map do |reagent|
+      {
+        available: reagent.current_volume,
+        required: required_volume,
+        enough: reagent.current_volume >= required_volume
+      }
     end
   end
 

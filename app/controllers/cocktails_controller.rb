@@ -81,10 +81,12 @@ class CocktailsController < ApplicationController
         tags: amount.tags.join(', '),
         required: amount.required_volume.to_s,
         bottle_choices: bottles.map do |b|
+          current = b.current_volume
           {
             id: b.id,
             name: b.name,
-            volume_available: b.current_volume.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false)
+            volume_available: current.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false),
+            enough: current >= amount.required_volume
           }
         end
       }
