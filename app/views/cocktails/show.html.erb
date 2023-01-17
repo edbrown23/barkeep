@@ -71,7 +71,6 @@
       <span>You can make this drink! If you want to, click here:</span>
       <button class="btn btn-success made-this-button" id='make_cocktail_link' data-cocktail-id=<%= @cocktail.id %>>Make Drink</button>
       <% else %>
-      <span>You're missing at least one of the reagents required to make this drink. Follow this legend to read the chart above:</span>
       <%= render 'shared/reagents_guide' %>
       <% end %>
     </p>
