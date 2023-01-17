@@ -19,7 +19,7 @@ class Recipe < ApplicationRecord
   include UserScopable
 
   has_many :reagent_amounts, dependent: :destroy
-  has_many :audits, dependent: :destroy
+  has_many :audits
 
   class << self
     # could be a module, plus this is all probabyl dumb and a gem or whatever

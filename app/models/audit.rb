@@ -21,6 +21,10 @@ class Audit < ApplicationRecord
 
   ReagentUsed = Struct.new(:name, :amount, :unit, :description, keyword_init: true)
 
+  def backup_name
+    info['cocktail_name']
+  end
+
   def reagents
     @reagents ||= info['reagents'].map do |used|
       ReagentUsed.new(

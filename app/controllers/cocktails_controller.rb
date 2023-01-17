@@ -268,6 +268,6 @@ class CocktailsController < ApplicationController
       }
     end
 
-    Audit.create!(user_id: current_user.id, recipe: cocktail, info: {reagents: audit_info})
+    Audit.create!(user_id: current_user.id, recipe: cocktail, info: {cocktail_name: cocktail.name, reagents: audit_info})
   end
 end

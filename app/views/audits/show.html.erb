@@ -4,7 +4,15 @@
 
     <p>
       <strong>Drink Made:</strong>
-      <span><%= @audit.recipe.name.html_safe %></span>
+      <% if @audit.recipe.present? %>
+        <% if @audit.recipe.user_id.present? %>
+        <span><%= link_to @audit.recipe.name.html_safe, cocktail_path(@audit.recipe) %></span>
+        <% else %>
+        <span><%= link_to @audit.recipe.name.html_safe, shared_cocktail_path(@audit.recipe) %></span>
+        <% end %>
+      <% else %>
+        <span><%= @audit.backup_name.html_safe %></span>
+      <% end %>
     </p>
 
     <p>
