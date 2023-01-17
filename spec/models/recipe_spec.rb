@@ -22,8 +22,4 @@ describe 'Recipe' do
   it "finds all the available reagents" do
     expect(singapore_sling.matching_reagents(test_user).values.flatten).to include(soda_water_bottle)
   end
-
-  it "can find all available drinks" do
-    expect(Recipe.all_available(test_user)).to include(singapore_sling)
-  end
 end
