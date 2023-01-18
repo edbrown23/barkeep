@@ -19,9 +19,9 @@
               <td>
               <% cocktails.each_with_index do |cocktail, i| %>
                 <% if cocktail.user_id.present? %>
-                <%= link_to cocktail.name, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
+                <%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
                 <% else %>
-                <%= link_to cocktail.name, shared_cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
+                <%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
                 <% end %>
               <% end %>
               </td>
