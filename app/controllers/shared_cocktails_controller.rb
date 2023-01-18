@@ -73,6 +73,7 @@ class SharedCocktailsController < ApplicationController
     Recipe.transaction do
       copied_cocktail = shared_cocktail.dup
       copied_cocktail.user_id = current_user.id
+      copied_cocktail.parent = shared_cocktail
       copied_cocktail.save!
 
       shared_cocktail.reagent_amounts.each do |shared_amount|
@@ -100,6 +101,7 @@ class SharedCocktailsController < ApplicationController
       copied_cocktail = cocktail.dup
       copied_cocktail.user_id = nil
       copied_cocktail.proposed_to_be_shared = false
+      copied_cocktail.parent_id = nil
       copied_cocktail.save!
 
       cocktail.reagent_amounts.each do |shared_amount|

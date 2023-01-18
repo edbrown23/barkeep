@@ -26,6 +26,9 @@
         <p>You've made this drink <span id="made_count"><%= @stats[:made_count] %></span> times!</p>
       </div>
     </div>
+    <% if @cocktail.parent.present? %>
+      <p><small>This recipe was originally copied from the <%= link_to @cocktail.parent.name.html_safe, shared_cocktail_path(@cocktail.parent) %></small></p>
+    <% end %>
 
     <hr>
 

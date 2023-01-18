@@ -180,7 +180,8 @@ CREATE TABLE public.recipes (
     category character varying NOT NULL,
     description text,
     extras jsonb,
-    user_id bigint
+    user_id bigint,
+    parent_id bigint
 );
 
 
@@ -468,6 +469,13 @@ CREATE INDEX index_reagents_on_user_id ON public.reagents USING btree (user_id);
 
 
 --
+-- Name: index_recipes_on_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_recipes_on_parent_id ON public.recipes USING btree (parent_id);
+
+
+--
 -- Name: index_recipes_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -523,6 +531,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220923222955'),
 ('20221221233756'),
 ('20221223230832'),
-('20221227230345');
+('20221227230345'),
+('20230117235427');
 
 

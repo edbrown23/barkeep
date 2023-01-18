@@ -10,16 +10,20 @@
 #  description :text
 #  extras      :jsonb
 #  user_id     :bigint
+#  parent_id   :bigint
 #
 # Indexes
 #
-#  index_recipes_on_user_id  (user_id)
+#  index_recipes_on_parent_id  (parent_id)
+#  index_recipes_on_user_id    (user_id)
 #
 class Recipe < ApplicationRecord
   include UserScopable
 
   has_many :reagent_amounts, dependent: :destroy
   has_many :audits
+  belongs_to :parent, class_name: Recipe.name, primary_key: :id
+  has_many :children, class_name: Recipe.name, foreign_key: :parent_id
 
   class << self
     # could be a module, plus this is all probabyl dumb and a gem or whatever
