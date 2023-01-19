@@ -18,5 +18,6 @@ class HomeController < ApplicationController
   end
 
   def logged_out_index
+    @shared_cocktails_count = Recipe.where(category: 'cocktail').for_user(nil).count
   end
 end

@@ -9,6 +9,7 @@
       <h1 class="display-5 fw-bold">Welcome to Barkeep!</h1>
       <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">Easily track your home bar and see what cocktails you can make with what you already have!</p>
+        <p class="lead mb-4">We have a list of <%= @shared_cocktails_count.round(-1) %>+ recipes to get started.</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
           <%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary btn-lg px-4 gap-3" %>
           <span class="mt-2 text-muted"> - or - </span>
@@ -23,7 +24,7 @@
           <i class="bi-cup-straw"></i>
         </div>
         <h2>See what drinks you can make</h2>
-        <p>Always wondering if you have enough ingredients for your favorite mojito? Barkeep tracks the bottles in your bar and tells you each and every drink you can make from our extensive database of cocktail recipes.</p>
+        <p>Always wondering if you have enough ingredients for your favorite mojito? Barkeep tracks the bottles in your bar and tells you each and every drink you can make from our <%= link_to 'extensive database', shared_cocktails_path %> of cocktail recipes.</p>
       </div>
       <div class="feature col">
         <div class="feature-icon bg-primary bg-gradient">
