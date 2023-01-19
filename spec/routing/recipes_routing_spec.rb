@@ -10,10 +10,12 @@
 #  description :text
 #  extras      :jsonb
 #  user_id     :bigint
+#  parent_id   :bigint
 #
 # Indexes
 #
-#  index_recipes_on_user_id  (user_id)
+#  index_recipes_on_parent_id  (parent_id)
+#  index_recipes_on_user_id    (user_id)
 #
 require "rails_helper"
 
