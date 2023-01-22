@@ -22,7 +22,7 @@ class Recipe < ApplicationRecord
 
   has_many :reagent_amounts, dependent: :destroy
   has_many :audits
-  belongs_to :parent, class_name: Recipe.name, primary_key: :id
+  belongs_to :parent, class_name: Recipe.name, primary_key: :id, optional: true
   has_many :children, class_name: Recipe.name, foreign_key: :parent_id
 
   class << self
