@@ -1,11 +1,29 @@
+const select2Config = {
+  theme: 'bootstrap-5',
+  tags: true,
+  createTag: (params) => {
+    // probably don't need jquery here
+    var term = $.trim(params.term);
+
+    if (term === '') {
+      return null;
+    }
+
+    return {
+      id: term,
+      text: term,
+      newTag: true
+    }
+  }
+};
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
 
-function deleteIngredient(event) {
-  let buttonClicked = event.target;
+function handleDelete(buttonClicked, event) {
   let docId = buttonClicked.dataset.docId;
 
   if (!docId) {
@@ -18,6 +36,58 @@ function deleteIngredient(event) {
   }
 
   toRemove.remove();
+}
+
+function handleMoreIngredients(event) {
+  let idHit = event.target.id;
+
+  if (idHit != "more-ingredients-trigger") {
+    return;
+  }
+
+  event.preventDefault();
+
+  const template = document.querySelector("#base-reagent-group");
+
+  const duplicated = template.cloneNode(true);
+  const docId = getRandomInt(2, 100000);
+  duplicated.id = docId;
+  duplicated.hidden = false;
+
+  duplicated.querySelector(".delete-button").dataset.docId = docId;
+
+  duplicated.querySelector(".ingredient-select").id = `select-${docId}`;
+
+  // setup required values, which can't be set on the hidden form
+  duplicated.querySelector(".ingredient-select").setAttribute('required', true);
+  duplicated.querySelector(".amount-input").setAttribute('required', true);
+
+  const ingredientsElement = document.querySelector("#ingredients");
+  ingredientsElement.appendChild(duplicated);
+
+  $(`#select-${docId}`).select2(select2Config);
+  $(`#select-${docId}`).on('select2:select', newTagHandler);
+}
+
+function handleQuickSelect(event) {
+  console.log(event);
+}
+
+function handleClicks(event) {
+  let buttonClicked = event.target;
+  let action = buttonClicked.dataset.action;
+
+  switch (action) {
+    case "more-ingredients":
+      handleMoreIngredients(event);
+      break;
+    case "delete-reagent":
+      handleDelete(buttonClicked, event);
+      break;
+    case "quick-select":
+      handleQuickSelect(event);
+      break;
+  }
 }
 
 function parseForm() {
@@ -113,56 +183,6 @@ window.addEventListener("turbolinks:load", () => {
   }
   reagentTemplate.dataset.duplicateConfigured = true;
 
-  const select2Config = {
-    theme: 'bootstrap-5',
-    tags: true,
-    createTag: (params) => {
-      // probably don't need jquery here
-      var term = $.trim(params.term);
-  
-      if (term === '') {
-        return null;
-      }
-  
-      return {
-        id: term,
-        text: term,
-        newTag: true
-      }
-    }
-  };
-  
-  document.addEventListener("click", (event) => {
-    let idHit = event.target.id;
-
-    if (idHit != "more-ingredients-trigger") {
-      return;
-    }
-
-    event.preventDefault();
-
-    const template = document.querySelector("#base-reagent-group");
-
-    const duplicated = template.cloneNode(true);
-    const docId = getRandomInt(2, 100000);
-    duplicated.id = docId;
-    duplicated.hidden = false;
-
-    duplicated.querySelector(".delete-button").dataset.docId = docId;
-
-    duplicated.querySelector(".ingredient-select").id = `select-${docId}`;
-
-    // setup required values, which can't be set on the hidden form
-    duplicated.querySelector(".ingredient-select").setAttribute('required', true);
-    duplicated.querySelector(".amount-input").setAttribute('required', true);
-
-    const ingredientsElement = document.querySelector("#ingredients");
-    ingredientsElement.appendChild(duplicated);
-
-    $(`#select-${docId}`).select2(select2Config);
-    $(`#select-${docId}`).on('select2:select', newTagHandler);
-  });
-
   // This is the setup for existing ingredients
   const existingIngredients = document.querySelectorAll("[data-edit-ingredients='true']");
   existingIngredients.forEach((element) => {
@@ -173,7 +193,7 @@ window.addEventListener("turbolinks:load", () => {
 
   $('.ingredient-select[data-existing-select="true"]').on('select2:select', newTagHandler);
 
-  document.addEventListener("click", deleteIngredient);
+  document.addEventListener("click", handleClicks);
 
   // The following sets up the form submission logic
   document.querySelector("#cocktailForm").addEventListener("submit", handleFormSubmission);
