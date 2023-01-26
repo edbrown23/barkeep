@@ -69,8 +69,11 @@ function handleMoreIngredients(event) {
   $(`#select-${docId}`).on('select2:select', newTagHandler);
 }
 
-function handleQuickSelect(event) {
-  console.log(event);
+function handleQuickSelect(buttonClicked, event) {
+  let groupClicked = event.target.parentElement.parentElement.parentElement;
+
+  groupClicked.querySelector('.amount-input').value = buttonClicked.dataset.amount;
+  groupClicked.querySelector('.unit-input').value = buttonClicked.dataset.unit;
 }
 
 function handleClicks(event) {
@@ -85,7 +88,7 @@ function handleClicks(event) {
       handleDelete(buttonClicked, event);
       break;
     case "quick-select":
-      handleQuickSelect(event);
+      handleQuickSelect(buttonClicked, event);
       break;
   }
 }

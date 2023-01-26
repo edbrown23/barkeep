@@ -12,19 +12,26 @@
       <div class="form-text">You can add new tags if they don't appear in the dropdown</div>
     </div>
   </div>
-  <div class="row m-3">
-    <div class="col-sm mb-3">
-      <div class="input-group">
-        <span class="input-group-text">Reagent Amount</span>
-        <% if editing %>
-        <%= form.text_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true, value: reagent_amount.amount %>
-        <% else %>
-        <%= form.text_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
-        <% end %>
+  <div class="row m-3 input-row">
+    <div class="col-auto mb-3">
+      <label>Quick Selects:</label>
+      <div class="border rounded p-3">
+        <button class="btn btn-outline-secondary quick-select-button" type="button" data-action="quick-select" data-amount="1.5" data-unit="oz">1.5 oz</button>
+        <button class="btn btn-outline-secondary quick-select-button" type="button" data-action="quick-select" data-amount="0.75" data-unit="oz">0.75 oz</button>
+        <button class="btn btn-outline-secondary quick-select-button" type="button" data-action="quick-select" data-amount="0.5" data-unit="oz">0.5 oz</button>
       </div>
     </div>
 
     <div class="col-sm">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Reagent Amount</span>
+        <% if editing %>
+        <%= form.number_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true, value: reagent_amount.amount %>
+        <% else %>
+        <%= form.number_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
+        <% end %>
+      </div>
+
       <div class="input-group">
         <span class="input-group-text">Reagent Unit</span>
         <select class="form-select unit-input" name="recipe[ingredients][reagent_unit][]">
