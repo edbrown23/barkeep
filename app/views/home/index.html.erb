@@ -47,7 +47,7 @@
     <%= render 'shared/made_this_modal' %>
 
     <div class="display-3">Drinks you can make right now</div>
-    <div class="display-5">Your Cocktails:</div>
+    <div class="display-5">These <%= @users_available.count %> Cocktails:</div>
     <div class="row">
       <div class="col-sm-10 table-responsive">
         <table class="table">
@@ -96,7 +96,7 @@
         </table>
       </div>
 
-      <div class="display-5">Shared Cocktails:</div>
+      <div class="display-5">These <%= @shared_available.count %> Shared Cocktails:</div>
       <div class="row">
         <div class="col-sm-10 table-responsive">
           <table class="table">
