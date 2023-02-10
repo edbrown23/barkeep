@@ -42,6 +42,16 @@ class ReagentAmount < ApplicationRecord
         required: required_volume,
         enough: reagent.current_volume >= required_volume
       }
+    end.tap do |matching|
+      # Unitless reagents are always available
+      if unitless?
+        matching << {
+          available: required_volume,
+          required: required_volume,
+          enough: true,
+          garnish: true
+        }
+      end
     end
   end
 

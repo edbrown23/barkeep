@@ -48,7 +48,7 @@
         <tbody>
           <% @cocktail.reagent_amounts.each do |reagent_amount| %>
             <% availability = reagent_amount.reagent_availability(current_user) %>
-            <tr <% if availability.any? { |a| a[:enough] } %> class="table-success"<% elsif availability.present? %> class="table-warning"<% end %>>
+            <tr <% if availability.any? { |a| a[:garnish] } %> class="table-info"<% elsif availability.any? { |a| a[:enough] } %> class="table-success"<% elsif availability.present? %> class="table-warning"<% end %>>
               <td>
                 <samp>
                   <% reagent_amount.tags.each_with_index do |tag, i| %>

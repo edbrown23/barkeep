@@ -114,6 +114,7 @@ class CocktailsController < ApplicationController
 
     used_reagents = reagent_options.map do |(amount, bottles)|
       chosen_bottle = bottles.find { |b| params[:bottles][:chosen_id].include?(b.id.to_s) }
+      next unless chosen_bottle.present?
       
       chosen_bottle.subtract_usage(amount.required_volume)
 
@@ -123,7 +124,7 @@ class CocktailsController < ApplicationController
         used_unit: amount.unit,
         used_detail: amount.description
       }
-    end
+    end.compact
 
     old_count = Audit.for_user(current_user).where(recipe: cocktail.first).count
     old_global_count = Audit.where(recipe: cocktail.first).count

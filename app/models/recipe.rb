@@ -54,6 +54,7 @@ class Recipe < ApplicationRecord
 
   def user_can_make?(current_user)
     service = CocktailAvailabilityService.new(Recipe.where(id: self.id), current_user)
-    service.cocktail_availability(self)[:missing_tags].blank?
+    availability = service.cocktail_availability(self)
+    availability[:required] - availability[:available] <= 0
   end
 end

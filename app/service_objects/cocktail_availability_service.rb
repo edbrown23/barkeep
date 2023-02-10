@@ -21,7 +21,7 @@ class CocktailAvailabilityService
         (bottle.current_volume >= required.required_volume).tap do |available|
           available ? available_tags.concat(required.tags) : under_volume_tags.concat(required.tags)
         end
-      end ? 1 : 0
+      end || required.unitless? ? 1 : 0
     end
     {
       available: available_bottles,
