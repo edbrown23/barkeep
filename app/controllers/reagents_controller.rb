@@ -33,7 +33,7 @@ class ReagentsController < ApplicationController
   def refill
     # I don't know why this route sends the id as "reagent_id" instead of "id". probably some nested route magic
     reagent = Reagent.for_user(current_user).find_by(id: params['reagent_id'])
-    reagent.update!(current_volume: reagent.max_volume) if reagent.present?
+    reagent.update!(current_volume: reagent.current_volume + reagent.max_volume) if reagent.present?
 
     respond_to do |format|
       format.html { redirect_to reagent, notice: "#{reagent.name} refilled" }

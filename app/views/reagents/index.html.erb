@@ -44,7 +44,7 @@
                   </td>
                   <td data-volume-row><%= reagent.current_volume %></td>
                   <td><%= reagent.max_volume %></td>
-                  <td><%= link_to "Refill", reagent_refill_path(reagent), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id } %></td>
+                  <td><%= link_to "Refill", reagent_refill_path(reagent, format: 'json'), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id } %></td>
                   <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
                 </tr>
               <% end %>
