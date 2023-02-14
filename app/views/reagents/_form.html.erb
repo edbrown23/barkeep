@@ -17,14 +17,14 @@
 
   <div class="field mb-3">
     <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+    <%= form.text_field :name, class: "form-control", value: params[:name] || reagent.name %>
   </div>
 
   <div class="field mb-3">
     <%= form.label :tags, class: "form-label" %>
     <select class="form-select ingredient-select" name="reagent[tags][]" multiple="multiple">
       <% @reagent_categories.each do |reagent_category| %>
-        <option value=<%= reagent_category.external_id %><% if reagent.tags.include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
+        <option value=<%= reagent_category.external_id %><% if params[:tags]&.include?(reagent_category.external_id) || reagent.tags.include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
       <% end %>
     </select>
   </div>

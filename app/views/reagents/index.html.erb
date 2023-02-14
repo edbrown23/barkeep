@@ -17,6 +17,11 @@
           </div>
         <% end %>
         <%= link_to 'New Reagent', new_reagent_path, class: 'btn btn-primary' %>
+        <hr>
+        <div class="form-text">Your bottle list is missing these common ingredients. Click below to quickly add them.</div>
+        <% @basics_missing.each do |basic_model| %>
+          <%= link_to "#{basic_model[:name]}", new_reagent_path(basic_model), class: 'btn btn-info mb-3' %>
+        <% end %>
       </div>
       <div class="col-sm-10">
         <div class="table-responsive">

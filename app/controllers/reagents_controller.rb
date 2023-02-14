@@ -3,6 +3,8 @@ class ReagentsController < ApplicationController
 
   before_action :set_reagent, only: [:show, :edit, :update, :destroy]
 
+  BASIC_BOTTLES = [:lime_juice, :lemon_juice, :whiskey, :gin, :soda_water]
+
   def index
     search_term = search_params['search_term']
 
@@ -10,6 +12,14 @@ class ReagentsController < ApplicationController
       @reagents = Reagent.for_user(current_user).where('name ILIKE ?', "%#{search_term}%").order(:name)
     else
       @reagents = Reagent.for_user(current_user).all.order(:name)
+    end
+
+    existing_basics = Reagent.for_user(current_user).with_tags(BASIC_BOTTLES).flat_map(&:tags).map(&:to_sym)
+    @basics_missing = (BASIC_BOTTLES - existing_basics).map do |basic_tag|
+      {
+        name: basic_tag.to_s.titleize,
+        tags: [basic_tag]
+      }
     end
   end
 
