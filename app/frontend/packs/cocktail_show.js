@@ -1,3 +1,5 @@
+import { errorToastHandler } from "../js/lib/shared";
+
 function makeDrinkToastHTML(cocktail_name, reagents) {
 
   return `
@@ -61,12 +63,15 @@ window.addEventListener("turbolinks:load", () => {
     }
   });
 
-  document.addEventListener("ajax:error", () => {
+  document.addEventListener("ajax:error", (event) => {
+    console.log(error);
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
 
     if (myModal) {
       myModal.toggle();
     }
+
+    errorToastHandler(document, event.detail[1]);
   });
 
   // Modal setup

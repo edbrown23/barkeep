@@ -1,3 +1,5 @@
+import { errorToastHandler } from "../js/lib/shared";
+
 function makeDrinkToastHTML(cocktail_name, reagents) {
 
   return `
@@ -52,11 +54,11 @@ window.addEventListener("turbolinks:load", () => {
     toast.show();
   });
 
-  document.addEventListener("ajax:error", () => {
+  document.addEventListener("ajax:error", (event) => {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
     myModal.toggle();
 
-    makeCocktail.insertAdjacentHTML("beforeend", "<p>ERROR</p>");
+    errorToastHandler(document, event.detail[1]);
   });
 
   const modalButton = document.querySelector('.made-this-button');

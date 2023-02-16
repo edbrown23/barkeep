@@ -50,4 +50,20 @@ export function made_this_modal_loader(base_url, event) {
       var myModal = new bootstrap.Modal(document.getElementById('madeThisModal'), {});
       myModal.show();
     })
+    .catch((error) => {
+      errorToastHandler(document, error);
+    })
+}
+
+export function errorToastHandler(subDocument, error) {
+  let toastTemplateDoc = subDocument.querySelector("div[data-toast-error-template]");
+  let toastDoc = toastTemplateDoc.cloneNode(true);
+
+  toastDoc.querySelector("span[data-toast-body]").innerHTML = error;
+
+  let toastDestination = document.getElementById("errorToastDestination");
+  toastDestination.appendChild(toastDoc);
+  let toast = new bootstrap.Toast(toastDoc);
+
+  toast.show();
 }
