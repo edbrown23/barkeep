@@ -112,15 +112,17 @@ class CocktailsController < ApplicationController
     service = CocktailAvailabilityService.new(cocktail, current_user)
     reagent_options = service.availability_map[params[:cocktail_id].to_i]
 
+    modifier = params['double'].present? ? 2.0 : 1.0
+
     used_reagents = reagent_options.map do |(amount, bottles)|
       chosen_bottle = bottles.find { |b| params[:bottles][:chosen_id].include?(b.id.to_s) }
       next unless chosen_bottle.present?
       
-      chosen_bottle.subtract_usage(amount.required_volume)
+      chosen_bottle.subtract_usage(amount.required_volume.scale(modifier))
 
       {
         used_model: chosen_bottle,
-        used_amount: amount.amount,
+        used_amount: amount.amount * modifier,
         used_unit: amount.unit,
         used_detail: amount.description
       }
