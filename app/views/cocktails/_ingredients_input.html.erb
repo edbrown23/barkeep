@@ -26,9 +26,9 @@
       <div class="input-group mb-3">
         <span class="input-group-text">Reagent Amount</span>
         <% if editing %>
-        <%= form.number_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true, value: reagent_amount.amount %>
+        <%= form.number_field :reagent_amount, step: :any, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]", required: true, value: reagent_amount.amount %>
         <% else %>
-        <%= form.number_field :reagent_amount, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
+        <%= form.number_field :reagent_amount, step: :any, class: "form-control amount-input", multiple: true, name: "recipe[ingredients][reagent_amount][]" %>
         <% end %>
       </div>
 
