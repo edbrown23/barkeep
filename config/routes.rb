@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   resources :shopping, only: [:index]
 
-  resources :audits, only: [:index, :show]
+  resources :audits, only: [:index, :show, :update]
 
   resources :reagent_categories, only: [:index, :show, :edit, :update, :new, :create]
 

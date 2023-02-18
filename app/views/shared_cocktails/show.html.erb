@@ -19,6 +19,53 @@
         <% end %>
         <p>All Barkeep users have made this drink <span id="made_globally_count"><%= @stats[:made_globally_count] %></span> times!</p>
       </div>
+
+      <div class="col">
+        <div class="m-3">
+          <strong>Your notes:</strong>
+          <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target=".user-audits-collapse" aria-expanded="false">Toggle Notes</button>
+        </div>
+        <div class="table-responsive collapse user-audits-collapse card card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Stars</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users_renderable_audits.each do |audit| %>
+              <tr>
+                <td><%= audit.star_count %></td>
+                <td><%= audit.notes %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="m-3">
+          <strong>Community notes:</strong>
+          <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target=".community-audits-collapse" aria-expanded="false">Toggle Notes</button>
+        </div>
+        <div class="table-responsive collapse community-audits-collapse card card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Stars</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @community_renderable_audits.each do |audit| %>
+              <tr>
+                <td><%= audit.star_count %></td>
+                <td><%= audit.notes %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <hr>

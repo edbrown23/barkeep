@@ -1,0 +1,14 @@
+<%= form_with(model: audit, class: 'm-3') do |form| %>
+  <div class="field mb-3">
+    <%= form.label :notes, class: "form-label" %>
+    <%= form.text_area :notes, class: "form-control", value: audit.notes %>
+  </div>
+
+  <label for="ratingRange" class="form-label">Your rating:</label>
+  <input type="range" name="audit[star_rating]" class="form-range" min="1" max="5" step="1" id="ratingRange" list="markers" <% if audit.star_count.present? %>value=<%= "#{audit.star_count}" %><% end %>>
+  <div class="form-text mb-2">Ratings are 1-5, from left to right</div>
+
+  <div class="actions mb-3">
+    <%= form.submit nil, class: "btn btn-success" %>
+  </div>
+<% end %>

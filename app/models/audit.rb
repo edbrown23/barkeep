@@ -35,4 +35,22 @@ class Audit < ApplicationRecord
       )
     end
   end
+
+  def star_count
+    info.dig('rating', 'star_count')
+  end
+
+  def set_rating(star_count)
+    info['rating'] ||= {}
+    info['rating']['star_count'] = star_count
+  end
+
+  def set_notes(notes)
+    info['rating'] ||= {}
+    info['rating']['notes'] = notes
+  end
+
+  def notes
+    info.dig('rating', 'notes')
+  end
 end

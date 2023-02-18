@@ -59,6 +59,8 @@ class CocktailsController < ApplicationController
       made_count: Audit.for_user(current_user).where(recipe: @cocktail).count,
       made_globally_count: Audit.where(recipe: @cocktail).count
     }
+
+    @renderable_audits = Audit.for_user(current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
     flash.notice = params[:notice] if params[:notice].present?
   end
 

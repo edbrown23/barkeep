@@ -43,6 +43,14 @@
         </table>
       </div>
     </div>
+
+    <p>
+      Update your opinions on the drink here:
+    </p>
+    <div class="col-sm-5 border rounded mb-3">
+    <%= render 'form', audit: @audit %>
+    </div>
+
     <%= link_to 'Back', audits_path, class: "btn btn-primary" %>
   </div>
 </main>
