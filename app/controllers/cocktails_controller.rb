@@ -158,15 +158,17 @@ class CocktailsController < ApplicationController
   def create
     parsed_params = cocktail_params.merge(category: 'cocktail', user_id: current_user.id)
 
-    @cocktail = Recipe.create(parsed_params.slice(:name, :category, :favorite, :user_id))
-    # TODO: Figure out how to get errors sent up the chain here
+    Recipe.transaction do
+      @cocktail = Recipe.create!(parsed_params.slice(:name, :category, :favorite, :user_id))
+      # TODO: Figure out how to get errors sent up the chain here
 
-    # TODO: there are errors possible here too
-    amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
+      # TODO: there are errors possible here too
+      amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
+    end
 
     respond_to do |format|
-      if @cocktail.present?
-        format.json { render json: { redirect_url: "#{cocktail_path(@cocktail)}?notice=#{ERB::Util.url_encode("#{@cocktail.name} was successfully created")}" } }
+      if @cocktail.present? && @cocktail.id.present?
+        format.json { render json: { cocktail_id: @cocktail.id, redirect_url: "#{cocktail_path(@cocktail)}?notice=#{ERB::Util.url_encode("#{@cocktail.name} was successfully created")}" } }
       else
         format.json { render json: { redirect_url: new_cocktail_path, status: :unprocessable_entity } }
       end
@@ -210,7 +212,7 @@ class CocktailsController < ApplicationController
 
       create_params[:tags] = existing_category_models.pluck(:external_id) + new_tag_models.pluck(:external_id)
 
-      ReagentAmount.create(**create_params)
+      ReagentAmount.create!(**create_params)
     end
   end
 
