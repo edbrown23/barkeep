@@ -4,43 +4,7 @@
 <div class="container" id="homeContainer">
 
   <% unless user_signed_in? %>
-    <div class="px-4 py-5 my-5 text-center">
-      <img class="d-block mx-auto mb-4" src=<%= asset_path('favicon.png') %> alt="" width="72" height="57">
-      <h1 class="display-5 fw-bold">Welcome to Barkeep!</h1>
-      <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Easily track your home bar and see what cocktails you can make with what you already have!</p>
-        <p class="lead mb-4">We have a list of <%= @shared_cocktails_count.round(-1) %>+ recipes to get started.</p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary btn-lg px-4 gap-3" %>
-          <span class="mt-2 text-muted"> - or - </span>
-          <%= link_to 'Email for an Account', "mailto:eric.d.brown23+barkeep@gmail.com", class: "btn btn-outline-secondary btn-lg px-4" %>
-        </div>
-      </div>
-    </div>
-
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-      <div class="feature col">
-        <div class="feature-icon bg-primary bg-gradient">
-          <i class="bi-cup-straw"></i>
-        </div>
-        <h2>See what drinks you can make</h2>
-        <p>Always wondering if you have enough ingredients for your favorite mojito? Barkeep tracks the bottles in your bar and tells you each and every drink you can make from our <%= link_to 'extensive database', shared_cocktails_path %> of cocktail recipes.</p>
-      </div>
-      <div class="feature col">
-        <div class="feature-icon bg-primary bg-gradient">
-          <i class="bi-fan"></i>
-        </div>
-        <h2>Expand your bar's capabilities</h2>
-        <p>Most people have enough in their home bars for plenty of variety, they're just missing one or two simple bottles. Barkeep will recomend new bottles just for you, based on what you already have</p>
-      </div>
-      <div class="feature col">
-        <div class="feature-icon bg-primary bg-gradient">
-          <i class="bi-heart-fill"></i>
-        </div>
-        <h2>Customize Cocktails to your liking</h2>
-        <p>Prefer a Perfect Manhattan with a little extra whiskey after a long day? Barkeep lets you customize any cocktail from our shared database of recipes, so you can always remember your perfect ratios</p>
-      </div>
-    </div>
+    <%= render 'logged_out_info' %>
   <% end %>
 
   <% if user_signed_in? %>
