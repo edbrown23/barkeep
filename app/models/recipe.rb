@@ -11,6 +11,7 @@
 #  extras      :jsonb
 #  user_id     :bigint
 #  parent_id   :bigint
+#  source      :string           default("")
 #
 # Indexes
 #
@@ -56,5 +57,9 @@ class Recipe < ApplicationRecord
     service = CocktailAvailabilityService.new(Recipe.where(id: self.id), current_user)
     availability = service.cocktail_availability(self)
     availability[:required] - availability[:available] <= 0
+  end
+
+  def ephemeral?
+    source == 'drink_builder'
   end
 end

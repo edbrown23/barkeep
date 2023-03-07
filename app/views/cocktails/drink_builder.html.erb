@@ -1,0 +1,9 @@
+<div class="container" id="drinkBuilder">
+  <h1>Build a cocktail for immediate consumption</h1>
+
+  <%= render 'drink_builder_form', cocktail: @cocktail %>
+
+  <%= render 'shared/made_this_modal' %>
+  <%= render 'shared/error_toast' %>
+  <%= render 'shared/cheers_toast' %>
+</div>

@@ -13,7 +13,7 @@
           <tbody>
             <% @audits.each do |audit| %>
               <tr>
-                <td><%= audit.recipe.name.html_safe %></td>
+                <td><%= audit.recipe&.name&.html_safe || audit.backup_name.html_safe %></td>
                 <td><%= audit.created_at.to_formatted_s(:long_ordinal) %>
                 <td><%= link_to "Details", audit_path(audit), class: "btn btn-outline-primary" %></td>
               </tr>

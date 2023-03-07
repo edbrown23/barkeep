@@ -11,6 +11,7 @@
 #  extras      :jsonb
 #  user_id     :bigint
 #  parent_id   :bigint
+#  source      :string           default("")
 #
 # Indexes
 #

@@ -60,6 +60,9 @@ window.addEventListener("turbolinks:load", () => {
       case "propose_to_share":
         handleProposeToShare(event);
         break;
+      case "make_permanent":
+        console.log("make permanent shouldn't be ending up here")
+        break;
     }
   });
 
@@ -76,5 +79,5 @@ window.addEventListener("turbolinks:load", () => {
 
   // Modal setup
   const modalButton = document.querySelector('.made-this-button');
-  modalButton.addEventListener("click", lib.made_this_modal_loader.bind(this, '/cocktails'));
+  modalButton.addEventListener("click", lib.made_this_modal_loader.bind(this, '/cocktails', null));
 });

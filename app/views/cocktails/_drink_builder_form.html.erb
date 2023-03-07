@@ -1,0 +1,38 @@
+<% content_for :per_page_js do %>
+  <%= javascript_pack_tag "drink_builder_cocktails_form", "data-turbolinks-track": 'reload' %>
+<% end %>
+
+<%= form_with(model: cocktail, id: "cocktailForm", url: @form_path) do |form| %>
+  <% if cocktail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h2>
+
+      <ul>
+        <% cocktail.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", value: cocktail.name&.html_safe, required: true %>
+  </div>
+
+  <h4>Ingredients</h4>
+
+  <div id="ingredients">
+    <%# this is the hidden base input that is copied via javascript %>
+    <%= render "ingredients_input", form: form, editing: false, existing_id: nil, allow_new_tags: false %>
+  </div>
+
+  <button class="btn btn-success mb-3" id="more-ingredients-trigger" type="button" data-action="more-ingredients">More Ingredients</button>
+
+  <div class="form-text">You can only select tags from those that you have available in the drink builder</div>
+  <hr>
+
+  <div class="actions mb-3">
+    <%= form.submit nil, class: "btn btn-primary", id: 'cocktailSubmitButton' %>
+  </div>
+<% end %>

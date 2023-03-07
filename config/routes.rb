@@ -14,10 +14,13 @@ Rails.application.routes.draw do
     post :make_drink
     post :toggle_favorite
     post :propose_to_share
+    post :make_permanent
   end
 
+  # TODO: rename these routes
   scope :cocktails_async do
     get :available_counts, to: 'cocktails#available_counts'
+    get :drink_builder, to: 'cocktails#drink_builder'
   end
 
   resources :shared_cocktails, only: [:index, :show, :destroy] do

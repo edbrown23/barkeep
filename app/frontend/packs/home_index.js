@@ -1,15 +1,4 @@
-import { errorToastHandler } from "../js/lib/shared";
-
-function toastHTML(cocktail_name, reagents) {
-
-  return `
-    <p>${cocktail_name} made!</p>
-    <p>Reagents used:</p>
-    <ul>
-      ${reagents.reduce( (previousValue, currentValue) => { return `${previousValue}<li>${currentValue}</li>`}, "") }
-    </ul>
-  `;
-}
+import { cheersToastHander, errorToastHandler } from "../js/lib/shared";
 
 window.addEventListener("turbolinks:load", () => {
   // I bet this could be done with boostrap events instead
@@ -36,15 +25,7 @@ window.addEventListener("turbolinks:load", () => {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
     myModal.toggle();
 
-    let toastTemplateDoc = document.querySelector("div[data-toast-template]");
-    let toastDoc = toastTemplateDoc.cloneNode(true);
-    toastDoc.querySelector("span[data-toast-body]").innerHTML = toastHTML(event.detail[0]['cocktail_name'], event.detail[0]['reagents_used']);
-
-    let toastDestination = document.getElementById("toastDestination");
-    toastDestination.appendChild(toastDoc);
-    let toast = new bootstrap.Toast(toastDoc);
-
-    toast.show();
+    cheersToastHander(document, event.detail);
   });
 
   cocktailsSection.addEventListener("ajax:error", (error) => {
@@ -57,6 +38,6 @@ window.addEventListener("turbolinks:load", () => {
   const modalButtons = document.querySelectorAll('.made-this-button');
   modalButtons.forEach((button) => button.addEventListener("click", (event) => {
     const baseRoute = event.target.dataset.preRoute;
-    lib.made_this_modal_loader(baseRoute, event)
+    lib.made_this_modal_loader(baseRoute, null, event);
   }));
 });

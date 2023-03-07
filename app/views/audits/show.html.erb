@@ -13,6 +13,9 @@
       <% else %>
         <span><%= @audit.backup_name.html_safe %></span>
       <% end %>
+      <% if @audit.ephemeral_recipe? %>
+      <p>This drink was made via the drink builder.<% if @audit.recipe.present? %> Do you want to promote it to your full collection? You can do that via the previous link<% end %></p>
+      <% end %>
     </p>
 
     <p>

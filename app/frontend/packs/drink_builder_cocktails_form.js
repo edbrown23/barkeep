@@ -1,20 +1,7 @@
+import { cheersToastHander, errorToastHandler } from "../js/lib/shared";
+
 const select2Config = {
   theme: 'bootstrap-5',
-  tags: true,
-  createTag: (params) => {
-    // probably don't need jquery here
-    var term = $.trim(params.term);
-
-    if (term === '') {
-      return null;
-    }
-
-    return {
-      id: term,
-      text: term,
-      newTag: true
-    }
-  }
 };
 
 function getRandomInt(min, max) {
@@ -50,6 +37,7 @@ function handleMoreIngredients(event) {
   const template = document.querySelector("#base-reagent-group");
 
   const duplicated = template.cloneNode(true);
+  duplicated.dataset.addedGroup = true;
   const docId = getRandomInt(2, 100000);
   duplicated.id = docId;
   duplicated.hidden = false;
@@ -66,7 +54,6 @@ function handleMoreIngredients(event) {
   ingredientsElement.appendChild(duplicated);
 
   $(`#select-${docId}`).select2(select2Config);
-  $(`#select-${docId}`).on('select2:select', newTagHandler);
 }
 
 function handleQuickSelect(buttonClicked, event) {
@@ -121,12 +108,11 @@ function parseForm() {
   }, []);
 
   const cocktailName = document.querySelector('#recipe_name').value;
-  const favorite = document.querySelector('#recipe_favorite').checked;
 
   return {
     name: cocktailName,
-    favorite: favorite,
-    source: 'cocktail_create',
+    favorite: false,
+    source: 'drink_builder',
     amounts: parsedGroups
   };
 }
@@ -149,9 +135,7 @@ function handleFormSubmission(event) {
   const method = determineMethod();
 
   const toSubmit = parseForm();
-  console.log(toSubmit);
 
-  // TODO: I'm going to need to handle auth errors here like I did with the with the modal
   fetch(url, {
     method: method.toUpperCase(),
     headers: {
@@ -162,17 +146,19 @@ function handleFormSubmission(event) {
     body: JSON.stringify(toSubmit)
   })
   .then((response) => response.json())
-  .then((json) => window.location = json['redirect_url']);
+  .then((json) => {
+    lib.made_this_modal_loader('/cocktails', json.cocktail_id, null);
+  });
 }
 
-function newTagHandler(event) {
-  if (event.params.data['newTag'] === undefined) {
-    return;
-  }
+function resetForm() {
+  const existingIngredients = document.querySelectorAll("[data-added-group='true']");
+  Array.from(existingIngredients).forEach(element => {
+    element.remove();
+  });
 
-  const selected = event.target.selectedOptions;
-  const newOption = Array.from(selected).find(value => value.innerHTML === event.params.data['id']);
-  newOption.setAttribute('new-tag', true);
+  document.getElementById('cocktailForm').reset();
+  document.getElementById('cocktailSubmitButton').disabled = false;
 }
 
 window.addEventListener("turbolinks:load", () => {
@@ -188,18 +174,31 @@ window.addEventListener("turbolinks:load", () => {
   }
   reagentTemplate.dataset.duplicateConfigured = true;
 
-  // This is the setup for existing ingredients
-  const existingIngredients = document.querySelectorAll("[data-edit-ingredients='true']");
-  existingIngredients.forEach((element) => {
-    element.querySelector(".delete-button").dataset.docId = element.id;
-  });
-
-  $('.ingredient-select[data-existing-select="true"]').select2(select2Config);
-
-  $('.ingredient-select[data-existing-select="true"]').on('select2:select', newTagHandler);
-
   document.addEventListener("click", handleClicks);
 
   // The following sets up the form submission logic
   document.querySelector("#cocktailForm").addEventListener("submit", handleFormSubmission);
+
+  let drinkBuilder = document.getElementById("drinkBuilder");
+  drinkBuilder.addEventListener("ajax:success", (event) => {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
+    myModal.toggle();
+
+    cheersToastHander(document, event.detail);
+
+    resetForm();
+  });
+
+  document.getElementById('madeThisModal').addEventListener('hidden.bs.modal', () => {
+    resetForm();
+  });
+
+  drinkBuilder.addEventListener("ajax:error", (error) => {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
+    myModal.toggle();
+
+    errorToastHandler(document, error.detail[1]);
+
+    resetForm();
+  });
 });

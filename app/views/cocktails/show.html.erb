@@ -106,8 +106,15 @@
 
     <p class="mt-3">
       <p>Ready to share this cocktail with the world? Hit the "Propose for sharing" button below and we'll consider it for addition to the global <a href="/shared_cocktails">list!</a></p>
-      <%= form_with(url: "#{@cocktail.id}/propose_to_share", method: "POST", local: false) do |form| %>
+      <%= form_with(url: "#{@cocktail.id}/propose_to_share.json", method: "POST", local: false) do |form| %>
         <%= form.submit 'Propose to Share', class: "btn btn-primary", id: 'propose_sharing_button' %>
+      <% end %>
+
+      <% if @cocktail.ephemeral? %>
+      <p>This was an "ephemeral" cocktail recipe. Would you like to promote it to full time?</p>
+        <%= form_with(url: "#{@cocktail.id}/make_permanent", method: "POST") do |form| %>
+          <%= form.submit 'Make Permanent', class: "btn btn-success", id: 'make_permanent_button' %>
+        <% end %>
       <% end %>
     </p>
 

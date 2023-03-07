@@ -7,7 +7,10 @@ class CocktailsController < ApplicationController
     search_term = search_params['search_term']
     tags_search = search_params['search_tags']
 
-    initial_scope = Recipe.for_user(current_user).where(category: 'cocktail')
+    initial_scope = Recipe
+      .for_user(current_user)
+      .where(category: 'cocktail')
+      .where('source != ALL(?::varchar[])', '{drink_builder}')
 
     if search_term.present? && search_term.size > 0
       initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
@@ -69,6 +72,14 @@ class CocktailsController < ApplicationController
     @reagents = Reagent.for_user(current_user).all.order(:name)
     @editing = true
     @reagent_categories = ReagentCategory.all.order(:name)
+    @possible_units = POSSIBLE_UNITS
+  end
+
+  def drink_builder
+    @cocktail = Recipe.new(category: 'cocktail', user_id: current_user.id)
+    @reagents = Reagent.for_user(current_user).all.order(:name)
+    @form_path = cocktails_path
+    @reagent_categories = ReagentCategory.where(external_id: Reagent.for_user(current_user).pluck(&:tags).flatten).order(:name)
     @possible_units = POSSIBLE_UNITS
   end
 
@@ -155,11 +166,22 @@ class CocktailsController < ApplicationController
     end
   end
 
+  def make_permanent
+    cocktail = Recipe.find(params[:cocktail_id])
+
+    cocktail.update!(source: '')
+
+    respond_to do |format|
+      format.html { redirect_to cocktail_path(cocktail), notice: 'Made this drink permanent! Check it our in Your Cocktail List' }
+      format.json { render json: { action: 'make_permanent' } }
+    end
+  end
+
   def create
     parsed_params = cocktail_params.merge(category: 'cocktail', user_id: current_user.id)
 
     Recipe.transaction do
-      @cocktail = Recipe.create!(parsed_params.slice(:name, :category, :favorite, :user_id))
+      @cocktail = Recipe.create!(parsed_params.slice(:name, :category, :favorite, :user_id, :source))
       # TODO: Figure out how to get errors sent up the chain here
 
       # TODO: there are errors possible here too
@@ -247,11 +269,12 @@ class CocktailsController < ApplicationController
   def cocktail_params
     permitted = params
       .require(:cocktail)
-        .permit(:name, :favorite, amounts: [[tags: [:tag, :new]], :amount, :unit])
+        .permit(:name, :favorite, :source, amounts: [[tags: [:tag, :new]], :amount, :unit])
 
     {}.tap do |final_params|
       final_params[:name] = permitted[:name]
       final_params[:favorite] = permitted[:favorite]
+      final_params[:source] = permitted[:source]
       final_params[:reagent_amounts] = permitted[:amounts].map do |amount|
         {
           reagent_amount: amount[:amount],
@@ -277,6 +300,14 @@ class CocktailsController < ApplicationController
       }
     end
 
-    Audit.create!(user_id: current_user.id, recipe: cocktail, info: {cocktail_name: cocktail.name, reagents: audit_info})
+    Audit.create!(
+      user_id: current_user.id,
+      recipe: cocktail,
+      info: {
+        cocktail_name: cocktail.name,
+        ephemeral_recipe: cocktail.source == 'drink_builder',
+        reagents: audit_info
+      }
+    )
   end
 end

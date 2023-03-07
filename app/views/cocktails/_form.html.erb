@@ -29,12 +29,12 @@
 
   <div id="ingredients">
     <%# this is the hidden base input that is copied via javascript %>
-    <%= render "ingredients_input", form: form, editing: false, existing_id: nil %>
+    <%= render "ingredients_input", form: form, editing: false, existing_id: nil, allow_new_tags: true %>
 
     <%# there's probably a better "rails" way to do this. Maybe just use a different form? %>
     <% if @editing %>
       <% @cocktail.reagent_amounts.each do |reagent_amount| %>
-        <%= render "ingredients_input", form: form, editing: @editing, existing_id: rand(2...100000), reagent_amount: reagent_amount %>
+        <%= render "ingredients_input", form: form, editing: @editing, existing_id: rand(2...100000), reagent_amount: reagent_amount, allow_new_tags: true %>
       <% end %>
     <% end %>
   </div>

@@ -181,7 +181,8 @@ CREATE TABLE public.recipes (
     description text,
     extras jsonb,
     user_id bigint,
-    parent_id bigint
+    parent_id bigint,
+    source character varying DEFAULT ''::character varying
 );
 
 
@@ -532,6 +533,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221221233756'),
 ('20221223230832'),
 ('20221227230345'),
-('20230117235427');
+('20230117235427'),
+('20230305223154');
 
 

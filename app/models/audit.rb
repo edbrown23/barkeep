@@ -25,6 +25,12 @@ class Audit < ApplicationRecord
     info['cocktail_name']
   end
 
+  def ephemeral_recipe?
+    return false if recipe.present? && recipe.source.blank?
+
+    info.fetch('ephemeral_recipe', false)
+  end
+
   def reagents
     @reagents ||= info['reagents'].map do |used|
       ReagentUsed.new(
