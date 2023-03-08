@@ -20,7 +20,7 @@
 # Indexes
 #
 #  index_reagents_on_external_id_and_user_id  (external_id,user_id) UNIQUE
-#  index_reagents_on_name                     (name) UNIQUE
+#  index_reagents_on_name_and_user_id         (name,user_id) UNIQUE
 #  index_reagents_on_user_id                  (user_id)
 #
 

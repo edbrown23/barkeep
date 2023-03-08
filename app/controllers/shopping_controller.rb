@@ -2,6 +2,7 @@ class ShoppingController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # TODO: this doesn't respect user boundaries
     cocktails = CocktailAvailabilityService.new(Recipe.where(category: 'cocktail'), current_user)
     counts = cocktails.available_counts
     

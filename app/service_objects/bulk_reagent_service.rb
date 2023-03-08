@@ -16,6 +16,7 @@ class BulkReagentService
           reagent.save
           reagent.errors.full_messages
         rescue ActiveRecord::RecordNotUnique => e
+          # TODO: since I'm eating exceptions here this is basically an upsert too
           [e.message]
         end
       end
@@ -31,7 +32,7 @@ class BulkReagentService
             max_volume_unit: attrs[:max_volume_unit],
             current_volume_value: attrs[:current_volume_value],
             current_volume_unit: attrs[:current_volume_unit],
-            tags: parsed_tags
+            tags: attrs[:tags]
           )
         end
         []
