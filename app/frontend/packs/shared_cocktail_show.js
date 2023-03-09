@@ -56,11 +56,13 @@ window.addEventListener("turbolinks:load", () => {
 
   document.addEventListener("ajax:error", (event) => {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
-    myModal.toggle();
+    if (myModal) {
+      myModal.toggle();
+    }
 
     errorToastHandler(document, event.detail[1]);
   });
 
   const modalButton = document.querySelector('.made-this-button');
-  modalButton.addEventListener("click", lib.made_this_modal_loader.bind(this, '/cocktails'));
+  modalButton.addEventListener("click", lib.made_this_modal_loader.bind(this, '/cocktails', null));
 });

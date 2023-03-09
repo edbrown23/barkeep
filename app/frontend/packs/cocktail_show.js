@@ -67,7 +67,6 @@ window.addEventListener("turbolinks:load", () => {
   });
 
   document.addEventListener("ajax:error", (event) => {
-    console.log(error);
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
 
     if (myModal) {
