@@ -23,14 +23,14 @@ window.addEventListener("turbolinks:load", () => {
   let cocktailsSection = document.getElementById("homeContainer");
   cocktailsSection.addEventListener("ajax:success", (event) => {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
-    myModal.toggle();
+    myModal.hide();
 
     cheersToastHander(document, event.detail);
   });
 
   cocktailsSection.addEventListener("ajax:error", (error) => {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
-    myModal.toggle();
+    myModal.hide();
 
     errorToastHandler(document, error.detail[1]);
   });

@@ -37,7 +37,7 @@ function showToast(title, body) {
 
 function handleMakeDrink(event) {
   var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
-  myModal.dispose();
+  myModal.hide();
 
   showToast('', makeDrinkToastHTML(event.detail[0]['cocktail_name'], event.detail[0]['reagents_used']));
 

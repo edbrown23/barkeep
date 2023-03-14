@@ -37,7 +37,7 @@ function handleAddToAccount(event) {
 
 function handleMakeDrink(event) {
   var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
-  myModal.dispose();
+  myModal.hide();
 
   let toastTemplateDoc = document.querySelector("div[data-toast-template]");
   let toastDoc = toastTemplateDoc.cloneNode(true);
