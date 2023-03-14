@@ -109,6 +109,7 @@
       <%= form_with(url: "#{@cocktail.id}/propose_to_share.json", method: "POST", local: false) do |form| %>
         <%= form.submit 'Propose to Share', class: "btn btn-primary", id: 'propose_sharing_button' %>
       <% end %>
+      <%= link_to "Delete", cocktail_delete_path(@cocktail), class: "btn btn-danger mt-3", method: "post", data: { confirm: 'Are you sure you want to delete this cocktail?' } %>
 
       <% if @cocktail.ephemeral? %>
       <p>This was an "ephemeral" cocktail recipe. Would you like to promote it to full time?</p>

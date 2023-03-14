@@ -244,6 +244,7 @@ class CocktailsController < ApplicationController
 
     respond_to do |format|
       format.json { render json: { action: :deleted, deleted_id: cocktail.id, deleted_name: cocktail.name } }
+      format.html { redirect_to '/cocktails', alert: "#{cocktail.name.html_safe} deleted!" }
     end
   end
 

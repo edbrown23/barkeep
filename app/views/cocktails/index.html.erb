@@ -3,6 +3,7 @@
 <% end %>
 <main>
   <div class="container">
+    <%= render 'shared/notice' %>
     <div class="row">
       <div class="col-sm-3">
         <%= form_with(url: "/cocktails", method: "GET") do |form| %>
