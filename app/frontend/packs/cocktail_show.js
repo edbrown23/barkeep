@@ -37,7 +37,7 @@ function showToast(title, body) {
 
 function handleMakeDrink(event) {
   var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
-  myModal.toggle();
+  myModal.dispose();
 
   showToast('', makeDrinkToastHTML(event.detail[0]['cocktail_name'], event.detail[0]['reagents_used']));
 
@@ -70,7 +70,7 @@ window.addEventListener("turbolinks:load", () => {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
 
     if (myModal) {
-      myModal.toggle();
+      myModal.dispose();
     }
 
     errorToastHandler(document, event.detail[1]);

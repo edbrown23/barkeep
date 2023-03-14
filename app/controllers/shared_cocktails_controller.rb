@@ -70,7 +70,6 @@ class SharedCocktailsController < ApplicationController
   end
 
   def add_to_account
-    # TODO it'd be cool if copied recipes stayed associated with their parent
     shared_cocktail = Recipe.find(params[:shared_cocktail_id])
 
     Recipe.transaction do
@@ -89,7 +88,7 @@ class SharedCocktailsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { cocktail_name: shared_cocktail.name } }
+      format.json { render json: { action: 'add_to_account', cocktail_name: shared_cocktail.name.html_safe } }
     end
   end
 
@@ -118,6 +117,7 @@ class SharedCocktailsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to action: 'index' }
+      format.json { render json: { action: 'promoted_to_shared' } }
     end
   end
 
