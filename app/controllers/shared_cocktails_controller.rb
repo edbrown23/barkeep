@@ -59,6 +59,7 @@ class SharedCocktailsController < ApplicationController
 
     @users_renderable_audits = Audit.for_user(current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
     @community_renderable_audits = Audit.where.not(user: current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
+    @user_copies = Recipe.for_user(current_user).where(parent: @cocktail)
   end
 
   def destroy

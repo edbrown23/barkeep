@@ -103,6 +103,14 @@
     </div>
 
     <% if user_signed_in? %>
+      <p>You've promoted this cocktail into your list:</p>
+      <ul>
+        <% @user_copies.each do |copy| %>
+          <li>
+            <%= link_to copy.name.html_safe, cocktail_path(copy) %>
+          </li>
+        <% end %>
+      </ul>
       <%= link_to 'Promote to your list', shared_cocktail_add_to_account_path(@cocktail), class: "btn btn-primary", id: 'promote_link', method: :post, remote: true %>
     <% else %>
       <strong>Create an account and sign in to see if you can make this cocktail!</strong>
