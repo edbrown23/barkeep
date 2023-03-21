@@ -22,6 +22,11 @@
             <div class="form-text">This is an OR query</div>
           </div>
 
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="makeableSwitch" name="makeable" <% if params['makeable'] == 'on' %>checked<% end %>>
+            <label class="form-check-label" for="makeableSwitch">Only Drinks I can make now</label>
+          </div>
+
           <div class="action mb-1">
             <%= form.submit "Search", class: "btn btn-primary" %>
           </div>

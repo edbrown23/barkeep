@@ -6,6 +6,7 @@ class CocktailsController < ApplicationController
   def index
     search_term = search_params['search_term']
     tags_search = search_params['search_tags']
+    makeable_enabled = search_params['makeable'].present? && search_params['makeable'] == 'on'
 
     initial_scope = Recipe
       .for_user(current_user)
@@ -19,6 +20,11 @@ class CocktailsController < ApplicationController
     if tags_search.present? && tags_search.size > 0
       amounts = ReagentAmount.for_user(current_user).with_tags(Array.wrap(tags_search))
       initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
+    end
+
+    if makeable_enabled
+      availability = CocktailAvailabilityService.new(initial_scope, current_user)
+      initial_scope = initial_scope.where(id: availability.makeable_ids)
     end
 
     @reagent_categories = ReagentCategory.all.order(:name)
@@ -287,7 +293,7 @@ class CocktailsController < ApplicationController
   end
 
   def search_params
-    params.permit(:search_term, search_tags: [])
+    params.permit(:search_term, :makeable, search_tags: [])
   end
 
   def create_audit(cocktail, used_reagents)
