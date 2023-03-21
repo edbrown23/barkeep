@@ -24,7 +24,11 @@
           <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
           <% end %>
           <% if render_counts %>
+          <% if fast_counts %>
+          <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@availability.available_counts[cocktail.id][:available]} of #{@availability.available_counts[cocktail.id][:required]}" %></td>
+          <% else %>
           <td id="cocktail_<%= cocktail.id %>_count_row">calculating...</td>
+          <% end %>
           <% end %>
           <% unless read_only %>
           <% if cocktail.user_id.present? %>

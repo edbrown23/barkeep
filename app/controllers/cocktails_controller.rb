@@ -22,9 +22,9 @@ class CocktailsController < ApplicationController
       initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
     end
 
+    @availability = CocktailAvailabilityService.new(initial_scope, current_user)
     if makeable_enabled
-      availability = CocktailAvailabilityService.new(initial_scope, current_user)
-      initial_scope = initial_scope.where(id: availability.makeable_ids)
+      initial_scope = initial_scope.where(id: @availability.makeable_ids)
     end
 
     @reagent_categories = ReagentCategory.all.order(:name)

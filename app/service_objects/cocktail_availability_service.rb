@@ -35,7 +35,7 @@ class CocktailAvailabilityService
   end
 
   def available_counts
-    @cocktails.reduce({}) do |memo, cocktail|
+    @available_counts ||= @cocktails.reduce({}) do |memo, cocktail|
       memo[cocktail.id] = cocktail_availability(cocktail)
       memo
     end

@@ -44,8 +44,6 @@ function handleUnFavorited(event) {
 }
 
 window.addEventListener("turbolinks:load", () => {
-  lib.load_availability('cocktails_async');
-
   const cocktailTable = document.querySelector("#cocktailsTable");
 
   if (cocktailTable === null) {
