@@ -31,29 +31,6 @@ class CocktailsController < ApplicationController
     @cocktails = initial_scope.order(:name)
   end
 
-  # SO GROSS that I'm repeating this, but it's late at night
-  def available_counts
-    search_term = search_params['search_term']
-    tags_search = search_params['search_tags']
-
-    initial_scope = Recipe.for_user(current_user).where(category: 'cocktail')
-
-    if search_term.present? && search_term.size > 0
-      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
-    end
-
-    if tags_search.present? && tags_search.size > 0
-      amounts = ReagentAmount.for_user(current_user).with_tags(Array.wrap(tags_search))
-      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
-    end
-
-    cocktail_service = CocktailAvailabilityService.new(initial_scope, current_user)
-
-    respond_to do |format|
-      format.json { render json: { available_counts: cocktail_service.available_counts } }
-    end
-  end
-
   def new
     @cocktail = Recipe.new(category: 'cocktail', user_id: current_user.id)
     @reagents = Reagent.for_user(current_user).all.order(:name)

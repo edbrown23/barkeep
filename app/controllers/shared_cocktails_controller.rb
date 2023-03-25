@@ -34,29 +34,6 @@ class SharedCocktailsController < ApplicationController
     end
   end
 
-  # I want this exact function in my cocktails_controller too
-  def available_counts
-    search_term = search_params['search_term']
-    tags_search = search_params['search_tags']
-
-    initial_scope = Recipe.for_user(nil).where(category: 'cocktail')
-
-    if search_term.present? && search_term.size > 0
-      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
-    end
-
-    if tags_search.present? && tags_search.size > 0
-      amounts = ReagentAmount.for_user(nil).with_tags(Array.wrap(tags_search))
-      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
-    end
-
-    cocktail_service = CocktailAvailabilityService.new(initial_scope, current_user)
-
-    respond_to do |format|
-      format.json { render json: { available_counts: cocktail_service.available_counts } }
-    end
-  end
-
   def show
     @stats = {
       made_count: Audit.for_user(current_user).where(recipe: @cocktail).count,
