@@ -53,7 +53,7 @@
               <% else %>
               <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
               <% end %>
-              <td id="cocktail_<%= cocktail.id %>_count_row">calculating...</td>
+              <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@counts[cocktail.id][:available]} of #{@counts[cocktail.id][:required]}" %></td>
               <td>
                 <samp>
                   <% @availability[cocktail.id][:missing_tags].each_with_index do |tag, i| %>

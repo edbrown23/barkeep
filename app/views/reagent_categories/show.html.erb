@@ -20,6 +20,7 @@
     <% end %>
     <hr>
 
+    <% if user_signed_in? %>
     <strong>Your bottles in this Category</strong>
     <div class="row">
       <div class="col table-responsive">
@@ -45,10 +46,11 @@
         </table>
       </div>
     </div>
-
     <hr>
+    <% end %>
+
     <strong>Cocktails which use this category</strong>
-    <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in?, fast_counts: false %>
+    <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in?, fast_counts: true %>
 
     <hr>
     <strong>Reference Bottles in this category</strong>

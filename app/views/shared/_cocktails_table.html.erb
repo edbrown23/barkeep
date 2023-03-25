@@ -8,7 +8,6 @@
         <th>Count of reagents available</th>
         <% end %>
         <% unless read_only %>
-        <th>Delete</th>
         <th>Toggle Favorite</th>
         <th></th>
         <% end %>
@@ -34,7 +33,6 @@
           <% if cocktail.user_id.present? %>
           <td><%= link_to "Favorite", cocktail_toggle_favorite_path(cocktail), class: "btn btn-outline-primary", method: "post", remote: true %></td>
           <% else %>
-          <td></td>
           <td><span class="text-muted">Promote to your list to favorite</span></td>
           <% end %>
           <td class="favorite-column"><% if cocktail.favorite %>&#x2B50;<% end %></td>

@@ -34,6 +34,7 @@ class ReagentsController < ApplicationController
 
     amounts = ReagentAmount.with_tags(@reagent.tags)
     @cocktails = Recipe.where(id: amounts.pluck(:recipe_id))
+    @availability = CocktailAvailabilityService.new(@cocktails, current_user)
   end
 
   def edit
