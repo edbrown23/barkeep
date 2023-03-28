@@ -2,6 +2,8 @@
   <div class="container">
     <h1>Audit Info</h1>
 
+    <%= render 'shared/notice' %>
+
     <p>
       <strong>Drink Made:</strong>
       <% if @audit.recipe.present? %>
@@ -53,7 +55,5 @@
     <div class="col-sm-5 border rounded mb-3">
     <%= render 'form', audit: @audit %>
     </div>
-
-    <%= link_to 'Back', audits_path, class: "btn btn-primary" %>
   </div>
 </main>
