@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`barkeep` is a home bartending application that tracks your liquor cabinet and recommends
+cocktail recipes for you.
 
-Things you may want to cover:
+You can view the running application at [barkeep.website](https://barkeep.website).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I am blogging about my work on this app here: [https://edbrown23.github.io/blog/](https://edbrown23.github.io/blog/)
