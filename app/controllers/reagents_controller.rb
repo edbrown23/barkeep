@@ -7,12 +7,19 @@ class ReagentsController < ApplicationController
 
   def index
     search_term = search_params['search_term']
+    tags_search = search_params['search_tags']
+
+    initial_scope = Reagent.for_user(current_user)
 
     if search_term.present? && search_term.size > 0
-      @reagents = Reagent.for_user(current_user).where('name ILIKE ?', "%#{search_term}%").order(:name)
-    else
-      @reagents = Reagent.for_user(current_user).all.order(:name)
+      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
     end
+
+    if tags_search.present?
+      initial_scope = initial_scope.with_tags(tags_search)
+    end
+
+    @reagents = initial_scope.order(:name)
 
     existing_basics = Reagent.for_user(current_user).with_tags(BASIC_BOTTLES).flat_map(&:tags).map(&:to_sym)
     @basics_missing = (BASIC_BOTTLES - existing_basics).map do |basic_tag|
@@ -21,6 +28,9 @@ class ReagentsController < ApplicationController
         tags: [basic_tag]
       }
     end
+
+    available_tags = @reagents.pluck(:tags).flatten.uniq
+    @reagent_categories = ReagentCategory.where(external_id: available_tags).order(:name)
   end
 
   def new
@@ -94,36 +104,37 @@ class ReagentsController < ApplicationController
   end
 
   private
-    def parse_and_maybe_create_category(params)
-      params[:tags] = params[:tags].map(&:strip).map { |tag| Lib.to_external_id(tag) }
 
-      params[:tags].each do |tag|
-        ReagentCategory.find_or_create_by(external_id: tag) { |created_model| created_model.name = tag.titleize }
-      end
-      
-      params[:external_id] = Lib.to_external_id(params[:name])
+  def parse_and_maybe_create_category(params)
+    params[:tags] = params[:tags].map(&:strip).map { |tag| Lib.to_external_id(tag) }
 
-      params[:max_volume_unit] = params[:volume_unit]
-      params[:current_volume_unit] = params[:volume_unit]
-      params.delete(:volume_unit)
-
-      params
+    params[:tags].each do |tag|
+      ReagentCategory.find_or_create_by(external_id: tag) { |created_model| created_model.name = tag.titleize }
     end
+    
+    params[:external_id] = Lib.to_external_id(params[:name])
 
-    def set_reagent
-      # TODO: handle 404
-      @reagent = Reagent.for_user(current_user).find(params[:id])
-      @reagent_categories = ReagentCategory.all.order(:name)
-    end
+    params[:max_volume_unit] = params[:volume_unit]
+    params[:current_volume_unit] = params[:volume_unit]
+    params.delete(:volume_unit)
 
-    def reagent_params
-      # I bet we could pull this from the model, that would be cool
-      params
-        .require(:reagent)
-          .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :description, tags: [])
-    end
+    params
+  end
 
-    def search_params
-      params.permit(:search_term)
-    end
+  def set_reagent
+    # TODO: handle 404
+    @reagent = Reagent.for_user(current_user).find(params[:id])
+    @reagent_categories = ReagentCategory.all.order(:name)
+  end
+
+  def reagent_params
+    # I bet we could pull this from the model, that would be cool
+    params
+      .require(:reagent)
+        .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :description, tags: [])
+  end
+
+  def search_params
+    params.permit(:search_term, :commit, search_tags: [])
+  end
 end
