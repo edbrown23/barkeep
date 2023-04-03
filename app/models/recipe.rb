@@ -2,16 +2,17 @@
 #
 # Table name: recipes
 #
-#  id          :bigint           not null, primary key
-#  name        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  category    :string           not null
-#  description :text
-#  extras      :jsonb
-#  user_id     :bigint
-#  parent_id   :bigint
-#  source      :string           default("")
+#  id               :bigint           not null, primary key
+#  name             :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  category         :string           not null
+#  description      :text
+#  extras           :jsonb
+#  user_id          :bigint
+#  parent_id        :bigint
+#  source           :string           default("")
+#  ingredients_blob :jsonb
 #
 # Indexes
 #
@@ -20,6 +21,12 @@
 #
 class Recipe < ApplicationRecord
   include UserScopable
+
+  Ingredient = Struct.new(:tags, :amount, :unit, :reagent_amount_id, keyword_init: true) do
+    def reagent_amount
+      ReagentAmount.find(reagent_amount_id)
+    end
+  end
 
   has_many :reagent_amounts, dependent: :destroy
   has_many :audits
@@ -43,6 +50,32 @@ class Recipe < ApplicationRecord
   extra_column :favorite, false
   extra_column :proposed_to_be_shared, false
   extra_column :proposer_user_id, nil
+
+  def ingredients
+    @ingredients ||= ingredients_blob.fetch('ingredients', []).map do |i|
+      Ingredient.new(
+        tags: i['tags'],
+        amount: i['amount'],
+        unit: i['unit'],
+        reagent_amount_id: i['reagent_amount_id']
+      )
+    end
+  end
+
+  # this does not make sense as a use for this operator
+  def <<(ingredient)
+    ingredients_blob['ingredients'] ||= []
+    ingredients_blob['ingredients'] << {
+      tags: ingredient.tags,
+      amount: ingredient.amount,
+      unit: ingredient.unit,
+      reagent_amount_id: ingredient.reagent_amount_id
+    }
+  end
+
+  def clear_ingredients
+    ingredients_blob.clear()
+  end
 
   def matching_reagents(current_user = nil)
     tags_array = reagent_amounts.pluck(:tags).flatten

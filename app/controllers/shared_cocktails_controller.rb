@@ -60,6 +60,7 @@ class SharedCocktailsController < ApplicationController
       copied_cocktail = shared_cocktail.dup
       copied_cocktail.user_id = current_user.id
       copied_cocktail.parent = shared_cocktail
+      copied_cocktail.clear_ingredients
       copied_cocktail.save!
 
       shared_cocktail.reagent_amounts.each do |shared_amount|
@@ -68,7 +69,16 @@ class SharedCocktailsController < ApplicationController
         copied_amount.user_id = current_user.id
         
         copied_amount.save!
+
+        copied_cocktail << Recipe::Ingredient.new(
+          tags: copied_amount.tags,
+          amount: copied_amount.amount,
+          unit: copied_amount.unit,
+          reagent_amount_id: copied_amount.id
+        )
       end
+
+      copied_cocktail.save!
     end
 
     respond_to do |format|
@@ -88,15 +98,24 @@ class SharedCocktailsController < ApplicationController
       copied_cocktail.user_id = nil
       copied_cocktail.proposed_to_be_shared = false
       copied_cocktail.parent_id = nil
+      copied_cocktail.clear_ingredients
       copied_cocktail.save!
 
       cocktail.reagent_amounts.each do |shared_amount|
         copied_amount = shared_amount.dup
         copied_amount.recipe_id = copied_cocktail.id
         copied_amount.user_id = nil
-        
+
         copied_amount.save!
+
+        copied_cocktail << Recipe::Ingredient.new(
+          tags: copied_amount.tags,
+          amount: copied_amount.amount,
+          unit: copied_amount.unit,
+          reagent_amount_id: copied_amount.id
+        )
       end
+      copied_cocktail.save!
     end
 
     respond_to do |format|

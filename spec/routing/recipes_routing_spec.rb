@@ -2,16 +2,17 @@
 #
 # Table name: recipes
 #
-#  id          :bigint           not null, primary key
-#  name        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  category    :string           not null
-#  description :text
-#  extras      :jsonb
-#  user_id     :bigint
-#  parent_id   :bigint
-#  source      :string           default("")
+#  id               :bigint           not null, primary key
+#  name             :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  category         :string           not null
+#  description      :text
+#  extras           :jsonb
+#  user_id          :bigint
+#  parent_id        :bigint
+#  source           :string           default("")
+#  ingredients_blob :jsonb
 #
 # Indexes
 #

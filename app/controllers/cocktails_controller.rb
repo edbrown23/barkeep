@@ -169,6 +169,14 @@ class CocktailsController < ApplicationController
 
       # TODO: there are errors possible here too
       amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
+      amounts.each do |a|
+        @cocktail << Recipe::Ingredient.new(
+          tags: a.tags,
+          amount: a.amount,
+          unit: a.unit,
+          reagent_amount_id: a.id
+        )
+      end
     end
 
     respond_to do |format|
@@ -186,6 +194,15 @@ class CocktailsController < ApplicationController
     # wasteful to do this every time, but easier...
     @cocktail.reagent_amounts.destroy_all
     amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
+    @cocktail.clear_ingredients
+    amounts.each do |a|
+      @cocktail << Recipe::Ingredient.new(
+        tags: a.tags,
+        amount: a.amount,
+        unit: a.unit,
+        reagent_amount_id: a.id
+      )
+    end
 
     respond_to do |format|
       if @cocktail.update(cocktail_params.slice(:name, :category, :favorite))
