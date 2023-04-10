@@ -7,11 +7,16 @@ class CocktailsController < ApplicationController
     search_term = search_params['search_term']
     tags_search = search_params['search_tags']
     makeable_enabled = search_params['makeable'].present? && search_params['makeable'] == 'on'
+    user_recipes_only_enabled = search_params['user_recipes_only'].present? && search_params['user_recipes_only'] == 'on'
+    shared_recipes_only_enabled = search_params['shared_recipes_only'].present? && search_params['shared_recipes_only'] == 'on'
 
     initial_scope = Recipe
-      .for_user(current_user)
+      .for_user_or_shared(current_user)
       .where(category: 'cocktail')
       .where('source != ALL(?::varchar[])', '{drink_builder}')
+
+    initial_scope = initial_scope.for_user(current_user) if user_recipes_only_enabled
+    initial_scope = initial_scope.for_user(nil) if shared_recipes_only_enabled
 
     if search_term.present? && search_term.size > 0
       initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
@@ -27,6 +32,7 @@ class CocktailsController < ApplicationController
       initial_scope = initial_scope.where(id: @availability.makeable_ids)
     end
 
+    # TODO: once tags are hoisted up to recipes this selector should only show available things
     @reagent_categories = ReagentCategory.all.order(:name)
     @cocktails = initial_scope.order(:name)
   end
@@ -287,7 +293,7 @@ class CocktailsController < ApplicationController
   end
 
   def search_params
-    params.permit(:search_term, :makeable, search_tags: [])
+    params.permit(:commit, :search_term, :makeable, :user_recipes_only, :shared_recipes_only, search_tags: [])
   end
 
   def create_audit(cocktail, used_reagents)

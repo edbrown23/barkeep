@@ -24,7 +24,23 @@
 
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="makeableSwitch" name="makeable" <% if params['makeable'] == 'on' %>checked<% end %>>
-            <label class="form-check-label" for="makeableSwitch">Only Drinks I can make now</label>
+            <label class="form-check-label" for="makeableSwitch">Only drinks I can make now</label>
+          </div>
+
+          <div id="toggles">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="userRecipesOnlySwitch" name="user_recipes_only" <% if params['user_recipes_only'] == 'on' %>checked<% end %>>
+              <label class="form-check-label" for="userRecipesOnlySwitch">Only my drinks</label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="sharedRecipesOnlySwitch" name="shared_recipes_only" <% if params['shared_recipes_only'] == 'on' %>checked<% end %>>
+              <label class="form-check-label" for="sharedRecipesOnlySwitch">Only shared drinks</label>
+
+            </div>
+            <div class="collapse" id="toggleHelpCollapse">
+              <div class="form-text">Having both of these toggles on doesn't make much sense</div>
+            </div>
           </div>
 
           <div class="action mb-1">
@@ -37,7 +53,7 @@
       </div>
 
       <div class="col-sm-9">
-      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in?, fast_counts: true %>
+      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in? %>
       </div>
     </div>
 

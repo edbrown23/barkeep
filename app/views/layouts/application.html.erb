@@ -33,7 +33,7 @@
             </li>
             <% if user_signed_in? %>
             <li class="nav-item">
-              <a class="nav-link" href="/cocktails">Your Cocktail List</a>
+              <a class="nav-link" href="/cocktails">The Cocktail List</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/reagents">Your Bottles</a>
@@ -54,9 +54,11 @@
               <li class="nav-item">
                 <a class="nav-link" href="/reagent_categories">Categories</a>
               </li>
+              <% unless user_signed_in? %>
               <li class="nav-item">
-                <a class="nav-link" href="/shared_cocktails">Shared Cocktail List</a>
+                <a class="nav-link" href="/shared_cocktails">Our Shared Cocktail List</a>
               </li>
+              <% end %>
               <% if user_signed_in? %>
               <div class="navbar-text me-2">Hi <%= current_user.email %> (<%= link_to 'edit account', edit_user_registration_path %>)</div>
               <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "btn btn-outline-primary" %>

@@ -43,7 +43,26 @@ function handleUnFavorited(event) {
   column.innerHTML = '';
 }
 
+function handleToggleState(_event) {
+  let user_only_state = document.querySelector('#userRecipesOnlySwitch').checked;
+  let shared_only_state = document.querySelector('#sharedRecipesOnlySwitch').checked;
+
+  let myCollapse = document.getElementById('toggleHelpCollapse');
+  let bsCollapse = new bootstrap.Collapse(myCollapse, { toggle: false });
+
+  if (user_only_state && shared_only_state) {
+    bsCollapse.show();
+  } else {
+    bsCollapse.hide();
+  }
+}
+
 window.addEventListener("turbolinks:load", () => {
+  const toggles = document.querySelector('#toggles');
+
+  toggles.addEventListener("click", handleToggleState);
+  handleToggleState();
+
   const cocktailTable = document.querySelector("#cocktailsTable");
 
   if (cocktailTable === null) {

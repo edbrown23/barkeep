@@ -3,7 +3,6 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Details</th>
         <% if render_counts %>
         <th>Count of reagents available</th>
         <% end %>
@@ -15,19 +14,14 @@
     </thead>
     <tbody>
       <% cocktails.each do |cocktail| %>
-        <tr id="cocktail_<%= cocktail.id %>">
-          <td><%= cocktail.name.html_safe %></td>
+        <tr id="cocktail_<%= cocktail.id %>" <% if cocktail.user_id.blank? %> class="table-secondary"<% end %>>
           <% if cocktail.user_id.present? %>
-          <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+          <td><%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %></td>
           <% else %>
-          <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+          <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
           <% end %>
           <% if render_counts %>
-          <% if fast_counts %>
           <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@availability.available_counts[cocktail.id][:available]} of #{@availability.available_counts[cocktail.id][:required]}" %></td>
-          <% else %>
-          <td id="cocktail_<%= cocktail.id %>_count_row">calculating...</td>
-          <% end %>
           <% end %>
           <% unless read_only %>
           <% if cocktail.user_id.present? %>

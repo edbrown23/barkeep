@@ -34,7 +34,7 @@
         <% end %>
       </div>
       <div class="col-sm-9">
-      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: true, render_counts: user_signed_in?, fast_counts: true %>
+      <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: true, render_counts: user_signed_in? %>
       </div>
     </div>
 
