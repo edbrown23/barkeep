@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :audits
+      resources :reagents
+      resources :reagent_amounts
+      resources :reagent_categories
+      resources :recipes
+      resources :reference_bottles
+
+      root to: "users#index"
+    end
   devise_for :users
   root to: 'home#index'
   resources :recipes

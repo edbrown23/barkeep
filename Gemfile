@@ -28,6 +28,8 @@ gem 'retriable'
 
 gem 'awesome_print'
 
+gem 'administrate'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
