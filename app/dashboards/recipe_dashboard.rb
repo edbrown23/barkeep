@@ -82,7 +82,9 @@ class RecipeDashboard < Administrate::BaseDashboard
   #   COLLECTION_FILTERS = {
   #     open: ->(resources) { resources.where(open: true) }
   #   }.freeze
-  COLLECTION_FILTERS = {}.freeze
+  COLLECTION_FILTERS = {
+    proposed: ->(recipes) { recipes.where('extras @> ?', { proposed_to_be_shared: true }.to_json) }
+  }.freeze
 
   # Overwrite this method to customize how recipes are displayed
   # across all pages of the admin dashboard.

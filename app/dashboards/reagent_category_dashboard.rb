@@ -66,7 +66,7 @@ class ReagentCategoryDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how reagent categories are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(reagent_category)
-  #   "ReagentCategory ##{reagent_category.id}"
-  # end
+  def display_resource(reagent_category)
+    "ReagentCategory (#{reagent_category.name})"
+  end
 end

@@ -69,7 +69,7 @@ class ReferenceBottleDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how reference bottles are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(reference_bottle)
-  #   "ReferenceBottle ##{reference_bottle.id}"
-  # end
+  def display_resource(reference_bottle)
+    "#{reference_bottle.name}"
+  end
 end
