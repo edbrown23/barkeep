@@ -9,7 +9,7 @@ class AuditDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    info: Field::String.with_options(searchable: false),
+    info: Field::JSONB,
     recipe: Field::BelongsTo,
     user: Field::BelongsTo,
     created_at: Field::DateTime,

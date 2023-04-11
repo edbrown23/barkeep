@@ -13,8 +13,8 @@ class RecipeDashboard < Administrate::BaseDashboard
     category: Field::String,
     children: Field::HasMany,
     description: Field::Text,
-    extras: Field::String.with_options(searchable: false),
-    ingredients_blob: Field::String.with_options(searchable: false),
+    extras: Field::JSONB,
+    ingredients_blob: Field::JSONB,
     name: Field::String,
     parent: Field::BelongsTo,
     reagent_amounts: Field::HasMany,
@@ -89,7 +89,7 @@ class RecipeDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how recipes are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(recipe)
-  #   "Recipe ##{recipe.id}"
-  # end
+  def display_resource(recipe)
+    "Recipe ##{recipe.name}"
+  end
 end

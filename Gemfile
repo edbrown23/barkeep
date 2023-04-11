@@ -29,6 +29,7 @@ gem 'retriable'
 gem 'awesome_print'
 
 gem 'administrate'
+gem 'administrate-field-jsonb'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
