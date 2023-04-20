@@ -1,5 +1,5 @@
 <% content_for :per_page_js do %>
-  <%= javascript_pack_tag "drink_builder_cocktails_form", "data-turbolinks-track": 'reload' %>
+  <%= javascript_pack_tag "drink_builder_cocktails_form", "data-turbo-track": 'reload' %>
 <% end %>
 
 <%= form_with(model: cocktail, id: "cocktailForm", url: @form_path) do |form| %>

@@ -57,7 +57,7 @@ function handleToggleState(_event) {
   }
 }
 
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   const toggles = document.querySelector('#toggles');
 
   toggles.addEventListener("click", handleToggleState);

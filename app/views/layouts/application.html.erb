@@ -6,8 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
     <%= favicon_link_tag asset_path('favicon.png') %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
@@ -16,7 +16,7 @@
     <% if content_for? :per_page_js %>
       <%= yield :per_page_js %>
     <% end %>
-    <%= javascript_pack_tag 'navbar', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'navbar', 'data-turbo-track': 'reload' %>
   </head>
 
   <body>

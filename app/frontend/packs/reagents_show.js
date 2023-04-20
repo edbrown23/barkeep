@@ -43,7 +43,7 @@ function handleUnFavorited(event) {
   column.innerHTML = '';
 }
 
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   const cocktailTable = document.querySelector("#cocktailsTable");
 
   if (cocktailTable === null) {

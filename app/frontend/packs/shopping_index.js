@@ -1,3 +1,3 @@
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   // do nothing for now
 })

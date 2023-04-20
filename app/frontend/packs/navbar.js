@@ -1,4 +1,4 @@
-window.addEventListener('turbolinks:load', () => {
+window.addEventListener('turbo:load', () => {
   const path = window.location.pathname.split('/')[1];
 
   const navbarLink = document.querySelector(`a[href='/${path}']`);

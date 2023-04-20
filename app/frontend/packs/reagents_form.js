@@ -1,4 +1,4 @@
-window.addEventListener('turbolinks:load', () => {
+window.addEventListener('turbo:load', () => {
   const select2Config = {
     theme: 'bootstrap-5',
     tags: true,

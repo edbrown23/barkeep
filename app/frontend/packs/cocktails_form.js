@@ -175,9 +175,9 @@ function newTagHandler(event) {
   newOption.setAttribute('new-tag', true);
 }
 
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   // This little block just ensures we don't register the 'click' handlers more than once with
-  // turbolinks. I don't know if this shit is even necessary
+  // turbo. I don't know if this shit is even necessary
   let reagentTemplate = document.getElementById('base-reagent-group');
   if (!reagentTemplate) {
     return;

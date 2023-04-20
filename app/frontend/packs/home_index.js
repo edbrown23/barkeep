@@ -1,6 +1,6 @@
 import { cheersToastHander, errorToastHandler } from "../js/lib/shared";
 
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   // I bet this could be done with boostrap events instead
   document.addEventListener('click', (event) => {
     let buttonState = event.target.dataset.toggled;

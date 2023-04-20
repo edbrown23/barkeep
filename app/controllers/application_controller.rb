@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Turbo::Redirection
   # Constants file?
   POSSIBLE_UNITS = ['oz', 'ml', 'tsp', 'tbsp', 'dash', 'cup', 'unknown']
 

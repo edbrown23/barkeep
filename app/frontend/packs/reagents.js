@@ -1,4 +1,4 @@
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   const reagentsTable = document.querySelector("#reagentsTable");
 
   if (!reagentsTable) {

@@ -48,7 +48,7 @@ function handleProposeToShare(_event) {
   showToast('', proposeToShareToastHTML());
 }
 
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   let makeCocktail = document.getElementById("make_cocktail_link");
   document.addEventListener("ajax:success", (event) => {
     let action = event.detail[0]['action'];

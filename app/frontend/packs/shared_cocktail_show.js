@@ -52,7 +52,7 @@ function handleMakeDrink(event) {
   updateCounters(event.detail[0]['made_count'], event.detail[0]['made_globally_count']);
 }
 
-window.addEventListener("turbolinks:load", () => {
+window.addEventListener("turbo:load", () => {
   document.addEventListener("ajax:success", (event) => {
     let action = event.detail[0]['action'];
 
