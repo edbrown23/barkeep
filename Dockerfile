@@ -25,7 +25,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl git libpq-dev node-gyp pkg-config python
 
 # Install JavaScript dependencies
-ARG NODE_VERSION=12.22.11
+ARG NODE_VERSION=14.21.3
 ARG YARN_VERSION=1.22.18
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
