@@ -11,6 +11,8 @@ import "channels"
 Rails.start()
 ActiveStorage.start()
 
+import '../../javascript/controllers'
+
 import jquery from "jquery"
 global.$ = global.jQuery = jquery;
 window.$ = window.jQuery = jquery;
