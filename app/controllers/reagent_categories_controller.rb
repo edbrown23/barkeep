@@ -23,10 +23,10 @@ class ReagentCategoriesController < ApplicationController
 
     amounts = ReagentAmount.with_tags([@category.external_id])
     if user_signed_in?
-      @cocktails = Recipe.where(id: amounts.pluck(:recipe_id))
+      @cocktails = Recipe.where(id: amounts.pluck(:recipe_id)).page(params[:page])
       @availability = CocktailAvailabilityService.new(@cocktails, current_user)
     else
-      @cocktails = Recipe.for_user(nil).where(id: amounts.pluck(:recipe_id))
+      @cocktails = Recipe.for_user(nil).where(id: amounts.pluck(:recipe_id)).page(params[:page])
     end
   end
 

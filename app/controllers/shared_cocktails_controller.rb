@@ -27,7 +27,7 @@ class SharedCocktailsController < ApplicationController
     end
 
     @reagent_categories = ReagentCategory.all.order(:name)
-    @cocktails = initial_scope.order(:name)
+    @cocktails = initial_scope.order(:name).page(params[:page])
 
     if user_signed_in? && current_user.admin?
       @proposal_cocktails = Recipe.where(category: 'cocktail').where('extras @> ?', { proposed_to_be_shared: true }.to_json)

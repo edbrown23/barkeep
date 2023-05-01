@@ -34,7 +34,7 @@ class CocktailsController < ApplicationController
 
     # TODO: once tags are hoisted up to recipes this selector should only show available things
     @reagent_categories = ReagentCategory.all.order(:name)
-    @cocktails = initial_scope.order(:name)
+    @cocktails = initial_scope.order(:name).page(params[:page])
   end
 
   def new

@@ -340,6 +340,7 @@ DEPENDENCIES
   factory_bot_rails
   hpricot
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.3)
   measured-rails!
   pg

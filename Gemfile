@@ -22,6 +22,8 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pg'
 
+gem 'kaminari'
+
 # used for parsing html
 gem 'hpricot'
 gem 'retriable'
