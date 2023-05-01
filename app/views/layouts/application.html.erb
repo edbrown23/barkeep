@@ -63,7 +63,7 @@
               <div class="navbar-text me-2">Hi <%= current_user.email %> (<%= link_to 'edit account', edit_user_registration_path %>)</div>
               <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "btn btn-outline-primary" %>
               <% else %>
-              <%= link_to 'Sign In', new_user_session_path, method: 'get', class: "btn btn-outline-primary" %>
+              <%= link_to 'Sign In', new_user_session_path, class: "btn btn-outline-primary" %>
               <% end %>
             </ul>
           </div>
