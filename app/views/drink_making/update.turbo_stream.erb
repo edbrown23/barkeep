@@ -1,0 +1,8 @@
+<%= turbo_stream.replace "made_count", @old_count + 1 %>
+<%= turbo_stream.replace "made_globally_count", @old_global_count + 1 %>
+
+<%= turbo_stream.prepend "toastDestination", partial: 'shared/cheers_toast_body' %>
+
+<%= turbo_stream.update "drinkMakingShowContent" do %>
+  <p>You made a <%= link_to @cocktail.name.html_safe, cocktail_path(@cocktail) %>!</p>
+<% end %>

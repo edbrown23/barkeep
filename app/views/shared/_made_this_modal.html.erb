@@ -1,32 +1,21 @@
-<div class="modal fade" id="madeThisModal" tabindex="-1" aria-labelledby="madeThisModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="madeThisModal"
+  tabindex="-1"
+  aria-labelledby="madeThisModalLabel"
+  aria-hidden="true"
+  data-controller="modal"
+  data-action="turbo:frame-load->modal#open turbo:submit-end->modal#close"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalTitle">Modal title</h5>
+        <h5 class="modal-title" id="ModalTitle">Let's make a drink!</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        Choose which bottles you want to use for each required amount
-        <hr>
-        <form id="makeDrinkForm" method="post" data-remote="true">
-          <div id="reagentChoice">
-            <div class="choice-block input-group">
-              <span class="input-group-text">Drambuie <small>(1.5 oz required)</small></span>
-              <select class="form-select">
-                <option value=1234 selected>Drambuie (30 oz available)</option>
-              </select>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="doubleCheckSwitch" form="makeDrinkForm" name="double">
-          <label class="form-check-label" for="doubleCheckSwitch">Make it a double?</label>
-        </div>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" form="makeDrinkForm" value="Make this drink!" data-confirm="Are you sure you want to make this drink?" />
-      </div>
+      <%= turbo_frame_tag 'madeThisModalFrame' do %>
+        <div>Loading...</div>
+      <% end %>
     </div>
   </div>
 </div>

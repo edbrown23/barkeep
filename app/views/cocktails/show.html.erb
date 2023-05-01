@@ -97,7 +97,7 @@
     <p class="mt-3">
       <% if @cocktail.user_can_make?(current_user) %>
       <span>You can make this drink! If you want to, click here:</span>
-      <button class="btn btn-success made-this-button" id='make_cocktail_link' data-cocktail-id=<%= @cocktail.id %>>Make Drink</button>
+      <%= link_to 'Make Drink', drink_making_path(@cocktail), class: 'btn btn-success', data: { turbo_frame: 'madeThisModalFrame' } %>
       <% else %>
       <%= render 'shared/reagents_guide' %>
       <% end %>

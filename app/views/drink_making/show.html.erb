@@ -1,0 +1,37 @@
+<div class="container">
+  <div id="drinkMakingShowContent">
+    <div class="display-5">Let's make a drink!</div>
+    <%= turbo_frame_tag('madeThisModalFrame') do %>
+    <div class="modal-body">
+      <p>We're making a <%= @cocktail.name.html_safe %>.</p>
+      <p>Choose which bottles you want to use for each required amount</p>
+      <hr>
+      <form id="makeDrinkForm" method="put" action=<%= "/drink_making/#{@cocktail.id}"%>>
+        <div id="reagentChoice">
+          <% @reagent_options.each do |(amount, bottles)| %>
+          <p class="mt-3"><%= amount.tags.join(', ') %><small> (<%= amount.required_volume %> required): </small></p>
+          <div class="input-group">
+            <span class="input-group-text">Use: </span>
+            <select class="form-select" name="bottles[chosen_id][]">
+              <% bottles.each do |b| %>
+              <option value=<%= b.id %>><%= b.name %> (<%= b.current_volume.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false) %> available)</option>
+              <% end %>
+            </select>
+          </div>
+          <% end %>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="doubleCheckSwitch" form="makeDrinkForm" name="double">
+        <label class="form-check-label" for="doubleCheckSwitch">Make it a double?</label>
+      </div>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-primary" form="makeDrinkForm" value="Make this drink!" data-confirm="Are you sure you want to make this drink?" />
+    </div>
+    <% end %>
+  </div>
+
+  <%= render 'shared/cheers_toast' %>
+</div>

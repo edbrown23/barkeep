@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     post :make_permanent
   end
 
+  resources :drink_making, only: [:show, :update] do
+  end
+
   # TODO: rename these routes
   scope :cocktails_async do
     get :drink_builder, to: 'cocktails#drink_builder'

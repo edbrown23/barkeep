@@ -1,0 +1,16 @@
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-controller="toast" data-action="hidden.bs.toast->toast#remove">
+  <div class="toast-header">
+    <strong>Cheers!</strong>
+  </div>
+  <div class="toast-body">
+    <span>
+      <p><%= @cocktail.name.html_safe %> made!</p>
+      <p>Reagents used:</p>
+      <ul>
+        <% @used_reagents.each do |reagent| %>
+          <li><%= reagent[:used_model].name %></li>
+        <% end %>
+      </ul>
+    </span>
+  </div>
+</div>
