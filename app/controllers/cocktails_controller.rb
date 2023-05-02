@@ -80,6 +80,8 @@ class CocktailsController < ApplicationController
     cocktail.save!
 
     respond_to do |format|
+      format.html { redirect_to cocktail_path(cocktail), notice: 'Submitted for sharing review!' }
+      format.turbo_stream
       format.json { render json: { action: 'propose_to_share' } }
     end
   end

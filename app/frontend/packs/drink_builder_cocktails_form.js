@@ -147,7 +147,8 @@ function handleFormSubmission(event) {
   })
   .then((response) => response.json())
   .then((json) => {
-    lib.made_this_modal_loader('/cocktails', json.cocktail_id, null);
+    // lib.made_this_modal_loader('/cocktails', json.cocktail_id, null);
+    Turbo.visit(`/drink_making/${json.cocktail_id}`);
   });
 }
 
