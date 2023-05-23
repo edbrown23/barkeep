@@ -83,4 +83,24 @@ namespace :maintenance do
       end
     end
   end
+
+  desc 'Hoist ingredient info from ReagentAmounts to Recipes'
+  task hoist_reagent_amounts: [:environment] do
+    user_id = ENV.fetch('user_id', nil)
+
+    initial_scope = user_id.present? ? Recipe.for_user(User.find(user_id)) : Recipe.for_user(nil)
+
+    initial_scope.includes(:reagent_amounts).in_batches do |recipes|
+      recipes.each do |recipe|
+        Recipe.transaction do
+          recipe.clear_ingredients
+
+          recipe.reagent_amounts.each { |ra| recipe << ra.convert_to_blob }
+
+          recipe.save!
+          Rails.logger.info("Hoisted #{recipe.name}")
+        end
+      end
+    end
+  end
 end

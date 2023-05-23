@@ -58,4 +58,13 @@ class ReagentAmount < ApplicationRecord
   def unitless?
     unit == 'unknown'
   end
+
+  def convert_to_blob
+    Recipe::Ingredient.new(
+      tags: tags,
+      amount: amount,
+      unit: unit,
+      reagent_amount_id: id
+    )
+  end
 end

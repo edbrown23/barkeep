@@ -107,12 +107,7 @@ class CocktailsController < ApplicationController
       # TODO: there are errors possible here too
       amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
       amounts.each do |a|
-        @cocktail << Recipe::Ingredient.new(
-          tags: a.tags,
-          amount: a.amount,
-          unit: a.unit,
-          reagent_amount_id: a.id
-        )
+        @cocktail << a.convert_to_blob
       end
     end
 
@@ -133,12 +128,7 @@ class CocktailsController < ApplicationController
     amounts = create_reagent_amounts(@cocktail, parsed_params[:reagent_amounts]) if @cocktail.present?
     @cocktail.clear_ingredients
     amounts.each do |a|
-      @cocktail << Recipe::Ingredient.new(
-        tags: a.tags,
-        amount: a.amount,
-        unit: a.unit,
-        reagent_amount_id: a.id
-      )
+      @cocktail << a.convert_to_blob 
     end
 
     respond_to do |format|

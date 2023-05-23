@@ -70,12 +70,7 @@ class SharedCocktailsController < ApplicationController
         
         copied_amount.save!
 
-        copied_cocktail << Recipe::Ingredient.new(
-          tags: copied_amount.tags,
-          amount: copied_amount.amount,
-          unit: copied_amount.unit,
-          reagent_amount_id: copied_amount.id
-        )
+        copied_cocktail << copied_amount.convert_to_blob
       end
 
       copied_cocktail.save!
@@ -108,12 +103,7 @@ class SharedCocktailsController < ApplicationController
 
         copied_amount.save!
 
-        copied_cocktail << Recipe::Ingredient.new(
-          tags: copied_amount.tags,
-          amount: copied_amount.amount,
-          unit: copied_amount.unit,
-          reagent_amount_id: copied_amount.id
-        )
+        copied_cocktail << copied_amount.convert_to_blob
       end
       copied_cocktail.save!
     end
