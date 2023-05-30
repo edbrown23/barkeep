@@ -21,9 +21,6 @@ window.addEventListener("turbo:load", () => {
   });
 
   cocktailsSection.addEventListener("ajax:error", (error) => {
-    var myModal = bootstrap.Modal.getInstance(document.getElementById('madeThisModal'), {});
-    myModal.hide();
-
     errorToastHandler(document, error.detail[1]);
   });
 });
