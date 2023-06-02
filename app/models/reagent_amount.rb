@@ -64,6 +64,7 @@ class ReagentAmount < ApplicationRecord
       tags: tags,
       amount: amount,
       unit: unit,
+      description: description,
       reagent_amount_id: id
     )
   end

@@ -5,7 +5,7 @@ class CocktailsController < ApplicationController
   # TODO: this code is entirely copied between the shared controller and this one :(
   def index
     search_term = search_params['search_term']
-    tags_search = search_params['search_tags']
+    @tags_search = search_params['search_tags']
     makeable_enabled = search_params['makeable'].present? && search_params['makeable'] == 'on'
     user_recipes_only_enabled = search_params['user_recipes_only'].present? && search_params['user_recipes_only'] == 'on'
     shared_recipes_only_enabled = search_params['shared_recipes_only'].present? && search_params['shared_recipes_only'] == 'on'
@@ -22,9 +22,8 @@ class CocktailsController < ApplicationController
       initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
     end
 
-    if tags_search.present? && tags_search.size > 0
-      amounts = ReagentAmount.for_user(current_user).with_tags(Array.wrap(tags_search))
-      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
+    if @tags_search.present? && @tags_search.size > 0
+      initial_scope = initial_scope.by_tag(*Array.wrap(@tags_search))
     end
 
     @availability = CocktailAvailabilityService.new(initial_scope, current_user)
@@ -33,8 +32,9 @@ class CocktailsController < ApplicationController
     end
 
     # TODO: once tags are hoisted up to recipes this selector should only show available things
-    @reagent_categories = ReagentCategory.all.order(:name)
-    @cocktails = initial_scope.order(:name).page(params[:page])
+    @reagent_categories = ReagentCategory.where(external_id: initial_scope.flat_map(&:tags)).order(:name)
+    @cocktails = initial_scope.reorder(:name).page(params[:page])
+    @dead_end = @cocktails.count <= 0 && @tags_search.present? ? true : false
   end
 
   def new
@@ -44,6 +44,7 @@ class CocktailsController < ApplicationController
     @editing = false
     @reagent_categories = ReagentCategory.all.order(:name)
     @possible_units = POSSIBLE_UNITS
+    flash.alert = params[:alert] if params[:alert].present?
   end
 
   def show
@@ -68,8 +69,9 @@ class CocktailsController < ApplicationController
     @cocktail = Recipe.new(category: 'cocktail', user_id: current_user.id)
     @reagents = Reagent.for_user(current_user).all.order(:name)
     @form_path = cocktails_path
-    @reagent_categories = ReagentCategory.where(external_id: Reagent.for_user(current_user).pluck(&:tags).flatten).order(:name)
+    @reagent_categories = ReagentCategory.where(external_id: Reagent.for_user(current_user).pluck(:tags).flatten).order(:name)
     @possible_units = POSSIBLE_UNITS
+    flash.alert = params[:alert] if params[:alert].present?
   end
 
   def propose_to_share
@@ -109,13 +111,17 @@ class CocktailsController < ApplicationController
       amounts.each do |a|
         @cocktail << a.convert_to_blob
       end
+      @cocktail.save!
+
+      raise ActiveRecord::Rollback unless amounts.size > 0
     end
 
     respond_to do |format|
       if @cocktail.present? && @cocktail.id.present?
         format.json { render json: { cocktail_id: @cocktail.id, redirect_url: "#{cocktail_path(@cocktail)}?notice=#{ERB::Util.url_encode("#{@cocktail.name} was successfully created")}" } }
       else
-        format.json { render json: { redirect_url: new_cocktail_path, status: :unprocessable_entity } }
+        error_string = ERB::Util.url_encode("#{@cocktail.name} couldn't be created. Did you add any ingredients?")
+        format.json { render json: { cocktail_id: @cocktail.id, redirect_url: "#{new_cocktail_path}?alert=#{error_string}", error_string: error_string }, status: :unprocessable_entity }
       end
     end
   end

@@ -21,12 +21,11 @@ class ReagentCategoriesController < ApplicationController
     @category = find_by_external_id_or_pk(params[:id])
     @reference_bottles = @category.reference_bottles
 
-    amounts = ReagentAmount.with_tags([@category.external_id])
     if user_signed_in?
-      @cocktails = Recipe.where(id: amounts.pluck(:recipe_id)).page(params[:page])
+      @cocktails = Recipe.for_user_or_shared(current_user).by_tag(@category.external_id).reorder(:name).page(params[:page])
       @availability = CocktailAvailabilityService.new(@cocktails, current_user)
     else
-      @cocktails = Recipe.for_user(nil).where(id: amounts.pluck(:recipe_id)).page(params[:page])
+      @cocktails = Recipe.for_user(nil).by_tag(@category.external_id).page(params[:page]).reorder(:name)
     end
   end
 

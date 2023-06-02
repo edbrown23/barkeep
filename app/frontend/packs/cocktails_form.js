@@ -149,7 +149,6 @@ function handleFormSubmission(event) {
   const method = determineMethod();
 
   const toSubmit = parseForm();
-  console.log(toSubmit);
 
   // TODO: I'm going to need to handle auth errors here like I did with the with the modal
   fetch(url, {

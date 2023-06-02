@@ -40,10 +40,7 @@ class ReagentsController < ApplicationController
   end
 
   def show
-    reagent_amounts = ReagentAmount.for_user(current_user).where(reagent: @reagent)
-
-    amounts = ReagentAmount.with_tags(@reagent.tags)
-    @cocktails = Recipe.where(id: amounts.pluck(:recipe_id)).page(params[:page])
+    @cocktails = Recipe.for_user_or_shared(current_user).by_tag(*@reagent.tags).page(params[:page])
     @availability = CocktailAvailabilityService.new(@cocktails, current_user)
   end
 

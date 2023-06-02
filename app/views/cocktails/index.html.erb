@@ -19,7 +19,7 @@
                 <option value=<%= reagent_category.external_id %><% if params['search_tags'].present? && params['search_tags'].include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
               <% end %>
             </select>
-            <div class="form-text">This is an OR query</div>
+            <div class="form-text">This is an AND query, which will contain only matching ingredients as you click "Search"</div>
           </div>
 
           <div class="form-check form-switch">
@@ -46,6 +46,10 @@
           <div class="action mb-1">
             <%= form.submit "Search", class: "btn btn-primary" %>
           </div>
+
+          <% if @dead_end %>
+          <p>Your combination of "<%= @tags_search.join(', ') %>" resulted in zero cocktails which have all those ingredients. Click "search" again to reset</p>
+          <% end %>
 
         <% end %>
         <hr>

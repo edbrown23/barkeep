@@ -6,7 +6,7 @@ class SharedCocktailsController < ApplicationController
 
   def index
     search_term = search_params['search_term']
-    tags_search = search_params['search_tags']
+    @tags_search = search_params['search_tags']
     makeable_enabled = search_params['makeable'].present? && search_params['makeable'] == 'on'
 
     initial_scope = Recipe.for_user(nil).where(category: 'cocktail')
@@ -16,9 +16,8 @@ class SharedCocktailsController < ApplicationController
       initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
     end
 
-    if tags_search.present? && tags_search.size > 0
-      amounts = ReagentAmount.for_user(nil).with_tags(Array.wrap(tags_search))
-      initial_scope = initial_scope.where(id: amounts.pluck(:recipe_id))
+    if @tags_search.present? && @tags_search.size > 0
+      initial_scope = initial_scope.by_tag(*Array.wrap(@tags_search))
     end
 
     @availability = CocktailAvailabilityService.new(initial_scope, current_user)
@@ -26,8 +25,9 @@ class SharedCocktailsController < ApplicationController
       initial_scope = initial_scope.where(id: @availability.makeable_ids)
     end
 
-    @reagent_categories = ReagentCategory.all.order(:name)
+    @reagent_categories = ReagentCategory.where(external_id: initial_scope.flat_map(&:tags)).order(:name)
     @cocktails = initial_scope.order(:name).page(params[:page])
+    @dead_end = @cocktails.count <= 0 && @tags_search.present? ? true : false
 
     if user_signed_in? && current_user.admin?
       @proposal_cocktails = Recipe.where(category: 'cocktail').where('extras @> ?', { proposed_to_be_shared: true }.to_json)

@@ -13,7 +13,7 @@
           <div class="input-group">
             <span class="input-group-text">Use: </span>
             <select class="form-select" name="bottles[chosen_id][]">
-              <% bottles.each do |b| %>
+              <% bottles.select { |b| b.current_volume > Measured::Volume.new('0', 'oz') }.each do |b| %>
               <option value=<%= b.id %>><%= b.name %> (<%= b.current_volume.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false) %> available)</option>
               <% end %>
             </select>

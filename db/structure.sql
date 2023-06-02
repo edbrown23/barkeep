@@ -9,6 +9,50 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
+-- Name: extract_tags_from_blob(jsonb); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.extract_tags_from_blob(blob jsonb) RETURNS text[]
+    LANGUAGE sql IMMUTABLE
+    AS $$
+        select
+          array_agg(replace(tags, '_', '/'))
+        from (
+          select jsonb_array_elements_text(jsonb_array_elements(blob->'ingredients')->'tags') as tags
+        ) t;
+      $$;
+
+
+--
+-- Name: my_array_replace_each(text[], text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.my_array_replace_each(arr text[], source_string text, rep_string text) RETURNS text[]
+    LANGUAGE sql IMMUTABLE
+    AS $$
+        SELECT array_agg(replace(item, source_string, rep_string)) FROM unnest(arr) AS item;
+      $$;
+
+
+--
+-- Name: my_array_to_string(text[], text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.my_array_to_string(arr text[], sep text) RETURNS text
+    LANGUAGE sql IMMUTABLE
+    AS $$
+          SELECT array_to_string(arr, sep);
+      $$;
+
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -183,7 +227,8 @@ CREATE TABLE public.recipes (
     user_id bigint,
     parent_id bigint,
     source character varying DEFAULT ''::character varying,
-    ingredients_blob jsonb DEFAULT '{}'::jsonb
+    ingredients_blob jsonb DEFAULT '{}'::jsonb,
+    searchable tsvector GENERATED ALWAYS AS (array_to_tsvector(public.extract_tags_from_blob(ingredients_blob))) STORED
 );
 
 
@@ -478,6 +523,13 @@ CREATE INDEX index_recipes_on_parent_id ON public.recipes USING btree (parent_id
 
 
 --
+-- Name: index_recipes_on_searchable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_recipes_on_searchable ON public.recipes USING gin (searchable);
+
+
+--
 -- Name: index_recipes_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -540,6 +592,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230314020057'),
 ('20230314020058'),
 ('20230314020059'),
-('20230328022702');
+('20230328022702'),
+('20230530224057'),
+('20230530224058'),
+('20230601030145');
 
 

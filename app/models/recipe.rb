@@ -13,16 +13,30 @@
 #  parent_id        :bigint
 #  source           :string           default("")
 #  ingredients_blob :jsonb
+#  searchable       :tsvector
 #
 # Indexes
 #
-#  index_recipes_on_parent_id  (parent_id)
-#  index_recipes_on_user_id    (user_id)
+#  index_recipes_on_parent_id   (parent_id)
+#  index_recipes_on_searchable  (searchable) USING gin
+#  index_recipes_on_user_id     (user_id)
 #
 class Recipe < ApplicationRecord
   include UserScopable
+  include PgSearch::Model
 
-  Ingredient = Struct.new(:tags, :amount, :unit, :reagent_amount_id, keyword_init: true) do
+  pg_search_scope :private_by_tag, against: :searchable, using: { tsearch: { dictionary: :simple, tsvector_column: :searchable } }
+  scope :by_tag, ->(*tag_string) { private_by_tag(tag_string.map { |t| t.gsub('_', '/') }) }
+
+  Ingredient = Struct.new(:tags, :amount, :unit, :description, :reagent_amount_id, keyword_init: true) do
+    def unitless?
+      unit == 'unknown'
+    end
+
+    def required_volume
+      Measured::Volume.new(amount, unit)
+    end
+
     def reagent_amount
       ReagentAmount.find(reagent_amount_id)
     end
@@ -71,6 +85,10 @@ class Recipe < ApplicationRecord
       unit: ingredient.unit,
       reagent_amount_id: ingredient.reagent_amount_id
     }
+  end
+
+  def tags
+    ingredients.flat_map { |i| i.tags }
   end
 
   def clear_ingredients

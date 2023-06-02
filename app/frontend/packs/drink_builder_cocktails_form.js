@@ -147,8 +147,11 @@ function handleFormSubmission(event) {
   })
   .then((response) => response.json())
   .then((json) => {
-    // lib.made_this_modal_loader('/cocktails', json.cocktail_id, null);
-    Turbo.visit(`/drink_making/${json.cocktail_id}`);
+    if (json.cocktail_id) {
+      Turbo.visit(`/drink_making/${json.cocktail_id}`);
+    } else {
+      Turbo.visit(`/cocktails_async/drink_builder?alert=${json.error_string}`);
+    }
   });
 }
 
@@ -162,6 +165,7 @@ function resetForm() {
   document.getElementById('cocktailSubmitButton').disabled = false;
 }
 
+// TODO I bet this should be deleted given my new turbo frame modals
 window.addEventListener("turbo:load", () => {
   // This little block just ensures we don't register the 'click' handlers more than once with
   // turbo. I don't know if this shit is even necessary

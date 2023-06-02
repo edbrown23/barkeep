@@ -33,6 +33,8 @@ gem 'awesome_print'
 gem 'administrate'
 gem 'administrate-field-jsonb'
 
+gem 'pg_search'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

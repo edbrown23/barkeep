@@ -192,6 +192,9 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.4.6)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -344,6 +347,7 @@ DEPENDENCIES
   listen (~> 3.3)
   measured-rails!
   pg
+  pg_search
   pry
   pry-byebug
   puma (~> 5.0)

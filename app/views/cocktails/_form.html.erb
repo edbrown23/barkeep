@@ -17,7 +17,7 @@
 
   <div class="field mb-3">
     <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control", value: cocktail.name&.html_safe %>
+    <%= form.text_field :name, class: "form-control", value: cocktail.name&.html_safe, required: true %>
   </div>
 
   <div class="field mb-3">

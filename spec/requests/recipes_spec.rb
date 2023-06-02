@@ -13,11 +13,13 @@
 #  parent_id        :bigint
 #  source           :string           default("")
 #  ingredients_blob :jsonb
+#  searchable       :tsvector
 #
 # Indexes
 #
-#  index_recipes_on_parent_id  (parent_id)
-#  index_recipes_on_user_id    (user_id)
+#  index_recipes_on_parent_id   (parent_id)
+#  index_recipes_on_searchable  (searchable) USING gin
+#  index_recipes_on_user_id     (user_id)
 #
 require 'rails_helper'
 

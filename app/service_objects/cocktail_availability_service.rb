@@ -43,10 +43,9 @@ class CocktailAvailabilityService
 
   private
 
+  # gets all the user's reagents which match a tag
   def preload_reagents_for_user
-    all_tags = @cocktails.includes(:reagent_amounts).flat_map(&:reagent_amounts).pluck(:tags).flatten
-
-    Reagent.for_user(@current_user).with_tags(all_tags).reduce({}) do |memo, reagent|
+    Reagent.for_user(@current_user).reduce({}) do |memo, reagent|
       reagent.tags.each do |tag|
         memo[tag] ||= []
         memo[tag] << reagent
@@ -56,8 +55,8 @@ class CocktailAvailabilityService
   end
 
   def setup_availability
-    @cocktails.includes(:reagent_amounts).reduce({}) do |memo, cocktail|
-      memo[cocktail.id] = cocktail.reagent_amounts.reduce({}) do |second_memo, required_amount|
+    @cocktails.reduce({}) do |memo, cocktail|
+      memo[cocktail.id] = cocktail.ingredients.reduce({}) do |second_memo, required_amount|
         second_memo[required_amount] = required_amount.tags.flat_map { |tag| @reagents_for_user[tag] }.compact
         second_memo
       end
