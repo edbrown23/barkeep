@@ -34,9 +34,9 @@ class ReagentsController < ApplicationController
   end
 
   def new
-    @reagent = Reagent.new(user_id: current_user.id)
+    @reagent = Reagent.new(user_id: current_user.id, max_volume_value: 750, current_volume_value: 750)
     @reagent_categories = ReagentCategory.all.order(:name)
-    @possible_units = POSSIBLE_UNITS
+    @possible_units = POSSIBLE_UNITS_ML
   end
 
   def show
@@ -71,8 +71,12 @@ class ReagentsController < ApplicationController
 
     respond_to do |format|
       if @reagent.save
-        # TODO: handle the notice
-        format.html { redirect_to @reagent, notice: "#{@reagent.name} was successfully created" }
+        if params[:commit] == "Create Bottle and add another"
+          format.html { redirect_to new_reagent_path, notice: "#{@reagent.name} was successfully created" }
+        else
+          # TODO: handle the notice
+          format.html { redirect_to @reagent, notice: "#{@reagent.name} was successfully created" }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
       end

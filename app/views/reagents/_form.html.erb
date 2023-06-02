@@ -17,12 +17,12 @@
 
   <div class="field mb-3">
     <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control", value: params[:name] || reagent.name %>
+    <%= form.text_field :name, class: "form-control", value: params[:name] || reagent.name, required: true %>
   </div>
 
   <div class="field mb-3">
     <%= form.label :tags, class: "form-label" %>
-    <select class="form-select ingredient-select" name="reagent[tags][]" multiple="multiple">
+    <select class="form-select ingredient-select" name="reagent[tags][]" multiple="multiple" required>
       <% @reagent_categories.each do |reagent_category| %>
         <option value=<%= reagent_category.external_id %><% if params[:tags]&.include?(reagent_category.external_id) || reagent.tags.include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
       <% end %>
@@ -32,6 +32,9 @@
   <div class="field mb-3">
     <%= form.label :max_volume, class: "form-label" %>
     <%= form.text_field :max_volume_value, class: "form-control", required: true %>
+    <% if reagent.id.nil? %>
+    <div class="form-text">Defaulted max volume and current volume values to 750 (a fifth). Change them if necessary!</div>
+    <% end %>
   </div>
 
   <div class="field mb-3">
@@ -59,7 +62,17 @@
     <%= form.text_field :description, class: "form-control" %>
   </div>
 
+  <% if reagent.id.blank? %>
   <div class="actions mb-3">
-    <%= form.submit nil, class: "btn btn-primary" %>
+    <%= form.submit "Create Bottle", class: "btn btn-primary" %>
   </div>
+
+  <div class="actions mb-3">
+    <%= form.submit "Create Bottle and add another", class: "btn btn-outline-primary" %>
+  </div>
+  <% else %>
+  <div class="actions mb-3">
+    <%= form.submit "Update Bottle", class: "btn btn-primary" %>
+  </div>
+  <% end %>
 <% end %>
