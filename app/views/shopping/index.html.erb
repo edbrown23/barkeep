@@ -3,92 +3,106 @@
 <% end %>
 <main>
   <div class="container">
-    <h3>Buy one of these and you'll be able to make:</h3>
-    <div class="table-responsive">
-      <table class="table" id="cocktailsTable">
-        <thead>
-          <tr>
-            <th>Bottle</th>
-            <th>Drinks</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @inverted_availability.each do |missing, cocktails| %>
-            <tr>
-              <td><samp><%= link_to missing.first, reagent_category_path(missing) %></samp></td>
-              <td>
-              <% cocktails.each_with_index do |cocktail, i| %>
-                <% if cocktail.user_id.present? %>
-                <%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
-                <% else %>
-                <%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
-                <% end %>
-              <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <ul class="nav nav-tabs flex-column flex-sm-row mt-3" id="myTab" role="tablist">
+      <li class="nav-item flex-sm-fill" role="presentation">
+        <button class="nav-link active" id="ome-tab" data-bs-toggle="tab" data-bs-target="#bottles-to-drinks" type="button" role="tab" aria-controls="bottles-to-drinks" aria-selected="true">Bottles Leading to Drinks</button>
+      </li>
+      <li class="nav-item flex-sm-fill" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#one-off-drinks" type="button" role="tab" aria-controls="one-off-drinks" aria-selected="false">One-off cocktails</button>
+      </li>
+      <li class="nav-item flex-sm-fill" role="presentation">
+        <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#low-bottles" type="button" role="tab" aria-controls="low-bottles" aria-selected="false">Bottles running low</button>
+      </li>
+    </ul>
 
-    <hr>
-
-    <h3>You're one bottle off of these drinks:</h3>
-    <div class="table-responsive">
-      <table class="table" id="cocktailsTable">
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>Edit</th>
-            <th>Count of reagents available</th>
-            <th>Missing Tags</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @one_off_cocktails.values.each do |cocktail| %>
-            <tr id="cocktail_<%= cocktail.id %>">
-              <td><%= cocktail.name.html_safe %></td>
-              <% if cocktail.user_id.present? %>
-              <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
-              <% else %>
-              <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
-              <% end %>
-              <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@counts[cocktail.id][:available]} of #{@counts[cocktail.id][:required]}" %></td>
-              <td>
-                <samp>
-                  <% @availability[cocktail.id][:missing_tags].each_with_index do |tag, i| %>
-                    <%= link_to tag, reagent_category_path(tag) %><% if i != @availability[cocktail.id][:missing_tags].size - 1 %><span>, </span><% end %>
+    <div class="tab-content">
+      <div class="tab-pane active" id="bottles-to-drink" role="tabpanel" aria-labelledby="bottles-to-drink">
+        <h3>Buy one of these and you'll be able to make:</h3>
+        <div class="table-responsive">
+          <table class="table" id="cocktailsTable">
+            <thead>
+              <tr>
+                <th>Bottle</th>
+                <th>Drinks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @inverted_availability.each do |missing, cocktails| %>
+                <tr>
+                  <td><samp><%= link_to missing.first, reagent_category_path(missing) %></samp></td>
+                  <td>
+                  <% cocktails.each_with_index do |cocktail, i| %>
+                    <% if cocktail.user_id.present? %>
+                    <%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
+                    <% else %>
+                    <%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
+                    <% end %>
                   <% end %>
-                </samp>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-    <hr>
-
-    <h3>You're running low on these bottles:</h3>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Current Volume</th>
-            <th>Bought?</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @low_bottles.each do |bottle| %>
-            <tr>
-              <td><%= bottle.name %></td>
-              <td><%= bottle.current_volume %></td>
-              <td><%= link_to "Refill", reagent_refill_path(bottle), method: "post", class: "btn btn-outline-success", data: { reagent_id: bottle.id } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane" id="one-off-drinks" role="tabpanel" aria-labelledby="one-off-drinks">
+        <h3>You're one bottle off of these drinks:</h3>
+        <div class="table-responsive">
+          <table class="table" id="cocktailsTable">
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>Edit</th>
+                <th>Count of reagents available</th>
+                <th>Missing Tags</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @one_off_cocktails.values.each do |cocktail| %>
+                <tr id="cocktail_<%= cocktail.id %>">
+                  <td><%= cocktail.name.html_safe %></td>
+                  <% if cocktail.user_id.present? %>
+                  <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+                  <% else %>
+                  <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+                  <% end %>
+                  <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@counts[cocktail.id][:available]} of #{@counts[cocktail.id][:required]}" %></td>
+                  <td>
+                    <samp>
+                      <% @availability[cocktail.id][:missing_tags].each_with_index do |tag, i| %>
+                        <%= link_to tag, reagent_category_path(tag) %><% if i != @availability[cocktail.id][:missing_tags].size - 1 %><span>, </span><% end %>
+                      <% end %>
+                    </samp>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tab-pane" id="low-bottles" role="tabpanel" aria-labelledby="low-bottles">
+        <h3>You're running low on these bottles:</h3>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Current Volume</th>
+                <th>Bought?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @low_bottles.each do |bottle| %>
+                <tr>
+                  <td><%= bottle.name %></td>
+                  <td><%= bottle.current_volume %></td>
+                  <td><%= link_to "Refill", reagent_refill_path(bottle), method: "post", class: "btn btn-outline-success", data: { reagent_id: bottle.id } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </main>
