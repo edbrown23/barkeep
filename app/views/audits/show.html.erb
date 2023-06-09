@@ -40,7 +40,7 @@
             <% @audit.reagents.each do |used| %>
               <tr>
                 <td><%= used.name.html_safe %></td>
-                <td><%= "#{used.amount.html_safe} #{used.unit.html_safe}" %></td>
+                <td><%= "#{used.amount} #{used.unit.html_safe}" %></td>
                 <td><%= used.description&.html_safe %></td>
               </tr>
             <% end %>

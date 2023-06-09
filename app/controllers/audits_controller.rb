@@ -3,7 +3,7 @@ class AuditsController < ApplicationController
   before_action :set_audit, only: [:show, :edit, :update]
 
   def index
-    @audits = Audit.for_user(current_user).all.includes(:recipe).order(created_at: :desc)
+    @audits = Audit.for_user(current_user).includes(:recipe).order(created_at: :desc).page(params[:page])
   end
 
   def show

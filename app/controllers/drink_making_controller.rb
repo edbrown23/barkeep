@@ -22,7 +22,7 @@ class DrinkMakingController < ApplicationController
 
       {
         used_model: chosen_bottle,
-        used_amount: amount.amount * modifier,
+        used_amount: amount.amount.to_f * modifier,
         used_unit: amount.unit,
         used_detail: amount.description
       }
