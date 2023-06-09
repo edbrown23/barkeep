@@ -32,6 +32,23 @@ class SharedCocktailsController < ApplicationController
     if user_signed_in? && current_user.admin?
       @proposal_cocktails = Recipe.where(category: 'cocktail').where('extras @> ?', { proposed_to_be_shared: true }.to_json)
     end
+
+    # WIP faceting logic below here (pretty sure there's some sql injection in all this)
+    tag_string = @tags_search&.map { |t| t.gsub('_', '/') }&.join(' & ')
+    id_string = "(#{initial_scope.pluck(:id).join(', ')})"
+
+    subquery = "SELECT searchable FROM recipes where id in #{id_string}"
+    if tag_string.present?
+      subquery = subquery + "and searchable @@ '#{tag_string}'::tsquery"
+    end
+
+    raw_sql = "select word, ndoc from ts_stat($$ #{subquery} $$) order by ndoc desc;"
+    if initial_scope.pluck(:id).count > 0
+      raw_facets = ActiveRecord::Base.connection.execute(raw_sql)
+      @processed_facets = raw_facets.entries.index_by { |f| f['word'] }
+    else
+      @processed_facets = {}
+    end
   end
 
   def show

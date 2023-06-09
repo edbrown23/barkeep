@@ -35,6 +35,23 @@ class CocktailsController < ApplicationController
     @reagent_categories = ReagentCategory.where(external_id: initial_scope.flat_map(&:tags)).order(:name)
     @cocktails = initial_scope.reorder(:name).page(params[:page])
     @dead_end = @cocktails.count <= 0 && @tags_search.present? ? true : false
+
+    # WIP faceting logic below here (pretty sure there's some sql injection in all this)
+    tag_string = @tags_search&.map { |t| t.gsub('_', '/') }&.join(' & ')
+    id_string = "(#{initial_scope.pluck(:id).join(', ')})"
+
+    subquery = "SELECT searchable FROM recipes where id in #{id_string}"
+    if tag_string.present?
+      subquery = subquery + "and searchable @@ '#{tag_string}'::tsquery"
+    end
+
+    raw_sql = "select word, ndoc from ts_stat($$ #{subquery} $$) order by ndoc desc;"
+    if initial_scope.pluck(:id).count > 0
+      raw_facets = ActiveRecord::Base.connection.execute(raw_sql)
+      @processed_facets = raw_facets.entries.index_by { |f| f['word'] }
+    else
+      @processed_facets = {}
+    end
   end
 
   def new

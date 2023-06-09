@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import FacetsController from "./facets_controller"
+application.register("facets", FacetsController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

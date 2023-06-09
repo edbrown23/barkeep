@@ -20,7 +20,7 @@ window.addEventListener("turbo:load", () => {
     }
   });
 
-  cocktailsSection.addEventListener("ajax:error", (error) => {
-    errorToastHandler(document, error.detail[1]);
-  });
+  // cocktailsSection.addEventListener("ajax:error", (error) => {
+  //   errorToastHandler(document, error.detail[1]);
+  // });
 });

@@ -35,6 +35,32 @@
           <% if @dead_end %>
           <p>Your combination of "<%= @tags_search.join(', ') %>" resulted in zero cocktails which have all those ingredients. Click "search" again to reset</p>
           <% end %>
+
+          <hr>
+          <div>
+            <span>Facets</span>
+            <button class="btn btn-outline-info btn-sm mb-1" type="button" data-bs-toggle="collapse" data-bs-target=".facets-collapse" aria-expanded="false">Show Facets</button>
+          </div>
+
+          <div>
+            <div style="max-height:70vh" class="collapse facets-collapse overflow-auto">
+              <ul>
+              <% @processed_facets.each do |tag, count| %>
+                <li>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary btn-sm mb-1"
+                    data-controller="facets"
+                    data-action="click->facets#clicked"
+                    data-tag=<%= tag.gsub('/', '_') %>
+                  >
+                    <%= tag.gsub('/', '_') %> <span class="badge bg-secondary"><%= count['ndoc'] %><span>
+                  </button>
+                </li>
+              <% end %>
+              </ul>
+            </div>
+          </div>
         <% end %>
       </div>
       <div class="col-sm-9">
