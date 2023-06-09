@@ -1,27 +1,72 @@
 <main>
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <table class="table" id="auditsTable">
-          <thead>
-            <tr>
-              <th>Drink Made</th>
-              <th>Time Made</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @audits.each do |audit| %>
-              <tr>
-                <td><%= audit.recipe&.name&.html_safe || audit.backup_name.html_safe %></td>
-                <td><%= audit.created_at.to_formatted_s(:long_ordinal) %>
-                <td><%= link_to "Details", audit_path(audit), class: "btn btn-outline-primary" %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    <ul class="nav nav-tabs flex-column flex-sm-row mt-3" id="myTab" role="tablist">
+      <li class="nav-item flex-sm-fill" role="presentation">
+        <button class="nav-link active" id="audit-tab" data-bs-toggle="tab" data-bs-target="#audit-log" type="button" role="tab" aria-controls="audit-log" aria-selected="true">Your audit log</button>
+      </li>
+      <li class="nav-item flex-sm-fill" role="presentation">
+        <button class="nav-link" id="analysis-tab" data-bs-toggle="tab" data-bs-target="#analysis" type="button" role="tab" aria-controls="analysis" aria-selected="false">Analysis</button>
+      </li>
+    </ul>
+    <% if @filtered_to.present? %>
+      <div class='m-3'>
+        <span>Currently filtered to audits for "<%= @filtered_to.name.html_safe %>"</span>
+        <%= link_to 'Clear Filter', audits_path, class: 'btn btn-info' %>
       </div>
-      <%= paginate @audits %>
+    <% end %>
+    <div class="tab-content">
+      <div class="tab-pane active" id="audit-log" role="tabpanel" aria-labelledby="audit-log">
+        <div class="row">
+          <div class="col">
+            <table class="table" id="auditsTable">
+              <thead>
+                <tr>
+                  <th>Drink Made</th>
+                  <th>Time Made</th>
+                  <th>Rating</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @audits.each do |audit| %>
+                  <tr>
+                    <td><%= audit.recipe&.name&.html_safe || audit.backup_name.html_safe %></td>
+                    <td><%= audit.created_at.to_formatted_s(:long_ordinal) %>
+                    <td><%= audit.star_count %>
+                    <td><%= link_to "Details", audit_path(audit), class: "btn btn-outline-primary" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <%= paginate @audits %>
+        </div>
+      </div>
+      <div class="tab-pane" id="analysis" role="tabpanel" aria-labelledby="analysis">
+        <div class="table-responsive">
+          <table class="table" id="analysisTable">
+            <thead>
+              <tr>
+                <th>Drink Made</th>
+                <th>Number of Times</th>
+                <th>Max Rating (if it exists)</th>
+                <th>Filter to these audits</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @counts.each do |recipe, count| %>
+                <% next unless recipe.present? %>
+                <tr>
+                  <td><%= link_to recipe&.name&.html_safe, cocktail_path(recipe) %></td>
+                  <td><%= count %>
+                  <td><%= @ratings[recipe.id]['max'] %></td>
+                  <td><%= link_to 'Filtered Audits', audits_path(recipe_id: recipe.id) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </main>
