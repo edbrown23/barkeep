@@ -28,10 +28,6 @@
           </div>
           <% end %>
 
-          <div class="action mb-1">
-            <%= form.submit "Search", class: "btn btn-primary" %>
-          </div>
-
           <% if @dead_end %>
           <p>Your combination of "<%= @tags_search.join(', ') %>" resulted in zero cocktails which have all those ingredients. Click "search" again to reset</p>
           <% end %>
@@ -60,6 +56,11 @@
               <% end %>
               </ul>
             </div>
+          </div>
+          <hr>
+
+          <div class="action mb-1">
+            <%= form.submit "Search", class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>
