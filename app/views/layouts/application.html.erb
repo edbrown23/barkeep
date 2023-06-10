@@ -54,7 +54,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/reagent_categories">Categories</a>
               </li>
-              <% unless user_signed_in? %>
+              <% unless user_signed_in? && !current_user.admin? %>
               <li class="nav-item">
                 <a class="nav-link" href="/shared_cocktails">Our Shared Cocktail List</a>
               </li>
