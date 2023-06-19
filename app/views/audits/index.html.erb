@@ -57,7 +57,11 @@
               <% @counts.each do |recipe, count| %>
                 <% next unless recipe.present? %>
                 <tr>
+                  <% if recipe&.user_id.present? %>
                   <td><%= link_to recipe&.name&.html_safe, cocktail_path(recipe) %></td>
+                  <% else %>
+                  <td><%= link_to recipe&.name&.html_safe, shared_cocktail_path(recipe) %></td>
+                  <% end %>
                   <td><%= count %>
                   <td><%= @ratings[recipe.id]['max'] %></td>
                   <td><%= link_to 'Filtered Audits', audits_path(recipe_id: recipe.id) %></td>
