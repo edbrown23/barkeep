@@ -13,7 +13,7 @@
 
           <div class="field mb-2">
             <%= form.label :ingredient_search, class: "form-label" %>
-            <select class="form-select ingredient-select" name="search_tags[]" multiple="multiple">
+            <select class="form-select ingredient-select" name="search_tags[]" multiple="multiple" data-controller="tag-selector">
               <% @reagent_categories.each do |reagent_category| %>
                 <option value=<%= reagent_category.external_id %><% if params['search_tags'].present? && params['search_tags'].include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
               <% end %>
@@ -26,10 +26,6 @@
             <input class="form-check-input" type="checkbox" role="switch" id="makeableSwitch" name="makeable" <% if params['makeable'] == 'on' %>checked<% end %>>
             <label class="form-check-label" for="makeableSwitch">Only Drinks I can make now</label>
           </div>
-          <% end %>
-
-          <% if @dead_end %>
-          <p>Your combination of "<%= @tags_search.join(', ') %>" resulted in zero cocktails which have all those ingredients. Click "search" again to reset</p>
           <% end %>
 
           <hr>
@@ -61,11 +57,17 @@
 
           <div class="action mb-1">
             <%= form.submit "Search", class: "btn btn-primary" %>
+            <% if request.query_string.present? %>
+            <%= link_to 'Reset Search', shared_cocktails_path, class: "btn btn-danger" %>
+            <% end %>
           </div>
         <% end %>
       </div>
       <div class="col-sm-9">
       <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: true, render_counts: user_signed_in? %>
+      <% if @dead_end %>
+      <p>Your combination of "<%= @tags_search.join(', ') %>" resulted in zero cocktails which have all those ingredients. Click "reset" to clear your search</p>
+      <% end %>
       </div>
     </div>
 

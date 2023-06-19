@@ -16,5 +16,8 @@ application.register("home-index", HomeIndexController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import TagSelectorController from "./tag_selector_controller"
+application.register("tag-selector", TagSelectorController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
