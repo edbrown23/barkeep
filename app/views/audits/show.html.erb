@@ -55,5 +55,7 @@
     <div class="col-sm-5 border rounded mb-3">
     <%= render 'form', audit: @audit %>
     </div>
+
+    <%= link_to 'Delete (and reverse) audit', audit_path(@audit), class: "btn btn-danger", method: 'delete', data: { confirm: 'Are you sure you want to reverse this audit? You cannot undo this action' }%>
   </div>
 </main>

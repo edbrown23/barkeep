@@ -47,6 +47,13 @@ class Reagent < ApplicationRecord
     end
   end
 
+  # separate methods for this is dumb, yes
+  def add_usage(amount)
+    new_current = current_volume + amount
+
+    update!(current_volume_value: new_current.value)
+  end
+
   def unitless?
     max_volume_unit == 'unknown'
   end

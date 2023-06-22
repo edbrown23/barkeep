@@ -1,6 +1,6 @@
 class AuditsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_audit, only: [:show, :edit, :update]
+  before_action :set_audit, only: [:show, :edit, :update, :destroy]
 
   def index
     @filtered_to = nil
@@ -32,6 +32,23 @@ class AuditsController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    reagents = @audit.reagents.index_by { |r| r.reagent_id }
+    Reagent.transaction do
+      Reagent.where(id: reagents.keys).each do |reagent|
+        audit = reagents[reagent.id]
+        reverse_amount = Measured::Volume.new(audit.amount, audit.unit)
+        reagent.add_usage(reverse_amount)
+      end
+
+      @audit.destroy
+    end
+
+    respond_to do |format|
+      format.html { redirect_to audits_path, notice: "Audit for #{@audit.backup_name} undone and removed"}
     end
   end
 
