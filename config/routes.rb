@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :recipes
   resources :reagents do
     post :refill
+    post :empty
   end
   resources :bulk_reagents, only: [:index, :create]
 

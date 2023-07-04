@@ -57,6 +57,24 @@ class ReagentsController < ApplicationController
       format.html { redirect_to reagent, notice: "#{reagent.name} refilled" }
       format.json do
         render json: {
+          action: 'refill',
+          reagent_id: reagent.id,
+          new_volume: reagent.current_volume,
+          reagent_name: reagent.name
+        }
+      end
+    end
+  end
+
+  def empty
+    reagent = Reagent.for_user(current_user).find_by(id: params['reagent_id'])
+    reagent.update!(current_volume_value: 0) if reagent.present?
+
+    respond_to do |format|
+      format.html { redirect_to reagent, notice: "#{reagent.name} emptied" }
+      format.json do
+        render json: {
+          action: 'empty',
           reagent_id: reagent.id,
           new_volume: reagent.current_volume,
           reagent_name: reagent.name
