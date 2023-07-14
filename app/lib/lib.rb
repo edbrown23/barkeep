@@ -6,4 +6,8 @@ module Lib
     str.force_encoding('UTF-8') if str.encoding == Encoding::ASCII_8BIT
     str.strip.parameterize.underscore
   end
+
+  def format_volume(volume, unit)
+    volume.convert_to(unit).format("%.2<value>f %<unit>s", with_conversion_string: false)
+  end
 end
