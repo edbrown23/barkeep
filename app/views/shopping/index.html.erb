@@ -94,7 +94,7 @@
             <tbody>
               <% @low_bottles.each do |bottle| %>
                 <tr>
-                  <td><%= bottle.name %></td>
+                  <td><%= link_to bottle.name, reagent_path(bottle) %></td>
                   <td><%= bottle.current_volume %></td>
                   <td><%= link_to "Refill", reagent_refill_path(bottle), method: "post", class: "btn btn-outline-success", data: { reagent_id: bottle.id } %></td>
                 </tr>
