@@ -159,7 +159,7 @@ namespace :source_things do
       recipe.reagent_amounts.destroy_all
 
       parsed['ingredients'].each do |ingredient|
-        ReagentAmount.create!(
+        amount = ReagentAmount.create!(
           recipe: recipe,
           amount: ingredient['amount'].to_s,
           unit: ingredient['unit'],
@@ -167,12 +167,15 @@ namespace :source_things do
           tags: [Lib.to_external_id(ingredient['name'])],
           user_id: user_id
         )
+        recipe << amount.convert_to_blob
 
         potential_categories << {
           name: ingredient['name'],
           external_id: Lib.to_external_id(ingredient['name'])
         }
       end
+
+      recipe.save!
     end
 
     potential_categories.each do |category|
