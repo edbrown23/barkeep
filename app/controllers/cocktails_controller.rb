@@ -41,7 +41,8 @@ class CocktailsController < ApplicationController
     #       you're querying for one of those families. You only get back the family you
     #       queried for, which is not the UX we want. What if you've favorited many drinks,
     #       but you want to further limit your search to liquor forward favorites?
-    @families = initial_scope.includes(:cocktail_families).flat_map(&:cocktail_families).uniq
+    # TODO: this is the dumbest scoping ever
+    @families = initial_scope.includes(:cocktail_families).flat_map(&:cocktail_families).uniq.filter { |family| family.user_id == nil || family.user_id == current_user.id }
 
     # TODO: pretty sure the todo below this one is false now. Comments...
     # TODO: once tags are hoisted up to recipes this selector should only show available things
