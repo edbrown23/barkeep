@@ -1,0 +1,23 @@
+<main>
+  <div class="container">
+    <%= render 'shared/notice' %>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @family.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @family.name %>
+    </p>
+
+    <hr>
+
+    <p>
+      <strong>Cocktails in this family</strong>
+    </p>
+
+    <%= render 'shared/cocktails_table', cocktails: @family.recipes, read_only: true, render_counts: user_signed_in? %>
+  </div>
+</main>

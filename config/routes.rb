@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :reagent_categories
     resources :recipes
     resources :reference_bottles
+    resources :cocktail_families
 
     root to: "users#index"
   end
@@ -28,6 +29,8 @@ Rails.application.routes.draw do
     post :propose_to_share
     post :make_permanent
   end
+
+  resources :cocktail_families, only: [:show, :create, :update]
 
   resources :drink_making, only: [:show, :update] do
   end

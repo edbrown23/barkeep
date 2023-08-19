@@ -48,6 +48,7 @@ class SharedCocktailsController < ApplicationController
       made_count: Audit.for_user(current_user).where(recipe: @cocktail).count,
       made_globally_count: Audit.where(recipe: @cocktail).count
     }
+    @favorite = @cocktail.cocktail_families.include?(CocktailFamily.users_favorites(current_user))
 
     @users_renderable_audits = Audit.for_user(current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
     @community_renderable_audits = Audit.where.not(user: current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }

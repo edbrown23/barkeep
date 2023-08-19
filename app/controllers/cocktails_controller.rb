@@ -10,10 +10,16 @@ class CocktailsController < ApplicationController
     user_recipes_only_enabled = search_params['user_recipes_only'].present? && search_params['user_recipes_only'] == 'on'
     shared_recipes_only_enabled = search_params['shared_recipes_only'].present? && search_params['shared_recipes_only'] == 'on'
 
+    family_ids = search_params['family_ids']
+
     initial_scope = Recipe
       .for_user_or_shared(current_user)
       .where(category: 'cocktail')
       .where('source != ALL(?::varchar[])', '{drink_builder}')
+
+    if family_ids.present?
+      initial_scope = initial_scope.joins(:cocktail_families).where(cocktail_families: { id: family_ids })
+    end
 
     initial_scope = initial_scope.for_user(current_user) if user_recipes_only_enabled
     initial_scope = initial_scope.for_user(nil) if shared_recipes_only_enabled
@@ -31,6 +37,13 @@ class CocktailsController < ApplicationController
       initial_scope = initial_scope.where(id: @availability.makeable_ids)
     end
 
+    # TODO: prefetching doesn't seem to work if one cocktail is in multiple families, and
+    #       you're querying for one of those families. You only get back the family you
+    #       queried for, which is not the UX we want. What if you've favorited many drinks,
+    #       but you want to further limit your search to liquor forward favorites?
+    @families = initial_scope.includes(:cocktail_families).flat_map(&:cocktail_families).uniq
+
+    # TODO: pretty sure the todo below this one is false now. Comments...
     # TODO: once tags are hoisted up to recipes this selector should only show available things
     @reagent_categories = ReagentCategory.where(external_id: initial_scope.flat_map(&:tags)).order(:name)
     @cocktails = initial_scope.reorder(:name).page(params[:page])
@@ -60,6 +73,7 @@ class CocktailsController < ApplicationController
       made_count: Audit.for_user(current_user).where(recipe: @cocktail).count,
       made_globally_count: Audit.where(recipe: @cocktail).count
     }
+    @favorite = @cocktail.cocktail_families.include?(CocktailFamily.users_favorites(current_user))
 
     @renderable_audits = Audit.for_user(current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
     flash.notice = params[:notice] if params[:notice].present?
@@ -189,15 +203,27 @@ class CocktailsController < ApplicationController
     end
   end
 
-  # TODO: these json only routes should be more consistent and more DRY
   def toggle_favorite
-    cocktail = Recipe.for_user(current_user).find_by(id: params['cocktail_id'])
-    cocktail.favorite = !cocktail.favorite
+    cocktail = Recipe.find_by(id: params['cocktail_id'])
+    favorite_family = CocktailFamily.for_user(current_user).first
+
+    if cocktail.cocktail_families.include?(favorite_family)
+      joiner = CocktailFamilyJoiner.find_by(recipe: cocktail, cocktail_family: favorite_family)
+      favorited = false
+      joiner.destroy!
+    else
+      cocktail.cocktail_families << favorite_family
+      favorited = true
+    end
 
     cocktail.save
 
     respond_to do |format|
-      format.json { render json: { action: cocktail.favorite ? :favorited : :unfavorited, favorited_id: cocktail.id } }
+      if favorited
+        format.html { redirect_to cocktail_path(cocktail), notice: "Favorited the #{cocktail.name.html_safe}!" }
+      else
+        format.html { redirect_to cocktail_path(cocktail), notice: "Removed favorite from the #{cocktail.name.html_safe}" }
+      end
     end
   end
 
@@ -228,7 +254,7 @@ class CocktailsController < ApplicationController
   end
 
   def search_params
-    params.permit(:commit, :search_term, :makeable, :user_recipes_only, :shared_recipes_only, search_tags: [])
+    params.permit(:commit, :search_term, :makeable, :user_recipes_only, :shared_recipes_only, family_ids: [], search_tags: [])
   end
 
   def create_audit(cocktail, used_reagents)

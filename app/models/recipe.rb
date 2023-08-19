@@ -46,6 +46,8 @@ class Recipe < ApplicationRecord
   has_many :audits
   belongs_to :parent, class_name: Recipe.name, primary_key: :id, optional: true
   has_many :children, class_name: Recipe.name, foreign_key: :parent_id
+  has_many :cocktail_family_joiners
+  has_many :cocktail_families, through: :cocktail_family_joiners
 
   class << self
     # could be a module, plus this is all probabyl dumb and a gem or whatever
@@ -61,7 +63,6 @@ class Recipe < ApplicationRecord
     end
   end
 
-  extra_column :favorite, false
   extra_column :proposed_to_be_shared, false
   extra_column :proposer_user_id, nil
 
@@ -74,6 +75,10 @@ class Recipe < ApplicationRecord
         reagent_amount_id: i['reagent_amount_id']
       )
     end
+  end
+
+  def global_cocktail_families
+    cocktail_families.for_user(nil)
   end
 
   # this does not make sense as a use for this operator

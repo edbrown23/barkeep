@@ -103,6 +103,69 @@ ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
+-- Name: cocktail_families; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cocktail_families (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    facts jsonb DEFAULT '{}'::jsonb NOT NULL,
+    description character varying,
+    user_id bigint
+);
+
+
+--
+-- Name: cocktail_families_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cocktail_families_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cocktail_families_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cocktail_families_id_seq OWNED BY public.cocktail_families.id;
+
+
+--
+-- Name: cocktail_family_joiners; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cocktail_family_joiners (
+    id bigint NOT NULL,
+    recipe_id bigint NOT NULL,
+    cocktail_family_id bigint NOT NULL,
+    user_id bigint
+);
+
+
+--
+-- Name: cocktail_family_joiners_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cocktail_family_joiners_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cocktail_family_joiners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cocktail_family_joiners_id_seq OWNED BY public.cocktail_family_joiners.id;
+
+
+--
 -- Name: reagent_amounts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -339,6 +402,20 @@ ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audit
 
 
 --
+-- Name: cocktail_families id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cocktail_families ALTER COLUMN id SET DEFAULT nextval('public.cocktail_families_id_seq'::regclass);
+
+
+--
+-- Name: cocktail_family_joiners id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cocktail_family_joiners ALTER COLUMN id SET DEFAULT nextval('public.cocktail_family_joiners_id_seq'::regclass);
+
+
+--
 -- Name: reagent_amounts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -394,6 +471,22 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.audits
     ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cocktail_families cocktail_families_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cocktail_families
+    ADD CONSTRAINT cocktail_families_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cocktail_family_joiners cocktail_family_joiners_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cocktail_family_joiners
+    ADD CONSTRAINT cocktail_family_joiners_pkey PRIMARY KEY (id);
 
 
 --
@@ -464,6 +557,34 @@ CREATE INDEX index_audits_on_recipe_id ON public.audits USING btree (recipe_id);
 --
 
 CREATE INDEX index_audits_on_user_id ON public.audits USING btree (user_id);
+
+
+--
+-- Name: index_cocktail_families_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cocktail_families_on_user_id ON public.cocktail_families USING btree (user_id);
+
+
+--
+-- Name: index_cocktail_family_joiners_on_cocktail_family_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cocktail_family_joiners_on_cocktail_family_id ON public.cocktail_family_joiners USING btree (cocktail_family_id);
+
+
+--
+-- Name: index_cocktail_family_joiners_on_recipe_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cocktail_family_joiners_on_recipe_id ON public.cocktail_family_joiners USING btree (recipe_id);
+
+
+--
+-- Name: index_cocktail_family_joiners_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cocktail_family_joiners_on_user_id ON public.cocktail_family_joiners USING btree (user_id);
 
 
 --
@@ -558,6 +679,22 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: cocktail_families fk_rails_9bd8f8f980; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cocktail_families
+    ADD CONSTRAINT fk_rails_9bd8f8f980 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: cocktail_family_joiners fk_rails_e00db25b8b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cocktail_family_joiners
+    ADD CONSTRAINT fk_rails_e00db25b8b FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -595,6 +732,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230328022702'),
 ('20230530224057'),
 ('20230530224058'),
-('20230601030145');
+('20230601030145'),
+('20230804185415'),
+('20230808220621'),
+('20230819005650');
 
 

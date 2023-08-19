@@ -45,7 +45,7 @@
 
           <hr>
           <div>
-            <span>Facets</span>
+            <p><strong>Facets:</strong></p>
             <button class="btn btn-outline-info btn-sm mb-1" type="button" data-bs-toggle="collapse" data-bs-target=".facets-collapse" aria-expanded="false">Show Facets</button>
           </div>
 
@@ -66,6 +66,23 @@
             <% end %>
             </ul>
           </div>
+          <hr>
+
+          <div>
+            <p><strong>Families:</strong></p>
+            <button class="btn btn-outline-info btn-sm mb-1" type="button" data-bs-toggle="collapse" data-bs-target=".families-collapse" aria-expanded="false">Show Families</button>
+          </div>
+          <div style="max-height:70vh" class="collapse families-collapse overflow-auto">
+            <ul>
+            <% @families.each do |family| %>
+              <li>
+                <%= link_to family.name, cocktails_path(family_ids: [family.id]), class: "btn btn-outline-primary btn-sm mb-1" %>
+                </button>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+
           <hr>
 
           <div class="action mb-1">

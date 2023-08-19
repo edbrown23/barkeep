@@ -12,12 +12,23 @@
           <%= @cocktail.name.html_safe %>
         </p>
 
+        <% if @cocktail.cocktail_families.exists? %>
+        <p>
+          <strong>Families:</strong>
+          <ul>
+          <% @cocktail.cocktail_families.each do |family| %>
+            <li><%= link_to family.name, cocktail_family_path(family) %></li> 
+          <% end %>
+          </ul>
+        </p>
+        <% end %>
+
         <p>
           <strong>Favorite?:</strong>
-          <% if @cocktail.favorite %>
-            Yes
+          <% if @favorite %>
+            <%= link_to "Remove Favorite", cocktail_toggle_favorite_path(@cocktail), class: "btn btn-outline-primary", method: "post" %>
           <% else %>
-            No
+            <%= link_to "Favorite", cocktail_toggle_favorite_path(@cocktail), class: "btn btn-outline-primary", method: "post" %>
           <% end%>
         </p>
       </div>
