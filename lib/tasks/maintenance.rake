@@ -31,7 +31,6 @@ namespace :maintenance do
       reagents.each do |reagent|
         # I bet I could find_or_create_by
         maybe_reagent = Reagent.find_by(name: reagent[:reagent_name])
-        binding.pry
 
         if maybe_reagent.present?
           reagent[:reagent_model] = maybe_reagent

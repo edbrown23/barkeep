@@ -10,6 +10,49 @@
   <% if user_signed_in? %>
     <%= render 'shared/made_this_modal' %>
 
+    <div class="display-3">Your Favorite Drinks</div>
+    <div class="row">
+      <div class="col-sm-10 table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 15%">Name</th>
+              <th style="width: 10%">Available</th>
+              <th style="width: 15%">Show Ingredients</th>
+              <th style="width: 60%">Ingredients</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user_favorites.each do |favorites| %>
+              <tr data-controller="home-index">
+                <td><%= link_to favorites.recipe.name.html_safe, shared_cocktail_path(favorites.recipe) %></td>
+                <td><%= favorites.count =%></td>
+                <td>
+                  <%=
+                    link_to 'Show Ingredients',
+                      shared_cocktail_path(favorites.recipe),
+                      class: "btn btn-outline-info",
+                      data: {
+                        turbo_frame: dom_id(favorites.recipe),
+                        action: "click->home-index#toggleCollapse",
+                        toggled: 'false'
+                      }
+                  %>
+                </td>
+                <td>
+                  <div class="collapse" data-home-index-target="collapse">
+                    <%= turbo_frame_tag(favorites.recipe) do %>
+                      <p>Loading...</p>
+                    <% end %>
+                    <%= link_to 'Make Drink', drink_making_path(favorites.recipe), class: 'btn btn-primary', data: { turbo_frame: 'madeThisModalFrame' } %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
     <div class="display-3">Drinks you can make right now</div>
     <div class="display-5">These <%= @users_available.count %> Cocktails:</div>
     <div class="row">
