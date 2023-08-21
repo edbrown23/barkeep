@@ -206,7 +206,7 @@ class CocktailsController < ApplicationController
 
   def toggle_favorite
     cocktail = Recipe.find_by(id: params['cocktail_id'])
-    favorite_family = CocktailFamily.for_user(current_user).first
+    favorite_family = CocktailFamily.users_favorites(current_user)
 
     if cocktail.cocktail_families.include?(favorite_family)
       joiner = CocktailFamilyJoiner.find_by(recipe: cocktail, cocktail_family: favorite_family)
