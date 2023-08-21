@@ -10,7 +10,7 @@ class Page
   end
 
   def fetch
-    yield open("#{base_url}#{page_url}")
+    yield URI.open("#{base_url}#{page_url}")
   end
 
   def page_url
@@ -231,7 +231,6 @@ namespace :source_things do
               user_id: 1
             )
           rescue => e
-            binding.pry
             raise e
           end
         end
