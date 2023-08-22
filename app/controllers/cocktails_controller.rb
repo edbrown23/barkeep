@@ -126,7 +126,7 @@ class CocktailsController < ApplicationController
     parsed_params = cocktail_params.merge(category: 'cocktail', user_id: current_user.id)
 
     Recipe.transaction do
-      @cocktail = Recipe.create!(parsed_params.slice(:name, :category, :favorite, :user_id, :source))
+      @cocktail = Recipe.create!(parsed_params.slice(:name, :category, :user_id, :source))
       # TODO: Figure out how to get errors sent up the chain here
 
       # TODO: there are errors possible here too
