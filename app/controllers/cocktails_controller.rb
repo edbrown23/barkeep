@@ -37,12 +37,11 @@ class CocktailsController < ApplicationController
       initial_scope = initial_scope.where(id: @availability.makeable_ids)
     end
 
-    # TODO: prefetching doesn't seem to work if one cocktail is in multiple families, and
-    #       you're querying for one of those families. You only get back the family you
-    #       queried for, which is not the UX we want. What if you've favorited many drinks,
-    #       but you want to further limit your search to liquor forward favorites?
-    # TODO: this is the dumbest scoping ever
-    @families = initial_scope.includes(:cocktail_families).flat_map(&:cocktail_families).uniq.filter { |family| family.user_id == nil || family.user_id == current_user.id }
+    # TODO: this shows you all your favorites from among those currently visible.
+    #       however, it won't help you narrow down from a large set of favorites
+    #       to a smaller set via multiple families. Basically this is an OR query
+    #       and I need an AND. favorites AND liquor forward, etc
+    @families = CocktailFamily.joins(:recipes).where(recipes: initial_scope).uniq
 
     # TODO: pretty sure the todo below this one is false now. Comments...
     # TODO: once tags are hoisted up to recipes this selector should only show available things
