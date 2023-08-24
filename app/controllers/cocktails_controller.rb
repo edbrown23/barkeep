@@ -41,7 +41,7 @@ class CocktailsController < ApplicationController
     #       however, it won't help you narrow down from a large set of favorites
     #       to a smaller set via multiple families. Basically this is an OR query
     #       and I need an AND. favorites AND liquor forward, etc
-    @families = CocktailFamily.joins(:recipes).where(recipes: initial_scope).uniq
+    @families = CocktailFamily.for_user(current_user).joins(:recipes).where(recipes: initial_scope).uniq
 
     # TODO: pretty sure the todo below this one is false now. Comments...
     # TODO: once tags are hoisted up to recipes this selector should only show available things
