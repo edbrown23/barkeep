@@ -160,7 +160,7 @@ class CocktailsController < ApplicationController
     end
 
     respond_to do |format|
-      if @cocktail.update(cocktail_params.slice(:name, :category, :favorite))
+      if @cocktail.update(cocktail_params.slice(:name, :category))
         format.json { render json: { redirect_url: "#{cocktail_path(@cocktail)}?notice=#{ERB::Util.url_encode("#{@cocktail.name} was successfully updated")}" } }
       else
         format.json { render json: { redirect_url: cocktail_path(@cocktail), status: :unprocessable_entity } }
@@ -237,11 +237,10 @@ class CocktailsController < ApplicationController
   def cocktail_params
     permitted = params
       .require(:cocktail)
-        .permit(:name, :favorite, :source, amounts: [[tags: [:tag, :new]], :amount, :unit])
+        .permit(:name, :source, amounts: [[tags: [:tag, :new]], :amount, :unit])
 
     {}.tap do |final_params|
       final_params[:name] = permitted[:name]
-      final_params[:favorite] = permitted[:favorite]
       final_params[:source] = permitted[:source]
       final_params[:reagent_amounts] = permitted[:amounts].map do |amount|
         {

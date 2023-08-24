@@ -121,11 +121,9 @@ function parseForm() {
   }, []);
 
   const cocktailName = document.querySelector('#recipe_name').value;
-  const favorite = document.querySelector('#recipe_favorite').checked;
 
   return {
     name: cocktailName,
-    favorite: favorite,
     source: 'cocktail_create',
     amounts: parsedGroups
   };
