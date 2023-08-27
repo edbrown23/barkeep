@@ -5,6 +5,7 @@ ruby '3.2.2'
 
 gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
+gem 'goldiloader'
 gem 'rails', '~> 7.0.0'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
