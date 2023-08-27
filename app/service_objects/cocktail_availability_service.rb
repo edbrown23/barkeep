@@ -4,6 +4,7 @@ class CocktailAvailabilityService
   def initialize(cocktails, current_user)
     @cocktails = cocktails
     @current_user = current_user
+    @favorite_cocktails = CocktailFamily.users_favorites(current_user).recipes.to_a
     @reagents_for_user = preload_reagents_for_user
     @availability_map = setup_availability
   end
@@ -41,9 +42,30 @@ class CocktailAvailabilityService
     end
   end
 
+  def count_favorites
+    @favorite_cocktails.reduce({}) do |hsh, cocktail|
+      ingredients_to_available = @availability_map[cocktail.id]
+      minimum_count = ingredients_to_available.map do |ingredient, user_reagents|
+        required = Measured::Volume.new(ingredient.amount, ingredient.unit).convert_to(:ml)
+        users_min = user_reagents.map(&:current_volume).map { |ingr| ingr.convert_to(:ml)}.min
+
+        next nil if ingredient.unit == 'unknown'
+        next 0 if users_min.nil?
+
+        users_min.value.to_i / required.value.to_i
+      end.compact.min
+      hsh[cocktail] = minimum_count
+      hsh
+    end
+  end
+
   private
 
-  # gets all the user's reagents which match a tag
+  # Fetches all the current user's reagents and groups
+  # them by tag. Returns a hash of tag to list of matching
+  # reagents.
+  #
+  # @returns Hash<Symbol: Array[Reagent]
   def preload_reagents_for_user
     Reagent.for_user(@current_user).reduce({}) do |memo, reagent|
       reagent.tags.each do |tag|
@@ -54,6 +76,12 @@ class CocktailAvailabilityService
     end
   end
 
+  # I believe this returns a hash of recipe id (or cocktail id) to
+  # a hash of Ingredients to Reagents. The returned reagents are user
+  # specific, allowing us to know whether the user has the necessary
+  # reagents to make a cocktail.
+
+  # @returns Hash<Int, Hash<Ingredient: Reagent>
   def setup_availability
     @cocktails.reduce({}) do |memo, cocktail|
       memo[cocktail.id] = cocktail.ingredients.reduce({}) do |second_memo, required_amount|

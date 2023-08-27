@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
 
-  class RecipeAndCount < Struct.new(:recipe, :count); end
 
   def index
     if user_signed_in?
@@ -15,9 +14,7 @@ class HomeController < ApplicationController
     models = Recipe.where(id: cocktails.makeable_ids).includes(:reagent_amounts)
     @users_available = models.for_user(current_user).where('source != ALL(?::varchar[])', '{drink_builder}')
     @shared_available = models.for_user(nil)
-    @user_favorites = CocktailFamily.users_favorites(current_user).recipes.map do |recipe|
-      RecipeAndCount.new(recipe, CocktailCounter.count_possible_cocktails(recipe, current_user))
-    end
+    @user_favorites = cocktails.count_favorites
 
     @available_cocktails = @users_available + @shared_available
   end
