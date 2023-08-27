@@ -23,17 +23,17 @@
             </tr>
           </thead>
           <tbody>
-            <% @user_favorites.each do |favorites| %>
+            <% @user_favorites.each do |cocktail, count| %>
               <tr data-controller="home-index">
-                <td><%= link_to favorites.recipe.name.html_safe, shared_cocktail_path(favorites.recipe) %></td>
-                <td><%= favorites.count =%></td>
+                <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
+                <td><%= count =%></td>
                 <td>
                   <%=
                     link_to 'Show Ingredients',
-                      shared_cocktail_path(favorites.recipe),
+                      shared_cocktail_path(cocktail),
                       class: "btn btn-outline-info",
                       data: {
-                        turbo_frame: dom_id(favorites.recipe),
+                        turbo_frame: dom_id(cocktail),
                         action: "click->home-index#toggleCollapse",
                         toggled: 'false'
                       }
@@ -41,10 +41,10 @@
                 </td>
                 <td>
                   <div class="collapse" data-home-index-target="collapse">
-                    <%= turbo_frame_tag(favorites.recipe) do %>
+                    <%= turbo_frame_tag(cocktail) do %>
                       <p>Loading...</p>
                     <% end %>
-                    <%= link_to 'Make Drink', drink_making_path(favorites.recipe), class: 'btn btn-primary', data: { turbo_frame: 'madeThisModalFrame' } %>
+                    <%= link_to 'Make Drink', drink_making_path(cocktail), class: 'btn btn-primary', data: { turbo_frame: 'madeThisModalFrame' } %>
                   </div>
                 </td>
               </tr>
