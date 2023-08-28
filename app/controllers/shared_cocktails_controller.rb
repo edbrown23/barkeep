@@ -64,29 +64,30 @@ class SharedCocktailsController < ApplicationController
   end
 
   def add_to_account
-    shared_cocktail = Recipe.find(params[:shared_cocktail_id])
+    @shared_cocktail = Recipe.find(params[:shared_cocktail_id])
 
     Recipe.transaction do
-      copied_cocktail = shared_cocktail.dup
-      copied_cocktail.user_id = current_user.id
-      copied_cocktail.parent = shared_cocktail
-      copied_cocktail.clear_ingredients
-      copied_cocktail.save!
+      @copied_cocktail = @shared_cocktail.dup
+      @copied_cocktail.user_id = current_user.id
+      @copied_cocktail.parent = @shared_cocktail
+      @copied_cocktail.clear_ingredients
+      @copied_cocktail.save!
 
-      shared_cocktail.reagent_amounts.each do |shared_amount|
+      @shared_cocktail.reagent_amounts.each do |shared_amount|
         copied_amount = shared_amount.dup
-        copied_amount.recipe_id = copied_cocktail.id
+        copied_amount.recipe_id = @copied_cocktail.id
         copied_amount.user_id = current_user.id
         
         copied_amount.save!
 
-        copied_cocktail << copied_amount.convert_to_blob
+        @copied_cocktail << copied_amount.convert_to_blob
       end
 
-      copied_cocktail.save!
+      @copied_cocktail.save!
     end
 
     respond_to do |format|
+      format.turbo_stream
       format.json { render json: { action: 'add_to_account', cocktail_name: shared_cocktail.name.html_safe } }
     end
   end

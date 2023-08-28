@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend "toastDestination", partial: 'added_to_account_toast_body' %>
+
+<%= turbo_stream.append "usersVersions" do %>
+  <li>
+    <%= link_to @copied_cocktail.name.html_safe, cocktail_path(@copied_cocktail) %>
+  </li>
+<% end %>
