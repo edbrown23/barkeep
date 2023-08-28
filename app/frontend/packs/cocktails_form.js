@@ -1,22 +1,3 @@
-const select2Config = {
-  theme: 'bootstrap-5',
-  tags: true,
-  createTag: (params) => {
-    // probably don't need jquery here
-    var term = $.trim(params.term);
-
-    if (term === '') {
-      return null;
-    }
-
-    return {
-      id: term,
-      text: term,
-      newTag: true
-    }
-  }
-};
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -64,9 +45,6 @@ function handleMoreIngredients(event) {
 
   const ingredientsElement = document.querySelector("#ingredients");
   ingredientsElement.appendChild(duplicated);
-
-  $(`#select-${docId}`).select2(select2Config);
-  $(`#select-${docId}`).on('select2:select', newTagHandler);
 }
 
 function handleQuickSelect(buttonClicked, event) {
@@ -162,16 +140,6 @@ function handleFormSubmission(event) {
   .then((json) => window.location = json['redirect_url']);
 }
 
-function newTagHandler(event) {
-  if (event.params.data['newTag'] === undefined) {
-    return;
-  }
-
-  const selected = event.target.selectedOptions;
-  const newOption = Array.from(selected).find(value => value.innerHTML === event.params.data['id']);
-  newOption.setAttribute('new-tag', true);
-}
-
 window.addEventListener("turbo:load", () => {
   // This little block just ensures we don't register the 'click' handlers more than once with
   // turbo. I don't know if this shit is even necessary
@@ -190,10 +158,6 @@ window.addEventListener("turbo:load", () => {
   existingIngredients.forEach((element) => {
     element.querySelector(".delete-button").dataset.docId = element.id;
   });
-
-  $('.ingredient-select[data-existing-select="true"]').select2(select2Config);
-
-  $('.ingredient-select[data-existing-select="true"]').on('select2:select', newTagHandler);
 
   document.addEventListener("click", handleClicks);
 

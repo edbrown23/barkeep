@@ -1,9 +1,17 @@
-<div class="mb-3 ingredient-group border rounded", <% if editing %>id="<%= existing_id %>", data-edit-ingredients="true"<% else %>id="base-reagent-group" hidden<% end %>>
+<div class="mb-3 ingredient-group border rounded" data-controller="ingredients-select" <% if editing %>id="<%= existing_id %>", data-edit-ingredients="true"<% else %>id="base-reagent-group" hidden<% end %>>
   <div class="row m-3">
     <div class="col-sm">
       <div class="input-group">
         <span class="input-group-text">Tags:</span>
-        <select class="form-select ingredient-select" name="recipe[ingredients][reagent_category_id][]" <% if editing %>id=<%= "select-#{existing_id}" %> data-existing-select="true"<% end %> multiple="multiple">
+        <select
+          class="form-select ingredient-select"
+          name="recipe[ingredients][reagent_category_id][]"
+          <% if editing %>
+          id=<%= "select-#{existing_id}" %>
+          data-existing-select="true"
+          <% end %>
+          multiple="multiple"
+          data-ingredients-select-target="select">
           <% @reagent_categories.each do |reagent_category| %>
             <option value=<%= reagent_category.external_id %><% if editing && reagent_amount.tags.include?(reagent_category.external_id) %> selected<% end %>><%= reagent_category.external_id %></option>
           <% end %>

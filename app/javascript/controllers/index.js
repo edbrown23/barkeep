@@ -13,6 +13,9 @@ application.register("hello", HelloController)
 import HomeIndexController from "./home_index_controller"
 application.register("home-index", HomeIndexController)
 
+import IngredientsSelectController from "./ingredients_select_controller"
+application.register("ingredients-select", IngredientsSelectController)
+
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
