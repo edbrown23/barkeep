@@ -24,6 +24,6 @@ class CocktailFamily < ApplicationRecord
   belongs_to :user, optional: true
 
   def self.users_favorites(current_user)
-    for_user(current_user).find_or_create_by(name: 'Favorites')
+    for_user(current_user).find_or_create_by(name: Constants::COCKTAIL_FAVORITES_NAME)
   end
 end
