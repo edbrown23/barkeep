@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @user_favorites.each do |cocktail, count| %>
+            <% @users_favorite_cocktail_counts.each do |cocktail, count| %>
               <tr data-controller="home-index">
                 <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
                 <td><%= count =%></td>

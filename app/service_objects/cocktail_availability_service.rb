@@ -4,9 +4,13 @@ class CocktailAvailabilityService
   def initialize(cocktails, current_user)
     @cocktails = cocktails
     @current_user = current_user
-    @favorite_cocktails = CocktailFamily.users_favorites(current_user).recipes.to_a
+    @available_favorites = setup_available_favorites
     @reagents_for_user = preload_reagents_for_user
     @availability_map = setup_availability
+  end
+
+  def setup_available_favorites
+    Recipe.where(id: CocktailFamilyJoiner.available_favorite_from(@current_user, cocktails.map(&:id)).map(&:recipe_id))
   end
 
   def makeable_ids
@@ -43,16 +47,16 @@ class CocktailAvailabilityService
   end
 
   def count_favorites
-    @favorite_cocktails.reduce({}) do |hsh, cocktail|
+    @available_favorites.reduce({}) do |hsh, cocktail|
       ingredients_to_available = @availability_map[cocktail.id]
       minimum_count = ingredients_to_available.map do |ingredient, user_reagents|
-        required = Measured::Volume.new(ingredient.amount, ingredient.unit).convert_to(:ml)
-        users_min = user_reagents.map(&:current_volume).map { |ingr| ingr.convert_to(:ml)}.min
+        required = ingredient.required_volume.convert_to(:ml)
+        users_min = user_reagents.map(&:current_volume).min
 
         next nil if ingredient.unit == 'unknown'
         next 0 if users_min.nil?
 
-        users_min.value.to_i / required.value.to_i
+        (users_min.value / required.value).floor
       end.compact.min
       hsh[cocktail] = minimum_count
       hsh

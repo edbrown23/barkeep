@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     models = Recipe.where(id: cocktails.makeable_ids).includes(:reagent_amounts)
     @users_available = models.for_user(current_user).where('source != ALL(?::varchar[])', '{drink_builder}')
     @shared_available = models.for_user(nil)
-    @user_favorites = cocktails.count_favorites
+    @users_favorite_cocktail_counts = cocktails.count_favorites
 
     @available_cocktails = @users_available + @shared_available
   end
