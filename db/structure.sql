@@ -245,7 +245,8 @@ CREATE TABLE public.reagents (
     current_volume_value numeric(10,2) NOT NULL,
     current_volume_unit character varying NOT NULL,
     external_id character varying NOT NULL,
-    tags character varying[] DEFAULT '{}'::character varying[]
+    tags character varying[] DEFAULT '{}'::character varying[],
+    shopping_list_id bigint
 );
 
 
@@ -352,6 +353,38 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: shopping_lists; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.shopping_lists (
+    id bigint NOT NULL,
+    name character varying,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: shopping_lists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.shopping_lists_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: shopping_lists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.shopping_lists_id_seq OWNED BY public.shopping_lists.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -444,6 +477,13 @@ ALTER TABLE ONLY public.reference_bottles ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: shopping_lists id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shopping_lists ALTER COLUMN id SET DEFAULT nextval('public.shopping_lists_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -528,6 +568,14 @@ ALTER TABLE ONLY public.reference_bottles
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: shopping_lists shopping_lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shopping_lists
+    ADD CONSTRAINT shopping_lists_pkey PRIMARY KEY (id);
 
 
 --
@@ -623,6 +671,13 @@ CREATE UNIQUE INDEX index_reagents_on_name_and_user_id ON public.reagents USING 
 
 
 --
+-- Name: index_reagents_on_shopping_list_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reagents_on_shopping_list_id ON public.reagents USING btree (shopping_list_id);
+
+
+--
 -- Name: index_reagents_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -655,6 +710,13 @@ CREATE INDEX index_recipes_on_user_id ON public.recipes USING btree (user_id);
 --
 
 CREATE INDEX index_reference_bottles_on_reagent_category_id ON public.reference_bottles USING btree (reagent_category_id);
+
+
+--
+-- Name: index_shopping_lists_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_shopping_lists_on_user_id ON public.shopping_lists USING btree (user_id);
 
 
 --
@@ -728,6 +790,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230601030145'),
 ('20230804185415'),
 ('20230808220621'),
-('20230819005650');
+('20230819005650'),
+('20230828235630');
 
 

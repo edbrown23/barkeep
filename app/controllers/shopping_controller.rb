@@ -21,4 +21,18 @@ class ShoppingController < ApplicationController
       (bottle.current_volume_value / bottle.max_volume_value) <= 0.1
     end
   end
+
+  def new
+    @shopping_list = ShoppingList.new
+  end
+
+  def create
+    
+  end
+
+  private
+
+  def create_params
+    params.require(:shopping_list).permit(:name)
+  end
 end

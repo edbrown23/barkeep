@@ -45,7 +45,9 @@ Rails.application.routes.draw do
     post :promote_to_shared
   end
 
-  resources :shopping, only: [:index]
+  resources :shopping, only: [:index, :new, :create] do
+    get :list
+  end
 
   resources :audits, only: [:index, :show, :update, :destroy]
 

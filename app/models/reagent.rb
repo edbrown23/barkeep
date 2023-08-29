@@ -16,17 +16,21 @@
 #  current_volume_unit  :string           not null
 #  external_id          :string           not null
 #  tags                 :string           default([]), is an Array
+#  shopping_list_id     :bigint
 #
 # Indexes
 #
 #  index_reagents_on_external_id_and_user_id  (external_id,user_id) UNIQUE
 #  index_reagents_on_name_and_user_id         (name,user_id) UNIQUE
+#  index_reagents_on_shopping_list_id         (shopping_list_id)
 #  index_reagents_on_user_id                  (user_id)
 #
 
 class Reagent < ApplicationRecord
   include UserScopable
   include Taggable
+
+  belongs_to :shopping_list, optional: true
 
   measured Measured::Volume, :max_volume
   measured Measured::Volume, :current_volume
