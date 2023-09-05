@@ -51,7 +51,7 @@ class CocktailAvailabilityService
       ingredients_to_available = @availability_map[cocktail.id]
       minimum_count = ingredients_to_available.map do |ingredient, user_reagents|
         required = ingredient.required_volume.convert_to(:ml)
-        users_min = user_reagents.map(&:current_volume).min
+        users_min = user_reagents.map(&:current_volume).max
 
         next nil if ingredient.unit == 'unknown'
         next 0 if users_min.nil?
