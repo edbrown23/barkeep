@@ -4,7 +4,7 @@ class CocktailAvailabilityService
   def initialize(cocktails, current_user, shopping_list = nil)
     @cocktails = cocktails
     @current_user = current_user
-    @available_favorites = setup_available_favorites
+    @available_favorites = setup_available_favorites if current_user.present?
     @shopping_list = shopping_list
     @reagents_for_user = preload_reagents_for_user
     @availability_map = setup_availability
