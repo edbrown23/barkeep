@@ -1,10 +1,11 @@
 class CocktailAvailabilityService
   attr_reader :cocktails, :reagents_for_user, :availability_map
 
-  def initialize(cocktails, current_user)
+  def initialize(cocktails, current_user, shopping_list = nil)
     @cocktails = cocktails
     @current_user = current_user
     @available_favorites = setup_available_favorites
+    @shopping_list = shopping_list
     @reagents_for_user = preload_reagents_for_user
     @availability_map = setup_availability
   end
@@ -71,7 +72,7 @@ class CocktailAvailabilityService
   #
   # @returns Hash<Symbol: Array[Reagent]
   def preload_reagents_for_user
-    Reagent.for_user(@current_user).reduce({}) do |memo, reagent|
+    Reagent.for_user(@current_user).where(shopping_list_id: [@shopping_list&.id, nil].uniq).reduce({}) do |memo, reagent|
       reagent.tags.each do |tag|
         memo[tag] ||= []
         memo[tag] << reagent

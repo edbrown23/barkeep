@@ -114,6 +114,7 @@
             <th>Required Volume</th>
             <th>Detail</th>
             <th>Your bottles</th>
+            <th>Add to shopping list</th>
           </tr>
         </thead>
         <tbody>
@@ -135,6 +136,9 @@
                 <% else %>
                 <span>Create an account to see your bottles here!</span>
                 <% end %>
+              </td>
+              <td>
+                <%= render 'shared/shopping_form', reagent_amount: reagent_amount, shopping_lists: @shopping_lists, existing_shopping_list_map: @existing_shopping_list_map %>
               </td>
             </tr>
           <% end %>

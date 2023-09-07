@@ -9,7 +9,7 @@ class ReagentsController < ApplicationController
     search_term = search_params['search_term']
     tags_search = search_params['search_tags']
 
-    initial_scope = Reagent.for_user(current_user)
+    initial_scope = Reagent.for_user(current_user).where(shopping_list: nil)
 
     if search_term.present? && search_term.size > 0
       initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
@@ -104,11 +104,15 @@ class ReagentsController < ApplicationController
 
   def update
     parsed_params = parse_and_maybe_create_category(reagent_params)
+    redirect_path = parsed_params.delete(:redirect_path)
 
     respond_to do |format|
       if @reagent.update(parsed_params)
-        # TODO: handle the notice
-        format.html { redirect_to @reagent, notice: "#{@reagent.name} was successfully updated" }
+        if redirect_path.present?
+          format.html { redirect_to redirect_path, notice: "#{@reagent.name} was successfully updated" }
+        else
+          format.html { redirect_to @reagent, notice: "#{@reagent.name} was successfully updated" }
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -151,7 +155,7 @@ class ReagentsController < ApplicationController
     # I bet we could pull this from the model, that would be cool
     params
       .require(:reagent)
-        .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :description, tags: [])
+        .permit(:name, :cost, :purchase_location, :max_volume_value, :current_volume_value, :volume_unit, :description, :redirect_path, tags: [])
   end
 
   def search_params

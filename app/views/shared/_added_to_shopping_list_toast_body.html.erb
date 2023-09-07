@@ -1,0 +1,14 @@
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-controller="toast" data-action="hidden.bs.toast->toast#remove">
+  <div class="toast-header">
+    <strong>Cheers!</strong>
+  </div>
+  <div class="toast-body">
+    <span>
+      <% if @maybe_lists.blank? %>
+        <p>No list selected, nothing added</p>
+      <% else %>
+        <p><%= "#{@placeholder.name.html_safe} added to lists: #{@maybe_lists.pluck(:name).join(', ')}" %></p>
+      <% end %>
+    </span>
+  </div>
+</div>

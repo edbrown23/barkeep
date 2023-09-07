@@ -18,6 +18,6 @@
       <strong>Cocktails in this family</strong>
     </p>
 
-    <%= render 'shared/cocktails_table', cocktails: @family.recipes, read_only: true, render_counts: user_signed_in? %>
+    <%= render 'shared/cocktails_table', cocktails: @family.recipes.page(params[:page]), read_only: true, render_counts: user_signed_in? %>
   </div>
 </main>

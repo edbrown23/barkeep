@@ -105,7 +105,13 @@
       </div>
     </div>
     <div>
-      <%= link_to 'Create a new shopping list', new_shopping_path, class: 'btn btn-primary' %>
+      <p><strong>Your shopping lists:</strong></p>
+      <ul id="shoppingLists">
+        <% @shopping_lists.each do |list| %>
+          <li><%= link_to list.name, shopping_path(list) %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'Create a shopping list', '/shopping', method: :post, class: 'btn btn-primary' %>
     </div>
   </div>
 </main>

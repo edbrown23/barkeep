@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+  <%= form_with(url: add_to_list_path, method: 'PUT', data: { controller: 'ingredients-select' }) do |form| %>
+    <%= form.text_field 'list_update[bottle_tags]', value: reagent_amount.to_placeholder_id, hidden: true %>
+    <div class="input-group">
+      <%= form.collection_select(
+          'list_update[shopping_list_id]',
+          shopping_lists,
+          :id,
+          :name,
+          {
+            include_blank: true,
+            selected: existing_shopping_list_map[reagent_amount.id]
+          },
+          {
+            id: "shopping_select_#{reagent_amount.to_placeholder_id}",
+            class: 'form-select',
+            multiple: 'multiple',
+            data: {
+              'ingredients-select-target': 'select'
+            }
+          }
+        ) %>
+
+      <%= form.submit "save", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+<% else %>
+<span>Create an account to start a shopping list!</span>
+<% end %>

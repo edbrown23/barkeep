@@ -74,6 +74,8 @@ class CocktailsController < ApplicationController
       made_globally_count: Audit.where(recipe: @cocktail).count
     }
     @favorite = @cocktail.cocktail_families.include?(CocktailFamily.users_favorites(current_user))
+    @shopping_lists = ShoppingList.for_user(current_user) || []
+    @existing_shopping_list_map = @cocktail.reagent_amounts.map { |amount| [amount.id, Reagent.for_user(current_user).with_tags(amount.tags).where.not(shopping_list: nil).pluck(:shopping_list_id)] }.to_h
 
     @renderable_audits = Audit.for_user(current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
     flash.notice = params[:notice] if params[:notice].present?

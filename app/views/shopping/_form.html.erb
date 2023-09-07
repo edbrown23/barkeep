@@ -1,0 +1,12 @@
+<%= turbo_frame_tag(shopping_list) do %>
+  <%= form_with(model: shopping_list) do |form| %>
+    <div class="field mb-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", required: true %>
+    </div>
+
+    <div class="actions mb-3">
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>

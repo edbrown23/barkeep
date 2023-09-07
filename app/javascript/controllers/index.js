@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CheckListController from "./check_list_controller"
+application.register("check-list", CheckListController)
+
 import FacetsController from "./facets_controller"
 application.register("facets", FacetsController)
 

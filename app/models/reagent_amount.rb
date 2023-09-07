@@ -31,8 +31,12 @@ class ReagentAmount < ApplicationRecord
     ReagentCategory.where(external_id: tags)
   end
 
-  def matching_reagents(current_user)
-    Reagent.for_user(current_user).with_tags(tags)
+  def matching_reagents(current_user, shopping_list = nil)
+    Reagent.for_user(current_user).where(shopping_list: shopping_list).with_tags(tags)
+  end
+
+  def to_placeholder_id
+    tags.join(',')
   end
 
   def reagent_availability(current_user)
