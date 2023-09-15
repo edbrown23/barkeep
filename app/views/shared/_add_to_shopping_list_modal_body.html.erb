@@ -1,0 +1,35 @@
+<%= turbo_frame_tag('addToShoppingListModalFrame') do %>
+<div class="modal-header">
+  <h5 class="modal-title" id="ModalTitle">Choose a list to add this bottle to:</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  <%= form_with(url: add_to_list_path, method: 'PUT', id: "addToShoppingListForm", data: { controller: 'ingredients-select' }) do |form| %>
+    <%= form.text_field 'list_update[existing_bottle_id]', value: @reagent.id, hidden: true %>
+    <div class="input-group">
+      <%= form.collection_select(
+          'list_update[shopping_list_id]',
+          @shopping_lists,
+          :id,
+          :name,
+          {
+            include_blank: true,
+            selected: @existing_shopping_list_map
+          },
+          {
+            id: "shopping_select_",
+            class: 'form-select',
+            multiple: 'multiple',
+            data: {
+              'ingredients-select-target': 'select'
+            }
+          }
+        ) %>
+    </div>
+  <% end %>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <input type="submit" class="btn btn-primary" form="addToShoppingListForm" value="Add to shopping lists!" />
+</div>
+<% end %>

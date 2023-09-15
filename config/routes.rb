@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :reagents do
     post :refill
     post :empty
+    get :add_to_list, to: 'reagents#shopping_list_show'
   end
   resources :bulk_reagents, only: [:index, :create]
 

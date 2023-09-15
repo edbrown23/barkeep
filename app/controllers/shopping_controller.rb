@@ -103,22 +103,29 @@ class ShoppingController < ApplicationController
 
     if @maybe_lists.present?
       placeholder_id = parsed_params[:bottle_tags]
+      @placeholder = Reagent.new(
+        user: current_user,
+        max_volume_unit: 'ml',
+        max_volume_value: 750,
+        current_volume_unit: 'ml',
+        current_volume_value: 750,
+        tags: parsed_params.fetch(:bottle_tags, []).split(','),
+      )
+
+      if parsed_params[:existing_bottle_id].present?
+        @placeholder = Reagent.for_user(current_user).find_by(id: parsed_params[:existing_bottle_id])
+        placeholder_id = @placeholder.external_id
+      end
 
       @maybe_lists.each do |list|
         existing_placeholders_count = Reagent.for_user(current_user).where('external_id ILIKE ?', "%#{placeholder_id}%").count
         final_id = "#{placeholder_id}_#{existing_placeholders_count + 1}"
 
-        @placeholder = Reagent.create!(
-          name: final_id.titleize,
-          external_id: final_id,
-          user: current_user,
-          max_volume_unit: 'ml',
-          max_volume_value: 750,
-          current_volume_unit: 'ml',
-          current_volume_value: 750,
-          tags: parsed_params[:bottle_tags].split(','),
-          shopping_list: list
-        )
+        list_copy = @placeholder.dup
+        list_copy.shopping_list = list
+        list_copy.name = final_id.titleize
+        list_copy.external_id = final_id
+        list_copy.save!
       end
     end
 
@@ -134,7 +141,7 @@ class ShoppingController < ApplicationController
   end
 
   def add_to_list_params
-    params.require(:list_update).permit(:bottle_tags, shopping_list_id: [])
+    params.require(:list_update).permit(:bottle_tags, :existing_bottle_id, shopping_list_id: [])
   end
 
   def purchase_params

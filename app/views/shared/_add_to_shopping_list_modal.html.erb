@@ -1,0 +1,17 @@
+<div
+  class="modal fade"
+  tabindex="-1"
+  id="addToShoppingListModal"
+  aria-labelledby="addToShoppingListModalLabel"
+  aria-hidden="true"
+  data-controller="modal"
+  data-action="turbo:frame-load->modal#open turbo:submit-end->modal#close"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <%= turbo_frame_tag 'addToShoppingListModalFrame' do %>
+      <div>Loading...</div>
+    <% end %>
+    </div>
+  </div>
+</div>

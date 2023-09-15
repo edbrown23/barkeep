@@ -45,8 +45,14 @@ class ReagentsController < ApplicationController
     @availability = CocktailAvailabilityService.new(@cocktails, current_user)
   end
 
+  def shopping_list_show
+    @reagent = Reagent.for_user(current_user).find(params[:reagent_id])
+    @shopping_lists = ShoppingList.for_user(current_user)
+    @existing_shopping_list_map = Reagent.for_user(current_user).with_tags(@reagent.tags).pluck(:shopping_list_id).uniq.compact
+  end
+
   def edit
-    @possible_units = POSSIBLE_UNITS
+    @possible_units = POSSIBLE_UNITS_ML
   end
 
   def refill
@@ -105,6 +111,7 @@ class ReagentsController < ApplicationController
   def update
     parsed_params = parse_and_maybe_create_category(reagent_params)
     redirect_path = parsed_params.delete(:redirect_path)
+    @possible_units = POSSIBLE_UNITS_ML
 
     respond_to do |format|
       if @reagent.update(parsed_params)

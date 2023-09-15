@@ -42,15 +42,13 @@
                 <th>Tags</th>
                 <th>Current Volume</th>
                 <th>Max Volume</th>
-                <th>Refill</th>
-                <th>Empty</th>
-                <th>Show</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               <% @reagents.each do |reagent| %>
                 <tr id="reagent_<%= reagent.id %>">
-                  <td><%= reagent.name %></td>
+                  <td><%= link_to reagent.name, reagent_path(reagent) %></td>
                   <td>
                     <samp>
                       <% reagent.tags.each_with_index do |tag, i| %>
@@ -60,9 +58,11 @@
                   </td>
                   <td data-volume-row><%= reagent.current_volume %></td>
                   <td><%= reagent.max_volume %></td>
-                  <td><%= link_to "Refill", reagent_refill_path(reagent, format: 'json'), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id, confirm: "Are you sure you want to refill #{reagent.name}?" } %></td>
-                  <td><%= link_to "Empty", reagent_empty_path(reagent, format: 'json'), remote: true, method: "post", class: "btn btn-outline-danger", data: { reagent_id: reagent.id, confirm: "Are you sure you want to empty #{reagent.name}?" } %></td>
-                  <td><%= link_to "Details", reagent_path(reagent), class: "btn btn-outline-info" %></td>
+                  <td>
+                    <%= link_to "Refill", reagent_refill_path(reagent, format: 'json'), remote: true, method: "post", class: "btn btn-outline-success", data: { reagent_id: reagent.id, confirm: "Are you sure you want to refill #{reagent.name}?" } %>
+                    <%= link_to "Empty", reagent_empty_path(reagent, format: 'json'), remote: true, method: "post", class: "btn btn-outline-danger", data: { reagent_id: reagent.id, confirm: "Are you sure you want to empty #{reagent.name}?" } %>
+                    <%= link_to "Add To List", reagent_add_to_list_path(reagent), class: "btn btn-outline-info", data: { turbo_frame: 'addToShoppingListModalFrame' } %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>
@@ -71,6 +71,8 @@
         <a href="/bulk_reagents" class="btn btn-info">Bulk import reagents</a>
       </div>
     </div>
+
+    <%= render 'shared/add_to_shopping_list_modal' %>
 
     <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastDestination" style="z-index: 11">
     </div>
