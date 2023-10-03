@@ -90,10 +90,12 @@ function parseForm() {
     });
     const amount = currentGroup.querySelector('.amount-input').value;
     const unit = currentGroup.querySelector('.unit-input').value;
+    const optional = currentGroup.querySelector('.optional-check').checked;
     accumulator.push({
       tags: tags,
       amount: amount,
-      unit: unit
+      unit: unit,
+      optional: optional
     });
     return accumulator;
   }, []);

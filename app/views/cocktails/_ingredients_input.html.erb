@@ -54,6 +54,11 @@
           <% end %>
         </select>
       </div>
+
+      <div class="form-check mt-3">
+        <label for="optionalCheck">Optional?</label>
+        <input class="form-check-input optional-check" name="optionalCheck" type="checkbox" <% if editing && reagent_amount.optional? %> checked<% end %>>
+      </div>
     </div>
   </div>
 

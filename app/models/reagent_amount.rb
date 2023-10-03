@@ -11,6 +11,7 @@
 #  description :text
 #  user_id     :bigint
 #  tags        :string           default([]), is an Array
+#  optional    :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -47,13 +48,13 @@ class ReagentAmount < ApplicationRecord
         enough: reagent.current_volume >= required_volume
       }
     end.tap do |matching|
-      # Unitless reagents are always available
-      if unitless?
+      if optional
         matching << {
           available: required_volume,
           required: required_volume,
           enough: true,
-          garnish: true
+          garnish: true,
+          optional: true
         }
       end
     end
@@ -69,7 +70,8 @@ class ReagentAmount < ApplicationRecord
       amount: amount,
       unit: unit,
       description: description,
-      reagent_amount_id: id
+      reagent_amount_id: id,
+      optional: optional
     )
   end
 end

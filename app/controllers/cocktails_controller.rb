@@ -176,7 +176,8 @@ class CocktailsController < ApplicationController
         recipe: cocktail,
         amount: raw_amount[:reagent_amount],
         unit: raw_amount[:reagent_unit],
-        user_id: current_user.id
+        user_id: current_user.id,
+        optional: raw_amount[:optional]
       }
 
       existing_tags = raw_amount[:tags].select { |t| t[:new].blank? }.map { |t| t[:tag] }
@@ -239,7 +240,7 @@ class CocktailsController < ApplicationController
   def cocktail_params
     permitted = params
       .require(:cocktail)
-        .permit(:name, :source, amounts: [[tags: [:tag, :new]], :amount, :unit])
+        .permit(:name, :source, amounts: [[tags: [:tag, :new]], :amount, :unit, :optional])
 
     {}.tap do |final_params|
       final_params[:name] = permitted[:name]
@@ -248,7 +249,8 @@ class CocktailsController < ApplicationController
         {
           reagent_amount: amount[:amount],
           reagent_unit: amount[:unit],
-          tags: amount[:tags]
+          tags: amount[:tags],
+          optional: amount[:optional]
         }
       end
     end

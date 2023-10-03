@@ -171,7 +171,8 @@ CREATE TABLE public.reagent_amounts (
     unit character varying NOT NULL,
     description text,
     user_id bigint,
-    tags character varying[] DEFAULT '{}'::character varying[]
+    tags character varying[] DEFAULT '{}'::character varying[],
+    optional boolean DEFAULT false
 );
 
 
@@ -791,6 +792,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230804185415'),
 ('20230808220621'),
 ('20230819005650'),
-('20230828235630');
+('20230828235630'),
+('20230916221309'),
+('20230919010600');
 
 

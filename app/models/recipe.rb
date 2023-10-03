@@ -28,7 +28,7 @@ class Recipe < ApplicationRecord
   pg_search_scope :private_by_tag, against: :searchable, using: { tsearch: { dictionary: :simple, tsvector_column: :searchable } }
   scope :by_tag, ->(*tag_string) { private_by_tag(tag_string.map { |t| t.gsub('_', '/') }) }
 
-  Ingredient = Struct.new(:tags, :amount, :unit, :description, :reagent_amount_id, keyword_init: true) do
+  Ingredient = Struct.new(:tags, :amount, :unit, :description, :reagent_amount_id, :optional, keyword_init: true) do
     def unitless?
       unit == 'unknown'
     end
@@ -39,6 +39,10 @@ class Recipe < ApplicationRecord
 
     def reagent_amount
       ReagentAmount.find(reagent_amount_id)
+    end
+
+    def optional?
+      optional.nil? ? false : optional
     end
   end
 
@@ -72,7 +76,8 @@ class Recipe < ApplicationRecord
         tags: i['tags'],
         amount: i['amount'],
         unit: i['unit'],
-        reagent_amount_id: i['reagent_amount_id']
+        reagent_amount_id: i['reagent_amount_id'],
+        optional: i['optional']
       )
     end
   end
@@ -88,7 +93,8 @@ class Recipe < ApplicationRecord
       tags: ingredient.tags,
       amount: ingredient.amount,
       unit: ingredient.unit,
-      reagent_amount_id: ingredient.reagent_amount_id
+      reagent_amount_id: ingredient.reagent_amount_id,
+      optional: ingredient.optional
     }
   end
 
