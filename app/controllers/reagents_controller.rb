@@ -92,7 +92,7 @@ class ReagentsController < ApplicationController
 
   def create
     parsed_params = parse_and_maybe_create_category(reagent_params)
-    @reagent = Reagent.for_user(current_user).new(parsed_params)
+    @reagent = Reagent.for_user(current_user).new(parsed_params.except(:redirect_path))
 
     respond_to do |format|
       if @reagent.save
