@@ -30,7 +30,7 @@ class DrinkMakingController < ApplicationController
 
     @old_count = Audit.for_user(current_user).where(recipe: @cocktail).count
     @old_global_count = Audit.where(recipe: @cocktail).count
-    create_audit(@cocktail, @used_reagents)
+    @audit = create_audit(@cocktail, @used_reagents)
 
     formatted_used = @used_reagents.map do |used|
       used[:used_model].name

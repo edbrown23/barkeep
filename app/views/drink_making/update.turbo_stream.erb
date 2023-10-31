@@ -5,4 +5,6 @@
 
 <%= turbo_stream.update "drinkMakingShowContent" do %>
   <p>You made a <%= link_to @cocktail.name.html_safe, cocktail_path(@cocktail) %>!</p>
+
+  <p>Leave notes on what you made in your <%= link_to "audit log", audit_path(@audit) %></p>
 <% end %>
