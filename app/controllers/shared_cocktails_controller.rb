@@ -55,7 +55,7 @@ class SharedCocktailsController < ApplicationController
     # set of tags. this does that I think
     @existing_shopping_list_map = @cocktail.reagent_amounts.map { |amount| [amount.id, Reagent.for_user(current_user).with_tags(amount.tags).where.not(shopping_list: nil).pluck(:shopping_list_id)] }.to_h
 
-    @users_renderable_audits = Audit.for_user(current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
+    @users_recent_audits = Audit.for_user(current_user).where(recipe: @cocktail).limit(5)
     @community_renderable_audits = Audit.where.not(user: current_user).where(recipe: @cocktail).select { |audit| audit.notes.present? }
     @user_copies = Recipe.for_user(current_user).where(parent: @cocktail)
   end

@@ -1,0 +1,24 @@
+<div class="m-3">
+  <strong>Your recent notes:</strong>
+  <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target=".audits-collapse" aria-expanded="false">Toggle Notes</button>
+</div>
+<div class="table-responsive collapse audits-collapse card card-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Stars</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody id="userNotesTableBody">
+      <% audits.each do |audit| %>
+      <tr>
+        <td><%= link_to audit.created_at.strftime("%B %d, %Y"), audit_path(audit) %></td>
+        <td><%= audit.star_count %></td>
+        <td><%= audit.notes || 'no notes' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

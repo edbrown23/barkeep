@@ -37,28 +37,7 @@
         <p>You've made this drink <span id="made_count"><%= @stats[:made_count] %></span> times!</p>
       </div>
       <div class="col">
-        <div class="m-3">
-          <strong>Your notes:</strong>
-          <button class="btn btn-outline-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target=".audits-collapse" aria-expanded="false">Toggle Notes</button>
-        </div>
-        <div class="table-responsive collapse audits-collapse card card-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Stars</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @renderable_audits.each do |audit| %>
-              <tr>
-                <td><%= audit.star_count %></td>
-                <td><%= audit.notes %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+        <%= render 'shared/user_notes_table', audits: @recent_audits %>
       </div>
     </div>
     <% if @cocktail.parent.present? %>

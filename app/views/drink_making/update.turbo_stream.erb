@@ -8,3 +8,11 @@
 
   <p>Leave notes on what you made in your <%= link_to "audit log", audit_path(@audit) %></p>
 <% end %>
+
+<%= turbo_stream.prepend "userNotesTableBody" do %>
+  <tr>
+    <td><%= link_to @audit.created_at.strftime("%B %d, %Y"), audit_path(@audit) %></td>
+    <td><%= @audit.star_count %></td>
+    <td><%= @audit.notes || 'no notes' %></td>
+  </tr>
+<% end %>
