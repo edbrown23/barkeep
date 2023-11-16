@@ -30,6 +30,9 @@ class Reagent < ApplicationRecord
   include UserScopable
   include Taggable
 
+  scope :real, -> { where(shopping_list_id: nil) }
+  scope :has_volume, -> { where('current_volume_value > 0') }
+
   belongs_to :shopping_list, optional: true
 
   measured Measured::Volume, :max_volume

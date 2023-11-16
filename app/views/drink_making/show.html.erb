@@ -9,22 +9,54 @@
       <form id="makeDrinkForm" method="put" action=<%= "/drink_making/#{@cocktail.id}"%>>
         <div id="reagentChoice">
           <% @reagent_options.each do |(amount, bottles)| %>
-          <p class="mt-3"><%= amount.tags.join(', ') %><small> (<%= amount.required_volume %> required): </small></p>
-          <div class="input-group">
-            <span class="input-group-text">Use: </span>
-            <select class="form-select" name="bottles[chosen_id][]">
-              <% bottles.select { |b| b.current_volume > Measured::Volume.new('0', 'oz') }.each do |b| %>
-              <option value=<%= b.id %>><%= b.name %> (<%= b.current_volume.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false) %> available)</option>
+            <div data-controller="drink-making-form">
+              <p class="mt-3"><%= amount.tags.join(', ') %><small> (<%= amount.required_volume %> required): </small></p>
+              <div class="input-group">
+                <span class="input-group-text">Use: </span>
+                <select
+                  class="form-select"
+                  name=<%= "drink[bottles][#{amount.reagent_amount_id}][bottle]" %>
+                  data-drink-making-form-target="originalSelection"
+                  <% if bottles.empty? %>disabled<% end %>
+                >
+                  <% bottles.select { |b| b.current_volume > Measured::Volume.new('0', 'oz') }.each do |b| %>
+                  <option value=<%= b.id %>><%= b.name %> (<%= b.current_volume.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false) %> available)</option>
+                  <% end %>
+                </select>
+              </div>
+              <% if @twist_mode %>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id=<%= "substituteCheckSwitch#{amount.reagent_amount_id}" %>
+                    name=<%= "drink[bottles][#{amount.reagent_amount_id}][substitute]" %>
+                    data-action="click->drink-making-form#toggleCollapse"
+                    data-drink-making-form-target="checkbox"
+                    value="substituted"
+                  >
+                  <label class="form-check-label" for=<%= "substituteCheckSwitch#{amount.reagent_amount_id}" %>>Substitute?</label>
+                </div>
+                <div class="collapse" id=<%= "collapse-#{amount.reagent_amount_id}" %> data-drink-making-form-target="collapse">
+                  <div class="input-group">
+                    <span class="input-group-text">Replace with:</span>
+                    <select class="form-select" name=<%= "drink[bottles][#{amount.reagent_amount_id}][substitute_bottle]" %>>
+                      <% @substitute_bottles.each do |b| %>
+                      <option value=<%= b.id %>><%= b.name %> (<%= b.current_volume.convert_to(amount.unit).format("%.2<value>f %<unit>s", with_conversion_string: false) %> available)</option>
+                      <% end %>
+                    </select>
+                  </div>
+                </div>
               <% end %>
-            </select>
-          </div>
+            </div>
           <% end %>
         </div>
       </form>
     </div>
     <div class="modal-footer">
       <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="doubleCheckSwitch" form="makeDrinkForm" name="double">
+        <input class="form-check-input" type="checkbox" role="switch" id="doubleCheckSwitch" form="makeDrinkForm" name="drink[double]">
         <label class="form-check-label" for="doubleCheckSwitch">Make it a double?</label>
       </div>
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

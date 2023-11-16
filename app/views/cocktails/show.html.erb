@@ -94,12 +94,14 @@
 
     <p class="mt-3">
       <% if @cocktail.user_can_make?(current_user) %>
-      <span>You can make this drink! If you want to, click here:</span>
+      <span>You have all the ingredients to make this drink! If you want to, click here:</span>
       <%= link_to 'Make Drink', drink_making_path(@cocktail), class: 'btn btn-success', data: { turbo_frame: 'madeThisModalFrame' } %>
-      <% else %>
-      <%= render 'shared/reagents_guide' %>
       <% end %>
+      <p>
+      <span>You can always make any drink with substitutions: </span>
+      <%= link_to 'Make Drink (with a twist)', drink_making_path(@cocktail, twist_mode: true), class: 'btn btn-success', data: { turbo_frame: 'madeThisModalFrame' } %>
     </p>
+    <%= render 'shared/reagents_guide' %>
 
     <hr>
 

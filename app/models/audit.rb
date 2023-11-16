@@ -19,7 +19,7 @@ class Audit < ApplicationRecord
 
   belongs_to :recipe  
 
-  ReagentUsed = Struct.new(:name, :amount, :unit, :description, :reagent_id, keyword_init: true)
+  ReagentUsed = Struct.new(:name, :amount, :unit, :description, :reagent_id, :original_tags, :substituted, keyword_init: true)
 
   def backup_name
     info['cocktail_name']
@@ -38,7 +38,9 @@ class Audit < ApplicationRecord
         amount: used['amount_used'],
         unit: used['unit_used'],
         description: used['description'],
-        reagent_id: used['reagent_id']
+        reagent_id: used['reagent_id'],
+        original_tags: (used['original_tags'] || []).join(", "),
+        substituted: used['substituted'] || false
       )
     end
   end

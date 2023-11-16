@@ -77,7 +77,7 @@ class CocktailsController < ApplicationController
     @shopping_lists = ShoppingList.for_user(current_user) || []
     @existing_shopping_list_map = @cocktail.reagent_amounts.map { |amount| [amount.id, Reagent.for_user(current_user).with_tags(amount.tags).where.not(shopping_list: nil).pluck(:shopping_list_id)] }.to_h
 
-    @recent_audits = Audit.for_user(current_user).where(recipe: @cocktail).limit(5)
+    @recent_audits = Audit.for_user(current_user).where(recipe: @cocktail).order(created_at: :desc).limit(5)
     flash.notice = params[:notice] if params[:notice].present?
   end
 
@@ -91,9 +91,9 @@ class CocktailsController < ApplicationController
 
   def drink_builder
     @cocktail = Recipe.new(category: 'cocktail', user_id: current_user.id)
-    @reagents = Reagent.for_user(current_user).all.order(:name)
+    @reagents = Reagent.for_user(current_user).real.has_volume.order(:name)
     @form_path = cocktails_path
-    @reagent_categories = ReagentCategory.where(external_id: Reagent.for_user(current_user).pluck(:tags).flatten).order(:name)
+    @reagent_categories = ReagentCategory.where(external_id: @reagents.pluck(:tags).flatten).order(:name)
     @possible_units = POSSIBLE_UNITS
     flash.alert = params[:alert] if params[:alert].present?
   end

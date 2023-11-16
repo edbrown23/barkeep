@@ -149,11 +149,11 @@
         <% if @cocktail.user_can_make?(current_user) %>
         <span>You can make this drink! If you want to, click here:</span>
         <%= link_to 'Make Drink', drink_making_path(@cocktail), class: 'btn btn-success', data: { turbo_frame: 'madeThisModalFrame' } %>
-        <% else %>
-        <%= render 'shared/reagents_guide' %>
         <% end %>
+        <%= link_to 'Make Drink (with a twist)', drink_making_path(@cocktail, twist_mode: true), class: 'btn btn-success', data: { turbo_frame: 'madeThisModalFrame' } %>
       </p>
     <% end %>
+    <%= render 'shared/reagents_guide' %>
 
     <%= render 'shared/error_toast' %>
     <%= render 'shared/cheers_toast' %>
