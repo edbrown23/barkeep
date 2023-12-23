@@ -145,6 +145,10 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jsonb_accessor (1.4)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
+      pg (>= 0.18.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -349,6 +353,7 @@ DEPENDENCIES
   factory_bot_rails
   hpricot
   jbuilder (~> 2.7)
+  jsonb_accessor
   kaminari
   listen (~> 3.3)
   measured-rails!

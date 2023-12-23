@@ -53,22 +53,7 @@ class Recipe < ApplicationRecord
   has_many :cocktail_family_joiners
   has_many :cocktail_families, through: :cocktail_family_joiners
 
-  class << self
-    # could be a module, plus this is all probabyl dumb and a gem or whatever
-    def extra_column(name, default = nil)
-      define_method(name) do
-        (extras || {})[name.to_s] || default
-      end
-
-      define_method("#{name}=") do |value|
-        self.extras ||= {}
-        self.extras[name.to_s] = value
-      end
-    end
-  end
-
-  extra_column :proposed_to_be_shared, false
-  extra_column :proposer_user_id, nil
+  jsonb_accessor :extras, proposed_to_be_shared: :boolean, proposer_user_id: :integer
 
   def ingredients
     @ingredients ||= ingredients_blob.fetch('ingredients', []).map do |i|
