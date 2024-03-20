@@ -1,0 +1,8 @@
+<% if current_user.admin? %>
+<div>
+  <%= link_to "Show similar cocktails", cocktail_nearest_neighbors_path(cocktail), data: { turbo_frame: "cocktail_#{cocktail.id}_neighbors" } %>
+
+  <%= turbo_frame_tag("cocktail_#{cocktail.id}_neighbors") do %>
+  <% end %>
+</div>
+<% end %>

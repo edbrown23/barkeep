@@ -14,6 +14,7 @@
 #  source           :string           default("")
 #  ingredients_blob :jsonb
 #  searchable       :tsvector
+#  embedding        :vector(500)
 #
 # Indexes
 #
@@ -52,6 +53,7 @@ class Recipe < ApplicationRecord
   has_many :children, class_name: Recipe.name, foreign_key: :parent_id
   has_many :cocktail_family_joiners
   has_many :cocktail_families, through: :cocktail_family_joiners
+  has_neighbors :embedding, normalize: true
 
   jsonb_accessor :extras, proposed_to_be_shared: :boolean, proposer_user_id: :integer
 

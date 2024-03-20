@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     post :toggle_favorite
     post :propose_to_share
     post :make_permanent
+    get :nearest_neighbors
   end
 
   resources :cocktail_families, only: [:show, :create, :update]

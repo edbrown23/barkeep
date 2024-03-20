@@ -1,0 +1,12 @@
+<%= turbo_frame_tag("cocktail_#{@cocktail.id}_neighbors") do %>
+<div>
+  <p>Euclidean</p>
+  <ul>
+  <% @neighbors.each do |neighbor| %>
+    <li>
+      <%= link_to "#{neighbor.name} - (#{neighbor.neighbor_distance})", neighbor.user_id.present? ? cocktail_path(neighbor) : shared_cocktail_path(neighbor), data: { turbo_frame: '_top' } %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<% end %>

@@ -102,6 +102,7 @@
       <%= link_to 'Make Drink (with a twist)', drink_making_path(@cocktail, twist_mode: true), class: 'btn btn-success', data: { turbo_frame: 'madeThisModalFrame' } %>
     </p>
     <%= render 'shared/reagents_guide' %>
+    <%= render 'shared/similar_cocktails', cocktail: @cocktail %>
 
     <hr>
 

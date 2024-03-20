@@ -102,4 +102,11 @@ namespace :maintenance do
       end
     end
   end
+
+  desc 'Setup embeddings on recipes'
+  task setup_embeddings: [:environment] do
+    Recipe.all.each do |recipe|
+      recipe.update(embedding: RecipeEmbeddingsService.generate(recipe))
+    end
+  end
 end

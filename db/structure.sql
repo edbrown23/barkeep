@@ -10,6 +10,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: vector; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION vector; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION vector IS 'vector data type and ivfflat and hnsw access methods';
+
+
+--
 -- Name: extract_tags_from_blob(jsonb); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -205,7 +219,8 @@ CREATE TABLE public.reagent_categories (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     description text,
-    external_id character varying NOT NULL
+    external_id character varying NOT NULL,
+    override_dimension_external_id character varying
 );
 
 
@@ -286,7 +301,8 @@ CREATE TABLE public.recipes (
     parent_id bigint,
     source character varying DEFAULT ''::character varying,
     ingredients_blob jsonb DEFAULT '{}'::jsonb,
-    searchable tsvector GENERATED ALWAYS AS (array_to_tsvector(public.extract_tags_from_blob(ingredients_blob))) STORED
+    searchable tsvector GENERATED ALWAYS AS (array_to_tsvector(public.extract_tags_from_blob(ingredients_blob))) STORED,
+    embedding public.vector(500)
 );
 
 
@@ -794,6 +810,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230819005650'),
 ('20230828235630'),
 ('20230916221309'),
-('20230919010600');
+('20230919010600'),
+('20231228024313'),
+('20231229001212'),
+('20231231015458');
 
 

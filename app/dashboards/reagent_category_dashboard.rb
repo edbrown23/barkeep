@@ -15,6 +15,7 @@ class ReagentCategoryDashboard < Administrate::BaseDashboard
     reference_bottles: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    override_dimension_external_id: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -39,6 +40,7 @@ class ReagentCategoryDashboard < Administrate::BaseDashboard
     reference_bottles
     created_at
     updated_at
+    override_dimension_external_id
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -49,6 +51,7 @@ class ReagentCategoryDashboard < Administrate::BaseDashboard
     external_id
     name
     reference_bottles
+    override_dimension_external_id
   ].freeze
 
   # COLLECTION_FILTERS

@@ -14,6 +14,7 @@
 #  source           :string           default("")
 #  ingredients_blob :jsonb
 #  searchable       :tsvector
+#  embedding        :vector(500)
 #
 # Indexes
 #

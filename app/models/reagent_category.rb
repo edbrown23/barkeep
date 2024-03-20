@@ -2,12 +2,13 @@
 #
 # Table name: reagent_categories
 #
-#  id          :bigint           not null, primary key
-#  name        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  description :text
-#  external_id :string           not null
+#  id                             :bigint           not null, primary key
+#  name                           :string
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  description                    :text
+#  external_id                    :string           not null
+#  override_dimension_external_id :string
 #
 # Indexes
 #
@@ -23,5 +24,13 @@ class ReagentCategory < ApplicationRecord
 
   def reagent_amounts(current_user)
     ReagentAmount.for_user(current_user).with_tags(external_id)
+  end
+
+  def dimension
+    if override_dimension_external_id.present?
+      return ReagentCategory.find_by(external_id: override_dimension_external_id).id
+    end
+
+    id
   end
 end

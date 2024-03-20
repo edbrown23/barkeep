@@ -137,6 +137,9 @@ class CocktailsController < ApplicationController
       end
       @cocktail.save!
 
+      embedding = RecipeEmbeddingsService.generate(@cocktail)
+      @cocktail.update!(embedding: embedding)
+
       raise ActiveRecord::Rollback unless amounts.size > 0
     end
 
@@ -161,6 +164,9 @@ class CocktailsController < ApplicationController
       @cocktail << a.convert_to_blob 
     end
 
+    embedding = RecipeEmbeddingsService.generate(@cocktail)
+    @cocktail.update!(embedding: embedding)
+
     respond_to do |format|
       if @cocktail.update(cocktail_params.slice(:name, :category))
         format.json { render json: { redirect_url: "#{cocktail_path(@cocktail)}?notice=#{ERB::Util.url_encode("#{@cocktail.name} was successfully updated")}" } }
@@ -168,6 +174,12 @@ class CocktailsController < ApplicationController
         format.json { render json: { redirect_url: cocktail_path(@cocktail), status: :unprocessable_entity } }
       end
     end
+  end
+
+  def nearest_neighbors
+    @cocktail = Recipe.for_user_or_shared(current_user).find_by(id: params['cocktail_id'])
+    # this should properly 404 if the cocktail can't be found
+    @neighbors = @cocktail.nearest_neighbors(:embedding, distance: :inner_product).for_user_or_shared(current_user).limit(10)
   end
 
   def create_reagent_amounts(cocktail, amounts_array)
