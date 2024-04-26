@@ -76,7 +76,7 @@
               <td><%= "#{reagent_amount.amount} #{reagent_amount.unit}" %></td>
               <td><%= reagent_amount.description %></td>
               <td>
-                <%= reagent_amount.matching_reagents(current_user).map { |bottle| link_to("#{bottle.name} (#{Lib.format_volume(bottle.current_volume, reagent_amount.unit)})", reagent_path(bottle), data: { turbo_frame: '_top' })}.join('<span>, </span>').html_safe %>
+                <%= reagent_amount.matching_reagents(current_user).has_volume.map { |bottle| link_to("#{bottle.name} (#{Lib.format_volume(bottle.current_volume, reagent_amount.unit)})", reagent_path(bottle), data: { turbo_frame: '_top' })}.join('<span>, </span>').html_safe %>
               </td>
               <td>
                 <%= render 'shared/shopping_form', reagent_amount: reagent_amount, shopping_lists: @shopping_lists, existing_shopping_list_map: @existing_shopping_list_map %>
