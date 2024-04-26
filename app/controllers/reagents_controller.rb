@@ -8,6 +8,7 @@ class ReagentsController < ApplicationController
   def index
     search_term = search_params['search_term']
     tags_search = search_params['search_tags']
+    show_empty = search_params['show_empty'] == 'on'
 
     initial_scope = Reagent.for_user(current_user).where(shopping_list: nil)
 
@@ -18,6 +19,8 @@ class ReagentsController < ApplicationController
     if tags_search.present?
       initial_scope = initial_scope.with_tags(tags_search)
     end
+
+    initial_scope = initial_scope.has_volume if !show_empty
 
     @reagents = initial_scope.order(:name)
 
@@ -166,6 +169,6 @@ class ReagentsController < ApplicationController
   end
 
   def search_params
-    params.permit(:search_term, :commit, search_tags: [])
+    params.permit(:search_term, :commit, :show_empty, search_tags: [])
   end
 end
