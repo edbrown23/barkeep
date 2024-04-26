@@ -104,6 +104,7 @@ class ShoppingController < ApplicationController
     if @maybe_lists.present?
       placeholder_id = parsed_params[:bottle_tags]
       @placeholder = Reagent.new(
+        name: placeholder_id.titleize,
         user: current_user,
         max_volume_unit: 'ml',
         max_volume_value: 750,
