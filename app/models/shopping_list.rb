@@ -15,5 +15,5 @@
 class ShoppingList < ApplicationRecord
   include UserScopable
 
-  has_many :reagents
+  has_many :reagents, dependent: :destroy
 end
