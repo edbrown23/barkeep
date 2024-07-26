@@ -1,4 +1,4 @@
-<% if current_user.admin? %>
+<% if current_user.present? && current_user.admin? %>
 <div>
   <%= link_to "Show similar cocktails", cocktail_nearest_neighbors_path(cocktail), data: { turbo_frame: "cocktail_#{cocktail.id}_neighbors" } %>
 
