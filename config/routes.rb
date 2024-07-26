@@ -56,6 +56,8 @@ Rails.application.routes.draw do
     put :add_to_list, to: 'shopping#add_to_list'
   end
 
+  resources :shopping_list_items, only: [:destroy]
+
   resources :audits, only: [:index, :show, :update, :destroy]
 
   resources :reagent_categories, only: [:index, :show, :edit, :update, :new, :create]

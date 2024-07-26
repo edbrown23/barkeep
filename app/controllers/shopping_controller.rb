@@ -78,12 +78,10 @@ class ShoppingController < ApplicationController
       purchased_bottles.each do |bottle|
         bottle.update!(shopping_list: nil)
       end
-
-      @shopping_list.destroy!
     end
 
     respond_to do |format|
-      format.html { redirect_to shopping_index_path, notice: "Purchased #{purchased_bottles.count} from #{@shopping_list.name}. List deleted!"}
+      format.html { redirect_to shopping_index_path, notice: "Purchased #{purchased_bottles.count} from #{@shopping_list.name}"}
     end
   end
 

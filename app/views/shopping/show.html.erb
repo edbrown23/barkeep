@@ -1,5 +1,6 @@
 <main>
   <div class="container">
+    <%= render 'shared/notice' %>
     <% # this would be a good ux to test out turbo framing in the edit form %>
     <p>
       <strong>List:</strong>
@@ -24,6 +25,7 @@
             <th>Name</th>
             <th>Tags</th>
             <th>Edit Details</th>
+            <th>Remove from list</th>
           </tr>
           </thead>
           <tbody>
@@ -41,6 +43,7 @@
                   <label for="check-all">Check All</label>
                 </div>
               </td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -70,6 +73,9 @@
               </td>
               <td>
                 <%= link_to 'Edit Placeholder Bottle', edit_reagent_path(bottle, redirect_path: shopping_path(@shopping_list)), class: 'btn btn-primary' %>
+              </td>
+              <td>
+                <%= link_to 'Remove from list', shopping_list_item_path(bottle), method: :delete, class: 'btn btn-outline-warning', data: { confirm: "Are you sure you want to remove #{bottle.name} from this list?" } %>
               </td>
             </tr>
           <% end %>
