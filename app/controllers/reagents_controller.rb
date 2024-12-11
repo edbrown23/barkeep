@@ -96,6 +96,8 @@ class ReagentsController < ApplicationController
   def create
     parsed_params = parse_and_maybe_create_category(reagent_params)
     @reagent = Reagent.for_user(current_user).new(parsed_params.except(:redirect_path))
+    @reagent_categories = ReagentCategory.all.order(:name)
+    @possible_units = POSSIBLE_UNITS_ML
 
     respond_to do |format|
       if @reagent.save
@@ -106,7 +108,7 @@ class ReagentsController < ApplicationController
           format.html { redirect_to @reagent, notice: "#{@reagent.name} was successfully created" }
         end
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, notice: "Errors creating your bottle: #{@reagent.errors.first(5)}" }
       end
     end
   end
