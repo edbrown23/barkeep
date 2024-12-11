@@ -95,6 +95,7 @@ GEM
       rake (>= 10.4, < 14.0)
     awesome_print (1.9.2)
     bcrypt (3.1.18)
+    bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -292,6 +293,12 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    sentry-rails (5.22.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.22.0)
+    sentry-ruby (5.22.0)
+      bigdecimal
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -300,6 +307,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stackprof (0.2.26)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.2)
@@ -372,7 +380,10 @@ DEPENDENCIES
   rspec-rails
   sass-rails (>= 6)
   selenium-webdriver
+  sentry-rails
+  sentry-ruby
   spring
+  stackprof
   stimulus-rails
   turbo-rails
   tzinfo-data

@@ -36,6 +36,10 @@ gem 'administrate-field-jsonb'
 
 gem 'pg_search'
 
+gem "stackprof"
+gem "sentry-ruby"
+gem "sentry-rails"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

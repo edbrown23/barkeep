@@ -17,6 +17,7 @@
       <%= yield :per_page_js %>
     <% end %>
     <%= javascript_pack_tag 'navbar', 'data-turbo-track': 'reload' %>
+    <%= Sentry.get_trace_propagation_meta.html_safe %>
   </head>
 
   <body>
