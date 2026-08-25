@@ -9,8 +9,9 @@ I am blogging about my work on this app here: [https://edbrown23.github.io/blog/
 
 ## Development setup
 
-Barkeep uses Ruby 3.2.2 and PostgreSQL 14 with the pgvector extension. Copy the sample
-database settings, adjust them for your local PostgreSQL user, and run the setup script:
+Barkeep uses Ruby 3.2.2, Node.js 24 LTS, and PostgreSQL 14 with the pgvector extension.
+Volta reads the Node version from `package.json`. Copy the sample database settings,
+adjust them for your local PostgreSQL user, and install the dependencies:
 
 ```sh
 cp .env.example .env
@@ -31,4 +32,11 @@ Check Rails autoloading after dependency or application structure changes:
 
 ```sh
 RAILS_ENV=test bin/rails zeitwerk:check
+```
+
+Build the browser assets with:
+
+```sh
+npm run build
+npm run build:css
 ```
