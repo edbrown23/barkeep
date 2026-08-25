@@ -46,7 +46,7 @@ gem "sentry-rails"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'devise', '~> 4.9.4'
+gem 'devise', '~> 5.0.4'
 # Using my own fork until my PR is accepted on the main repo
 gem 'measured-rails', git: 'https://github.com/edbrown23/measured-rails.git', branch: 'validations_with_custom_value_columns'
 
