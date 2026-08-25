@@ -10,6 +10,11 @@ describe 'CocktailAvailabilityService' do
 
   let(:service) { CocktailAvailabilityService.new(Recipe.where(category: 'cocktail'), test_user) }
 
+  before do
+    all_port << the_port.convert_to_blob
+    all_port.save!
+  end
+
   it "calculates under volume bottles" do
     expect(service.cocktail_availability(all_port)[:under_volume_tags]).to include('port')
   end

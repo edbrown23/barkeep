@@ -9,7 +9,7 @@ describe "ReagentAmount" do
     let!(:the_gin) { create(:reagent_amount, user: test_user, recipe: gin_shot, tags: ['gin']) }
 
     it "can find across tags" do
-      expect(the_gin.matching_reagents).to include(barr_hill_gin)
+      expect(the_gin.matching_reagents(test_user)).to include(barr_hill_gin)
     end
 
     context "more complexity" do
@@ -19,7 +19,7 @@ describe "ReagentAmount" do
       let!(:the_brandy_in_the_drink) { create(:reagent_amount, user: test_user, recipe: brandy_drink, tags: ['brandy']) }
 
       it "finds both brandy options" do
-        expect(the_brandy_in_the_drink.matching_reagents).to include(cognac_vsop, cheap_brandy)
+        expect(the_brandy_in_the_drink.matching_reagents(test_user)).to include(cognac_vsop, cheap_brandy)
       end
 
       context "lots more ingredients" do
@@ -40,10 +40,10 @@ describe "ReagentAmount" do
         let!(:soda_water_bottle) { create(:reagent, name: 'Soda Water', user: test_user, tags: ['soda_water']) }
 
         it "finds the right ingredients" do
-          expect(gin.matching_reagents).to include(barr_hill_gin, beefeater)
-          expect(gin.matching_reagents.count).to eq(2)
-          expect(benedictine.matching_reagents).to eq([benedictine_bottle])
-          expect(cherry_heering.matching_reagents).to eq([cherry_heering_bottle])
+          expect(gin.matching_reagents(test_user)).to include(barr_hill_gin, beefeater)
+          expect(gin.matching_reagents(test_user).count).to eq(2)
+          expect(benedictine.matching_reagents(test_user)).to eq([benedictine_bottle])
+          expect(cherry_heering.matching_reagents(test_user)).to eq([cherry_heering_bottle])
         end
       end
     end
