@@ -7,6 +7,9 @@ import { application } from "./application"
 import CheckListController from "./check_list_controller"
 application.register("check-list", CheckListController)
 
+import CocktailScaleController from "./cocktail_scale_controller"
+application.register("cocktail-scale", CocktailScaleController)
+
 import DrinkMakingFormController from "./drink_making_form_controller"
 application.register("drink-making-form", DrinkMakingFormController)
 

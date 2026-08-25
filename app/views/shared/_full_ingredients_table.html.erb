@@ -20,7 +20,14 @@
               <% end %>
             </samp>
           </td>
-          <td><%= "#{reagent_amount.amount} #{reagent_amount.unit}" %></td>
+          <td>
+            <%= tag.span "#{reagent_amount.amount} #{reagent_amount.unit}",
+                         data: {
+                           'cocktail-scale-target': 'amount',
+                           'cocktail-scale-base-amount': reagent_amount.amount,
+                           'cocktail-scale-unit': reagent_amount.unit
+                         } %>
+          </td>
           <td><%= reagent_amount.description %></td>
           <td>
             <% if user_signed_in? %>
