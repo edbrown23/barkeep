@@ -25,25 +25,25 @@ Restore a small, trustworthy development baseline, modernize only the infrastruc
 
 ### Phase 2: Reproducible foundation
 
-- [ ] Make the supported Ruby, database, and test commands explicit.
+- [x] Make the supported Ruby, database, and test commands explicit.
 - [x] Add a minimal CI check for the test suite.
-- [ ] Upgrade obsolete dependencies in small, independently verified steps.
+- [x] Upgrade obsolete dependencies in small, independently verified steps.
 
 ### Checkpoint: Foundation
 
-- [ ] A clean checkout can install, prepare the test database, and run CI-equivalent tests.
+- [x] A clean checkout can install, prepare the test database, and run CI-equivalent tests.
 
 ### Phase 3: Cocktail scaling slice
 
-- [ ] Specify scaling behavior with focused tests.
-- [ ] Add display-only serving scaling to the cocktail detail page.
-- [ ] Verify the flow in a real browser.
+- [x] Specify scaling behavior with focused tests.
+- [x] Add display-only serving scaling to the cocktail detail page.
+- [x] Verify the flow in a real browser.
 
 ### Checkpoint: Complete
 
-- [ ] Full suite and build pass.
-- [ ] Existing cocktail behavior is preserved.
-- [ ] Ingredient quantities update for a selected serving count without persistence or inventory changes.
+- [x] Full suite and build pass.
+- [x] Existing cocktail behavior is preserved.
+- [x] Ingredient quantities update for a selected serving count without persistence or inventory changes.
 
 ## Risks and Mitigations
 

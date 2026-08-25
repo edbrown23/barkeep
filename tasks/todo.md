@@ -31,9 +31,9 @@
 
 **Acceptance criteria:**
 
-- [ ] Required runtime and database setup are documented.
+- [x] Required runtime and database setup are documented.
 - [x] CI runs the same test command used locally.
-- [ ] A clean environment can prepare and test the app.
+- [x] A clean environment can prepare and test the app.
 
 **Verification:**
 
@@ -51,13 +51,13 @@
 
 **Acceptance criteria:**
 
-- [ ] Each dependency step is independently committed and reversible.
-- [ ] Tests remain green after each step.
-- [ ] Obsolete frontend tooling has a documented migration outcome.
+- [x] Each dependency step is independently committed and reversible.
+- [x] Tests remain green after each step.
+- [x] Obsolete frontend tooling has a documented migration outcome.
 
 **Verification:**
 
-- [ ] Full suite and asset build pass after each step.
+- [x] Full suite and asset build pass after each step.
 
 **Dependencies:** Task 2
 
@@ -67,7 +67,7 @@
 
 ## Checkpoint: Foundation
 
-- [ ] Tests and build pass from documented setup.
+- [x] Tests and build pass from documented setup.
 
 ## Task 4: Ship display-only cocktail scaling
 
@@ -75,15 +75,15 @@
 
 **Acceptance criteria:**
 
-- [ ] Scaling behavior is specified by focused tests.
-- [ ] Every ingredient quantity reflects the selected serving count.
-- [ ] Reloading the page returns to the original single-serving recipe.
+- [x] Scaling behavior is specified by focused tests.
+- [x] Every ingredient quantity reflects the selected serving count.
+- [x] Reloading the page returns to the original single-serving recipe.
 
 **Verification:**
 
-- [ ] Focused model/request tests pass.
-- [ ] Full suite and asset build pass.
-- [ ] Manual browser check confirms the scaling interaction.
+- [x] Focused model/request tests pass.
+- [x] Full suite and asset build pass.
+- [x] Manual browser check confirms the scaling interaction.
 
 **Dependencies:** Task 3
 
@@ -93,5 +93,5 @@
 
 ## Checkpoint: Complete
 
-- [ ] All tests and build checks pass.
-- [ ] Cocktail scaling works end to end.
+- [x] All tests and build checks pass.
+- [x] Cocktail scaling works end to end.
