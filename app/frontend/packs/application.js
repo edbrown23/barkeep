@@ -6,7 +6,7 @@
 import Rails from "@rails/ujs"
 import "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import "../channels"
 
 Rails.start()
 ActiveStorage.start()
@@ -14,7 +14,6 @@ ActiveStorage.start()
 import '../../javascript/controllers'
 
 import jquery from "jquery"
-global.$ = global.jQuery = jquery;
 window.$ = window.jQuery = jquery;
 
 import '../js/bootstrap_js_files.js'
