@@ -7,7 +7,7 @@ gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 8.1.0'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 7.2.1'
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
 gem 'turbo-rails', '~> 2.0.23'
