@@ -26,7 +26,7 @@ Restore a small, trustworthy development baseline, modernize only the infrastruc
 ### Phase 2: Reproducible foundation
 
 - [ ] Make the supported Ruby, database, and test commands explicit.
-- [ ] Add a minimal CI check for the test suite.
+- [x] Add a minimal CI check for the test suite.
 - [ ] Upgrade obsolete dependencies in small, independently verified steps.
 
 ### Checkpoint: Foundation
