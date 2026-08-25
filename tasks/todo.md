@@ -32,12 +32,12 @@
 **Acceptance criteria:**
 
 - [ ] Required runtime and database setup are documented.
-- [ ] CI runs the same test command used locally.
+- [x] CI runs the same test command used locally.
 - [ ] A clean environment can prepare and test the app.
 
 **Verification:**
 
-- [ ] CI-equivalent command passes locally.
+- [x] CI-equivalent command passes locally.
 
 **Dependencies:** Task 1
 
