@@ -33,9 +33,20 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: package.json
+          cache: npm
+
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Install browser dependencies
+        run: npm ci
+
+      - name: Build browser assets
+        run: npm run build && npm run build:css
 
       - name: Prepare database
         run: bundle exec rails db:test:prepare
