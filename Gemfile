@@ -5,7 +5,7 @@ ruby '3.2.2'
 
 gem 'dotenv-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 7.1.6'
+gem 'rails', '~> 7.2.3.2'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -46,7 +46,7 @@ gem "sentry-rails"
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'devise'
+gem 'devise', '~> 4.9.4'
 # Using my own fork until my PR is accepted on the main repo
 gem 'measured-rails', git: 'https://github.com/edbrown23/measured-rails.git', branch: 'validations_with_custom_value_columns'
 
