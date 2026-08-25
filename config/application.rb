@@ -22,5 +22,6 @@ module Barkeep
     config.active_record.schema_format = :sql
 
     config.active_support.cache_format_version = 7.0
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end
