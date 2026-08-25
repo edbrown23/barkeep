@@ -50,9 +50,24 @@
       <strong>Ingredients:</strong>
     </p>
 
-    <%= turbo_frame_tag(@cocktail) do %>
-    <%= render 'shared/full_ingredients_table', cocktail: @cocktail %>
-    <% end %>
+    <div data-controller="cocktail-scale">
+      <div class="row mb-3">
+        <div class="col-sm-3">
+          <%= label_tag :cocktail_servings, 'Servings', class: 'form-label' %>
+          <%= select_tag :cocktail_servings,
+                         options_for_select(1..12, 1),
+                         class: 'form-select',
+                         data: {
+                           'cocktail-scale-target': 'servings',
+                           action: 'change->cocktail-scale#scale'
+                         } %>
+        </div>
+      </div>
+
+      <%= turbo_frame_tag(@cocktail) do %>
+        <%= render 'shared/full_ingredients_table', cocktail: @cocktail %>
+      <% end %>
+    </div>
 
     <%= link_to 'Edit', edit_cocktail_path(@cocktail), class: "btn btn-primary" %>
 
