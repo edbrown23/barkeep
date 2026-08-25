@@ -10,7 +10,7 @@ gem 'rails', '~> 8.1.0'
 gem 'puma', '~> 5.0'
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
-gem 'turbo-rails'
+gem 'turbo-rails', '~> 2.0.23'
 gem 'stimulus-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
