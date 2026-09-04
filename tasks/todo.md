@@ -1,97 +1,139 @@
-# Barkeep Refresh
+# Core model coverage baseline
 
-## Task 1: Establish an honest test baseline
+## Task 1: Add coverage and deterministic test foundations
 
-**Description:** Replace stale generated coverage with the smallest set of tests that protects current cocktail behavior and the scaling seam.
+**Description:** Measure model line and branch coverage, make model data easy to create, and prevent implicit current-user state from leaking between examples.
 
 **Acceptance criteria:**
 
-- [x] No placeholder or skipped generated specs remain.
-- [x] Meaningful ingredient and availability behavior is covered.
-- [x] An authenticated user can render their cocktail detail page in a request spec.
+- [ ] SimpleCov starts before Rails, tracks `app/models/**/*.rb`, and reports line and branch coverage for a Models group.
+- [ ] RSpec runs in random order and restores `User.current_id` after scoped examples.
+- [ ] Factories exist for all concrete models that need persisted setup, with sequences where uniqueness requires them.
+- [ ] Shared examples cover `UserScopable` and `Taggable` against PostgreSQL.
 
 **Verification:**
 
-- [x] Focused specs pass with `bundle exec rspec <paths>`.
-- [x] Full suite passes with `bundle exec rspec`.
+- [ ] The unchanged suite still passes under coverage.
+- [ ] The initial model line and branch percentages are recorded.
 
 **Dependencies:** None
 
-**Files likely touched:** `spec/`
+**Files likely touched:** `Gemfile`, `Gemfile.lock`, `spec/spec_helper.rb`, `spec/rails_helper.rb`, `spec/factories/`, `spec/support/`
 
 **Estimated scope:** Medium
 
-## Checkpoint: Test baseline
+## Task 2: Cover users and inventory bottles
 
-- [x] Full suite passes with no pending examples.
-
-## Task 2: Make development reproducible
-
-**Description:** Define and automate the minimum supported setup and CI test path.
+**Description:** Specify user identity/scoping and all application-owned bottle inventory behavior.
 
 **Acceptance criteria:**
 
-- [x] Required runtime and database setup are documented.
-- [x] CI runs the same test command used locally.
-- [x] A clean environment can prepare and test the app.
+- [ ] `User` specs cover roles and current-user memoization/reset.
+- [ ] `Reagent` specs cover user-scoped uniqueness, scopes, measured validation, additions, subtraction/clamping, conversion, and unitless bottles.
+- [ ] User and tag shared examples pass for `Reagent`.
 
 **Verification:**
 
-- [x] CI-equivalent command passes locally.
+- [ ] `bundle exec rspec spec/models/user_spec.rb spec/models/reagent_spec.rb` passes.
 
 **Dependencies:** Task 1
 
-**Files likely touched:** `README.md`, `.github/workflows/`
+**Files likely touched:** `spec/models/user_spec.rb`, `spec/models/reagent_spec.rb`
 
-**Estimated scope:** Medium
+**Estimated scope:** Small
 
-## Task 3: Upgrade obsolete dependencies incrementally
+## Task 3: Cover ingredient amounts and taxonomy
 
-**Description:** Upgrade only dependencies that block a supported, maintainable development baseline.
-
-**Acceptance criteria:**
-
-- [x] Each dependency step is independently committed and reversible.
-- [x] Tests remain green after each step.
-- [x] Obsolete frontend tooling has a documented migration outcome.
-
-**Verification:**
-
-- [x] Full suite and asset build pass after each step.
-
-**Dependencies:** Task 2
-
-**Files likely touched:** `Gemfile`, `Gemfile.lock`, `package.json`, `yarn.lock`, configuration files
-
-**Estimated scope:** Medium per upgrade step
-
-## Checkpoint: Foundation
-
-- [x] Tests and build pass from documented setup.
-
-## Task 4: Ship display-only cocktail scaling
-
-**Description:** Let a user select a serving count on a cocktail detail page and see scaled ingredient quantities without persisting a batch or changing inventory.
+**Description:** Specify how recipe requirements match categories and user inventory, including shopping-list placeholders and optional ingredients.
 
 **Acceptance criteria:**
 
-- [x] Scaling behavior is specified by focused tests.
-- [x] Every ingredient quantity reflects the selected serving count.
-- [x] Reloading the page returns to the original single-serving recipe.
+- [ ] `ReagentAmount` specs cover measurement, matching, availability branches, placeholders, unitless values, and blob conversion.
+- [ ] `ReagentCategory` specs cover tagged lookups and valid dimension overrides.
+- [ ] `ReferenceBottle` and category specs cover their required relationship and destruction lifecycle.
 
 **Verification:**
 
-- [x] Focused model/request tests pass.
-- [x] Full suite and asset build pass.
-- [x] Manual browser check confirms the scaling interaction.
+- [ ] Focused specs for all three models pass.
+- [ ] The full suite passes with a recorded random seed.
 
-**Dependencies:** Task 3
+**Dependencies:** Tasks 1-2
 
-**Files likely touched:** cocktail model/view and a small Stimulus controller
+**Files likely touched:** `spec/models/reagent_amount_spec.rb`, `spec/models/reagent_category_spec.rb`, `spec/models/reference_bottle_spec.rb`
 
 **Estimated scope:** Medium
+
+## Checkpoint: Inventory layer
+
+- [ ] Run the full suite twice with different seeds.
+- [ ] Inspect model line and branch coverage for user, reagent, amount, category, and reference bottle files.
+- [ ] Report any legacy behavior that needs a product decision before continuing.
+
+## Task 4: Cover recipe composition and makeability
+
+**Description:** Specify the central recipe model, including its ingredient value object, persisted ingredient representations, PostgreSQL tag search, family relationships, inventory matching, and availability boundary.
+
+**Acceptance criteria:**
+
+- [ ] `Recipe::Ingredient` covers measurement, source lookup, unitless values, and optional defaults.
+- [ ] `Recipe` covers blob read/write/clear across reloads, tags, tag search, JSONB accessors, relationships, matching, makeability, and ephemeral recipes.
+- [ ] Tests expose rather than silently bless any disagreement between `reagent_amounts`, `ingredients_blob`, and the memoized ingredient list.
+
+**Verification:**
+
+- [ ] `bundle exec rspec spec/models/recipe_spec.rb` passes.
+- [ ] PostgreSQL search expectations pass against the generated `searchable` column.
+
+**Dependencies:** Tasks 1-3
+
+**Files likely touched:** `spec/models/recipe_spec.rb`, `spec/factories/recipe.rb`
+
+**Estimated scope:** Medium
+
+## Task 5: Cover audits, favorites, and shopping-list lifecycle
+
+**Description:** Specify the remaining model behavior around history snapshots, saved cocktail families, favorite lookup boundaries, and temporary shopping inventory.
+
+**Acceptance criteria:**
+
+- [ ] `Audit` specs cover snapshot parsing, ephemeral logic, substitutions, ratings/notes, and ownership.
+- [ ] Family and joiner specs cover per-user idempotent Favorites and recipe/user filtering.
+- [ ] Shopping-list specs cover ownership, traversal, and dependent placeholder deletion without deleting ordinary inventory.
+
+**Verification:**
+
+- [ ] Focused specs for all four models pass.
+
+**Dependencies:** Tasks 1-4
+
+**Files likely touched:** `spec/models/audit_spec.rb`, `spec/models/cocktail_family_spec.rb`, `spec/models/cocktail_family_joiner_spec.rb`, `spec/models/shopping_list_spec.rb`
+
+**Estimated scope:** Medium
+
+## Task 6: Establish the measured model baseline
+
+**Description:** Close meaningful gaps, set a model-only ratchet at a sustainable measured threshold, and leave a reproducible baseline for future work.
+
+**Acceptance criteria:**
+
+- [ ] All ten concrete models and both concerns have direct behavioral coverage.
+- [ ] Model coverage is at least 90% line and 80% branch, or any exception is documented by file and line.
+- [ ] No view tests are added and no application-wide coverage gate is imposed.
+- [ ] Final example count, coverage percentages, runtime, and seed are recorded.
+
+**Verification:**
+
+- [ ] `bundle exec rspec` passes in random order.
+- [ ] The coverage report has no unexplained gaps in application-owned model methods or scopes.
+
+**Dependencies:** Tasks 1-5
+
+**Files likely touched:** coverage configuration and model specs only
+
+**Estimated scope:** Small
 
 ## Checkpoint: Complete
 
-- [x] All tests and build checks pass.
-- [x] Cocktail scaling works end to end.
+- [ ] Full RSpec suite passes twice with different seeds.
+- [ ] Model line and branch baseline is recorded.
+- [ ] Any behavior questions discovered during implementation are listed for review rather than hidden by permissive expectations.
