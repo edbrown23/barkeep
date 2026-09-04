@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :reagent_amount do
-    user { nil }
-    recipe { nil }
+    recipe
+    user { recipe.user }
     amount { '1.5' }
     unit { 'oz' }
     tags { [] }

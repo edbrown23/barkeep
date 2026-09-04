@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :reagent do
-    name { '' }
+    sequence(:name) { |number| "Bottle #{number}" }
     external_id { name.underscore }
     user { nil }
     max_volume_value { '750' }

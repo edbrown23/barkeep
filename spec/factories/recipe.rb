@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :recipe do
     user { nil }
-    name { 'cocktail' }
+    sequence(:name) { |number| "Cocktail #{number}" }
     category { 'cocktail' }
   end
 end
