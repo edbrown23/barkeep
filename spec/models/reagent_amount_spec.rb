@@ -1,51 +1,120 @@
 require 'rails_helper'
 
-describe "ReagentAmount" do
-  include_context "basic users"
+RSpec.describe ReagentAmount, type: :model do
+  it_behaves_like 'a user-scoped model', :reagent_amount
+  it_behaves_like 'a taggable model', :reagent_amount
 
-  context "tagsanity" do
-    let!(:barr_hill_gin) { create(:reagent, name: 'Barr Hill Gin', user: test_user, tags: ['gin']) }
-    let(:gin_shot) { create(:recipe, user: test_user) }
-    let!(:the_gin) { create(:reagent_amount, user: test_user, recipe: gin_shot, tags: ['gin']) }
+  describe 'required volume' do
+    it 'exposes the amount and unit as a measured volume' do
+      amount = build(:reagent_amount, amount: 1.5, unit: 'oz')
 
-    it "can find across tags" do
-      expect(the_gin.matching_reagents(test_user)).to include(barr_hill_gin)
+      expect(amount.required_volume).to eq(Measured::Volume.new(1.5, 'oz'))
     end
 
-    context "more complexity" do
-      let!(:cognac_vsop) { create(:reagent, name: 'Cognac VSOP', user: test_user, tags: ['cognac', 'brandy']) }
-      let!(:cheap_brandy) { create(:reagent, name: 'Cheap Brandy', user: test_user, tags: ['brandy']) }
-      let(:brandy_drink) { create(:recipe, name: 'Brandy Drink', user: test_user) }
-      let!(:the_brandy_in_the_drink) { create(:reagent_amount, user: test_user, recipe: brandy_drink, tags: ['brandy']) }
+    it 'rejects an invalid unit' do
+      expect(build(:reagent_amount, unit: 'splash')).not_to be_valid
+    end
+  end
 
-      it "finds both brandy options" do
-        expect(the_brandy_in_the_drink.matching_reagents(test_user)).to include(cognac_vsop, cheap_brandy)
-      end
+  describe '#reagent_categories' do
+    it 'returns categories identified by its tags' do
+      gin = create(:reagent_category, external_id: 'gin')
+      citrus = create(:reagent_category, external_id: 'citrus')
+      create(:reagent_category, external_id: 'rum')
+      amount = create(:reagent_amount, tags: ['gin', 'citrus'])
 
-      context "lots more ingredients" do
-        # all recipe setup
-        let!(:singapore_sling) { create(:recipe, user: test_user) }
-        let!(:gin) { create(:reagent_amount, user: test_user, recipe: singapore_sling, tags: ['gin', 'london_dry_gin']) }
-        let!(:benedictine) { create(:reagent_amount, user: test_user, recipe: singapore_sling, tags: ['benedictine']) }
-        let!(:cherry_heering) { create(:reagent_amount, user: test_user, recipe: singapore_sling, tags: ['cherry_heering']) }
-        let!(:lime_juice) { create(:reagent_amount, user: test_user, recipe: singapore_sling, tags: ['lime_juice']) }
-        let!(:soda_water) { create(:reagent_amount, user: test_user, recipe: singapore_sling, amount: '4', tags: ['soda_water']) }
+      expect(amount.reagent_categories).to contain_exactly(gin, citrus)
+    end
+  end
 
-        # existing bottles setup
-        let!(:barr_hill_gin) { create(:reagent, name: 'Barr Hill Gin', user: test_user, tags: ['gin']) }
-        let!(:beefeater) { create(:reagent, name: 'Beefeater Gin', user: test_user, tags: ['gin', 'london_dry_gin']) }
-        let!(:cherry_heering_bottle) { create(:reagent, name: 'Cherry Heering', user: test_user, tags: ['cherry_heering']) }
-        let!(:benedictine_bottle) { create(:reagent, name: 'Benedictine', user: test_user, tags: ['benedictine']) }
-        let!(:lime_juice_bottle) { create(:reagent, name: 'Lime Juice', user: test_user, tags: ['lime_juice']) }
-        let!(:soda_water_bottle) { create(:reagent, name: 'Soda Water', user: test_user, tags: ['soda_water']) }
+  describe '#matching_reagents' do
+    let(:user) { create(:user) }
+    let(:shopping_list) { create(:shopping_list, user: user) }
+    let(:amount) { create(:reagent_amount, user: user, tags: ['gin']) }
+    let!(:inventory_gin) { create(:reagent, user: user, tags: ['gin']) }
+    let!(:placeholder_gin) { create(:reagent, user: user, shopping_list: shopping_list, tags: ['gin']) }
 
-        it "finds the right ingredients" do
-          expect(gin.matching_reagents(test_user)).to include(barr_hill_gin, beefeater)
-          expect(gin.matching_reagents(test_user).count).to eq(2)
-          expect(benedictine.matching_reagents(test_user)).to eq([benedictine_bottle])
-          expect(cherry_heering.matching_reagents(test_user)).to eq([cherry_heering_bottle])
-        end
-      end
+    before do
+      create(:reagent, user: create(:user), tags: ['gin'])
+      create(:reagent, user: user, tags: ['rum'])
+    end
+
+    it 'returns matching bottles from the user inventory by default' do
+      expect(amount.matching_reagents(user)).to contain_exactly(inventory_gin)
+    end
+
+    it 'returns matching placeholders from a selected shopping list' do
+      expect(amount.matching_reagents(user, shopping_list)).to contain_exactly(placeholder_gin)
+    end
+  end
+
+  describe '#to_placeholder_id' do
+    it 'joins its tags in stored order' do
+      expect(build(:reagent_amount, tags: ['orange_liqueur', 'triple_sec']).to_placeholder_id)
+        .to eq('orange_liqueur,triple_sec')
+    end
+  end
+
+  describe '#reagent_availability' do
+    let(:user) { create(:user) }
+    let(:amount) { create(:reagent_amount, user: user, amount: 2, unit: 'oz', tags: ['gin']) }
+
+    it 'reports sufficient and insufficient matching bottles using compatible units' do
+      enough = create(:reagent, user: user, tags: ['gin'], current_volume_value: 60, current_volume_unit: 'ml')
+      short = create(:reagent, user: user, tags: ['gin'], current_volume_value: 30, current_volume_unit: 'ml')
+
+      availability = amount.reagent_availability(user)
+
+      expect(availability).to contain_exactly(
+        { available: enough.current_volume, required: amount.required_volume, enough: true },
+        { available: short.current_volume, required: amount.required_volume, enough: false }
+      )
+    end
+
+    it 'adds an always-available garnish choice for an optional amount' do
+      amount.update!(optional: true)
+
+      expect(amount.reagent_availability(user)).to contain_exactly(
+        {
+          available: amount.required_volume,
+          required: amount.required_volume,
+          enough: true,
+          garnish: true,
+          optional: true
+        }
+      )
+    end
+  end
+
+  describe '#unitless?' do
+    it 'is true for unknown units' do
+      expect(build(:reagent_amount, unit: 'unknown')).to be_unitless
+    end
+
+    it 'is false for measured amounts' do
+      expect(build(:reagent_amount, unit: 'oz')).not_to be_unitless
+    end
+  end
+
+  describe '#convert_to_blob' do
+    it 'copies every ingredient field into a recipe ingredient' do
+      amount = create(
+        :reagent_amount,
+        tags: ['gin'],
+        amount: 1.5,
+        unit: 'oz',
+        description: 'London dry',
+        optional: true
+      )
+
+      expect(amount.convert_to_blob.to_h).to eq(
+        tags: ['gin'],
+        amount: 1.5,
+        unit: 'oz',
+        description: 'London dry',
+        reagent_amount_id: amount.id,
+        optional: true
+      )
     end
   end
 end
