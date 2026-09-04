@@ -6,15 +6,15 @@
 
 **Acceptance criteria:**
 
-- [ ] SimpleCov starts before Rails, tracks `app/models/**/*.rb`, and reports line and branch coverage for a Models group.
-- [ ] RSpec runs in random order and restores `User.current_id` after scoped examples.
-- [ ] Factories exist for all concrete models that need persisted setup, with sequences where uniqueness requires them.
-- [ ] Shared examples cover `UserScopable` and `Taggable` against PostgreSQL.
+- [x] SimpleCov starts before Rails, tracks `app/models/**/*.rb`, and reports line and branch coverage for a Models group.
+- [x] RSpec runs in random order and restores `User.current_id` after scoped examples.
+- [x] Factories exist for all concrete models that need persisted setup, with sequences where uniqueness requires them.
+- [x] Shared examples cover `UserScopable` and `Taggable` against PostgreSQL.
 
 **Verification:**
 
-- [ ] The unchanged suite still passes under coverage.
-- [ ] The initial model line and branch percentages are recorded.
+- [x] The unchanged suite still passes under coverage.
+- [x] The initial model line and branch percentages are recorded.
 
 **Dependencies:** None
 
@@ -28,13 +28,13 @@
 
 **Acceptance criteria:**
 
-- [ ] `User` specs cover roles and current-user memoization/reset.
-- [ ] `Reagent` specs cover user-scoped uniqueness, scopes, measured validation, additions, subtraction/clamping, conversion, and unitless bottles.
-- [ ] User and tag shared examples pass for `Reagent`.
+- [x] `User` specs cover roles and current-user memoization/reset.
+- [x] `Reagent` specs cover user-scoped uniqueness, scopes, measured validation, additions, subtraction/clamping, conversion, and unitless bottles.
+- [x] User and tag shared examples pass for `Reagent`.
 
 **Verification:**
 
-- [ ] `bundle exec rspec spec/models/user_spec.rb spec/models/reagent_spec.rb` passes.
+- [x] `bundle exec rspec spec/models/user_spec.rb spec/models/reagent_spec.rb` passes.
 
 **Dependencies:** Task 1
 
@@ -48,14 +48,14 @@
 
 **Acceptance criteria:**
 
-- [ ] `ReagentAmount` specs cover measurement, matching, availability branches, placeholders, unitless values, and blob conversion.
-- [ ] `ReagentCategory` specs cover tagged lookups and valid dimension overrides.
-- [ ] `ReferenceBottle` and category specs cover their required relationship and destruction lifecycle.
+- [x] `ReagentAmount` specs cover measurement, matching, availability branches, placeholders, unitless values, and blob conversion.
+- [x] `ReagentCategory` specs cover tagged lookups and valid dimension overrides.
+- [x] `ReferenceBottle` and category specs cover their required relationship and destruction lifecycle.
 
 **Verification:**
 
-- [ ] Focused specs for all three models pass.
-- [ ] The full suite passes with a recorded random seed.
+- [x] Focused specs for all three models pass.
+- [x] The full suite passes with a recorded random seed.
 
 **Dependencies:** Tasks 1-2
 
@@ -65,9 +65,9 @@
 
 ## Checkpoint: Inventory layer
 
-- [ ] Run the full suite twice with different seeds.
-- [ ] Inspect model line and branch coverage for user, reagent, amount, category, and reference bottle files.
-- [ ] Report any legacy behavior that needs a product decision before continuing.
+- [x] Run the full suite twice with different seeds.
+- [x] Inspect model line and branch coverage for user, reagent, amount, category, and reference bottle files.
+- [x] Report any legacy behavior that needs a product decision before continuing.
 
 ## Task 4: Cover recipe composition and makeability
 
@@ -75,14 +75,14 @@
 
 **Acceptance criteria:**
 
-- [ ] `Recipe::Ingredient` covers measurement, source lookup, unitless values, and optional defaults.
-- [ ] `Recipe` covers blob read/write/clear across reloads, tags, tag search, JSONB accessors, relationships, matching, makeability, and ephemeral recipes.
-- [ ] Tests expose rather than silently bless any disagreement between `reagent_amounts`, `ingredients_blob`, and the memoized ingredient list.
+- [x] `Recipe::Ingredient` covers measurement, source lookup, unitless values, and optional defaults.
+- [x] `Recipe` covers blob read/write/clear across reloads, tags, tag search, JSONB accessors, relationships, matching, makeability, and ephemeral recipes.
+- [x] Tests expose rather than silently bless any disagreement between `reagent_amounts`, `ingredients_blob`, and the memoized ingredient list.
 
 **Verification:**
 
-- [ ] `bundle exec rspec spec/models/recipe_spec.rb` passes.
-- [ ] PostgreSQL search expectations pass against the generated `searchable` column.
+- [x] `bundle exec rspec spec/models/recipe_spec.rb` passes.
+- [x] PostgreSQL search expectations pass against the generated `searchable` column.
 
 **Dependencies:** Tasks 1-3
 
@@ -96,13 +96,13 @@
 
 **Acceptance criteria:**
 
-- [ ] `Audit` specs cover snapshot parsing, ephemeral logic, substitutions, ratings/notes, and ownership.
-- [ ] Family and joiner specs cover per-user idempotent Favorites and recipe/user filtering.
-- [ ] Shopping-list specs cover ownership, traversal, and dependent placeholder deletion without deleting ordinary inventory.
+- [x] `Audit` specs cover snapshot parsing, ephemeral logic, substitutions, ratings/notes, and ownership.
+- [x] Family and joiner specs cover per-user idempotent Favorites and recipe/user filtering.
+- [x] Shopping-list specs cover ownership, traversal, and dependent placeholder deletion without deleting ordinary inventory.
 
 **Verification:**
 
-- [ ] Focused specs for all four models pass.
+- [x] Focused specs for all four models pass.
 
 **Dependencies:** Tasks 1-4
 
@@ -116,15 +116,15 @@
 
 **Acceptance criteria:**
 
-- [ ] All ten concrete models and both concerns have direct behavioral coverage.
-- [ ] Model coverage is at least 90% line and 80% branch, or any exception is documented by file and line.
-- [ ] No view tests are added and no application-wide coverage gate is imposed.
-- [ ] Final example count, coverage percentages, runtime, and seed are recorded.
+- [x] All ten concrete models and both concerns have direct behavioral coverage.
+- [x] Model coverage is at least 90% line and 80% branch, or any exception is documented by file and line.
+- [x] No view tests are added and no application-wide coverage gate is imposed.
+- [x] Final example count, coverage percentages, runtime, and seed are recorded.
 
 **Verification:**
 
-- [ ] `bundle exec rspec` passes in random order.
-- [ ] The coverage report has no unexplained gaps in application-owned model methods or scopes.
+- [x] `bundle exec rspec` passes in random order.
+- [x] The coverage report has no unexplained gaps in application-owned model methods or scopes.
 
 **Dependencies:** Tasks 1-5
 
@@ -134,6 +134,6 @@
 
 ## Checkpoint: Complete
 
-- [ ] Full RSpec suite passes twice with different seeds.
-- [ ] Model line and branch baseline is recorded.
-- [ ] Any behavior questions discovered during implementation are listed for review rather than hidden by permissive expectations.
+- [x] Full RSpec suite passes twice with different seeds.
+- [x] Model line and branch baseline is recorded.
+- [x] Any behavior questions discovered during implementation are listed for review rather than hidden by permissive expectations.

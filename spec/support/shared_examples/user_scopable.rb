@@ -15,6 +15,19 @@ RSpec.shared_examples 'a user-scoped model' do |factory_name, supports_shared: t
     expect(described_class.for_user).to contain_exactly(owned_record)
   end
 
+  it 'falls back to the current user from the shared scope' do
+    User.current_id = owner.id
+    expected_records = supports_shared ? [owned_record, shared_record] : [owned_record]
+
+    expect(described_class.for_user_or_shared).to contain_exactly(*expected_records)
+  end
+
+  it 'returns only global records from the shared scope without a current user' do
+    expected_records = supports_shared ? [shared_record] : []
+
+    expect(described_class.for_user_or_shared).to contain_exactly(*expected_records)
+  end
+
   it 'returns the records available to the user from the shared scope' do
     expected_records = supports_shared ? [owned_record, shared_record] : [owned_record]
 

@@ -76,6 +76,17 @@ These are legacy behaviors where a passing characterization test could make a bu
 - `Reagent#add_usage` can exceed `max_volume`. That may be intentional for audit reversal, but a test should not lock it in without checking.
 - Several `has_many` relationships do not declare dependent behavior and most lack database foreign keys. Test only the currently intended lifecycle, and flag any newly observed orphaning rather than normalizing it.
 
+## Implemented baseline
+
+Completed on September 4, 2026.
+
+- Before: 6 examples, 74.69% model line coverage, 16.66% model branch coverage.
+- After: 114 examples, 100% model line coverage, 100% model branch coverage.
+- The suite passed with random seed 54812 in 1.62 seconds and fixed seed 12345 in 2.05 seconds.
+- SimpleCov now fails the suite below 90% model line coverage or 80% model branch coverage.
+- Rails eager loading passes with `RAILS_ENV=test bin/rails zeitwerk:check`.
+- The legacy behavior questions above remain deliberately unchanged; the new specs do not declare those questionable cases to be desired behavior.
+
 ## Risks
 
 - A fake database would give false confidence because several core scopes depend on PostgreSQL-specific operators and generated columns.
