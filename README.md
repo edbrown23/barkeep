@@ -18,6 +18,18 @@ cp .env.example .env
 bin/setup
 ```
 
+For local development, run the Homebrew PostgreSQL 14 service on port `5433`.
+This project intentionally avoids the standard PostgreSQL port (`5432`) so it
+does not conflict with another local database setup. Set `port = 5433` in the
+Homebrew cluster's `postgresql.conf` (typically
+`$(brew --prefix)/var/postgresql@14/postgresql.conf`), set `DB_USER` in `.env`
+to your local PostgreSQL role, then restart the service before running the
+setup commands above:
+
+```sh
+brew services restart postgresql@14
+```
+
 The database user must be able to create the `barkeep_development` and `barkeep_test`
 databases. PostgreSQL must provide the `vector` extension used by the application schema.
 
