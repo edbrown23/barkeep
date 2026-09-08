@@ -1,11 +1,17 @@
 <% content_for :per_page_js do %>
   <%= javascript_include_tag "cocktails_index", "data-turbo-track": 'reload', defer: true %>
 <% end %>
-<main>
+<main class="page-shell">
   <div class="container">
     <%= render 'shared/notice' %>
+    <div class="page-header">
+      <h1>Cocktails</h1>
+      <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary' %>
+    </div>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-lg-3 mb-4 mb-lg-0">
+        <button class="btn btn-outline-primary d-lg-none mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#cocktailFilters" aria-expanded="false" aria-controls="cocktailFilters">Filters</button>
+        <div id="cocktailFilters" class="surface collapse d-lg-block">
         <%= form_with(url: "/cocktails", method: "GET") do |form| %>
           <div class="field mb-1">
             <%= form.label :search_term, class: "form-label" %>
@@ -93,15 +99,16 @@
           </div>
 
         <% end %>
-        <hr>
-        <%= link_to 'New Cocktail', new_cocktail_path, class: 'btn btn-primary' %>
+        </div>
       </div>
 
-      <div class="col-sm-9">
+      <div class="col-lg-9">
+        <div class="surface">
       <%= render 'shared/cocktails_table', cocktails: @cocktails, read_only: false, render_counts: user_signed_in? %>
       <% if @dead_end %>
       <p>Your combination of "<%= @tags_search.join(', ') %>" resulted in zero cocktails which have all those ingredients. Click "reset" to clear your search</p>
       <% end %>
+        </div>
       </div>
     </div>
 

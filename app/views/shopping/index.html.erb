@@ -1,24 +1,25 @@
 <% content_for :per_page_js do %>
   <%= javascript_include_tag "shopping_index", "data-turbo-track": 'reload', defer: true %>
 <% end %>
-<main>
+<main class="page-shell">
   <div class="container">
+    <div class="page-header"><h1>Shopping</h1><%= link_to 'Create a shopping list', '/shopping', method: :post, class: 'btn btn-primary' %></div>
     <ul class="nav nav-tabs flex-column flex-sm-row mt-3" id="myTab" role="tablist">
       <li class="nav-item flex-sm-fill" role="presentation">
-        <button class="nav-link active" id="ome-tab" data-bs-toggle="tab" data-bs-target="#bottles-to-drinks" type="button" role="tab" aria-controls="bottles-to-drinks" aria-selected="true">Bottles Leading to Drinks</button>
+        <button class="nav-link active" id="ome-tab" data-bs-toggle="tab" data-bs-target="#bottles-to-drinks" type="button" role="tab" aria-controls="bottles-to-drinks" aria-selected="true">Unlock more drinks</button>
       </li>
       <li class="nav-item flex-sm-fill" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#one-off-drinks" type="button" role="tab" aria-controls="one-off-drinks" aria-selected="false">One-off cocktails</button>
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#one-off-drinks" type="button" role="tab" aria-controls="one-off-drinks" aria-selected="false">One ingredient away</button>
       </li>
       <li class="nav-item flex-sm-fill" role="presentation">
-        <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#low-bottles" type="button" role="tab" aria-controls="low-bottles" aria-selected="false">Bottles running low</button>
+        <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#low-bottles" type="button" role="tab" aria-controls="low-bottles" aria-selected="false">Running low</button>
       </li>
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane active" id="bottles-to-drinks" role="tabpanel" aria-labelledby="bottles-to-drinks">
-        <h3>Buy one of these and you'll be able to make:</h3>
-        <div class="table-responsive">
+        <h2>Buy one of these and you'll be able to make:</h2>
+        <div class="surface table-responsive">
           <table class="table" id="cocktailsTable">
             <thead>
               <tr>
@@ -46,7 +47,7 @@
         </div>
       </div>
       <div class="tab-pane" id="one-off-drinks" role="tabpanel" aria-labelledby="one-off-drinks">
-        <h3>You're one bottle off of these drinks:</h3>
+        <h2>You're one bottle off of these drinks:</h2>
         <div class="table-responsive">
           <table class="table" id="cocktailsTable">
             <thead>
@@ -81,7 +82,7 @@
         </div>
       </div>
       <div class="tab-pane" id="low-bottles" role="tabpanel" aria-labelledby="low-bottles">
-        <h3>You're running low on these bottles:</h3>
+        <h2>You're running low on these bottles:</h2>
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -105,7 +106,7 @@
       </div>
     </div>
     <div>
-      <p><strong>Your shopping lists:</strong></p>
+      <h2 class="h4 mt-4">Your shopping lists</h2>
       <ul id="shoppingLists">
         <% @shopping_lists.each do |list| %>
           <li><%= link_to list.name, shopping_path(list) %></li>

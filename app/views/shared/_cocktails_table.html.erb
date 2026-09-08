@@ -1,10 +1,17 @@
 <div class="table-responsive">
-  <table class="table" id="cocktailsTable">
+  <% if cocktails.empty? %>
+    <div class="empty-state">
+      <i class="bi bi-cup-straw fs-2 d-block mb-2" aria-hidden="true"></i>
+      <h2 class="h4">No cocktails found</h2>
+      <p class="mb-0">Try clearing a filter or browse the shared cocktail list.</p>
+    </div>
+  <% else %>
+  <table class="table align-middle" id="cocktailsTable">
     <thead>
       <tr>
         <th>Name</th>
         <% if render_counts %>
-        <th>Count of reagents available</th>
+        <th>Availability</th>
         <% end %>
       </tr>
     </thead>
@@ -12,16 +19,17 @@
       <% cocktails.each do |cocktail| %>
         <tr id="cocktail_<%= cocktail.id %>" <% if cocktail.user_id.blank? %> class="table-secondary"<% end %>>
           <% if cocktail.user_id.present? %>
-          <td><%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %></td>
+          <td><%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %> <span class="badge badge-shared ms-1">My recipe</span></td>
           <% else %>
-          <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
+          <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %> <span class="badge badge-shared ms-1">Shared</span></td>
           <% end %>
           <% if render_counts %>
-          <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@availability.available_counts[cocktail.id][:available]} of #{@availability.available_counts[cocktail.id][:required]}" %></td>
+          <td id="cocktail_<%= cocktail.id %>_count_row"><span class="badge <%= @availability.available_counts[cocktail.id][:available] == @availability.available_counts[cocktail.id][:required] ? 'bg-success' : 'bg-light text-dark' %>"><%= "#{@availability.available_counts[cocktail.id][:available]} of #{@availability.available_counts[cocktail.id][:required]}" %></span></td>
           <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <% end %>
 </div>
 <%= paginate cocktails %>

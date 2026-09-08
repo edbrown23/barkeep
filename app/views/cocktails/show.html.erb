@@ -1,9 +1,11 @@
 <% content_for :per_page_js do %>
   <%= javascript_include_tag "cocktail_show", "data-turbo-track": 'reload', defer: true %>
 <% end %>
-<main>
+<main class="page-shell">
   <div class="container">
     <%= render 'shared/notice' %>
+
+    <div class="page-header"><h1><%= @cocktail.name.html_safe %></h1><%= link_to(@favorite ? 'Remove favorite' : 'Favorite', cocktail_toggle_favorite_path(@cocktail), class: 'btn btn-outline-primary', method: 'post') %></div>
 
     <div class="row mt-3">
       <div class="col-sm-3">
@@ -23,7 +25,7 @@
         </p>
         <% end %>
 
-        <p>
+          <p class="d-none">
           <strong>Favorite?:</strong>
           <% if @favorite %>
             <%= link_to "Remove Favorite", cocktail_toggle_favorite_path(@cocktail), class: "btn btn-outline-primary", method: "post" %>
