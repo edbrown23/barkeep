@@ -18,11 +18,7 @@
     <tbody>
       <% cocktails.each do |cocktail| %>
         <tr id="cocktail_<%= cocktail.id %>" <% if cocktail.user_id.blank? %> class="table-secondary"<% end %>>
-          <% if cocktail.user_id.present? %>
-          <td><%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %> <span class="badge badge-shared ms-1">My recipe</span></td>
-          <% else %>
-          <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %> <span class="badge badge-shared ms-1">Shared</span></td>
-          <% end %>
+          <td><%= link_to cocktail.name, cocktail_path(cocktail) %> <span class="badge badge-shared ms-1"><%= cocktail.shared? ? 'Shared' : 'My recipe' %></span></td>
           <% if render_counts %>
           <td id="cocktail_<%= cocktail.id %>_count_row"><span class="badge <%= @availability.available_counts[cocktail.id][:available] == @availability.available_counts[cocktail.id][:required] ? 'bg-success' : 'bg-light text-dark' %>"><%= "#{@availability.available_counts[cocktail.id][:available]} of #{@availability.available_counts[cocktail.id][:required]}" %></span></td>
           <% end %>

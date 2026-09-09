@@ -88,8 +88,8 @@ class DrinkMakingController < ApplicationController
   end
 
   def set_cocktails
-    @cocktails = Recipe.for_user_or_shared(current_user).where(id: params[:id])
-    @cocktail = @cocktails.first
+    @cocktails = Recipe.cocktails.visible_to(current_user).where(id: params[:id])
+    @cocktail = @cocktails.first!
   end
 
   def bottle_params

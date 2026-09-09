@@ -4,7 +4,7 @@ class CocktailFamiliesController < ApplicationController
   before_action :set_family
 
   def show
-    @cocktails = @family.recipes.page(params[:page])
+    @cocktails = @family.recipes.cocktails.visible_to(current_user).page(params[:page])
     @availability = CocktailAvailabilityService.new(@cocktails, current_user)
   end
 
@@ -17,6 +17,6 @@ class CocktailFamiliesController < ApplicationController
   private
 
   def set_family
-    @family = CocktailFamily.find(params[:id])
+    @family = CocktailFamily.where(user_id: [nil, current_user.id]).find(params[:id])
   end
 end

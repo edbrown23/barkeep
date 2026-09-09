@@ -14,49 +14,6 @@ export function load_availability(base_url) {
     })
 }
 
-function reagentChoiceFormatter(amount) {
-  return `
-    <div class="choice-block mb-3">
-      <p>${amount['tags']}<small> (${amount['required']} required): </small></p>
-      <div class="input-group">
-        <span class="input-group-text">Use: </span>
-        <select class="form-select" name="bottles[chosen_id][]">
-          ${amount['bottle_choices'].reduce( (previousValue, currentValue) => { return `${previousValue}<option value=${currentValue['id']}>${currentValue['name']} (${currentValue['volume_available']} available)</option>` }, "") }
-        </select>
-      </div>
-    </div>
-  `;
-}
-
-export async function made_this_modal_loader(base_url, cocktailId, event) {
-  if (cocktailId === null) {
-    cocktailId = event.target.dataset.cocktailId;
-  }
-  return fetch(`${base_url}/${cocktailId}/pre_make_drink.json`)
-    .then((response) => response.json())
-    .then((json) => {
-      // setup the modal
-      document.getElementById('ModalTitle').innerHTML = `Let's make a ${json.name}`;
-
-      // setup the form
-      document.getElementById('makeDrinkForm').action = `/cocktails/${cocktailId}/make_drink.json`;
-
-      const choices = document.getElementById('reagentChoice');
-      // clear whatever was there before
-      choices.innerHTML = "";
-
-      const newBlocks = json['reagent_options'].reduce((previousValue, currentValue) => { return `${previousValue}${reagentChoiceFormatter(currentValue)}`}, "");
-      choices.innerHTML = newBlocks;
-      
-      // show the modal
-      var myModal = new bootstrap.Modal(document.getElementById('madeThisModal'), {});
-      myModal.show();
-    })
-    .catch((error) => {
-      errorToastHandler(document, error);
-    })
-}
-
 export function errorToastHandler(subDocument, error) {
   let toastTemplateDoc = subDocument.querySelector("div[data-toast-error-template]");
   let toastDoc = toastTemplateDoc.cloneNode(true);

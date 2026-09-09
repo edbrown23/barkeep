@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <% cocktail.reagent_amounts.each do |reagent_amount| %>
-        <% availability = reagent_amount.reagent_availability(current_user) %>
+        <% availability = user_signed_in? ? reagent_amount.reagent_availability(current_user) : [] %>
         <tr <% if availability.any? { |a| a[:garnish] } %> class="table-info"<% elsif availability.any? { |a| a[:enough] } %> class="table-success"<% elsif availability.present? %> class="table-warning"<% end %>>
           <td>
             <samp>

@@ -71,7 +71,7 @@ class CocktailsController < ApplicationController
   end
 
   def propose_to_share
-    cocktail = Recipe.find(params[:cocktail_id])
+    cocktail = Recipe.cocktails.where(user: current_user).find(cocktail_id)
 
     cocktail.proposed_to_be_shared = true
     cocktail.proposer_user_id = current_user.id
@@ -85,12 +85,14 @@ class CocktailsController < ApplicationController
   end
 
   def make_permanent
-    cocktail = Recipe.find(params[:cocktail_id])
+    cocktail = Recipe.cocktails.where(user: current_user).find(cocktail_id)
+
+    raise ActiveRecord::RecordNotFound unless cocktail.ephemeral?
 
     cocktail.update!(source: '')
 
     respond_to do |format|
-      format.html { redirect_to cocktail_path(cocktail), notice: 'Made this drink permanent! Check it our in Your Cocktail List' }
+      format.html { redirect_to cocktail_path(cocktail), notice: 'Made this drink permanent! Find it in your cocktail list.' }
       format.json { render json: { action: 'make_permanent' } }
     end
   end
@@ -149,9 +151,29 @@ class CocktailsController < ApplicationController
   end
 
   def nearest_neighbors
-    @cocktail = Recipe.for_user_or_shared(current_user).find_by(id: params['cocktail_id'])
-    # this should properly 404 if the cocktail can't be found
-    @neighbors = @cocktail.nearest_neighbors(:embedding, distance: :inner_product).for_user_or_shared(current_user).limit(10)
+    @cocktail = Recipe.cocktails.visible_to(current_user).find(cocktail_id)
+    @neighbors = @cocktail.nearest_neighbors(:embedding, distance: :inner_product).cocktails.visible_to(current_user).limit(10)
+  end
+
+  def add_to_account
+    @shared_cocktail = Recipe.cocktails.shared.find(cocktail_id)
+    @copied_cocktail = CocktailCopyService.customize(@shared_cocktail, current_user)
+    respond_to do |format|
+      format.html { redirect_to cocktail_path(@copied_cocktail), notice: 'Your personal copy is ready to customize.', status: :see_other }
+      format.turbo_stream
+      format.json { render json: { action: 'add_to_account', cocktail_name: @shared_cocktail.name } }
+    end
+  end
+
+  def promote_to_shared
+    return head :forbidden unless current_user.admin?
+
+    cocktail = Recipe.cocktails.where.not(user_id: nil).find(cocktail_id)
+    CocktailCopyService.publish(cocktail)
+    respond_to do |format|
+      format.html { redirect_to cocktails_path(ownership: 'shared'), notice: 'Published shared recipe.', status: :see_other }
+      format.json { render json: { action: 'promoted_to_shared' } }
+    end
   end
 
   def create_reagent_amounts(cocktail, amounts_array)
@@ -180,19 +202,29 @@ class CocktailsController < ApplicationController
     end
   end
 
-  def delete
-    cocktail = Recipe.for_user(current_user).find_by(id: params['cocktail_id'])
-    cocktail.destroy if cocktail.present?
-
+  def destroy
+    # Route path parameters cannot be overridden by request query/body values.
+    legacy_scope = request.path_parameters[:deletion_scope]
+    scope = Recipe.cocktails
+    if legacy_scope == 'shared'
+      return head :forbidden unless current_user.admin?
+      scope = scope.shared
+    elsif legacy_scope == 'owned' || !current_user.admin?
+      scope = scope.where(user: current_user)
+    else
+      scope = scope.visible_to(current_user)
+    end
+    cocktail = scope.find(cocktail_id)
+    cocktail.destroy!
     respond_to do |format|
-      format.json { render json: { action: :deleted, deleted_id: cocktail.id, deleted_name: cocktail.name } }
-      format.html { redirect_to '/cocktails', alert: "#{cocktail.name.html_safe} deleted!" }
+      format.json { render json: { action: 'deleted', deleted_id: cocktail.id, deleted_name: cocktail.name } }
+      format.html { redirect_to cocktails_path, notice: "#{cocktail.name} deleted!", status: :see_other }
     end
   end
 
   def toggle_favorite
-    cocktail = Recipe.find_by(id: params['cocktail_id'])
-    favorite_family = CocktailFamily.users_favorites(current_user)
+    cocktail = Recipe.cocktails.visible_to(current_user).find(cocktail_id)
+    favorite_family = CocktailFamily.where(user: current_user).find_or_create_by!(name: Constants::COCKTAIL_FAVORITES_NAME)
 
     if cocktail.cocktail_families.include?(favorite_family)
       joiner = CocktailFamilyJoiner.find_by(recipe: cocktail, cocktail_family: favorite_family)
@@ -207,14 +239,19 @@ class CocktailsController < ApplicationController
 
     respond_to do |format|
       if favorited
-        format.html { redirect_to cocktail_path(cocktail), notice: "Favorited the #{cocktail.name.html_safe}!" }
+        format.html { redirect_to cocktail_path(cocktail), notice: "Favorited the #{cocktail.name}!" }
       else
-        format.html { redirect_to cocktail_path(cocktail), notice: "Removed favorite from the #{cocktail.name.html_safe}" }
+        format.html { redirect_to cocktail_path(cocktail), notice: "Removed favorite from the #{cocktail.name}" }
       end
     end
   end
 
   private
+
+  def cocktail_id
+    path = request.path_parameters
+    path[:id] || path[:cocktail_id] || path[:shared_cocktail_id]
+  end
 
   def set_cocktail
     @cocktail = Recipe.cocktails.visible_to(current_user).find(params[:id])
@@ -247,25 +284,4 @@ class CocktailsController < ApplicationController
     params.permit(:page, :ownership, :commit, :search_term, :makeable, :user_recipes_only, :shared_recipes_only, family_ids: [], search_tags: [])
   end
 
-  def create_audit(cocktail, used_reagents)
-    audit_info = used_reagents.map do |used|
-      {
-        reagent_id: used[:used_model].id,
-        reagent_name: used[:used_model].name,
-        amount_used: used[:used_amount],
-        unit_used: used[:used_unit],
-        description: used[:used_detail]
-      }
-    end
-
-    Audit.create!(
-      user_id: current_user.id,
-      recipe: cocktail,
-      info: {
-        cocktail_name: cocktail.name,
-        ephemeral_recipe: cocktail.source == 'drink_builder',
-        reagents: audit_info
-      }
-    )
-  end
 end
