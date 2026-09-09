@@ -24,6 +24,18 @@
 #
 class Recipe < ApplicationRecord
   include UserScopable
+  scope :cocktails, -> { where(category: 'cocktail') }
+  scope :shared, -> { where(user_id: nil) }
+  scope :visible_to, ->(viewer) { where(user_id: [nil, viewer&.id]) }
+
+  def shared?
+    user_id.nil?
+  end
+
+  def owned_by?(viewer)
+    viewer.present? && user_id == viewer.id
+  end
+
   include PgSearch::Model
 
   pg_search_scope :private_by_tag, against: :searchable, using: { tsearch: { dictionary: :simple, tsvector_column: :searchable } }

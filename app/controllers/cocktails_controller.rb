@@ -1,60 +1,20 @@
 class CocktailsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_cocktail, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_cocktail, only: [:show]
+  before_action :set_owned_cocktail, only: [:edit, :update]
 
-  # TODO: this code is entirely copied between the shared controller and this one :(
   def index
-    search_term = search_params['search_term']
-    @tags_search = search_params['search_tags']
-    makeable_enabled = search_params['makeable'].present? && search_params['makeable'] == 'on'
-    user_recipes_only_enabled = search_params['user_recipes_only'].present? && search_params['user_recipes_only'] == 'on'
-    shared_recipes_only_enabled = search_params['shared_recipes_only'].present? && search_params['shared_recipes_only'] == 'on'
-
-    family_ids = search_params['family_ids']
-
-    initial_scope = Recipe
-      .for_user_or_shared(current_user)
-      .where(category: 'cocktail')
-      .where('source != ALL(?::varchar[])', '{drink_builder}')
-
-    if family_ids.present?
-      initial_scope = initial_scope.joins(:cocktail_families).where(cocktail_families: { id: family_ids })
-    end
-
-    initial_scope = initial_scope.for_user(current_user) if user_recipes_only_enabled
-    initial_scope = initial_scope.for_user(nil) if shared_recipes_only_enabled
-
-    if search_term.present? && search_term.size > 0
-      initial_scope = initial_scope.where('name ILIKE ?', "%#{search_term}%")
-    end
-
-    if @tags_search.present? && @tags_search.size > 0
-      initial_scope = initial_scope.by_tag(*Array.wrap(@tags_search))
-    end
-
-    @availability = CocktailAvailabilityService.new(initial_scope, current_user)
-    if makeable_enabled
-      initial_scope = initial_scope.where(id: @availability.makeable_ids)
-    end
-
-    # TODO: this shows you all your favorites from among those currently visible.
-    #       however, it won't help you narrow down from a large set of favorites
-    #       to a smaller set via multiple families. Basically this is an OR query
-    #       and I need an AND. favorites AND liquor forward, etc
-    @families = CocktailFamily.for_user(current_user).joins(:recipes).where(recipes: initial_scope).uniq
-
-    # TODO: pretty sure the todo below this one is false now. Comments...
-    # TODO: once tags are hoisted up to recipes this selector should only show available things
-    @reagent_categories = ReagentCategory.where(external_id: initial_scope.flat_map(&:tags)).order(:name)
-    @cocktails = initial_scope.reorder(:name).page(params[:page])
-    @dead_end = @cocktails.count <= 0 && @tags_search.present? ? true : false
-
-    raw_sql = "select word, ndoc from ts_stat($$ #{initial_scope.select(:searchable).to_sql} $$) order by ndoc desc;"
-    if initial_scope.pluck(:id).count > 0
-      raw_facets = ActiveRecord::Base.connection.execute(raw_sql)
-      @processed_facets = raw_facets.entries.index_by { |f| f['word'] }
-    else
-      @processed_facets = {}
+    search = CocktailSearch.new(current_user, search_params)
+    @cocktails = search.cocktails
+    @ownership = search.ownership
+    @tags_search = search.tags
+    @availability = search.availability
+    @families = search.families
+    @reagent_categories = search.reagent_categories
+    @processed_facets = search.facets
+    @dead_end = @cocktails.empty? && @tags_search.present?
+    if current_user&.admin? && @ownership == 'shared'
+      @proposal_cocktails = Recipe.cocktails.where.not(user_id: nil).where('extras @> ?', { proposed_to_be_shared: true }.to_json)
     end
   end
 
@@ -69,15 +29,27 @@ class CocktailsController < ApplicationController
   end
 
   def show
-    @stats = {
-      made_count: Audit.for_user(current_user).where(recipe: @cocktail).count,
-      made_globally_count: Audit.where(recipe: @cocktail).count
-    }
-    @favorite = @cocktail.cocktail_families.include?(CocktailFamily.users_favorites(current_user))
-    @shopping_lists = ShoppingList.for_user(current_user) || []
-    @existing_shopping_list_map = @cocktail.reagent_amounts.map { |amount| [amount.id, Reagent.for_user(current_user).with_tags(amount.tags).where.not(shopping_list: nil).pluck(:shopping_list_id)] }.to_h
-
-    @recent_audits = Audit.for_user(current_user).where(recipe: @cocktail).order(created_at: :desc).limit(5)
+    @families = @cocktail.cocktail_families.where(user_id: [nil, current_user&.id])
+    @stats = {}
+    @favorite = false
+    @shopping_lists = []
+    @existing_shopping_list_map = {}
+    @recent_audits = []
+    @user_copies = []
+    if user_signed_in?
+      @stats[:made_count] = Audit.where(user: current_user, recipe: @cocktail).count
+      @favorite = @cocktail.cocktail_families.exists?(user_id: current_user.id, name: Constants::COCKTAIL_FAVORITES_NAME)
+      @shopping_lists = ShoppingList.where(user: current_user)
+      @existing_shopping_list_map = @cocktail.reagent_amounts.to_h do |amount|
+        [amount.id, Reagent.where(user: current_user).with_tags(amount.tags).where.not(shopping_list: nil).pluck(:shopping_list_id)]
+      end
+      @recent_audits = Audit.where(user: current_user, recipe: @cocktail).order(created_at: :desc).limit(5)
+      @user_copies = Recipe.cocktails.where(user: current_user, parent: @cocktail) if @cocktail.shared?
+    end
+    if @cocktail.shared?
+      @stats[:made_globally_count] = Audit.where(recipe: @cocktail).count
+      @community_renderable_audits = Audit.where(recipe: @cocktail).where.not(user: current_user).order(created_at: :desc).select { |audit| audit.notes.present? }
+    end
     flash.notice = params[:notice] if params[:notice].present?
   end
 
@@ -245,8 +217,11 @@ class CocktailsController < ApplicationController
   private
 
   def set_cocktail
-    # TODO: handle 404
-    @cocktail = Recipe.for_user(current_user).find(params[:id])
+    @cocktail = Recipe.cocktails.visible_to(current_user).find(params[:id])
+  end
+
+  def set_owned_cocktail
+    @cocktail = Recipe.cocktails.where(user: current_user).find(params[:id])
   end
 
   def cocktail_params
@@ -269,7 +244,7 @@ class CocktailsController < ApplicationController
   end
 
   def search_params
-    params.permit(:commit, :search_term, :makeable, :user_recipes_only, :shared_recipes_only, family_ids: [], search_tags: [])
+    params.permit(:page, :ownership, :commit, :search_term, :makeable, :user_recipes_only, :shared_recipes_only, family_ids: [], search_tags: [])
   end
 
   def create_audit(cocktail, used_reagents)
