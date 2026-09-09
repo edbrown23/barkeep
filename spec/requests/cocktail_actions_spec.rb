@@ -113,4 +113,24 @@ RSpec.describe 'Cocktail actions', type: :request do
     expect(ReagentAmount.exists?(amount.id)).to be(false)
     expect(CocktailFamilyJoiner.where(recipe_id: shared.id)).to be_empty
   end
+
+  it 'creates and edits personal recipes without accepting ownership changes' do
+    create(:reagent_category, external_id: 'gin')
+    allow(RecipeEmbeddingsService).to receive(:generate).and_return(nil)
+    sign_in user
+    payload = { cocktail: { name: 'New gin drink', user_id: nil, category: 'other', amounts: [{ amount: 1, unit: 'oz', tags: [{ tag: 'gin' }], optional: true }] } }
+    post cocktails_path, params: payload, as: :json
+    expect(response).to be_successful
+    recipe = Recipe.find(response.parsed_body.fetch('cocktail_id'))
+    expect(recipe).to have_attributes(user_id: user.id, category: 'cocktail')
+    expect(recipe.ingredients.sole.reagent_amount_id).to eq(recipe.reagent_amounts.sole.id)
+    payload[:cocktail][:name] = 'Edited gin drink'
+    payload[:cocktail][:user_id] = foreign.user_id
+    patch cocktail_path(recipe), params: payload, as: :json
+    expect(response).to be_successful
+    recipe = Recipe.find(recipe.id)
+    expect(recipe).to have_attributes(name: 'Edited gin drink', user_id: user.id)
+    expect(recipe.ingredients.sole.reagent_amount_id).to eq(recipe.reagent_amounts.sole.id)
+  end
+
 end

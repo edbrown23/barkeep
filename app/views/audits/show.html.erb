@@ -7,8 +7,8 @@
     <p>
       <strong>Drink Made:</strong>
       <% if @audit.recipe.present? %>
-                <span><%= link_to @audit.recipe.name.html_safe, cocktail_path(@audit.recipe) %></span>
-        
+        <span><%= link_to @audit.recipe.name.html_safe, cocktail_path(@audit.recipe) %></span>
+
       <% else %>
         <span><%= @audit.backup_name.html_safe %></span>
       <% end %>

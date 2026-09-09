@@ -52,3 +52,21 @@ Build the browser assets with:
 npm run build
 npm run build:css
 ```
+
+## Browser regression tests
+
+The system specs use an isolated headless Chrome profile and the test database.
+Build assets first, and provide a ChromeDriver matching your installed Chrome.
+The driver is discovered from `CHROMEDRIVER` (an executable path),
+`CHROMEWEBDRIVER` (a directory, as provided by GitHub Actions), or `PATH`.
+The direct Capybara registration supports the Selenium version currently in the lockfile.
+
+```sh
+npm run build
+npm run build:css
+CHROMEDRIVER=/path/to/chromedriver bundle exec rspec spec/system
+```
+
+The full `bundle exec rspec` run includes these browser specs. If local precompiled
+files in `public/assets` are stale, move that generated directory aside before testing
+so Rails serves the current builds. Failure screenshots are saved under `tmp/capybara`.

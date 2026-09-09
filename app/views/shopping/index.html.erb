@@ -33,11 +33,7 @@
                   <td><samp><%= link_to missing.first, reagent_category_path(missing) %></samp></td>
                   <td>
                   <% cocktails.each_with_index do |cocktail, i| %>
-                    <% if cocktail.user_id.present? %>
                     <%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
-                    <% else %>
-                    <%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
-                    <% end %>
                   <% end %>
                   </td>
                 </tr>
@@ -62,8 +58,8 @@
               <% @one_off_cocktails.values.each do |cocktail| %>
                 <tr id="cocktail_<%= cocktail.id %>">
                   <td><%= cocktail.name.html_safe %></td>
-                                    <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
-                  
+                  <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+
                   <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@counts[cocktail.id][:available]} of #{@counts[cocktail.id][:required]}" %></td>
                   <td>
                     <samp>

@@ -1,5 +1,5 @@
-<%= turbo_stream.replace "made_count", @old_count + 1 %>
-<%= turbo_stream.replace "made_globally_count", @old_global_count + 1 %>
+<%= turbo_stream.update "made_count", @old_count + 1 %>
+<%= turbo_stream.update "made_globally_count", @old_global_count + 1 %>
 
 <%= turbo_stream.prepend "toastDestination", partial: 'shared/cheers_toast_body' %>
 
