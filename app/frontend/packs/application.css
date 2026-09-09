@@ -38,6 +38,7 @@ h2 { font-size: 1.65rem; }
 .table thead th { color: var(--barkeep-muted); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; border-bottom-width: 2px; }
 .table tbody tr:hover { --bs-table-accent-bg: #f0eadf; }
 .table-secondary { --bs-table-bg: #f1eee7; }
+.pagination { margin-top: 1rem; }
 .badge-shared { background: #e8d8bc; color: #5a3c18; font-weight: 500; }
 .btn-primary { background: var(--barkeep-green); border-color: var(--barkeep-green); }
 .btn-primary:hover, .btn-primary:focus { background: var(--barkeep-green-dark); border-color: var(--barkeep-green-dark); }
