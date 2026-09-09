@@ -50,25 +50,15 @@
             </li>
             <% end %>
           </ul>
-          <div class="d-flex ms-lg-auto align-items-lg-center">
+          <div class="d-flex ms-lg-auto">
             <ul class="navbar-nav align-items-lg-center">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="/reagent_categories">Categories</a></li>
-                  <% unless user_signed_in? && !current_user.admin? %><li><a class="dropdown-item" href="/shared_cocktails">Shared cocktail list</a></li><% end %>
-                </ul>
-              </li>
+              <li class="nav-item"><a class="nav-link" href="/reagent_categories">Categories</a></li>
+              <% unless user_signed_in? && !current_user.admin? %>
+                <li class="nav-item"><a class="nav-link" href="/shared_cocktails">Shared cocktail list</a></li>
+              <% end %>
               <% if user_signed_in? %>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li><span class="dropdown-item-text"><%= current_user.email %></span></li>
-                    <li><%= link_to 'Account settings', edit_user_registration_path, class: 'dropdown-item' %></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><%= link_to 'Sign out', destroy_user_session_path, method: 'delete', class: 'dropdown-item' %></li>
-                  </ul>
-                </li>
+                <li class="nav-item"><span class="navbar-text me-2">Hi <%= current_user.email %> (<%= link_to 'edit account', edit_user_registration_path %>)</span></li>
+                <li class="nav-item"><%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "btn btn-outline-primary" %></li>
               <% else %>
                 <li class="nav-item"><%= link_to 'Sign In', new_user_session_path, class: "btn btn-outline-primary ms-lg-2" %></li>
               <% end %>
