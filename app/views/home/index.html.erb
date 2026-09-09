@@ -29,12 +29,12 @@
           <tbody>
             <% @users_favorite_cocktail_counts.each do |cocktail, count| %>
               <tr data-controller="home-index">
-                <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
+                <td><%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %></td>
                 <td><%= count =%></td>
                 <td>
                   <%=
                     link_to 'Show Ingredients',
-                      shared_cocktail_path(cocktail),
+                      cocktail_path(cocktail),
                       class: "btn btn-outline-info",
                       data: {
                         turbo_frame: dom_id(cocktail),
@@ -123,11 +123,11 @@
             <tbody>
               <% @shared_available.each do |cocktail| %>
                 <tr data-controller="home-index">
-                  <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
+                  <td><%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %></td>
                   <td>
                     <%=
                       link_to 'Show Ingredients',
-                        shared_cocktail_path(cocktail),
+                        cocktail_path(cocktail),
                         class: "btn btn-outline-info", 
                         data: { 
                           turbo_frame: dom_id(cocktail),

@@ -60,10 +60,11 @@ class Recipe < ApplicationRecord
   end
 
   has_many :reagent_amounts, dependent: :destroy
+  # Audits retain their recipe ID and backup name after deletion (the ID is NOT NULL).
   has_many :audits
   belongs_to :parent, class_name: Recipe.name, primary_key: :id, optional: true
-  has_many :children, class_name: Recipe.name, foreign_key: :parent_id
-  has_many :cocktail_family_joiners
+  has_many :children, class_name: Recipe.name, foreign_key: :parent_id, dependent: :nullify
+  has_many :cocktail_family_joiners, dependent: :destroy
   has_many :cocktail_families, through: :cocktail_family_joiners
   has_neighbors :embedding, normalize: true
 

@@ -13,7 +13,7 @@
             <tbody>
               <% @proposal_cocktails.each do |cocktail| %>
                 <tr>
-                  <td><%= cocktail.name.html_safe %></td>
+                  <td><%= cocktail.name %></td>
                   <td>
                     <table class="table">
                       <thead>
@@ -40,7 +40,7 @@
                       </tbody>
                     </table>
                   </td>
-                  <td><%= link_to "Accept", shared_cocktail_promote_to_shared_path(cocktail), method: "post", class: "btn btn-outline-success", data: { cocktail_id: cocktail.id } %></td>
+                  <td><%= link_to "Publish shared recipe", cocktail_promote_to_shared_path(cocktail), method: "post", class: "btn btn-outline-success", data: { cocktail_id: cocktail.id } %></td>
                 </tr>
               <% end %>
             </tbody>

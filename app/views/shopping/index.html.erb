@@ -36,7 +36,7 @@
                     <% if cocktail.user_id.present? %>
                     <%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
                     <% else %>
-                    <%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
+                    <%= link_to cocktail.name.html_safe, cocktail_path(cocktail) %><% if i != cocktails.size - 1 %>, <% end %>
                     <% end %>
                   <% end %>
                   </td>
@@ -62,11 +62,8 @@
               <% @one_off_cocktails.values.each do |cocktail| %>
                 <tr id="cocktail_<%= cocktail.id %>">
                   <td><%= cocktail.name.html_safe %></td>
-                  <% if cocktail.user_id.present? %>
-                  <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
-                  <% else %>
-                  <td><%= link_to "Show", shared_cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
-                  <% end %>
+                                    <td><%= link_to "Show", cocktail_path(cocktail), class: "btn btn-outline-info" %></td>
+                  
                   <td id="cocktail_<%= cocktail.id %>_count_row"><%= "#{@counts[cocktail.id][:available]} of #{@counts[cocktail.id][:required]}" %></td>
                   <td>
                     <samp>

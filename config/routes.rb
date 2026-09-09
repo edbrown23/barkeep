@@ -23,10 +23,10 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :cocktails do
-    post :delete
-    get :pre_make_drink
-    post :make_drink
+    post :delete, to: "cocktails#destroy", defaults: { deletion_scope: "owned" }
     post :toggle_favorite
+    post :add_to_account
+    post :promote_to_shared
     post :propose_to_share
     post :make_permanent
     get :nearest_neighbors
@@ -42,10 +42,15 @@ Rails.application.routes.draw do
     get :drink_builder, to: 'cocktails#drink_builder'
   end
 
-  resources :shared_cocktails, only: [:index, :show, :destroy] do
-    post :add_to_account
-    post :promote_to_shared
-  end
+  # Compatibility for bookmarked pages and older clients. New links use /cocktails.
+  get '/shared_cocktails', to: redirect(status: 302) { |_params, request|
+    query = request.query_parameters.slice('search_term', 'search_tags', 'makeable', 'page', 'family_ids')
+    "/cocktails?#{query.merge('ownership' => 'shared').to_query}"
+  }, as: :shared_cocktails
+  get '/shared_cocktails/:id', to: redirect('/cocktails/%{id}', status: 302), as: :shared_cocktail
+  post '/shared_cocktails/:shared_cocktail_id/add_to_account', to: 'cocktails#add_to_account', as: :shared_cocktail_add_to_account
+  post '/shared_cocktails/:shared_cocktail_id/promote_to_shared', to: 'cocktails#promote_to_shared', as: :shared_cocktail_promote_to_shared
+  delete '/shared_cocktails/:id', to: 'cocktails#destroy', defaults: { deletion_scope: 'shared' }
 
   resources :shopping, only: [:index, :show, :new, :create, :destroy, :edit] do
     get :list
