@@ -50,4 +50,15 @@ RSpec.describe CocktailSearch do
     expect(search(search_tags: ['gin', 'rum']).results).to be_empty
     expect(search(search_term: 'nonexistent').facets).to eq({})
   end
+
+  it 'paginates in a stable order without limiting facet counts to one page' do
+    create_list(:recipe, 26, name: 'A repeated name')
+    first = search(ownership: 'shared').cocktails
+    second = search(ownership: 'shared', page: 2).cocktails
+    expect(first.map(&:id) & second.map(&:id)).to be_empty
+    expect(first.total_count).to eq(27)
+    expect(first.map(&:id) + second.map(&:id)).to eq(Recipe.shared.order(:name, :id).pluck(:id))
+    expect(search(ownership: 'shared', page: 2).facets.keys).to include('gin')
+  end
+
 end

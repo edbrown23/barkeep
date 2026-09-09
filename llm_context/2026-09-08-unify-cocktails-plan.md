@@ -1,6 +1,6 @@
 # Unify shared and personal cocktail pages
 
-Status: proposed; no application changes implemented. Based on a static review of the current checkout. Tests and browser flows have not been run for this planning task.
+Status: implemented on `codex/unify-cocktails` after user approval. The design below records the original plan; execution details and verification are in [the implementation results](2026-09-08-unify-cocktails-results.md).
 
 ## Recommendation
 
@@ -202,7 +202,7 @@ Verification: route/request tests, repository search for old route/controller/te
 
 ### Completion checkpoint
 
-- [ ] Run `bundle exec rspec` using the repository's PostgreSQL/pgvector test setup; stub external embedding generation in mutation tests.
+- [ ] Run `bundle exec rspec` using the repository's PostgreSQL/pgvector test setup; stub embedding generation in focused mutation tests.
 - [ ] Browser-check guest browse/detail; member filtering, favorite, customize, edit, shopping, make/twist, submit, delete, ephemeral-to-permanent; admin review/publish/delete. Check Turbo navigation and mobile filters.
 - [ ] Verify old bookmarked GETs and old mutation URLs, HTML/JSON/Turbo responses, and non-cocktail/missing/other-user IDs.
 - [ ] Confirm the final diff changes no schema and leaves one index and one detail implementation.
@@ -213,4 +213,4 @@ Recommended defaults are public `/cocktails`, a single ownership selector, multi
 
 The biggest risk is making the controller broadly readable and accidentally using that same scope for writes. The second is losing Turbo behavior while collapsing templates. Both have explicit test matrices above. General query optimization, a whole-app authorization audit, changing community-note privacy, recipe editor redesign, master-copy synchronization, and rewriting the drink-making workflow are separate projects.
 
-Implementation should begin only after this plan has been reviewed, as requested. The current task adds this document only.
+The user approved implementation after reviewing this plan. See the implementation results for completed work and follow-up boundaries.
