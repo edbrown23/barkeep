@@ -1,0 +1,26 @@
+<% if @cocktail.shared? %>
+  <% if user_signed_in? %>
+    <p>Your versions:</p>
+    <ul id="usersVersions">
+      <% @user_copies.each do |copy| %>
+        <li><%= link_to copy.name, cocktail_path(copy) %></li>
+      <% end %>
+    </ul>
+    <p>Customize this recipe by creating a personal copy.</p>
+    <%= link_to 'Customize', shared_cocktail_add_to_account_path(@cocktail), class: 'btn btn-primary', method: :post %>
+    <% if current_user.admin? %>
+      <%= link_to 'Delete', shared_cocktail_path(@cocktail), class: 'btn btn-danger', method: :delete, data: { confirm: 'Delete this shared recipe?' } %>
+    <% end %>
+  <% else %>
+    <p><%= link_to 'Sign in', new_user_session_path %> to customize this cocktail, see your bottles, and make a drink.</p>
+  <% end %>
+<% elsif @cocktail.owned_by?(current_user) %>
+  <div class="d-flex gap-2 flex-wrap mt-3">
+    <%= link_to 'Edit', edit_cocktail_path(@cocktail), class: 'btn btn-primary' %>
+    <%= button_to 'Submit for sharing', cocktail_propose_to_share_path(@cocktail), class: 'btn btn-outline-primary', id: 'propose_sharing_button' %>
+    <%= link_to 'Delete', cocktail_delete_path(@cocktail), class: 'btn btn-danger', method: :post, data: { confirm: 'Delete this cocktail?' } %>
+    <% if @cocktail.ephemeral? %>
+      <%= button_to 'Make Permanent', cocktail_make_permanent_path(@cocktail), class: 'btn btn-success', id: 'make_permanent_button' %>
+    <% end %>
+  </div>
+<% end %>
